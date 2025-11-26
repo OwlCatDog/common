@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package resource.v1;
 
-option go_package = "codeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common/api/gen/go/resource/v1;v1";
+option go_package = "github.com/heyinLab/common/api/gen/go/resource/v1;v1";
 
 // 图片处理类型
 enum ImageProcessType {

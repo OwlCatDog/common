@@ -6,7 +6,7 @@ import "google/api/annotations.proto";
 import "google/protobuf/timestamp.proto";
 import "resource/v1/image.proto";
 
-option go_package = "codeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common/api/gen/go/resource/v1;v1";
+option go_package = "github.com/heyinLab/common/api/gen/go/resource/v1;v1";
 
 // 文件管理
 service FileService {

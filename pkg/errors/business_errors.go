@@ -1,7 +1,7 @@
 package errors
 
 import (
-	commonV1 "codeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common/api/gen/go/common"
+	commonV1 "github.com/heyinLab/common/api/gen/go/common"
 	"strings"
 )
 

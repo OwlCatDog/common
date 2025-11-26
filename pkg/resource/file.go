@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	v1 "codeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common/api/gen/go/resource/v1"
+	v1 "github.com/heyinLab/common/api/gen/go/resource/v1"
 )
 
 // FileUrlInfo 文件URL信息（简化版）

@@ -417,7 +417,7 @@ const file_common_errors_proto_rawDesc = "" +
 	"\x0eDATABASE_ERROR\x10\xbf\x9b\x01\x12\x13\n" +
 	"\rNETWORK_ERROR\x10\xc0\x9b\x01B\x9f\x01\n" +
 	"\n" +
-	"com.commonB\vErrorsProtoP\x01ZLcodeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common/api/gen/go/common\xa2\x02\x03CXX\xaa\x02\x06Common\xca\x02\x06Common\xe2\x02\x12Common\\GPBMetadata\xea\x02\x06Commonb\x06proto3"
+	"com.commonB\vErrorsProtoP\x01ZLgithub.com/heyinLab/common/api/gen/go/common\xa2\x02\x03CXX\xaa\x02\x06Common\xca\x02\x06Common\xe2\x02\x12Common\\GPBMetadata\xea\x02\x06Commonb\x06proto3"
 
 var (
 	file_common_errors_proto_rawDescOnce sync.Once

@@ -1,13 +1,13 @@
 package user_type
 
 import (
-	businessErrors "codeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common/pkg/errors"
-	"codeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common/pkg/middleware/auth"
 	"context"
 	"github.com/go-kratos/kratos/v2/errors"
 	"github.com/go-kratos/kratos/v2/middleware"
 	"github.com/go-kratos/kratos/v2/transport"
 	"github.com/go-kratos/kratos/v2/transport/http"
+	businessErrors "github.com/heyinLab/common/pkg/errors"
+	"github.com/heyinLab/common/pkg/middleware/auth"
 )
 
 const (

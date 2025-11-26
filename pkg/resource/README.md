@@ -16,7 +16,7 @@
 ### 安装
 
 ```bash
-go get codeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common
+go get github.com/heyinLab/common
 ```
 
 ### 基本使用
@@ -31,7 +31,7 @@ import (
     "fmt"
     "log"
 
-    "codeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common/pkg/resource"
+    "github.com/heyinLab/common/pkg/resource"
 )
 
 func main() {
@@ -63,7 +63,7 @@ import (
     "context"
     "log"
 
-    "codeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common/pkg/resource"
+    "github.com/heyinLab/common/pkg/resource"
     "github.com/go-kratos/kratos/v2/registry"
     // 导入你的服务发现实现，如 Consul
 )
@@ -249,7 +249,7 @@ func ListUserFiles(client *resource.Client) error {
 package server
 
 import (
-    "codeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common/pkg/resource"
+    "github.com/heyinLab/common/pkg/resource"
     "github.com/go-kratos/kratos/v2/registry"
     "github.com/google/wire"
 )
@@ -282,7 +282,7 @@ package biz
 import (
     "context"
 
-    "codeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common/pkg/resource"
+    "github.com/heyinLab/common/pkg/resource"
 )
 
 type ProductUsecase struct {
@@ -493,7 +493,7 @@ func GetImageURL(ctx context.Context, fileID string) (string, error) {
 package main
 
 import (
-    "codeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common/pkg/resource"
+    "github.com/heyinLab/common/pkg/resource"
     "github.com/google/wire"
 )
 
@@ -511,7 +511,7 @@ func wireApp(*conf.Server, *conf.Data, log.Logger) (*kratos.App, func(), error) 
 package server
 
 import (
-    "codeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common/pkg/resource"
+    "github.com/heyinLab/common/pkg/resource"
 )
 
 var ProviderSet = wire.NewSet(

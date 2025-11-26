@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"time"
 
-	v1 "codeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common/api/gen/go/resource/v1"
 	"github.com/go-kratos/kratos/v2/log"
 	"github.com/go-kratos/kratos/v2/middleware/recovery"
 	"github.com/go-kratos/kratos/v2/registry"
 	kratosGrpc "github.com/go-kratos/kratos/v2/transport/grpc"
+	v1 "github.com/heyinLab/common/api/gen/go/resource/v1"
 	"google.golang.org/grpc"
 )
 

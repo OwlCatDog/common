@@ -2308,7 +2308,7 @@ const file_resource_v1_file_proto_rawDesc = "" +
 	"\x0fCheckFileExists\x12#.resource.v1.CheckFileExistsRequest\x1a$.resource.v1.CheckFileExistsResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/api/v1/files:check\x12\x84\x01\n" +
 	"\x10BatchGetFileUrls\x12$.resource.v1.BatchGetFileUrlsRequest\x1a%.resource.v1.BatchGetFileUrlsResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\"\x18/api/v1/files:batch-urls\x12\x99\x01\n" +
 	"\x14BatchGetDownloadUrls\x12(.resource.v1.BatchGetDownloadUrlsRequest\x1a).resource.v1.BatchGetDownloadUrlsResponse\",\x82\xd3\xe4\x93\x02&:\x01*\"!/api/v1/files:batch-download-urlsB\xc7\x01\n" +
-	"\x0fcom.resource.v1B\tFileProtoP\x01Z\\codeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common/api/gen/go/resource/v1;resourcev1\xa2\x02\x03RXX\xaa\x02\vResource.V1\xca\x02\vResource\\V1\xe2\x02\x17Resource\\V1\\GPBMetadata\xea\x02\fResource::V1b\x06proto3"
+	"\x0fcom.resource.v1B\tFileProtoP\x01Z\\github.com/heyinLab/common/api/gen/go/resource/v1;resourcev1\xa2\x02\x03RXX\xaa\x02\vResource.V1\xca\x02\vResource\\V1\xe2\x02\x17Resource\\V1\\GPBMetadata\xea\x02\fResource::V1b\x06proto3"
 
 var (
 	file_resource_v1_file_proto_rawDescOnce sync.Once

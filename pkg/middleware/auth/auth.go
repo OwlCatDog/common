@@ -1,8 +1,8 @@
 package auth
 
 import (
-	businessErrors "codeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common/pkg/errors"
 	"context"
+	businessErrors "github.com/heyinLab/common/pkg/errors"
 	"strconv"
 
 	"github.com/go-kratos/kratos/v2/errors"

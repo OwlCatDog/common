@@ -15,7 +15,7 @@ managed:
 
   override:
     - file_option: go_package_prefix
-      value: codeup.aliyun.com/68ce48b215dfc6c8604f8fb0/go-heyin-common/api/gen/go
+      value: github.com/heyinLab/common/api/gen/go
 
 plugins:
   # 使用go插件生成go代码
