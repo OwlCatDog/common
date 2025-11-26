@@ -1,0 +1,27 @@
+name: Auto Tag
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
+          DEFAULT_BUMP: patch
+          # commit message 包含 #major -> 主版本号+1 (v1.0.0 -> v2.0.0)
+          # commit message 包含 #minor -> 次版本号+1 (v0.1.0 -> v0.2.0)
+          # 默认 patch -> 补丁版本+1 (v0.0.1 -> v0.0.2)
