@@ -5,3 +5,10 @@ plugin:
 	@go install github.com/go-kratos/kratos/cmd/protoc-gen-go-errors/v2@latest
 	@go install github.com/google/gnostic/cmd/protoc-gen-openapi@latest
 	@go install github.com/envoyproxy/protoc-gen-validate@latest
+
+.PHONY: buf-api
+
+buf-api:
+	cd api && buf generate
+	@echo "📝 Adding summary fields to OpenAPI..."
+	@echo "✅API Protobuf Go code generated successfully!"

@@ -378,9 +378,9 @@ const file_resource_v1_image_proto_rawDesc = "" +
 	"\x11IMAGE_FORMAT_JPEG\x10\x01\x12\x14\n" +
 	"\x10IMAGE_FORMAT_PNG\x10\x02\x12\x15\n" +
 	"\x11IMAGE_FORMAT_WEBP\x10\x03\x12\x14\n" +
-	"\x10IMAGE_FORMAT_GIF\x10\x04B\xc8\x01\n" +
+	"\x10IMAGE_FORMAT_GIF\x10\x04B\xa8\x01\n" +
 	"\x0fcom.resource.v1B\n" +
-	"ImageProtoP\x01Z\\github.com/heyinLab/common/api/gen/go/resource/v1;resourcev1\xa2\x02\x03RXX\xaa\x02\vResource.V1\xca\x02\vResource\\V1\xe2\x02\x17Resource\\V1\\GPBMetadata\xea\x02\fResource::V1b\x06proto3"
+	"ImageProtoP\x01Z<github.com/heyinLab/common/api/gen/go/resource/v1;resourcev1\xa2\x02\x03RXX\xaa\x02\vResource.V1\xca\x02\vResource\\V1\xe2\x02\x17Resource\\V1\\GPBMetadata\xea\x02\fResource::V1b\x06proto3"
 
 var (
 	file_resource_v1_image_proto_rawDescOnce sync.Once
