@@ -1,0 +1,315 @@
+syntax = "proto3";
+
+package resource.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "resource/v1;v1";
+
+// ResourceInternalService 资源服务内部接口
+//
+// 此服务仅供内部微服务调用，不对外暴露HTTP接口
+// 所有接口均为gRPC调用
+//
+// 使用场景：
+// - 其他微服务需要获取文件信息
+// - 其他微服务需要生成文件访问URL
+// - 其他微服务需要检查配额/文件状态
+service ResourceInternalService {
+  // ========== 文件相关接口 ==========
+
+  // InternalGetFile 获取文件信息（内部接口）
+  //
+  // 用于其他微服务获取文件元数据
+  //
+  // 使用场景：
+  // - 内容服务验证用户上传的图片是否有效
+  // - 订单服务获取商品图片信息
+  // - 审核服务获取待审核文件信息
+  rpc InternalGetFile (InternalGetFileRequest) returns (InternalGetFileResponse);
+
+  // InternalGetFiles 批量获取文件信息（内部接口）
+  //
+  // 用于其他微服务批量获取文件元数据
+  //
+  // 使用场景：
+  // - 商品服务批量获取商品图片信息
+  // - 内容服务批量获取文章配图信息
+  rpc InternalGetFiles (InternalGetFilesRequest) returns (InternalGetFilesResponse);
+
+  // InternalGetFileUrls 批量获取文件URL（内部接口）
+  //
+  // 用于其他微服务批量获取文件访问URL
+  //
+  // 使用场景：
+  // - 商品服务获取商品图片URL用于展示
+  // - 内容服务获取文章配图URL
+  // - 用户服务获取用户头像URL
+  rpc InternalGetFileUrls (InternalGetFileUrlsRequest) returns (InternalGetFileUrlsResponse);
+
+  // InternalGetDownloadUrls 批量获取下载URL（内部接口）
+  //
+  // 用于其他微服务批量获取文件下载URL
+  //
+  // 使用场景：
+  // - 导出服务生成导出文件下载链接
+  // - 报表服务生成报表下载链接
+  // - 订单服务生成发票下载链接
+  rpc InternalGetDownloadUrls (InternalGetDownloadUrlsRequest) returns (InternalGetDownloadUrlsResponse);
+
+  // InternalCheckFileExists 检查文件是否存在（内部接口）
+  //
+  // 用于其他微服务检查文件是否存在
+  //
+  // 使用场景：
+  // - 验证业务数据关联的文件是否有效
+  // - 秒传检查
+  rpc InternalCheckFileExists (InternalCheckFileExistsRequest) returns (InternalCheckFileExistsResponse);
+
+  // ========== 配额相关接口 ==========
+
+  // InternalGetQuota 获取租户配额（内部接口）
+  //
+  // 用于其他微服务获取租户配额信息
+  //
+  // 使用场景：
+  // - 计费服务获取用户配额用量
+  // - 用户服务展示用户存储使用情况
+  // - 监控服务检查配额告警
+  rpc InternalGetQuota (InternalGetQuotaRequest) returns (InternalGetQuotaResponse);
+
+  // InternalCheckQuota 检查配额（内部接口）
+  //
+  // 用于其他微服务在执行操作前检查配额
+  //
+  // 使用场景：
+  // - 其他服务在触发上传前预检查配额
+  // - 批量操作前检查是否有足够配额
+  rpc InternalCheckQuota (InternalCheckQuotaRequest) returns (InternalCheckQuotaResponse);
+}
+
+// ========== 内部文件对象（精简版） ==========
+
+// InternalFileInfo 内部文件信息（精简版）
+//
+// 只包含其他微服务需要的核心字段
+message InternalFileInfo {
+  // 文件唯一标识符
+  string id = 1;
+  // 租户ID
+  uint32 tenant_id = 2;
+  // 原始文件名
+  string filename = 3;
+  // 文件大小（字节）
+  int64 size = 4;
+  // MIME类型
+  string content_type = 5;
+  // 文件状态：init, uploading, completed, failed, deleted, archived
+  string status = 6;
+  // 文件大类：image, video, document, audio, archive, other
+  string file_category = 7;
+  // SHA256校验和
+  string checksum_sha256 = 8;
+  // 创建时间
+  google.protobuf.Timestamp created_at = 9;
+  // 更新时间
+  google.protobuf.Timestamp updated_at = 10;
+}
+
+// InternalFileUrlInfo 内部文件URL信息
+message InternalFileUrlInfo {
+  // 文件访问URL
+  string url = 1;
+  // 派生图URL（variant_id -> url）
+  map<string, string> variant_urls = 2;
+  // 是否为公开URL（永久有效）
+  bool is_public = 3;
+  // URL过期时间（秒），is_public=true时为0
+  int64 expires_in = 4;
+  // 文件名
+  string filename = 5;
+  // 文件大小（字节）
+  int64 size = 6;
+  // MIME类型
+  string content_type = 7;
+  // 是否成功获取URL
+  bool success = 8;
+  // 错误信息（success=false时）
+  string error = 9;
+}
+
+// InternalFileDownloadInfo 内部文件下载信息
+message InternalFileDownloadInfo {
+  // 下载URL（预签名URL）
+  string download_url = 1;
+  // 下载文件名
+  string filename = 2;
+  // 文件大小（字节）
+  int64 size = 3;
+  // MIME类型
+  string content_type = 4;
+  // URL过期时间（秒）
+  int64 expires_in = 5;
+  // 是否成功生成下载URL
+  bool success = 6;
+  // 错误信息（success=false时）
+  string error = 7;
+}
+
+// InternalQuotaInfo 内部配额信息（精简版）
+message InternalQuotaInfo {
+  // 租户ID
+  uint32 tenant_id = 1;
+  // 存储配额（字节），0表示无限制
+  int64 storage_quota = 2;
+  // 已用存储（字节）
+  int64 storage_used = 3;
+  // 存储使用百分比
+  float storage_usage_percent = 4;
+  // 文件数配额，0表示无限制
+  int64 file_count_quota = 5;
+  // 已用文件数
+  int64 file_count_used = 6;
+  // 每日上传次数配额
+  int32 upload_count_daily = 7;
+  // 今日已上传次数
+  int32 upload_count_used = 8;
+  // 每日带宽配额（字节）
+  int64 bandwidth_quota_daily = 9;
+  // 今日已用带宽（字节）
+  int64 bandwidth_used = 10;
+  // 配额状态：active, suspended, exceeded
+  string status = 11;
+}
+
+// ========== 文件相关请求/响应消息 ==========
+
+// InternalGetFileRequest 内部获取文件请求
+message InternalGetFileRequest {
+  // 租户ID（必填）
+  uint32 tenant_id = 1;
+  // 文件ID（必填）
+  string file_id = 2;
+}
+
+// InternalGetFileResponse 内部获取文件响应
+message InternalGetFileResponse {
+  // 文件信息
+  InternalFileInfo file = 1;
+}
+
+// InternalGetFilesRequest 内部批量获取文件请求
+message InternalGetFilesRequest {
+  // 租户ID（必填）
+  uint32 tenant_id = 1;
+  // 文件ID列表（必填，最多100个）
+  repeated string file_ids = 2;
+}
+
+// InternalGetFilesResponse 内部批量获取文件响应
+message InternalGetFilesResponse {
+  // 文件列表（file_id -> InternalFileInfo）
+  map<string, InternalFileInfo> files = 1;
+  // 失败的文件ID列表
+  repeated string failed_ids = 2;
+}
+
+// InternalGetFileUrlsRequest 内部批量获取文件URL请求
+message InternalGetFileUrlsRequest {
+  // 租户ID（必填）
+  uint32 tenant_id = 1;
+  // 文件ID列表（必填，最多100个）
+  repeated string file_ids = 2;
+  // 是否包含变体URL（可选，默认false）
+  bool include_variants = 3;
+  // URL有效期（秒，可选），默认3600
+  int64 expires_in = 4;
+}
+
+// InternalGetFileUrlsResponse 内部批量获取文件URL响应
+message InternalGetFileUrlsResponse {
+  // file_id -> URL信息映射
+  map<string, InternalFileUrlInfo> results = 1;
+  // URL有效期（秒）
+  int64 expires_in = 2;
+}
+
+// InternalFileDownloadRequest 单个文件下载请求
+message InternalFileDownloadRequest {
+  // 文件ID（必填）
+  string file_id = 1;
+  // 自定义下载文件名（可选）
+  string download_filename = 2;
+  // 要下载的变体ID（可选）
+  string variant_id = 3;
+}
+
+// InternalGetDownloadUrlsRequest 内部批量获取下载URL请求
+message InternalGetDownloadUrlsRequest {
+  // 租户ID（必填）
+  uint32 tenant_id = 1;
+  // 文件下载请求列表（最多50个）
+  repeated InternalFileDownloadRequest files = 2;
+  // URL有效期（秒，可选），默认3600
+  int64 expires_in = 3;
+}
+
+// InternalGetDownloadUrlsResponse 内部批量获取下载URL响应
+message InternalGetDownloadUrlsResponse {
+  // file_id -> 下载信息映射
+  map<string, InternalFileDownloadInfo> results = 1;
+  // URL有效期（秒）
+  int64 expires_in = 2;
+}
+
+// InternalCheckFileExistsRequest 内部检查文件存在请求
+message InternalCheckFileExistsRequest {
+  // 租户ID（必填）
+  uint32 tenant_id = 1;
+  // SHA256校验和（必填）
+  string checksum_sha256 = 2;
+  // 文件大小（字节，可选但推荐）
+  int64 size = 3;
+}
+
+// InternalCheckFileExistsResponse 内部检查文件存在响应
+message InternalCheckFileExistsResponse {
+  // 文件是否存在
+  bool exists = 1;
+  // 已存在的文件信息（exists=true时）
+  InternalFileInfo file = 2;
+}
+
+// ========== 配额相关请求/响应消息 ==========
+
+// InternalGetQuotaRequest 内部获取配额请求
+message InternalGetQuotaRequest {
+  // 租户ID（必填）
+  uint32 tenant_id = 1;
+}
+
+// InternalGetQuotaResponse 内部获取配额响应
+message InternalGetQuotaResponse {
+  // 配额信息
+  InternalQuotaInfo quota = 1;
+}
+
+// InternalCheckQuotaRequest 内部检查配额请求
+message InternalCheckQuotaRequest {
+  // 租户ID（必填）
+  uint32 tenant_id = 1;
+  // 检查类型（必填）：upload, download, storage
+  string check_type = 2;
+  // 预计使用量（字节，用于upload和storage检查）
+  int64 size = 3;
+}
+
+// InternalCheckQuotaResponse 内部检查配额响应
+message InternalCheckQuotaResponse {
+  // 是否允许操作
+  bool allowed = 1;
+  // 不允许的原因（allowed=false时）
+  string reason = 2;
+  // 当前配额信息
+  InternalQuotaInfo quota = 3;
+}
