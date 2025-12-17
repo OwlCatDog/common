@@ -4,7 +4,7 @@
 // - protoc             (unknown)
 // source: platform/v1/iam_internal.proto
 
-package servicev1
+package platformv1
 
 import (
 	context "context"
@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PlatformIamService_GetTenantPermissionsTree_FullMethodName = "/iam.service.v1.PlatformIamService/GetTenantPermissionsTree"
+	PlatformIamService_GetTenantPermissionsTree_FullMethodName = "/common.platform.v1.PlatformIamService/GetTenantPermissionsTree"
 )
 
 // PlatformIamServiceClient is the client API for PlatformIamService service.
@@ -114,7 +114,7 @@ func _PlatformIamService_GetTenantPermissionsTree_Handler(srv interface{}, ctx c
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var PlatformIamService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "iam.service.v1.PlatformIamService",
+	ServiceName: "common.platform.v1.PlatformIamService",
 	HandlerType: (*PlatformIamServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: platform/v1/iam_internal.proto
 
-package servicev1
+package platformv1
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -660,7 +660,7 @@ var File_platform_v1_iam_internal_proto protoreflect.FileDescriptor
 
 const file_platform_v1_iam_internal_proto_rawDesc = "" +
 	"\n" +
-	"\x1eplatform/v1/iam_internal.proto\x12\x0eiam.service.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbc\t\n" +
+	"\x1eplatform/v1/iam_internal.proto\x12\x12common.platform.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbc\t\n" +
 	"\tRouteMeta\x12#\n" +
 	"\n" +
 	"activeIcon\x18\x01 \x01(\tH\x00R\n" +
@@ -718,7 +718,7 @@ const file_platform_v1_iam_internal_proto_rawDesc = "" +
 	"\x19_menuVisibleWithForbiddenB\x12\n" +
 	"\x10_openInNewWindowB\b\n" +
 	"\x06_orderB\b\n" +
-	"\x06_title\"\xa2\x06\n" +
+	"\x06_title\"\xaa\x06\n" +
 	"\n" +
 	"Permission\x12\x13\n" +
 	"\x02id\x18\x01 \x01(\rH\x00R\x02id\x88\x01\x01\x12\x17\n" +
@@ -733,12 +733,12 @@ const file_platform_v1_iam_internal_proto_rawDesc = "" +
 	"\n" +
 	"sort_order\x18\t \x01(\x05H\bR\tsortOrder\x88\x01\x01\x12 \n" +
 	"\tis_active\x18\n" +
-	" \x01(\bH\tR\bisActive\x88\x01\x01\x126\n" +
-	"\bchildren\x18\v \x03(\v2\x1a.iam.service.v1.PermissionR\bchildren\x12\x1f\n" +
+	" \x01(\bH\tR\bisActive\x88\x01\x01\x12:\n" +
+	"\bchildren\x18\v \x03(\v2\x1e.common.platform.v1.PermissionR\bchildren\x12\x1f\n" +
 	"\bredirect\x18\f \x01(\tH\n" +
 	"R\bredirect\x88\x01\x01\x12!\n" +
-	"\tcomponent\x18\r \x01(\tH\vR\tcomponent\x88\x01\x01\x122\n" +
-	"\x04meta\x18\x0e \x01(\v2\x19.iam.service.v1.RouteMetaH\fR\x04meta\x88\x01\x01\x12A\n" +
+	"\tcomponent\x18\r \x01(\tH\vR\tcomponent\x88\x01\x01\x126\n" +
+	"\x04meta\x18\x0e \x01(\v2\x1d.common.platform.v1.RouteMetaH\fR\x04meta\x88\x01\x01\x12A\n" +
 	"\vcreate_time\x18\xc8\x01 \x01(\v2\x1a.google.protobuf.TimestampH\rR\n" +
 	"createTime\x88\x01\x01\x12A\n" +
 	"\vupdate_time\x18\xc9\x01 \x01(\v2\x1a.google.protobuf.TimestampH\x0eR\n" +
@@ -759,7 +759,7 @@ const file_platform_v1_iam_internal_proto_rawDesc = "" +
 	"_componentB\a\n" +
 	"\x05_metaB\x0e\n" +
 	"\f_create_timeB\x0e\n" +
-	"\f_update_time\"\xd6\x04\n" +
+	"\f_update_time\"\xde\x04\n" +
 	"\x18TenantPermissionTreeNode\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x17\n" +
@@ -772,13 +772,13 @@ const file_platform_v1_iam_internal_proto_rawDesc = "" +
 	"\bredirect\x18\b \x01(\tH\x05R\bredirect\x88\x01\x01\x12!\n" +
 	"\tcomponent\x18\t \x01(\tH\x06R\tcomponent\x88\x01\x01\x12\x16\n" +
 	"\x06status\x18\n" +
-	" \x01(\tR\x06status\x122\n" +
-	"\x04meta\x18\v \x01(\v2\x19.iam.service.v1.RouteMetaH\aR\x04meta\x88\x01\x01\x12\"\n" +
+	" \x01(\tR\x06status\x126\n" +
+	"\x04meta\x18\v \x01(\v2\x1d.common.platform.v1.RouteMetaH\aR\x04meta\x88\x01\x01\x12\"\n" +
 	"\n" +
 	"product_id\x18\f \x01(\rH\bR\tproductId\x88\x01\x01\x12\x1d\n" +
 	"\n" +
-	"sort_order\x18\r \x01(\x05R\tsortOrder\x12D\n" +
-	"\bchildren\x18\x0e \x03(\v2(.iam.service.v1.TenantPermissionTreeNodeR\bchildrenB\a\n" +
+	"sort_order\x18\r \x01(\x05R\tsortOrder\x12H\n" +
+	"\bchildren\x18\x0e \x03(\v2,.common.platform.v1.TenantPermissionTreeNodeR\bchildrenB\a\n" +
 	"\x05_codeB\a\n" +
 	"\x05_typeB\f\n" +
 	"\n" +
@@ -792,13 +792,13 @@ const file_platform_v1_iam_internal_proto_rawDesc = "" +
 	"\v_product_id\"I\n" +
 	"\x1fGetTenantPermissionsTreeRequest\x12\x1b\n" +
 	"\x06status\x18\x01 \x01(\tH\x00R\x06status\x88\x01\x01B\t\n" +
-	"\a_status\"v\n" +
-	" GetTenantPermissionsTreeResponse\x12<\n" +
-	"\x04tree\x18\x01 \x03(\v2(.iam.service.v1.TenantPermissionTreeNodeR\x04tree\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\rR\x05total2\x93\x01\n" +
-	"\x12PlatformIamService\x12}\n" +
-	"\x18GetTenantPermissionsTree\x12/.iam.service.v1.GetTenantPermissionsTreeRequest\x1a0.iam.service.v1.GetTenantPermissionsTreeResponseB\xbd\x01\n" +
-	"\x12com.iam.service.v1B\x10IamInternalProtoP\x01Z;github.com/heyinLab/common/api/gen/go/platform/v1;servicev1\xa2\x02\x03ISX\xaa\x02\x0eIam.Service.V1\xca\x02\x0eIam\\Service\\V1\xe2\x02\x1aIam\\Service\\V1\\GPBMetadata\xea\x02\x10Iam::Service::V1b\x06proto3"
+	"\a_status\"z\n" +
+	" GetTenantPermissionsTreeResponse\x12@\n" +
+	"\x04tree\x18\x01 \x03(\v2,.common.platform.v1.TenantPermissionTreeNodeR\x04tree\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\rR\x05total2\x9c\x01\n" +
+	"\x12PlatformIamService\x12\x85\x01\n" +
+	"\x18GetTenantPermissionsTree\x123.common.platform.v1.GetTenantPermissionsTreeRequest\x1a4.common.platform.v1.GetTenantPermissionsTreeResponseB\xd2\x01\n" +
+	"\x16com.common.platform.v1B\x10IamInternalProtoP\x01Z<github.com/heyinLab/common/api/gen/go/platform/v1;platformv1\xa2\x02\x03CPX\xaa\x02\x12Common.Platform.V1\xca\x02\x12Common\\Platform\\V1\xe2\x02\x1eCommon\\Platform\\V1\\GPBMetadata\xea\x02\x14Common::Platform::V1b\x06proto3"
 
 var (
 	file_platform_v1_iam_internal_proto_rawDescOnce sync.Once
@@ -814,23 +814,23 @@ func file_platform_v1_iam_internal_proto_rawDescGZIP() []byte {
 
 var file_platform_v1_iam_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_platform_v1_iam_internal_proto_goTypes = []any{
-	(*RouteMeta)(nil),                        // 0: iam.service.v1.RouteMeta
-	(*Permission)(nil),                       // 1: iam.service.v1.Permission
-	(*TenantPermissionTreeNode)(nil),         // 2: iam.service.v1.TenantPermissionTreeNode
-	(*GetTenantPermissionsTreeRequest)(nil),  // 3: iam.service.v1.GetTenantPermissionsTreeRequest
-	(*GetTenantPermissionsTreeResponse)(nil), // 4: iam.service.v1.GetTenantPermissionsTreeResponse
+	(*RouteMeta)(nil),                        // 0: common.platform.v1.RouteMeta
+	(*Permission)(nil),                       // 1: common.platform.v1.Permission
+	(*TenantPermissionTreeNode)(nil),         // 2: common.platform.v1.TenantPermissionTreeNode
+	(*GetTenantPermissionsTreeRequest)(nil),  // 3: common.platform.v1.GetTenantPermissionsTreeRequest
+	(*GetTenantPermissionsTreeResponse)(nil), // 4: common.platform.v1.GetTenantPermissionsTreeResponse
 	(*timestamppb.Timestamp)(nil),            // 5: google.protobuf.Timestamp
 }
 var file_platform_v1_iam_internal_proto_depIdxs = []int32{
-	1, // 0: iam.service.v1.Permission.children:type_name -> iam.service.v1.Permission
-	0, // 1: iam.service.v1.Permission.meta:type_name -> iam.service.v1.RouteMeta
-	5, // 2: iam.service.v1.Permission.create_time:type_name -> google.protobuf.Timestamp
-	5, // 3: iam.service.v1.Permission.update_time:type_name -> google.protobuf.Timestamp
-	0, // 4: iam.service.v1.TenantPermissionTreeNode.meta:type_name -> iam.service.v1.RouteMeta
-	2, // 5: iam.service.v1.TenantPermissionTreeNode.children:type_name -> iam.service.v1.TenantPermissionTreeNode
-	2, // 6: iam.service.v1.GetTenantPermissionsTreeResponse.tree:type_name -> iam.service.v1.TenantPermissionTreeNode
-	3, // 7: iam.service.v1.PlatformIamService.GetTenantPermissionsTree:input_type -> iam.service.v1.GetTenantPermissionsTreeRequest
-	4, // 8: iam.service.v1.PlatformIamService.GetTenantPermissionsTree:output_type -> iam.service.v1.GetTenantPermissionsTreeResponse
+	1, // 0: common.platform.v1.Permission.children:type_name -> common.platform.v1.Permission
+	0, // 1: common.platform.v1.Permission.meta:type_name -> common.platform.v1.RouteMeta
+	5, // 2: common.platform.v1.Permission.create_time:type_name -> google.protobuf.Timestamp
+	5, // 3: common.platform.v1.Permission.update_time:type_name -> google.protobuf.Timestamp
+	0, // 4: common.platform.v1.TenantPermissionTreeNode.meta:type_name -> common.platform.v1.RouteMeta
+	2, // 5: common.platform.v1.TenantPermissionTreeNode.children:type_name -> common.platform.v1.TenantPermissionTreeNode
+	2, // 6: common.platform.v1.GetTenantPermissionsTreeResponse.tree:type_name -> common.platform.v1.TenantPermissionTreeNode
+	3, // 7: common.platform.v1.PlatformIamService.GetTenantPermissionsTree:input_type -> common.platform.v1.GetTenantPermissionsTreeRequest
+	4, // 8: common.platform.v1.PlatformIamService.GetTenantPermissionsTree:output_type -> common.platform.v1.GetTenantPermissionsTreeResponse
 	8, // [8:9] is the sub-list for method output_type
 	7, // [7:8] is the sub-list for method input_type
 	7, // [7:7] is the sub-list for extension type_name

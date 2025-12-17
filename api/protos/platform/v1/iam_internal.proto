@@ -1,6 +1,7 @@
 syntax = "proto3";
 
-package iam.service.v1;
+package common.platform.v1;
+option go_package = "github.com/heyinLab/common/api/gen/go/platform/v1;v1";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
