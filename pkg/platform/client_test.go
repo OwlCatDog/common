@@ -69,10 +69,79 @@ func TestGetTenantPermissionsTreeWithStatus(t *testing.T) {
 	t.Logf("成功获取 权限树，总数: %d", total)
 }
 
+func TestGetPermissionCodesByProduct(t *testing.T) {
+	consulClient, err := consulapi.NewClient(consulapi.DefaultConfig())
+	if err != nil {
+		t.Skipf("无法连接到 Consul: %v", err)
+		return
+	}
+
+	discovery := consul.New(consulClient)
+	client, err := NewClientWithDiscovery(DefaultConfig(), discovery)
+	if err != nil {
+		t.Fatalf("创建客户端失败: %v", err)
+	}
+	defer client.Close()
+
+	// 测试获取产品权限codes
+	ctx := context.Background()
+	productID := uint32(1) // 使用测试产品ID
+
+	codes, total, err := client.IAM().GetPermissionCodesByProduct(ctx, productID, nil)
+	if err != nil {
+		t.Logf("获取产品权限codes失败（可能服务未启动）: %v", err)
+		t.Skip("跳过测试，服务可能未启动")
+		return
+	}
+
+	t.Logf("成功获取产品 %d 的权限codes，总数: %d", productID, total)
+	if len(codes) > 0 {
+		t.Logf("权限codes: %v", codes)
+	}
+}
+
+func TestGetPermissionCodesByProductWithStatus(t *testing.T) {
+	consulClient, err := consulapi.NewClient(consulapi.DefaultConfig())
+	if err != nil {
+		t.Skipf("无法连接到 Consul: %v", err)
+		return
+	}
+
+	discovery := consul.New(consulClient)
+	client, err := NewClientWithDiscovery(DefaultConfig(), discovery)
+	if err != nil {
+		t.Fatalf("创建客户端失败: %v", err)
+	}
+	defer client.Close()
+
+	// 测试只获取 GA 状态的产品权限codes
+	ctx := context.Background()
+	productID := uint32(50)
+
+	codes, total, err := client.IAM().GetPermissionCodesByProduct(ctx, productID, &GetPermissionCodesByProductOptions{
+		Status: "GA",
+	})
+
+	if err != nil {
+		t.Logf("获取产品权限codes失败（可能服务未启动）: %v", err)
+		t.Skip("跳过测试，服务可能未启动")
+		return
+	}
+
+	t.Logf("成功获取产品 %d 的 GA 状态权限codes，总数: %d, codes: %v", productID, total, codes)
+}
+
 // 辅助函数
 func getCodeValue(code *string) string {
 	if code == nil {
 		return ""
 	}
 	return *code
+}
+
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
 }

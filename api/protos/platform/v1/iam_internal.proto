@@ -5,6 +5,7 @@ option go_package = "github.com/heyinLab/common/api/gen/go/platform/v1;v1";
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
+import "google/api/field_behavior.proto";
 
 // ==================== 权限相关消息 ====================
 
@@ -89,9 +90,23 @@ message GetTenantPermissionsTreeResponse {
 
 
 // ==================== 内部 IAM 服务 ====================
+// 根据产品ID获取权限codes请求
+message GetPermissionCodesByProductRequest {
+  uint32 product_id = 1 [json_name = "productId", (google.api.field_behavior) = REQUIRED];
+  // 可选：只获取指定状态的权限 (DEV, BETA, GA)
+  optional string status = 2 [json_name = "status"];
+}
+
+// 根据产品ID获取权限codes响应
+message GetPermissionCodesByProductResponse {
+  repeated string codes = 1 [json_name = "codes"];
+  uint32 total = 2 [json_name = "total"];
+}
 
 // 内部IAM服务（仅 gRPC，不暴露 HTTP）
 service PlatformIamService {
   // 获取完整租户权限树（树结构，包含 children，用于前端菜单渲染和权限分配）
   rpc GetTenantPermissionsTree(GetTenantPermissionsTreeRequest) returns (GetTenantPermissionsTreeResponse);
+  // 根据产品ID获取权限codes（扁平列表，用于权限校验）
+  rpc GetPermissionCodesByProduct (GetPermissionCodesByProductRequest) returns (GetPermissionCodesByProductResponse);
 }

@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PlatformIamService_GetTenantPermissionsTree_FullMethodName = "/common.platform.v1.PlatformIamService/GetTenantPermissionsTree"
+	PlatformIamService_GetTenantPermissionsTree_FullMethodName    = "/common.platform.v1.PlatformIamService/GetTenantPermissionsTree"
+	PlatformIamService_GetPermissionCodesByProduct_FullMethodName = "/common.platform.v1.PlatformIamService/GetPermissionCodesByProduct"
 )
 
 // PlatformIamServiceClient is the client API for PlatformIamService service.
@@ -30,6 +31,8 @@ const (
 type PlatformIamServiceClient interface {
 	// 获取完整租户权限树（树结构，包含 children，用于前端菜单渲染和权限分配）
 	GetTenantPermissionsTree(ctx context.Context, in *GetTenantPermissionsTreeRequest, opts ...grpc.CallOption) (*GetTenantPermissionsTreeResponse, error)
+	// 根据产品ID获取权限codes（扁平列表，用于权限校验）
+	GetPermissionCodesByProduct(ctx context.Context, in *GetPermissionCodesByProductRequest, opts ...grpc.CallOption) (*GetPermissionCodesByProductResponse, error)
 }
 
 type platformIamServiceClient struct {
@@ -50,6 +53,16 @@ func (c *platformIamServiceClient) GetTenantPermissionsTree(ctx context.Context,
 	return out, nil
 }
 
+func (c *platformIamServiceClient) GetPermissionCodesByProduct(ctx context.Context, in *GetPermissionCodesByProductRequest, opts ...grpc.CallOption) (*GetPermissionCodesByProductResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetPermissionCodesByProductResponse)
+	err := c.cc.Invoke(ctx, PlatformIamService_GetPermissionCodesByProduct_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PlatformIamServiceServer is the server API for PlatformIamService service.
 // All implementations must embed UnimplementedPlatformIamServiceServer
 // for forward compatibility.
@@ -58,6 +71,8 @@ func (c *platformIamServiceClient) GetTenantPermissionsTree(ctx context.Context,
 type PlatformIamServiceServer interface {
 	// 获取完整租户权限树（树结构，包含 children，用于前端菜单渲染和权限分配）
 	GetTenantPermissionsTree(context.Context, *GetTenantPermissionsTreeRequest) (*GetTenantPermissionsTreeResponse, error)
+	// 根据产品ID获取权限codes（扁平列表，用于权限校验）
+	GetPermissionCodesByProduct(context.Context, *GetPermissionCodesByProductRequest) (*GetPermissionCodesByProductResponse, error)
 	mustEmbedUnimplementedPlatformIamServiceServer()
 }
 
@@ -70,6 +85,9 @@ type UnimplementedPlatformIamServiceServer struct{}
 
 func (UnimplementedPlatformIamServiceServer) GetTenantPermissionsTree(context.Context, *GetTenantPermissionsTreeRequest) (*GetTenantPermissionsTreeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTenantPermissionsTree not implemented")
+}
+func (UnimplementedPlatformIamServiceServer) GetPermissionCodesByProduct(context.Context, *GetPermissionCodesByProductRequest) (*GetPermissionCodesByProductResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPermissionCodesByProduct not implemented")
 }
 func (UnimplementedPlatformIamServiceServer) mustEmbedUnimplementedPlatformIamServiceServer() {}
 func (UnimplementedPlatformIamServiceServer) testEmbeddedByValue()                            {}
@@ -110,6 +128,24 @@ func _PlatformIamService_GetTenantPermissionsTree_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PlatformIamService_GetPermissionCodesByProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetPermissionCodesByProductRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PlatformIamServiceServer).GetPermissionCodesByProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PlatformIamService_GetPermissionCodesByProduct_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PlatformIamServiceServer).GetPermissionCodesByProduct(ctx, req.(*GetPermissionCodesByProductRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PlatformIamService_ServiceDesc is the grpc.ServiceDesc for PlatformIamService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -120,6 +156,10 @@ var PlatformIamService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetTenantPermissionsTree",
 			Handler:    _PlatformIamService_GetTenantPermissionsTree_Handler,
+		},
+		{
+			MethodName: "GetPermissionCodesByProduct",
+			Handler:    _PlatformIamService_GetPermissionCodesByProduct_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -958,3 +958,221 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = GetTenantPermissionsTreeResponseValidationError{}
+
+// Validate checks the field values on GetPermissionCodesByProductRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *GetPermissionCodesByProductRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetPermissionCodesByProductRequest
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// GetPermissionCodesByProductRequestMultiError, or nil if none found.
+func (m *GetPermissionCodesByProductRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetPermissionCodesByProductRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for ProductId
+
+	if m.Status != nil {
+		// no validation rules for Status
+	}
+
+	if len(errors) > 0 {
+		return GetPermissionCodesByProductRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetPermissionCodesByProductRequestMultiError is an error wrapping multiple
+// validation errors returned by
+// GetPermissionCodesByProductRequest.ValidateAll() if the designated
+// constraints aren't met.
+type GetPermissionCodesByProductRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetPermissionCodesByProductRequestMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetPermissionCodesByProductRequestMultiError) AllErrors() []error { return m }
+
+// GetPermissionCodesByProductRequestValidationError is the validation error
+// returned by GetPermissionCodesByProductRequest.Validate if the designated
+// constraints aren't met.
+type GetPermissionCodesByProductRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetPermissionCodesByProductRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetPermissionCodesByProductRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetPermissionCodesByProductRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetPermissionCodesByProductRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetPermissionCodesByProductRequestValidationError) ErrorName() string {
+	return "GetPermissionCodesByProductRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetPermissionCodesByProductRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetPermissionCodesByProductRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetPermissionCodesByProductRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetPermissionCodesByProductRequestValidationError{}
+
+// Validate checks the field values on GetPermissionCodesByProductResponse with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *GetPermissionCodesByProductResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetPermissionCodesByProductResponse
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// GetPermissionCodesByProductResponseMultiError, or nil if none found.
+func (m *GetPermissionCodesByProductResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetPermissionCodesByProductResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Total
+
+	if len(errors) > 0 {
+		return GetPermissionCodesByProductResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetPermissionCodesByProductResponseMultiError is an error wrapping multiple
+// validation errors returned by
+// GetPermissionCodesByProductResponse.ValidateAll() if the designated
+// constraints aren't met.
+type GetPermissionCodesByProductResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetPermissionCodesByProductResponseMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetPermissionCodesByProductResponseMultiError) AllErrors() []error { return m }
+
+// GetPermissionCodesByProductResponseValidationError is the validation error
+// returned by GetPermissionCodesByProductResponse.Validate if the designated
+// constraints aren't met.
+type GetPermissionCodesByProductResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetPermissionCodesByProductResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetPermissionCodesByProductResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetPermissionCodesByProductResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetPermissionCodesByProductResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetPermissionCodesByProductResponseValidationError) ErrorName() string {
+	return "GetPermissionCodesByProductResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetPermissionCodesByProductResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetPermissionCodesByProductResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetPermissionCodesByProductResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetPermissionCodesByProductResponseValidationError{}

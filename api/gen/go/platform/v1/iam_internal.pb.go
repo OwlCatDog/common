@@ -7,6 +7,7 @@
 package platformv1
 
 import (
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	_ "google.golang.org/protobuf/types/known/emptypb"
@@ -656,11 +657,119 @@ func (x *GetTenantPermissionsTreeResponse) GetTotal() uint32 {
 	return 0
 }
 
+// ==================== 内部 IAM 服务 ====================
+// 根据产品ID获取权限codes请求
+type GetPermissionCodesByProductRequest struct {
+	state     protoimpl.MessageState `protogen:"open.v1"`
+	ProductId uint32                 `protobuf:"varint,1,opt,name=product_id,json=productId,proto3" json:"product_id,omitempty"`
+	// 可选：只获取指定状态的权限 (DEV, BETA, GA)
+	Status        *string `protobuf:"bytes,2,opt,name=status,proto3,oneof" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPermissionCodesByProductRequest) Reset() {
+	*x = GetPermissionCodesByProductRequest{}
+	mi := &file_platform_v1_iam_internal_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPermissionCodesByProductRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPermissionCodesByProductRequest) ProtoMessage() {}
+
+func (x *GetPermissionCodesByProductRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_platform_v1_iam_internal_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPermissionCodesByProductRequest.ProtoReflect.Descriptor instead.
+func (*GetPermissionCodesByProductRequest) Descriptor() ([]byte, []int) {
+	return file_platform_v1_iam_internal_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetPermissionCodesByProductRequest) GetProductId() uint32 {
+	if x != nil {
+		return x.ProductId
+	}
+	return 0
+}
+
+func (x *GetPermissionCodesByProductRequest) GetStatus() string {
+	if x != nil && x.Status != nil {
+		return *x.Status
+	}
+	return ""
+}
+
+// 根据产品ID获取权限codes响应
+type GetPermissionCodesByProductResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Codes         []string               `protobuf:"bytes,1,rep,name=codes,proto3" json:"codes,omitempty"`
+	Total         uint32                 `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetPermissionCodesByProductResponse) Reset() {
+	*x = GetPermissionCodesByProductResponse{}
+	mi := &file_platform_v1_iam_internal_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetPermissionCodesByProductResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPermissionCodesByProductResponse) ProtoMessage() {}
+
+func (x *GetPermissionCodesByProductResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_platform_v1_iam_internal_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPermissionCodesByProductResponse.ProtoReflect.Descriptor instead.
+func (*GetPermissionCodesByProductResponse) Descriptor() ([]byte, []int) {
+	return file_platform_v1_iam_internal_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetPermissionCodesByProductResponse) GetCodes() []string {
+	if x != nil {
+		return x.Codes
+	}
+	return nil
+}
+
+func (x *GetPermissionCodesByProductResponse) GetTotal() uint32 {
+	if x != nil {
+		return x.Total
+	}
+	return 0
+}
+
 var File_platform_v1_iam_internal_proto protoreflect.FileDescriptor
 
 const file_platform_v1_iam_internal_proto_rawDesc = "" +
 	"\n" +
-	"\x1eplatform/v1/iam_internal.proto\x12\x12common.platform.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xbc\t\n" +
+	"\x1eplatform/v1/iam_internal.proto\x12\x12common.platform.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1fgoogle/api/field_behavior.proto\"\xbc\t\n" +
 	"\tRouteMeta\x12#\n" +
 	"\n" +
 	"activeIcon\x18\x01 \x01(\tH\x00R\n" +
@@ -795,9 +904,18 @@ const file_platform_v1_iam_internal_proto_rawDesc = "" +
 	"\a_status\"z\n" +
 	" GetTenantPermissionsTreeResponse\x12@\n" +
 	"\x04tree\x18\x01 \x03(\v2,.common.platform.v1.TenantPermissionTreeNodeR\x04tree\x12\x14\n" +
-	"\x05total\x18\x02 \x01(\rR\x05total2\x9c\x01\n" +
+	"\x05total\x18\x02 \x01(\rR\x05total\"p\n" +
+	"\"GetPermissionCodesByProductRequest\x12\"\n" +
+	"\n" +
+	"product_id\x18\x01 \x01(\rB\x03\xe0A\x02R\tproductId\x12\x1b\n" +
+	"\x06status\x18\x02 \x01(\tH\x00R\x06status\x88\x01\x01B\t\n" +
+	"\a_status\"Q\n" +
+	"#GetPermissionCodesByProductResponse\x12\x14\n" +
+	"\x05codes\x18\x01 \x03(\tR\x05codes\x12\x14\n" +
+	"\x05total\x18\x02 \x01(\rR\x05total2\xad\x02\n" +
 	"\x12PlatformIamService\x12\x85\x01\n" +
-	"\x18GetTenantPermissionsTree\x123.common.platform.v1.GetTenantPermissionsTreeRequest\x1a4.common.platform.v1.GetTenantPermissionsTreeResponseB\xd2\x01\n" +
+	"\x18GetTenantPermissionsTree\x123.common.platform.v1.GetTenantPermissionsTreeRequest\x1a4.common.platform.v1.GetTenantPermissionsTreeResponse\x12\x8e\x01\n" +
+	"\x1bGetPermissionCodesByProduct\x126.common.platform.v1.GetPermissionCodesByProductRequest\x1a7.common.platform.v1.GetPermissionCodesByProductResponseB\xd2\x01\n" +
 	"\x16com.common.platform.v1B\x10IamInternalProtoP\x01Z<github.com/heyinLab/common/api/gen/go/platform/v1;platformv1\xa2\x02\x03CPX\xaa\x02\x12Common.Platform.V1\xca\x02\x12Common\\Platform\\V1\xe2\x02\x1eCommon\\Platform\\V1\\GPBMetadata\xea\x02\x14Common::Platform::V1b\x06proto3"
 
 var (
@@ -812,27 +930,31 @@ func file_platform_v1_iam_internal_proto_rawDescGZIP() []byte {
 	return file_platform_v1_iam_internal_proto_rawDescData
 }
 
-var file_platform_v1_iam_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_platform_v1_iam_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_platform_v1_iam_internal_proto_goTypes = []any{
-	(*RouteMeta)(nil),                        // 0: common.platform.v1.RouteMeta
-	(*Permission)(nil),                       // 1: common.platform.v1.Permission
-	(*TenantPermissionTreeNode)(nil),         // 2: common.platform.v1.TenantPermissionTreeNode
-	(*GetTenantPermissionsTreeRequest)(nil),  // 3: common.platform.v1.GetTenantPermissionsTreeRequest
-	(*GetTenantPermissionsTreeResponse)(nil), // 4: common.platform.v1.GetTenantPermissionsTreeResponse
-	(*timestamppb.Timestamp)(nil),            // 5: google.protobuf.Timestamp
+	(*RouteMeta)(nil),                           // 0: common.platform.v1.RouteMeta
+	(*Permission)(nil),                          // 1: common.platform.v1.Permission
+	(*TenantPermissionTreeNode)(nil),            // 2: common.platform.v1.TenantPermissionTreeNode
+	(*GetTenantPermissionsTreeRequest)(nil),     // 3: common.platform.v1.GetTenantPermissionsTreeRequest
+	(*GetTenantPermissionsTreeResponse)(nil),    // 4: common.platform.v1.GetTenantPermissionsTreeResponse
+	(*GetPermissionCodesByProductRequest)(nil),  // 5: common.platform.v1.GetPermissionCodesByProductRequest
+	(*GetPermissionCodesByProductResponse)(nil), // 6: common.platform.v1.GetPermissionCodesByProductResponse
+	(*timestamppb.Timestamp)(nil),               // 7: google.protobuf.Timestamp
 }
 var file_platform_v1_iam_internal_proto_depIdxs = []int32{
 	1, // 0: common.platform.v1.Permission.children:type_name -> common.platform.v1.Permission
 	0, // 1: common.platform.v1.Permission.meta:type_name -> common.platform.v1.RouteMeta
-	5, // 2: common.platform.v1.Permission.create_time:type_name -> google.protobuf.Timestamp
-	5, // 3: common.platform.v1.Permission.update_time:type_name -> google.protobuf.Timestamp
+	7, // 2: common.platform.v1.Permission.create_time:type_name -> google.protobuf.Timestamp
+	7, // 3: common.platform.v1.Permission.update_time:type_name -> google.protobuf.Timestamp
 	0, // 4: common.platform.v1.TenantPermissionTreeNode.meta:type_name -> common.platform.v1.RouteMeta
 	2, // 5: common.platform.v1.TenantPermissionTreeNode.children:type_name -> common.platform.v1.TenantPermissionTreeNode
 	2, // 6: common.platform.v1.GetTenantPermissionsTreeResponse.tree:type_name -> common.platform.v1.TenantPermissionTreeNode
 	3, // 7: common.platform.v1.PlatformIamService.GetTenantPermissionsTree:input_type -> common.platform.v1.GetTenantPermissionsTreeRequest
-	4, // 8: common.platform.v1.PlatformIamService.GetTenantPermissionsTree:output_type -> common.platform.v1.GetTenantPermissionsTreeResponse
-	8, // [8:9] is the sub-list for method output_type
-	7, // [7:8] is the sub-list for method input_type
+	5, // 8: common.platform.v1.PlatformIamService.GetPermissionCodesByProduct:input_type -> common.platform.v1.GetPermissionCodesByProductRequest
+	4, // 9: common.platform.v1.PlatformIamService.GetTenantPermissionsTree:output_type -> common.platform.v1.GetTenantPermissionsTreeResponse
+	6, // 10: common.platform.v1.PlatformIamService.GetPermissionCodesByProduct:output_type -> common.platform.v1.GetPermissionCodesByProductResponse
+	9, // [9:11] is the sub-list for method output_type
+	7, // [7:9] is the sub-list for method input_type
 	7, // [7:7] is the sub-list for extension type_name
 	7, // [7:7] is the sub-list for extension extendee
 	0, // [0:7] is the sub-list for field type_name
@@ -847,13 +969,14 @@ func file_platform_v1_iam_internal_proto_init() {
 	file_platform_v1_iam_internal_proto_msgTypes[1].OneofWrappers = []any{}
 	file_platform_v1_iam_internal_proto_msgTypes[2].OneofWrappers = []any{}
 	file_platform_v1_iam_internal_proto_msgTypes[3].OneofWrappers = []any{}
+	file_platform_v1_iam_internal_proto_msgTypes[5].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_platform_v1_iam_internal_proto_rawDesc), len(file_platform_v1_iam_internal_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

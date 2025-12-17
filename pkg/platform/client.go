@@ -257,6 +257,72 @@ func (c *IAMClient) GetTenantPermissionsTree(ctx context.Context, opts *GetTenan
 	return resp.Tree, resp.Total, nil
 }
 
+// GetPermissionCodesByProductOptions 根据产品ID获取权限codes的选项
+type GetPermissionCodesByProductOptions struct {
+	// Status 权限状态过滤：DEV, BETA, GA（可选）
+	Status string
+	// Timeout 自定义超时时间（可选）
+	Timeout time.Duration
+}
+
+// GetPermissionCodesByProduct 根据产品ID获取权限codes
+//
+// 用于获取指定产品下的所有权限代码（扁平列表），用于权限校验
+//
+// 参数:
+//   - ctx: 上下文
+//   - productID: 产品ID（必填）
+//   - opts: 查询选项（可选）
+//
+// 返回:
+//   - []string: 权限代码列表
+//   - uint32: 总数量
+//   - error: 错误信息
+//
+// 使用场景：
+//   - 权限校验（检查用户是否拥有某个产品的权限）
+//   - 权限初始化（批量授权）
+//   - 权限统计
+//
+// 使用示例:
+//
+//	// 获取产品的所有权限codes
+//	codes, total, err := client.IAM().GetPermissionCodesByProduct(ctx, 1, nil)
+//
+//	// 只获取正式发布的权限codes
+//	codes, total, err := client.IAM().GetPermissionCodesByProduct(ctx, 1, &platform.GetPermissionCodesByProductOptions{
+//	    Status: "GA",
+//	})
+func (c *IAMClient) GetPermissionCodesByProduct(ctx context.Context, productID uint32, opts *GetPermissionCodesByProductOptions) ([]string, uint32, error) {
+	// 设置超时
+	if opts != nil && opts.Timeout > 0 {
+		var cancel context.CancelFunc
+		ctx, cancel = context.WithTimeout(ctx, opts.Timeout)
+		defer cancel()
+	}
+
+	// 构建请求
+	req := &v1.GetPermissionCodesByProductRequest{
+		ProductId: productID,
+	}
+	if opts != nil && opts.Status != "" {
+		req.Status = &opts.Status
+	}
+
+	// 执行请求
+	resp, err := c.client.GetPermissionCodesByProduct(ctx, req)
+	if err != nil {
+		c.logger.WithContext(ctx).Errorf("获取产品权限codes失败: product_id=%d, status=%s, error=%v", 
+			productID, getStringValue(req.Status), err)
+		return nil, 0, err
+	}
+
+	c.logger.WithContext(ctx).Infof("获取产品权限codes成功: product_id=%d, status=%s, total=%d", 
+		productID, getStringValue(req.Status), resp.Total)
+
+	return resp.Codes, resp.Total, nil
+}
+
 // ========== 辅助函数 ==========
 
 // getStringValue 获取指针字符串的值
