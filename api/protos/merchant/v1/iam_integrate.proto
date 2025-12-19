@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package common.merchant.v1;
+option go_package = "github.com/heyinLab/common/api/gen/go/merchant/v1;v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+message SetTenantPermissionsRequest {
+  repeated string codes = 1 [json_name = "codes"];
+}
+
+message SetTenantPermissionsResponse {
+  // 是否处理成功
+  bool success = 1;
+  // 最终生效的权限数量
+  int32 total_count = 2;
+}
+
+// 内部IAM服务（仅 gRPC，不暴露 HTTP）
+service merchantIamService {
+  // 将codes(string) set permission
+  rpc SetTenantPermissions(SetTenantPermissionsRequest) returns (SetTenantPermissionsResponse);
+}

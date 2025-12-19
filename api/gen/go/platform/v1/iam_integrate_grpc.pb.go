@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             (unknown)
-// source: platform/v1/iam_internal.proto
+// source: platform/v1/iam_integrate.proto
 
 package platformv1
 
@@ -163,5 +163,5 @@ var PlatformIamService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "platform/v1/iam_internal.proto",
+	Metadata: "platform/v1/iam_integrate.proto",
 }

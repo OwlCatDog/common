@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.10
 // 	protoc        (unknown)
-// source: platform/v1/iam_internal.proto
+// source: platform/v1/iam_integrate.proto
 
 package platformv1
 
@@ -56,7 +56,7 @@ type RouteMeta struct {
 
 func (x *RouteMeta) Reset() {
 	*x = RouteMeta{}
-	mi := &file_platform_v1_iam_internal_proto_msgTypes[0]
+	mi := &file_platform_v1_iam_integrate_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -68,7 +68,7 @@ func (x *RouteMeta) String() string {
 func (*RouteMeta) ProtoMessage() {}
 
 func (x *RouteMeta) ProtoReflect() protoreflect.Message {
-	mi := &file_platform_v1_iam_internal_proto_msgTypes[0]
+	mi := &file_platform_v1_iam_integrate_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -81,7 +81,7 @@ func (x *RouteMeta) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RouteMeta.ProtoReflect.Descriptor instead.
 func (*RouteMeta) Descriptor() ([]byte, []int) {
-	return file_platform_v1_iam_internal_proto_rawDescGZIP(), []int{0}
+	return file_platform_v1_iam_integrate_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *RouteMeta) GetActiveIcon() string {
@@ -270,7 +270,7 @@ type Permission struct {
 
 func (x *Permission) Reset() {
 	*x = Permission{}
-	mi := &file_platform_v1_iam_internal_proto_msgTypes[1]
+	mi := &file_platform_v1_iam_integrate_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -282,7 +282,7 @@ func (x *Permission) String() string {
 func (*Permission) ProtoMessage() {}
 
 func (x *Permission) ProtoReflect() protoreflect.Message {
-	mi := &file_platform_v1_iam_internal_proto_msgTypes[1]
+	mi := &file_platform_v1_iam_integrate_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -295,7 +295,7 @@ func (x *Permission) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Permission.ProtoReflect.Descriptor instead.
 func (*Permission) Descriptor() ([]byte, []int) {
-	return file_platform_v1_iam_internal_proto_rawDescGZIP(), []int{1}
+	return file_platform_v1_iam_integrate_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Permission) GetId() uint32 {
@@ -433,7 +433,7 @@ type TenantPermissionTreeNode struct {
 
 func (x *TenantPermissionTreeNode) Reset() {
 	*x = TenantPermissionTreeNode{}
-	mi := &file_platform_v1_iam_internal_proto_msgTypes[2]
+	mi := &file_platform_v1_iam_integrate_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -445,7 +445,7 @@ func (x *TenantPermissionTreeNode) String() string {
 func (*TenantPermissionTreeNode) ProtoMessage() {}
 
 func (x *TenantPermissionTreeNode) ProtoReflect() protoreflect.Message {
-	mi := &file_platform_v1_iam_internal_proto_msgTypes[2]
+	mi := &file_platform_v1_iam_integrate_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -458,7 +458,7 @@ func (x *TenantPermissionTreeNode) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TenantPermissionTreeNode.ProtoReflect.Descriptor instead.
 func (*TenantPermissionTreeNode) Descriptor() ([]byte, []int) {
-	return file_platform_v1_iam_internal_proto_rawDescGZIP(), []int{2}
+	return file_platform_v1_iam_integrate_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *TenantPermissionTreeNode) GetId() uint32 {
@@ -569,7 +569,7 @@ type GetTenantPermissionsTreeRequest struct {
 
 func (x *GetTenantPermissionsTreeRequest) Reset() {
 	*x = GetTenantPermissionsTreeRequest{}
-	mi := &file_platform_v1_iam_internal_proto_msgTypes[3]
+	mi := &file_platform_v1_iam_integrate_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -581,7 +581,7 @@ func (x *GetTenantPermissionsTreeRequest) String() string {
 func (*GetTenantPermissionsTreeRequest) ProtoMessage() {}
 
 func (x *GetTenantPermissionsTreeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_platform_v1_iam_internal_proto_msgTypes[3]
+	mi := &file_platform_v1_iam_integrate_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -594,7 +594,7 @@ func (x *GetTenantPermissionsTreeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTenantPermissionsTreeRequest.ProtoReflect.Descriptor instead.
 func (*GetTenantPermissionsTreeRequest) Descriptor() ([]byte, []int) {
-	return file_platform_v1_iam_internal_proto_rawDescGZIP(), []int{3}
+	return file_platform_v1_iam_integrate_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetTenantPermissionsTreeRequest) GetStatus() string {
@@ -615,7 +615,7 @@ type GetTenantPermissionsTreeResponse struct {
 
 func (x *GetTenantPermissionsTreeResponse) Reset() {
 	*x = GetTenantPermissionsTreeResponse{}
-	mi := &file_platform_v1_iam_internal_proto_msgTypes[4]
+	mi := &file_platform_v1_iam_integrate_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -627,7 +627,7 @@ func (x *GetTenantPermissionsTreeResponse) String() string {
 func (*GetTenantPermissionsTreeResponse) ProtoMessage() {}
 
 func (x *GetTenantPermissionsTreeResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_platform_v1_iam_internal_proto_msgTypes[4]
+	mi := &file_platform_v1_iam_integrate_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -640,7 +640,7 @@ func (x *GetTenantPermissionsTreeResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTenantPermissionsTreeResponse.ProtoReflect.Descriptor instead.
 func (*GetTenantPermissionsTreeResponse) Descriptor() ([]byte, []int) {
-	return file_platform_v1_iam_internal_proto_rawDescGZIP(), []int{4}
+	return file_platform_v1_iam_integrate_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetTenantPermissionsTreeResponse) GetTree() []*TenantPermissionTreeNode {
@@ -670,7 +670,7 @@ type GetPermissionCodesByProductRequest struct {
 
 func (x *GetPermissionCodesByProductRequest) Reset() {
 	*x = GetPermissionCodesByProductRequest{}
-	mi := &file_platform_v1_iam_internal_proto_msgTypes[5]
+	mi := &file_platform_v1_iam_integrate_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -682,7 +682,7 @@ func (x *GetPermissionCodesByProductRequest) String() string {
 func (*GetPermissionCodesByProductRequest) ProtoMessage() {}
 
 func (x *GetPermissionCodesByProductRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_platform_v1_iam_internal_proto_msgTypes[5]
+	mi := &file_platform_v1_iam_integrate_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -695,7 +695,7 @@ func (x *GetPermissionCodesByProductRequest) ProtoReflect() protoreflect.Message
 
 // Deprecated: Use GetPermissionCodesByProductRequest.ProtoReflect.Descriptor instead.
 func (*GetPermissionCodesByProductRequest) Descriptor() ([]byte, []int) {
-	return file_platform_v1_iam_internal_proto_rawDescGZIP(), []int{5}
+	return file_platform_v1_iam_integrate_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetPermissionCodesByProductRequest) GetProductCode() string {
@@ -723,7 +723,7 @@ type GetPermissionCodesByProductResponse struct {
 
 func (x *GetPermissionCodesByProductResponse) Reset() {
 	*x = GetPermissionCodesByProductResponse{}
-	mi := &file_platform_v1_iam_internal_proto_msgTypes[6]
+	mi := &file_platform_v1_iam_integrate_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -735,7 +735,7 @@ func (x *GetPermissionCodesByProductResponse) String() string {
 func (*GetPermissionCodesByProductResponse) ProtoMessage() {}
 
 func (x *GetPermissionCodesByProductResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_platform_v1_iam_internal_proto_msgTypes[6]
+	mi := &file_platform_v1_iam_integrate_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -748,7 +748,7 @@ func (x *GetPermissionCodesByProductResponse) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use GetPermissionCodesByProductResponse.ProtoReflect.Descriptor instead.
 func (*GetPermissionCodesByProductResponse) Descriptor() ([]byte, []int) {
-	return file_platform_v1_iam_internal_proto_rawDescGZIP(), []int{6}
+	return file_platform_v1_iam_integrate_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetPermissionCodesByProductResponse) GetCodes() []string {
@@ -765,11 +765,11 @@ func (x *GetPermissionCodesByProductResponse) GetTotal() uint32 {
 	return 0
 }
 
-var File_platform_v1_iam_internal_proto protoreflect.FileDescriptor
+var File_platform_v1_iam_integrate_proto protoreflect.FileDescriptor
 
-const file_platform_v1_iam_internal_proto_rawDesc = "" +
+const file_platform_v1_iam_integrate_proto_rawDesc = "" +
 	"\n" +
-	"\x1eplatform/v1/iam_internal.proto\x12\x12common.platform.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1fgoogle/api/field_behavior.proto\"\xbc\t\n" +
+	"\x1fplatform/v1/iam_integrate.proto\x12\x12common.platform.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1fgoogle/api/field_behavior.proto\"\xbc\t\n" +
 	"\tRouteMeta\x12#\n" +
 	"\n" +
 	"activeIcon\x18\x01 \x01(\tH\x00R\n" +
@@ -913,23 +913,23 @@ const file_platform_v1_iam_internal_proto_rawDesc = "" +
 	"\x05total\x18\x02 \x01(\rR\x05total2\xad\x02\n" +
 	"\x12PlatformIamService\x12\x85\x01\n" +
 	"\x18GetTenantPermissionsTree\x123.common.platform.v1.GetTenantPermissionsTreeRequest\x1a4.common.platform.v1.GetTenantPermissionsTreeResponse\x12\x8e\x01\n" +
-	"\x1bGetPermissionCodesByProduct\x126.common.platform.v1.GetPermissionCodesByProductRequest\x1a7.common.platform.v1.GetPermissionCodesByProductResponseB\xd2\x01\n" +
-	"\x16com.common.platform.v1B\x10IamInternalProtoP\x01Z<github.com/heyinLab/common/api/gen/go/platform/v1;platformv1\xa2\x02\x03CPX\xaa\x02\x12Common.Platform.V1\xca\x02\x12Common\\Platform\\V1\xe2\x02\x1eCommon\\Platform\\V1\\GPBMetadata\xea\x02\x14Common::Platform::V1b\x06proto3"
+	"\x1bGetPermissionCodesByProduct\x126.common.platform.v1.GetPermissionCodesByProductRequest\x1a7.common.platform.v1.GetPermissionCodesByProductResponseB\xd3\x01\n" +
+	"\x16com.common.platform.v1B\x11IamIntegrateProtoP\x01Z<github.com/heyinLab/common/api/gen/go/platform/v1;platformv1\xa2\x02\x03CPX\xaa\x02\x12Common.Platform.V1\xca\x02\x12Common\\Platform\\V1\xe2\x02\x1eCommon\\Platform\\V1\\GPBMetadata\xea\x02\x14Common::Platform::V1b\x06proto3"
 
 var (
-	file_platform_v1_iam_internal_proto_rawDescOnce sync.Once
-	file_platform_v1_iam_internal_proto_rawDescData []byte
+	file_platform_v1_iam_integrate_proto_rawDescOnce sync.Once
+	file_platform_v1_iam_integrate_proto_rawDescData []byte
 )
 
-func file_platform_v1_iam_internal_proto_rawDescGZIP() []byte {
-	file_platform_v1_iam_internal_proto_rawDescOnce.Do(func() {
-		file_platform_v1_iam_internal_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_platform_v1_iam_internal_proto_rawDesc), len(file_platform_v1_iam_internal_proto_rawDesc)))
+func file_platform_v1_iam_integrate_proto_rawDescGZIP() []byte {
+	file_platform_v1_iam_integrate_proto_rawDescOnce.Do(func() {
+		file_platform_v1_iam_integrate_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_platform_v1_iam_integrate_proto_rawDesc), len(file_platform_v1_iam_integrate_proto_rawDesc)))
 	})
-	return file_platform_v1_iam_internal_proto_rawDescData
+	return file_platform_v1_iam_integrate_proto_rawDescData
 }
 
-var file_platform_v1_iam_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
-var file_platform_v1_iam_internal_proto_goTypes = []any{
+var file_platform_v1_iam_integrate_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_platform_v1_iam_integrate_proto_goTypes = []any{
 	(*RouteMeta)(nil),                           // 0: common.platform.v1.RouteMeta
 	(*Permission)(nil),                          // 1: common.platform.v1.Permission
 	(*TenantPermissionTreeNode)(nil),            // 2: common.platform.v1.TenantPermissionTreeNode
@@ -939,7 +939,7 @@ var file_platform_v1_iam_internal_proto_goTypes = []any{
 	(*GetPermissionCodesByProductResponse)(nil), // 6: common.platform.v1.GetPermissionCodesByProductResponse
 	(*timestamppb.Timestamp)(nil),               // 7: google.protobuf.Timestamp
 }
-var file_platform_v1_iam_internal_proto_depIdxs = []int32{
+var file_platform_v1_iam_integrate_proto_depIdxs = []int32{
 	1, // 0: common.platform.v1.Permission.children:type_name -> common.platform.v1.Permission
 	0, // 1: common.platform.v1.Permission.meta:type_name -> common.platform.v1.RouteMeta
 	7, // 2: common.platform.v1.Permission.create_time:type_name -> google.protobuf.Timestamp
@@ -958,31 +958,31 @@ var file_platform_v1_iam_internal_proto_depIdxs = []int32{
 	0, // [0:7] is the sub-list for field type_name
 }
 
-func init() { file_platform_v1_iam_internal_proto_init() }
-func file_platform_v1_iam_internal_proto_init() {
-	if File_platform_v1_iam_internal_proto != nil {
+func init() { file_platform_v1_iam_integrate_proto_init() }
+func file_platform_v1_iam_integrate_proto_init() {
+	if File_platform_v1_iam_integrate_proto != nil {
 		return
 	}
-	file_platform_v1_iam_internal_proto_msgTypes[0].OneofWrappers = []any{}
-	file_platform_v1_iam_internal_proto_msgTypes[1].OneofWrappers = []any{}
-	file_platform_v1_iam_internal_proto_msgTypes[2].OneofWrappers = []any{}
-	file_platform_v1_iam_internal_proto_msgTypes[3].OneofWrappers = []any{}
-	file_platform_v1_iam_internal_proto_msgTypes[5].OneofWrappers = []any{}
+	file_platform_v1_iam_integrate_proto_msgTypes[0].OneofWrappers = []any{}
+	file_platform_v1_iam_integrate_proto_msgTypes[1].OneofWrappers = []any{}
+	file_platform_v1_iam_integrate_proto_msgTypes[2].OneofWrappers = []any{}
+	file_platform_v1_iam_integrate_proto_msgTypes[3].OneofWrappers = []any{}
+	file_platform_v1_iam_integrate_proto_msgTypes[5].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_platform_v1_iam_internal_proto_rawDesc), len(file_platform_v1_iam_internal_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_platform_v1_iam_integrate_proto_rawDesc), len(file_platform_v1_iam_integrate_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_platform_v1_iam_internal_proto_goTypes,
-		DependencyIndexes: file_platform_v1_iam_internal_proto_depIdxs,
-		MessageInfos:      file_platform_v1_iam_internal_proto_msgTypes,
+		GoTypes:           file_platform_v1_iam_integrate_proto_goTypes,
+		DependencyIndexes: file_platform_v1_iam_integrate_proto_depIdxs,
+		MessageInfos:      file_platform_v1_iam_integrate_proto_msgTypes,
 	}.Build()
-	File_platform_v1_iam_internal_proto = out.File
-	file_platform_v1_iam_internal_proto_goTypes = nil
-	file_platform_v1_iam_internal_proto_depIdxs = nil
+	File_platform_v1_iam_integrate_proto = out.File
+	file_platform_v1_iam_integrate_proto_goTypes = nil
+	file_platform_v1_iam_integrate_proto_depIdxs = nil
 }
