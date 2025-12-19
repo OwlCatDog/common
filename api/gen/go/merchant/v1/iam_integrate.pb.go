@@ -26,6 +26,7 @@ const (
 type SetTenantPermissionsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Codes         []string               `protobuf:"bytes,1,rep,name=codes,proto3" json:"codes,omitempty"`
+	TenantId      *uint32                `protobuf:"varint,2,opt,name=tenant_id,json=tenantId,proto3,oneof" json:"tenant_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -65,6 +66,13 @@ func (x *SetTenantPermissionsRequest) GetCodes() []string {
 		return x.Codes
 	}
 	return nil
+}
+
+func (x *SetTenantPermissionsRequest) GetTenantId() uint32 {
+	if x != nil && x.TenantId != nil {
+		return *x.TenantId
+	}
+	return 0
 }
 
 type SetTenantPermissionsResponse struct {
@@ -125,9 +133,12 @@ var File_merchant_v1_iam_integrate_proto protoreflect.FileDescriptor
 
 const file_merchant_v1_iam_integrate_proto_rawDesc = "" +
 	"\n" +
-	"\x1fmerchant/v1/iam_integrate.proto\x12\x12common.merchant.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"3\n" +
+	"\x1fmerchant/v1/iam_integrate.proto\x12\x12common.merchant.v1\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"c\n" +
 	"\x1bSetTenantPermissionsRequest\x12\x14\n" +
-	"\x05codes\x18\x01 \x03(\tR\x05codes\"Y\n" +
+	"\x05codes\x18\x01 \x03(\tR\x05codes\x12 \n" +
+	"\ttenant_id\x18\x02 \x01(\rH\x00R\btenantId\x88\x01\x01B\f\n" +
+	"\n" +
+	"_tenant_id\"Y\n" +
 	"\x1cSetTenantPermissionsResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x1f\n" +
 	"\vtotal_count\x18\x02 \x01(\x05R\n" +
@@ -168,6 +179,7 @@ func file_merchant_v1_iam_integrate_proto_init() {
 	if File_merchant_v1_iam_integrate_proto != nil {
 		return
 	}
+	file_merchant_v1_iam_integrate_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

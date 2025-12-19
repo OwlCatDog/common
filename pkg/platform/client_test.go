@@ -85,7 +85,7 @@ func TestGetPermissionCodesByProduct(t *testing.T) {
 
 	// 测试获取产品权限codes
 	ctx := context.Background()
-	productCode := "111"
+	productCode := "1766141559655-736faefc515e4d5884611dece8b11b55"
 
 	codes, total, err := client.IAM().GetPermissionCodesByProduct(ctx, productCode, nil)
 	if err != nil {
@@ -94,7 +94,7 @@ func TestGetPermissionCodesByProduct(t *testing.T) {
 		return
 	}
 
-	t.Logf("成功获取产品 %d 的权限codes，总数: %d", productCode, total)
+	t.Logf("成功获取产品 %s 的权限codes，总数: %d", productCode, total)
 	if len(codes) > 0 {
 		t.Logf("权限codes: %v", codes)
 	}
@@ -116,7 +116,7 @@ func TestGetPermissionCodesByProductWithStatus(t *testing.T) {
 
 	// 测试只获取 GA 状态的产品权限codes
 	ctx := context.Background()
-	productCode := "111"
+	productCode := "1766141559655-736faefc515e4d5884611dece8b11b55"
 
 	codes, total, err := client.IAM().GetPermissionCodesByProduct(ctx, productCode, &GetPermissionCodesByProductOptions{
 		Status: "GA",
@@ -128,7 +128,7 @@ func TestGetPermissionCodesByProductWithStatus(t *testing.T) {
 		return
 	}
 
-	t.Logf("成功获取产品 %d 的 GA 状态权限codes，总数: %d, codes: %v", productCode, total, codes)
+	t.Logf("成功获取产品 %s 的 GA 状态权限codes，总数: %d, codes: %v", productCode, total, codes)
 }
 
 // 辅助函数

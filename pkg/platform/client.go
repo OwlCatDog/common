@@ -19,7 +19,7 @@ import (
 //
 // 当前支持的服务：
 // - IAM: 身份认证和权限管理服务
-// 
+//
 // 使用示例:
 //
 //	client, err := platform.NewClientWithDiscovery(
