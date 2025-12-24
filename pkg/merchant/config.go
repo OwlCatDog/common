@@ -6,7 +6,7 @@ import (
 
 const (
 	// DefaultServiceName 默认的平台服务名称（用于服务发现）
-	DefaultServiceName = "iamServer"
+	DefaultServiceName = "iam-merchant-server"
 )
 
 // Config 平台服务客户端配置
@@ -15,7 +15,7 @@ type Config = common.ServiceConfig
 // DefaultConfig 返回默认的平台服务客户端配置
 //
 // 默认配置:
-//   - Endpoint: "discovery:///iamServer"
+//   - Endpoint: "discovery:///iam-merchant-server"
 //   - ServiceName: "iamServer"
 //   - Timeout: 10s
 func DefaultConfig() *Config {

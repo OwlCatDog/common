@@ -6,7 +6,7 @@ import (
 
 const (
 	// DefaultServiceName 默认的资源服务名称（用于服务发现）
-	DefaultServiceName = "resourceServer"
+	DefaultServiceName = "resource-server"
 
 	// DefaultURLExpiresIn 默认URL过期时间（秒）
 	DefaultURLExpiresIn = 3600
@@ -18,8 +18,8 @@ type InternalConfig = common.ServiceConfig
 // DefaultInternalConfig 返回默认的内部服务客户端配置
 //
 // 默认配置:
-//   - Endpoint: "discovery:///resourceServer"
-//   - ServiceName: "resourceServer"
+//   - Endpoint: "discovery:///resource-server"
+//   - ServiceName: "resource-server"
 //   - Timeout: 10s
 func DefaultInternalConfig() *InternalConfig {
 	return common.NewServiceConfig(DefaultServiceName)
