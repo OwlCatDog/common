@@ -466,6 +466,71 @@ func (c *ResourceClient) CheckQuota(ctx context.Context, tenantID uint32, checkT
 	}, nil
 }
 
+// ========== 租户初始化接口 ==========
+
+// InitTenantResult 初始化租户结果
+type InitTenantResult struct {
+	// 是否成功
+	Success bool
+	// 创建的存储桶ID
+	BucketID string
+	// 创建的存储桶名称
+	BucketName string
+	// 存储配额（字节）
+	StorageQuota int64
+	// 文件数配额
+	FileCountQuota int64
+	// 提示信息
+	Message string
+	// 错误信息（失败时）
+	Error string
+}
+
+// InitTenant 初始化租户资源
+//
+// 为新注册的租户创建默认存储桶和配额
+//
+// 参数:
+//   - ctx: 上下文
+//   - tenantID: 租户ID（必填，大于0）
+//   - region: 存储区域（可选，默认"sea"）
+//     可选值: cn|sea|us|eu
+//
+// 返回:
+//   - *InitTenantResult: 初始化结果
+//   - error: 错误信息
+//
+// 使用场景:
+//   - IAM服务在创建租户时调用
+//   - 租户首次开通存储服务
+//
+// 注意:
+//   - 一个租户只能初始化一次
+//   - 重复调用会返回错误
+func (c *ResourceClient) InitTenant(ctx context.Context, tenantID uint32, region string) (*InitTenantResult, error) {
+	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
+	defer cancel()
+
+	resp, err := c.client.InternalInitTenant(ctx, &v1.InternalInitTenantRequest{
+		TenantId: tenantID,
+		Region:   region,
+	})
+	if err != nil {
+		c.logger.WithContext(ctx).Errorf("初始化租户失败: tenant_id=%d, region=%s, error=%v", tenantID, region, err)
+		return nil, err
+	}
+
+	return &InitTenantResult{
+		Success:        resp.Success,
+		BucketID:       resp.BucketId,
+		BucketName:     resp.BucketName,
+		StorageQuota:   resp.StorageQuota,
+		FileCountQuota: resp.FileCountQuota,
+		Message:        resp.Message,
+		Error:          resp.Error,
+	}, nil
+}
+
 // ========== 内部函数 ==========
 
 // createInternalGRPCConn 创建 gRPC 连接

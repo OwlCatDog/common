@@ -86,6 +86,25 @@ service ResourceInternalService {
   // - 其他服务在触发上传前预检查配额
   // - 批量操作前检查是否有足够配额
   rpc InternalCheckQuota (InternalCheckQuotaRequest) returns (InternalCheckQuotaResponse);
+
+  // ========== 租户初始化接口 ==========
+
+  // InternalInitTenant 初始化租户资源（内部接口）
+  //
+  // 为新注册的租户创建默认存储桶和配额
+  //
+  // 使用场景：
+  // - IAM服务在创建租户时调用
+  // - 租户首次开通存储服务
+  //
+  // 自动创建内容：
+  // - 默认存储桶（根据region选择Provider）
+  // - 默认配额（50GB存储 + 10万文件）
+  //
+  // 注意：
+  // - 一个租户只能初始化一次
+  // - 重复调用会返回错误
+  rpc InternalInitTenant (InternalInitTenantRequest) returns (InternalInitTenantResponse);
 }
 
 // ========== 内部文件对象（精简版） ==========
@@ -312,4 +331,47 @@ message InternalCheckQuotaResponse {
   string reason = 2;
   // 当前配额信息
   InternalQuotaInfo quota = 3;
+}
+
+// ========== 租户初始化请求/响应消息 ==========
+
+// InternalInitTenantRequest 内部初始化租户请求
+message InternalInitTenantRequest {
+  // 租户ID（必填）
+  // 说明：
+  // - 必须为正整数
+  // - 不能为0（平台保留）
+  // - 同一租户不能重复初始化
+  uint32 tenant_id = 1;
+
+  // 存储区域（可选）
+  // 说明：
+  // - 可选值：cn|sea|us|eu
+  // - 默认值：sea（东南亚）
+  // - 区域必须有可用的Provider
+  string region = 2;
+}
+
+// InternalInitTenantResponse 内部初始化租户响应
+message InternalInitTenantResponse {
+  // 是否成功
+  bool success = 1;
+
+  // 创建的存储桶ID
+  string bucket_id = 2;
+
+  // 创建的存储桶名称
+  string bucket_name = 3;
+
+  // 存储配额（字节）
+  int64 storage_quota = 4;
+
+  // 文件数配额
+  int64 file_count_quota = 5;
+
+  // 提示信息
+  string message = 6;
+
+  // 错误信息（success=false时）
+  string error = 7;
 }
