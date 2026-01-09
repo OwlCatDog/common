@@ -4,7 +4,7 @@
 // - protoc             (unknown)
 // source: subscribe/v1/subscribe_internal.proto
 
-package subscribev1
+package subscriptionv1
 
 import (
 	context "context"
@@ -19,20 +19,126 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SubscribeInternalService_ListSubscriptions_FullMethodName   = "/subscribe.v1.SubscribeInternalService/ListSubscriptions"
-	SubscribeInternalService_CreateSubscription_FullMethodName  = "/subscribe.v1.SubscribeInternalService/CreateSubscription"
-	SubscribeInternalService_ReNewSubscription_FullMethodName   = "/subscribe.v1.SubscribeInternalService/ReNewSubscription"
-	SubscribeInternalService_UpgradeSubscription_FullMethodName = "/subscribe.v1.SubscribeInternalService/UpgradeSubscription"
+	SubscriptionManagementService_ListSubscriptions_FullMethodName = "/api.subscription.v1.SubscriptionManagementService/ListSubscriptions"
 )
 
-// SubscribeInternalServiceClient is the client API for SubscribeInternalService service.
+// SubscriptionManagementServiceClient is the client API for SubscriptionManagementService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 //
-// SubscribeInternalService 订阅服务内部接口
-type SubscribeInternalServiceClient interface {
+// SubscriptionTenantManagementService 订阅服务内部接口
+type SubscriptionManagementServiceClient interface {
 	// ListSubscriptions 获取订阅列表
 	ListSubscriptions(ctx context.Context, in *ListSubscriptionsRequest, opts ...grpc.CallOption) (*ListSubscriptionsResponse, error)
+}
+
+type subscriptionManagementServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewSubscriptionManagementServiceClient(cc grpc.ClientConnInterface) SubscriptionManagementServiceClient {
+	return &subscriptionManagementServiceClient{cc}
+}
+
+func (c *subscriptionManagementServiceClient) ListSubscriptions(ctx context.Context, in *ListSubscriptionsRequest, opts ...grpc.CallOption) (*ListSubscriptionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListSubscriptionsResponse)
+	err := c.cc.Invoke(ctx, SubscriptionManagementService_ListSubscriptions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// SubscriptionManagementServiceServer is the server API for SubscriptionManagementService service.
+// All implementations must embed UnimplementedSubscriptionManagementServiceServer
+// for forward compatibility.
+//
+// SubscriptionTenantManagementService 订阅服务内部接口
+type SubscriptionManagementServiceServer interface {
+	// ListSubscriptions 获取订阅列表
+	ListSubscriptions(context.Context, *ListSubscriptionsRequest) (*ListSubscriptionsResponse, error)
+	mustEmbedUnimplementedSubscriptionManagementServiceServer()
+}
+
+// UnimplementedSubscriptionManagementServiceServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedSubscriptionManagementServiceServer struct{}
+
+func (UnimplementedSubscriptionManagementServiceServer) ListSubscriptions(context.Context, *ListSubscriptionsRequest) (*ListSubscriptionsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method ListSubscriptions not implemented")
+}
+func (UnimplementedSubscriptionManagementServiceServer) mustEmbedUnimplementedSubscriptionManagementServiceServer() {
+}
+func (UnimplementedSubscriptionManagementServiceServer) testEmbeddedByValue() {}
+
+// UnsafeSubscriptionManagementServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SubscriptionManagementServiceServer will
+// result in compilation errors.
+type UnsafeSubscriptionManagementServiceServer interface {
+	mustEmbedUnimplementedSubscriptionManagementServiceServer()
+}
+
+func RegisterSubscriptionManagementServiceServer(s grpc.ServiceRegistrar, srv SubscriptionManagementServiceServer) {
+	// If the following call panics, it indicates UnimplementedSubscriptionManagementServiceServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&SubscriptionManagementService_ServiceDesc, srv)
+}
+
+func _SubscriptionManagementService_ListSubscriptions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSubscriptionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SubscriptionManagementServiceServer).ListSubscriptions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SubscriptionManagementService_ListSubscriptions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SubscriptionManagementServiceServer).ListSubscriptions(ctx, req.(*ListSubscriptionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// SubscriptionManagementService_ServiceDesc is the grpc.ServiceDesc for SubscriptionManagementService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var SubscriptionManagementService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "api.subscription.v1.SubscriptionManagementService",
+	HandlerType: (*SubscriptionManagementServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "ListSubscriptions",
+			Handler:    _SubscriptionManagementService_ListSubscriptions_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "subscribe/v1/subscribe_internal.proto",
+}
+
+const (
+	SubscriptionTenantManagementService_CreateSubscription_FullMethodName  = "/api.subscription.v1.SubscriptionTenantManagementService/CreateSubscription"
+	SubscriptionTenantManagementService_ReNewSubscription_FullMethodName   = "/api.subscription.v1.SubscriptionTenantManagementService/ReNewSubscription"
+	SubscriptionTenantManagementService_UpgradeSubscription_FullMethodName = "/api.subscription.v1.SubscriptionTenantManagementService/UpgradeSubscription"
+)
+
+// SubscriptionTenantManagementServiceClient is the client API for SubscriptionTenantManagementService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// SubscriptionTenantManagementService 订阅服务内部接口
+type SubscriptionTenantManagementServiceClient interface {
 	// CreateSubscription 商户创建订阅
 	CreateSubscription(ctx context.Context, in *CreateSubscriptionRequest, opts ...grpc.CallOption) (*CreateSubscriptionResponse, error)
 	// ReNewSubscription 商户续订订阅
@@ -41,206 +147,169 @@ type SubscribeInternalServiceClient interface {
 	UpgradeSubscription(ctx context.Context, in *UpgradeSubscriptionRequest, opts ...grpc.CallOption) (*UpgradeSubscriptionResponse, error)
 }
 
-type subscribeInternalServiceClient struct {
+type subscriptionTenantManagementServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewSubscribeInternalServiceClient(cc grpc.ClientConnInterface) SubscribeInternalServiceClient {
-	return &subscribeInternalServiceClient{cc}
+func NewSubscriptionTenantManagementServiceClient(cc grpc.ClientConnInterface) SubscriptionTenantManagementServiceClient {
+	return &subscriptionTenantManagementServiceClient{cc}
 }
 
-func (c *subscribeInternalServiceClient) ListSubscriptions(ctx context.Context, in *ListSubscriptionsRequest, opts ...grpc.CallOption) (*ListSubscriptionsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListSubscriptionsResponse)
-	err := c.cc.Invoke(ctx, SubscribeInternalService_ListSubscriptions_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *subscribeInternalServiceClient) CreateSubscription(ctx context.Context, in *CreateSubscriptionRequest, opts ...grpc.CallOption) (*CreateSubscriptionResponse, error) {
+func (c *subscriptionTenantManagementServiceClient) CreateSubscription(ctx context.Context, in *CreateSubscriptionRequest, opts ...grpc.CallOption) (*CreateSubscriptionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateSubscriptionResponse)
-	err := c.cc.Invoke(ctx, SubscribeInternalService_CreateSubscription_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SubscriptionTenantManagementService_CreateSubscription_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *subscribeInternalServiceClient) ReNewSubscription(ctx context.Context, in *ReNewSubscriptionRequest, opts ...grpc.CallOption) (*ReNewSubscriptionResponse, error) {
+func (c *subscriptionTenantManagementServiceClient) ReNewSubscription(ctx context.Context, in *ReNewSubscriptionRequest, opts ...grpc.CallOption) (*ReNewSubscriptionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ReNewSubscriptionResponse)
-	err := c.cc.Invoke(ctx, SubscribeInternalService_ReNewSubscription_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SubscriptionTenantManagementService_ReNewSubscription_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *subscribeInternalServiceClient) UpgradeSubscription(ctx context.Context, in *UpgradeSubscriptionRequest, opts ...grpc.CallOption) (*UpgradeSubscriptionResponse, error) {
+func (c *subscriptionTenantManagementServiceClient) UpgradeSubscription(ctx context.Context, in *UpgradeSubscriptionRequest, opts ...grpc.CallOption) (*UpgradeSubscriptionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(UpgradeSubscriptionResponse)
-	err := c.cc.Invoke(ctx, SubscribeInternalService_UpgradeSubscription_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SubscriptionTenantManagementService_UpgradeSubscription_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// SubscribeInternalServiceServer is the server API for SubscribeInternalService service.
-// All implementations must embed UnimplementedSubscribeInternalServiceServer
+// SubscriptionTenantManagementServiceServer is the server API for SubscriptionTenantManagementService service.
+// All implementations must embed UnimplementedSubscriptionTenantManagementServiceServer
 // for forward compatibility.
 //
-// SubscribeInternalService 订阅服务内部接口
-type SubscribeInternalServiceServer interface {
-	// ListSubscriptions 获取订阅列表
-	ListSubscriptions(context.Context, *ListSubscriptionsRequest) (*ListSubscriptionsResponse, error)
+// SubscriptionTenantManagementService 订阅服务内部接口
+type SubscriptionTenantManagementServiceServer interface {
 	// CreateSubscription 商户创建订阅
 	CreateSubscription(context.Context, *CreateSubscriptionRequest) (*CreateSubscriptionResponse, error)
 	// ReNewSubscription 商户续订订阅
 	ReNewSubscription(context.Context, *ReNewSubscriptionRequest) (*ReNewSubscriptionResponse, error)
 	// UpgradeSubscription 商户升级订阅
 	UpgradeSubscription(context.Context, *UpgradeSubscriptionRequest) (*UpgradeSubscriptionResponse, error)
-	mustEmbedUnimplementedSubscribeInternalServiceServer()
+	mustEmbedUnimplementedSubscriptionTenantManagementServiceServer()
 }
 
-// UnimplementedSubscribeInternalServiceServer must be embedded to have
+// UnimplementedSubscriptionTenantManagementServiceServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedSubscribeInternalServiceServer struct{}
+type UnimplementedSubscriptionTenantManagementServiceServer struct{}
 
-func (UnimplementedSubscribeInternalServiceServer) ListSubscriptions(context.Context, *ListSubscriptionsRequest) (*ListSubscriptionsResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method ListSubscriptions not implemented")
-}
-func (UnimplementedSubscribeInternalServiceServer) CreateSubscription(context.Context, *CreateSubscriptionRequest) (*CreateSubscriptionResponse, error) {
+func (UnimplementedSubscriptionTenantManagementServiceServer) CreateSubscription(context.Context, *CreateSubscriptionRequest) (*CreateSubscriptionResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method CreateSubscription not implemented")
 }
-func (UnimplementedSubscribeInternalServiceServer) ReNewSubscription(context.Context, *ReNewSubscriptionRequest) (*ReNewSubscriptionResponse, error) {
+func (UnimplementedSubscriptionTenantManagementServiceServer) ReNewSubscription(context.Context, *ReNewSubscriptionRequest) (*ReNewSubscriptionResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method ReNewSubscription not implemented")
 }
-func (UnimplementedSubscribeInternalServiceServer) UpgradeSubscription(context.Context, *UpgradeSubscriptionRequest) (*UpgradeSubscriptionResponse, error) {
+func (UnimplementedSubscriptionTenantManagementServiceServer) UpgradeSubscription(context.Context, *UpgradeSubscriptionRequest) (*UpgradeSubscriptionResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method UpgradeSubscription not implemented")
 }
-func (UnimplementedSubscribeInternalServiceServer) mustEmbedUnimplementedSubscribeInternalServiceServer() {
+func (UnimplementedSubscriptionTenantManagementServiceServer) mustEmbedUnimplementedSubscriptionTenantManagementServiceServer() {
 }
-func (UnimplementedSubscribeInternalServiceServer) testEmbeddedByValue() {}
+func (UnimplementedSubscriptionTenantManagementServiceServer) testEmbeddedByValue() {}
 
-// UnsafeSubscribeInternalServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to SubscribeInternalServiceServer will
+// UnsafeSubscriptionTenantManagementServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SubscriptionTenantManagementServiceServer will
 // result in compilation errors.
-type UnsafeSubscribeInternalServiceServer interface {
-	mustEmbedUnimplementedSubscribeInternalServiceServer()
+type UnsafeSubscriptionTenantManagementServiceServer interface {
+	mustEmbedUnimplementedSubscriptionTenantManagementServiceServer()
 }
 
-func RegisterSubscribeInternalServiceServer(s grpc.ServiceRegistrar, srv SubscribeInternalServiceServer) {
-	// If the following call panics, it indicates UnimplementedSubscribeInternalServiceServer was
+func RegisterSubscriptionTenantManagementServiceServer(s grpc.ServiceRegistrar, srv SubscriptionTenantManagementServiceServer) {
+	// If the following call panics, it indicates UnimplementedSubscriptionTenantManagementServiceServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&SubscribeInternalService_ServiceDesc, srv)
+	s.RegisterService(&SubscriptionTenantManagementService_ServiceDesc, srv)
 }
 
-func _SubscribeInternalService_ListSubscriptions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListSubscriptionsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SubscribeInternalServiceServer).ListSubscriptions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SubscribeInternalService_ListSubscriptions_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SubscribeInternalServiceServer).ListSubscriptions(ctx, req.(*ListSubscriptionsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _SubscribeInternalService_CreateSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SubscriptionTenantManagementService_CreateSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateSubscriptionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SubscribeInternalServiceServer).CreateSubscription(ctx, in)
+		return srv.(SubscriptionTenantManagementServiceServer).CreateSubscription(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SubscribeInternalService_CreateSubscription_FullMethodName,
+		FullMethod: SubscriptionTenantManagementService_CreateSubscription_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SubscribeInternalServiceServer).CreateSubscription(ctx, req.(*CreateSubscriptionRequest))
+		return srv.(SubscriptionTenantManagementServiceServer).CreateSubscription(ctx, req.(*CreateSubscriptionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SubscribeInternalService_ReNewSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SubscriptionTenantManagementService_ReNewSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ReNewSubscriptionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SubscribeInternalServiceServer).ReNewSubscription(ctx, in)
+		return srv.(SubscriptionTenantManagementServiceServer).ReNewSubscription(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SubscribeInternalService_ReNewSubscription_FullMethodName,
+		FullMethod: SubscriptionTenantManagementService_ReNewSubscription_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SubscribeInternalServiceServer).ReNewSubscription(ctx, req.(*ReNewSubscriptionRequest))
+		return srv.(SubscriptionTenantManagementServiceServer).ReNewSubscription(ctx, req.(*ReNewSubscriptionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SubscribeInternalService_UpgradeSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SubscriptionTenantManagementService_UpgradeSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpgradeSubscriptionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SubscribeInternalServiceServer).UpgradeSubscription(ctx, in)
+		return srv.(SubscriptionTenantManagementServiceServer).UpgradeSubscription(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SubscribeInternalService_UpgradeSubscription_FullMethodName,
+		FullMethod: SubscriptionTenantManagementService_UpgradeSubscription_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SubscribeInternalServiceServer).UpgradeSubscription(ctx, req.(*UpgradeSubscriptionRequest))
+		return srv.(SubscriptionTenantManagementServiceServer).UpgradeSubscription(ctx, req.(*UpgradeSubscriptionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// SubscribeInternalService_ServiceDesc is the grpc.ServiceDesc for SubscribeInternalService service.
+// SubscriptionTenantManagementService_ServiceDesc is the grpc.ServiceDesc for SubscriptionTenantManagementService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var SubscribeInternalService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "subscribe.v1.SubscribeInternalService",
-	HandlerType: (*SubscribeInternalServiceServer)(nil),
+var SubscriptionTenantManagementService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "api.subscription.v1.SubscriptionTenantManagementService",
+	HandlerType: (*SubscriptionTenantManagementServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "ListSubscriptions",
-			Handler:    _SubscribeInternalService_ListSubscriptions_Handler,
-		},
-		{
 			MethodName: "CreateSubscription",
-			Handler:    _SubscribeInternalService_CreateSubscription_Handler,
+			Handler:    _SubscriptionTenantManagementService_CreateSubscription_Handler,
 		},
 		{
 			MethodName: "ReNewSubscription",
-			Handler:    _SubscribeInternalService_ReNewSubscription_Handler,
+			Handler:    _SubscriptionTenantManagementService_ReNewSubscription_Handler,
 		},
 		{
 			MethodName: "UpgradeSubscription",
-			Handler:    _SubscribeInternalService_UpgradeSubscription_Handler,
+			Handler:    _SubscriptionTenantManagementService_UpgradeSubscription_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

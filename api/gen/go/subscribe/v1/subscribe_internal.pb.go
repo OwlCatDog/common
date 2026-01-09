@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: subscribe/v1/subscribe_internal.proto
 
-package subscribev1
+package subscriptionv1
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -318,7 +318,7 @@ type SubscriptionInfo struct {
 	ProductI18N      *structpb.Struct       `protobuf:"bytes,5,opt,name=product_i18n,json=productI18n,proto3" json:"product_i18n,omitempty"`                  // 产品多语言内容
 	PlanCode         string                 `protobuf:"bytes,9,opt,name=plan_code,json=planCode,proto3" json:"plan_code,omitempty"`                           // 套餐编码
 	PlanI18N         *structpb.Struct       `protobuf:"bytes,7,opt,name=plan_i18n,json=planI18n,proto3" json:"plan_i18n,omitempty"`                           // 套餐多语言内容
-	Status           SubscriptionStatus     `protobuf:"varint,11,opt,name=status,proto3,enum=subscribe.v1.SubscriptionStatus" json:"status,omitempty"`        // 订阅状态
+	Status           SubscriptionStatus     `protobuf:"varint,11,opt,name=status,proto3,enum=api.subscription.v1.SubscriptionStatus" json:"status,omitempty"` // 订阅状态
 	AutomaticRenewal bool                   `protobuf:"varint,12,opt,name=automatic_renewal,json=automaticRenewal,proto3" json:"automatic_renewal,omitempty"` // 是否自动续费
 	StartDate        *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"`                       // 订阅开始时间
 	EndDate          *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=end_date,json=endDate,proto3" json:"end_date,omitempty"`                             // 订阅结束时间
@@ -515,16 +515,16 @@ func (x *SubscriptionInfo) GetUpdatedBy() string {
 // 配额使用信息
 type QuotaUsageInfo struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	SubscriptionCode string                 `protobuf:"bytes,1,opt,name=subscription_code,json=subscriptionCode,proto3" json:"subscription_code,omitempty"`          // 配额记录ID
-	DimensionKey     string                 `protobuf:"bytes,2,opt,name=dimension_key,json=dimensionKey,proto3" json:"dimension_key,omitempty"`                      // 维度键
-	DimensionI18N    *structpb.Struct       `protobuf:"bytes,3,opt,name=dimension_i18n,json=dimensionI18n,proto3" json:"dimension_i18n,omitempty"`                   // 维度多语言内容
-	QuotaLimit       int32                  `protobuf:"varint,4,opt,name=quota_limit,json=quotaLimit,proto3" json:"quota_limit,omitempty"`                           // 配额限制（-1表示无限）
-	IsUnlimited      bool                   `protobuf:"varint,5,opt,name=is_unlimited,json=isUnlimited,proto3" json:"is_unlimited,omitempty"`                        // 是否无限制
-	QuotaUsed        int32                  `protobuf:"varint,8,opt,name=quota_used,json=quotaUsed,proto3" json:"quota_used,omitempty"`                              // 已使用配额
-	QuotaRemaining   int32                  `protobuf:"varint,9,opt,name=quota_remaining,json=quotaRemaining,proto3" json:"quota_remaining,omitempty"`               // 剩余配额
-	UsagePercentage  float64                `protobuf:"fixed64,10,opt,name=usage_percentage,json=usagePercentage,proto3" json:"usage_percentage,omitempty"`          // 使用率（百分比）
-	Unit             *string                `protobuf:"bytes,11,opt,name=unit,proto3,oneof" json:"unit,omitempty"`                                                   // 单位（个、GB、次）
-	QuotaType        QuotaType              `protobuf:"varint,12,opt,name=quota_type,json=quotaType,proto3,enum=subscribe.v1.QuotaType" json:"quota_type,omitempty"` // 配额类型
+	SubscriptionCode string                 `protobuf:"bytes,1,opt,name=subscription_code,json=subscriptionCode,proto3" json:"subscription_code,omitempty"`                 // 配额记录ID
+	DimensionKey     string                 `protobuf:"bytes,2,opt,name=dimension_key,json=dimensionKey,proto3" json:"dimension_key,omitempty"`                             // 维度键
+	DimensionI18N    *structpb.Struct       `protobuf:"bytes,3,opt,name=dimension_i18n,json=dimensionI18n,proto3" json:"dimension_i18n,omitempty"`                          // 维度多语言内容
+	QuotaLimit       int32                  `protobuf:"varint,4,opt,name=quota_limit,json=quotaLimit,proto3" json:"quota_limit,omitempty"`                                  // 配额限制（-1表示无限）
+	IsUnlimited      bool                   `protobuf:"varint,5,opt,name=is_unlimited,json=isUnlimited,proto3" json:"is_unlimited,omitempty"`                               // 是否无限制
+	QuotaUsed        int32                  `protobuf:"varint,8,opt,name=quota_used,json=quotaUsed,proto3" json:"quota_used,omitempty"`                                     // 已使用配额
+	QuotaRemaining   int32                  `protobuf:"varint,9,opt,name=quota_remaining,json=quotaRemaining,proto3" json:"quota_remaining,omitempty"`                      // 剩余配额
+	UsagePercentage  float64                `protobuf:"fixed64,10,opt,name=usage_percentage,json=usagePercentage,proto3" json:"usage_percentage,omitempty"`                 // 使用率（百分比）
+	Unit             *string                `protobuf:"bytes,11,opt,name=unit,proto3,oneof" json:"unit,omitempty"`                                                          // 单位（个、GB、次）
+	QuotaType        QuotaType              `protobuf:"varint,12,opt,name=quota_type,json=quotaType,proto3,enum=api.subscription.v1.QuotaType" json:"quota_type,omitempty"` // 配额类型
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -632,28 +632,28 @@ func (x *QuotaUsageInfo) GetQuotaType() QuotaType {
 // 订单信息
 type SubscriptionOrderInfo struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	OrderNo              string                 `protobuf:"bytes,1,opt,name=order_no,json=orderNo,proto3" json:"order_no,omitempty"`                                                 // 订单号
-	OrderType            OrderType              `protobuf:"varint,2,opt,name=order_type,json=orderType,proto3,enum=subscribe.v1.OrderType" json:"order_type,omitempty"`              // 订单状态
-	BillingCycle         BillingCycle           `protobuf:"varint,3,opt,name=billing_cycle,json=billingCycle,proto3,enum=subscribe.v1.BillingCycle" json:"billing_cycle,omitempty"`  // 计费周期
-	OriginalPrice        int64                  `protobuf:"varint,4,opt,name=original_price,json=originalPrice,proto3" json:"original_price,omitempty"`                              // 原价
-	DiscountAmount       int64                  `protobuf:"varint,5,opt,name=discount_amount,json=discountAmount,proto3" json:"discount_amount,omitempty"`                           // 优惠金额
-	FinalPrice           int64                  `protobuf:"varint,6,opt,name=final_price,json=finalPrice,proto3" json:"final_price,omitempty"`                                       // 实付金额
-	Currency             string                 `protobuf:"bytes,7,opt,name=currency,proto3" json:"currency,omitempty"`                                                              // 货币单位
-	CouponCode           *string                `protobuf:"bytes,8,opt,name=coupon_code,json=couponCode,proto3,oneof" json:"coupon_code,omitempty"`                                  // 优惠券代码
-	PromotionCode        *string                `protobuf:"bytes,9,opt,name=promotion_code,json=promotionCode,proto3,oneof" json:"promotion_code,omitempty"`                         // 促销代码
-	Status               OrderStatus            `protobuf:"varint,10,opt,name=status,proto3,enum=subscribe.v1.OrderStatus" json:"status,omitempty"`                                  // 订单状态
-	PaymentMethod        *string                `protobuf:"bytes,11,opt,name=payment_method,json=paymentMethod,proto3,oneof" json:"payment_method,omitempty"`                        // 支付方式
-	PaymentTransactionId *string                `protobuf:"bytes,12,opt,name=payment_transaction_id,json=paymentTransactionId,proto3,oneof" json:"payment_transaction_id,omitempty"` // 支付交易号
-	PaidAt               *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=paid_at,json=paidAt,proto3,oneof" json:"paid_at,omitempty"`                                             // 支付时间
-	CancelledAt          *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=cancelled_at,json=cancelledAt,proto3,oneof" json:"cancelled_at,omitempty"`                              // 取消时间
-	RefundedAt           *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=refunded_at,json=refundedAt,proto3,oneof" json:"refunded_at,omitempty"`                                 // 退款时间
-	ServiceStartDate     *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=service_start_date,json=serviceStartDate,proto3,oneof" json:"service_start_date,omitempty"`             // 服务开始时间
-	ServiceEndDate       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=service_end_date,json=serviceEndDate,proto3,oneof" json:"service_end_date,omitempty"`                   // 服务结束时间
-	NeedInvoice          bool                   `protobuf:"varint,18,opt,name=need_invoice,json=needInvoice,proto3" json:"need_invoice,omitempty"`                                   // 是否需要发票
-	InvoiceInfo          *structpb.Struct       `protobuf:"bytes,19,opt,name=invoice_info,json=invoiceInfo,proto3" json:"invoice_info,omitempty"`                                    // 发票信息
-	InvoiceNo            *string                `protobuf:"bytes,20,opt,name=invoice_no,json=invoiceNo,proto3,oneof" json:"invoice_no,omitempty"`                                    // 发票号
-	Remark               *string                `protobuf:"bytes,21,opt,name=remark,proto3,oneof" json:"remark,omitempty"`                                                           // 备注
-	CreatedBy            *string                `protobuf:"bytes,22,opt,name=created_by,json=createdBy,proto3,oneof" json:"created_by,omitempty"`                                    // 创建人
+	OrderNo              string                 `protobuf:"bytes,1,opt,name=order_no,json=orderNo,proto3" json:"order_no,omitempty"`                                                       // 订单号
+	OrderType            OrderType              `protobuf:"varint,2,opt,name=order_type,json=orderType,proto3,enum=api.subscription.v1.OrderType" json:"order_type,omitempty"`             // 订单状态
+	BillingCycle         BillingCycle           `protobuf:"varint,3,opt,name=billing_cycle,json=billingCycle,proto3,enum=api.subscription.v1.BillingCycle" json:"billing_cycle,omitempty"` // 计费周期
+	OriginalPrice        int64                  `protobuf:"varint,4,opt,name=original_price,json=originalPrice,proto3" json:"original_price,omitempty"`                                    // 原价
+	DiscountAmount       int64                  `protobuf:"varint,5,opt,name=discount_amount,json=discountAmount,proto3" json:"discount_amount,omitempty"`                                 // 优惠金额
+	FinalPrice           int64                  `protobuf:"varint,6,opt,name=final_price,json=finalPrice,proto3" json:"final_price,omitempty"`                                             // 实付金额
+	Currency             string                 `protobuf:"bytes,7,opt,name=currency,proto3" json:"currency,omitempty"`                                                                    // 货币单位
+	CouponCode           *string                `protobuf:"bytes,8,opt,name=coupon_code,json=couponCode,proto3,oneof" json:"coupon_code,omitempty"`                                        // 优惠券代码
+	PromotionCode        *string                `protobuf:"bytes,9,opt,name=promotion_code,json=promotionCode,proto3,oneof" json:"promotion_code,omitempty"`                               // 促销代码
+	Status               OrderStatus            `protobuf:"varint,10,opt,name=status,proto3,enum=api.subscription.v1.OrderStatus" json:"status,omitempty"`                                 // 订单状态
+	PaymentMethod        *string                `protobuf:"bytes,11,opt,name=payment_method,json=paymentMethod,proto3,oneof" json:"payment_method,omitempty"`                              // 支付方式
+	PaymentTransactionId *string                `protobuf:"bytes,12,opt,name=payment_transaction_id,json=paymentTransactionId,proto3,oneof" json:"payment_transaction_id,omitempty"`       // 支付交易号
+	PaidAt               *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=paid_at,json=paidAt,proto3,oneof" json:"paid_at,omitempty"`                                                   // 支付时间
+	CancelledAt          *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=cancelled_at,json=cancelledAt,proto3,oneof" json:"cancelled_at,omitempty"`                                    // 取消时间
+	RefundedAt           *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=refunded_at,json=refundedAt,proto3,oneof" json:"refunded_at,omitempty"`                                       // 退款时间
+	ServiceStartDate     *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=service_start_date,json=serviceStartDate,proto3,oneof" json:"service_start_date,omitempty"`                   // 服务开始时间
+	ServiceEndDate       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=service_end_date,json=serviceEndDate,proto3,oneof" json:"service_end_date,omitempty"`                         // 服务结束时间
+	NeedInvoice          bool                   `protobuf:"varint,18,opt,name=need_invoice,json=needInvoice,proto3" json:"need_invoice,omitempty"`                                         // 是否需要发票
+	InvoiceInfo          *structpb.Struct       `protobuf:"bytes,19,opt,name=invoice_info,json=invoiceInfo,proto3" json:"invoice_info,omitempty"`                                          // 发票信息
+	InvoiceNo            *string                `protobuf:"bytes,20,opt,name=invoice_no,json=invoiceNo,proto3,oneof" json:"invoice_no,omitempty"`                                          // 发票号
+	Remark               *string                `protobuf:"bytes,21,opt,name=remark,proto3,oneof" json:"remark,omitempty"`                                                                 // 备注
+	CreatedBy            *string                `protobuf:"bytes,22,opt,name=created_by,json=createdBy,proto3,oneof" json:"created_by,omitempty"`                                          // 创建人
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
@@ -845,15 +845,15 @@ func (x *SubscriptionOrderInfo) GetCreatedBy() string {
 // 获取订阅列表请求
 type ListSubscriptionsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Page          *int32                 `protobuf:"varint,1,opt,name=page,proto3,oneof" json:"page,omitempty"`                                          // 页码
-	PageSize      *int32                 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`                  // 每页数量
-	TenantId      *uint32                `protobuf:"varint,3,opt,name=tenant_id,json=tenantId,proto3,oneof" json:"tenant_id,omitempty"`                  // 租户ID筛选
-	ProductCode   *string                `protobuf:"bytes,4,opt,name=product_code,json=productCode,proto3,oneof" json:"product_code,omitempty"`          // 产品编码筛选
-	Status        *SubscriptionStatus    `protobuf:"varint,5,opt,name=status,proto3,enum=subscribe.v1.SubscriptionStatus,oneof" json:"status,omitempty"` // 状态筛选
-	IsTrial       *bool                  `protobuf:"varint,6,opt,name=is_trial,json=isTrial,proto3,oneof" json:"is_trial,omitempty"`                     // 是否试用期筛选
-	Search        *string                `protobuf:"bytes,7,opt,name=search,proto3,oneof" json:"search,omitempty"`                                       // 搜索关键词（租户名、产品名）
-	SortBy        *string                `protobuf:"bytes,8,opt,name=sort_by,json=sortBy,proto3,oneof" json:"sort_by,omitempty"`                         // 排序字段（create_time, end_date）
-	SortOrder     *string                `protobuf:"bytes,9,opt,name=sort_order,json=sortOrder,proto3,oneof" json:"sort_order,omitempty"`                // 排序方向（asc, desc）
+	Page          *int32                 `protobuf:"varint,1,opt,name=page,proto3,oneof" json:"page,omitempty"`                                                 // 页码
+	PageSize      *int32                 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`                         // 每页数量
+	TenantId      *uint32                `protobuf:"varint,3,opt,name=tenant_id,json=tenantId,proto3,oneof" json:"tenant_id,omitempty"`                         // 租户ID筛选
+	ProductCode   *string                `protobuf:"bytes,4,opt,name=product_code,json=productCode,proto3,oneof" json:"product_code,omitempty"`                 // 产品编码筛选
+	Status        *SubscriptionStatus    `protobuf:"varint,5,opt,name=status,proto3,enum=api.subscription.v1.SubscriptionStatus,oneof" json:"status,omitempty"` // 状态筛选
+	IsTrial       *bool                  `protobuf:"varint,6,opt,name=is_trial,json=isTrial,proto3,oneof" json:"is_trial,omitempty"`                            // 是否试用期筛选
+	Search        *string                `protobuf:"bytes,7,opt,name=search,proto3,oneof" json:"search,omitempty"`                                              // 搜索关键词（租户名、产品名）
+	SortBy        *string                `protobuf:"bytes,8,opt,name=sort_by,json=sortBy,proto3,oneof" json:"sort_by,omitempty"`                                // 排序字段（create_time, end_date）
+	SortOrder     *string                `protobuf:"bytes,9,opt,name=sort_order,json=sortOrder,proto3,oneof" json:"sort_order,omitempty"`                       // 排序方向（asc, desc）
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1414,7 +1414,7 @@ var File_subscribe_v1_subscribe_internal_proto protoreflect.FileDescriptor
 
 const file_subscribe_v1_subscribe_internal_proto_rawDesc = "" +
 	"\n" +
-	"%subscribe/v1/subscribe_internal.proto\x12\fsubscribe.v1\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\"\xf5\a\n" +
+	"%subscribe/v1/subscribe_internal.proto\x12\x13api.subscription.v1\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\"\x83\b\n" +
 	"\x10SubscriptionInfo\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\x12+\n" +
 	"\x11subscription_code\x18\x02 \x01(\tR\x10subscriptionCode\x12\x1b\n" +
@@ -1424,8 +1424,8 @@ const file_subscribe_v1_subscribe_internal_proto_rawDesc = "" +
 	"\fproduct_code\x18\x06 \x01(\tR\vproductCode\x12:\n" +
 	"\fproduct_i18n\x18\x05 \x01(\v2\x17.google.protobuf.StructR\vproductI18n\x12\x1b\n" +
 	"\tplan_code\x18\t \x01(\tR\bplanCode\x124\n" +
-	"\tplan_i18n\x18\a \x01(\v2\x17.google.protobuf.StructR\bplanI18n\x128\n" +
-	"\x06status\x18\v \x01(\x0e2 .subscribe.v1.SubscriptionStatusR\x06status\x12+\n" +
+	"\tplan_i18n\x18\a \x01(\v2\x17.google.protobuf.StructR\bplanI18n\x12?\n" +
+	"\x06status\x18\v \x01(\x0e2'.api.subscription.v1.SubscriptionStatusR\x06status\x12+\n" +
 	"\x11automatic_renewal\x18\f \x01(\bR\x10automaticRenewal\x129\n" +
 	"\n" +
 	"start_date\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\tstartDate\x125\n" +
@@ -1434,8 +1434,8 @@ const file_subscribe_v1_subscribe_internal_proto_rawDesc = "" +
 	"\n" +
 	"trial_days\x18\x11 \x01(\x05R\ttrialDays\x12@\n" +
 	"\x0etrial_end_date\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\ftrialEndDate\x12>\n" +
-	"\x0equota_snapshot\x18\x13 \x01(\v2\x17.google.protobuf.StructR\rquotaSnapshot\x12?\n" +
-	"\fquota_usages\x18\x14 \x03(\v2\x1c.subscribe.v1.QuotaUsageInfoR\vquotaUsages\x12;\n" +
+	"\x0equota_snapshot\x18\x13 \x01(\v2\x17.google.protobuf.StructR\rquotaSnapshot\x12F\n" +
+	"\fquota_usages\x18\x14 \x03(\v2#.api.subscription.v1.QuotaUsageInfoR\vquotaUsages\x12;\n" +
 	"\vcreate_time\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"createTime\x12;\n" +
 	"\vupdate_time\x18\x16 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
@@ -1445,7 +1445,7 @@ const file_subscribe_v1_subscribe_internal_proto_rawDesc = "" +
 	"\n" +
 	"updated_by\x18\x18 \x01(\tH\x01R\tupdatedBy\x88\x01\x01B\r\n" +
 	"\v_created_byB\r\n" +
-	"\v_updated_by\"\xb3\x03\n" +
+	"\v_updated_by\"\xba\x03\n" +
 	"\x0eQuotaUsageInfo\x12+\n" +
 	"\x11subscription_code\x18\x01 \x01(\tR\x10subscriptionCode\x12#\n" +
 	"\rdimension_key\x18\x02 \x01(\tR\fdimensionKey\x12>\n" +
@@ -1458,16 +1458,16 @@ const file_subscribe_v1_subscribe_internal_proto_rawDesc = "" +
 	"\x0fquota_remaining\x18\t \x01(\x05R\x0equotaRemaining\x12)\n" +
 	"\x10usage_percentage\x18\n" +
 	" \x01(\x01R\x0fusagePercentage\x12\x17\n" +
-	"\x04unit\x18\v \x01(\tH\x00R\x04unit\x88\x01\x01\x126\n" +
+	"\x04unit\x18\v \x01(\tH\x00R\x04unit\x88\x01\x01\x12=\n" +
 	"\n" +
-	"quota_type\x18\f \x01(\x0e2\x17.subscribe.v1.QuotaTypeR\tquotaTypeB\a\n" +
-	"\x05_unit\"\x95\n" +
+	"quota_type\x18\f \x01(\x0e2\x1e.api.subscription.v1.QuotaTypeR\tquotaTypeB\a\n" +
+	"\x05_unit\"\xaa\n" +
 	"\n" +
 	"\x15SubscriptionOrderInfo\x12\x19\n" +
-	"\border_no\x18\x01 \x01(\tR\aorderNo\x126\n" +
+	"\border_no\x18\x01 \x01(\tR\aorderNo\x12=\n" +
 	"\n" +
-	"order_type\x18\x02 \x01(\x0e2\x17.subscribe.v1.OrderTypeR\torderType\x12?\n" +
-	"\rbilling_cycle\x18\x03 \x01(\x0e2\x1a.subscribe.v1.BillingCycleR\fbillingCycle\x12%\n" +
+	"order_type\x18\x02 \x01(\x0e2\x1e.api.subscription.v1.OrderTypeR\torderType\x12F\n" +
+	"\rbilling_cycle\x18\x03 \x01(\x0e2!.api.subscription.v1.BillingCycleR\fbillingCycle\x12%\n" +
 	"\x0eoriginal_price\x18\x04 \x01(\x03R\roriginalPrice\x12'\n" +
 	"\x0fdiscount_amount\x18\x05 \x01(\x03R\x0ediscountAmount\x12\x1f\n" +
 	"\vfinal_price\x18\x06 \x01(\x03R\n" +
@@ -1475,9 +1475,9 @@ const file_subscribe_v1_subscribe_internal_proto_rawDesc = "" +
 	"\bcurrency\x18\a \x01(\tR\bcurrency\x12$\n" +
 	"\vcoupon_code\x18\b \x01(\tH\x00R\n" +
 	"couponCode\x88\x01\x01\x12*\n" +
-	"\x0epromotion_code\x18\t \x01(\tH\x01R\rpromotionCode\x88\x01\x01\x121\n" +
+	"\x0epromotion_code\x18\t \x01(\tH\x01R\rpromotionCode\x88\x01\x01\x128\n" +
 	"\x06status\x18\n" +
-	" \x01(\x0e2\x19.subscribe.v1.OrderStatusR\x06status\x12*\n" +
+	" \x01(\x0e2 .api.subscription.v1.OrderStatusR\x06status\x12*\n" +
 	"\x0epayment_method\x18\v \x01(\tH\x02R\rpaymentMethod\x88\x01\x01\x129\n" +
 	"\x16payment_transaction_id\x18\f \x01(\tH\x03R\x14paymentTransactionId\x88\x01\x01\x128\n" +
 	"\apaid_at\x18\r \x01(\v2\x1a.google.protobuf.TimestampH\x04R\x06paidAt\x88\x01\x01\x12B\n" +
@@ -1506,13 +1506,13 @@ const file_subscribe_v1_subscribe_internal_proto_rawDesc = "" +
 	"\x11_service_end_dateB\r\n" +
 	"\v_invoice_noB\t\n" +
 	"\a_remarkB\r\n" +
-	"\v_created_by\"\xd1\x03\n" +
+	"\v_created_by\"\xd8\x03\n" +
 	"\x18ListSubscriptionsRequest\x12\x17\n" +
 	"\x04page\x18\x01 \x01(\x05H\x00R\x04page\x88\x01\x01\x12 \n" +
 	"\tpage_size\x18\x02 \x01(\x05H\x01R\bpageSize\x88\x01\x01\x12 \n" +
 	"\ttenant_id\x18\x03 \x01(\rH\x02R\btenantId\x88\x01\x01\x12&\n" +
-	"\fproduct_code\x18\x04 \x01(\tH\x03R\vproductCode\x88\x01\x01\x12=\n" +
-	"\x06status\x18\x05 \x01(\x0e2 .subscribe.v1.SubscriptionStatusH\x04R\x06status\x88\x01\x01\x12\x1e\n" +
+	"\fproduct_code\x18\x04 \x01(\tH\x03R\vproductCode\x88\x01\x01\x12D\n" +
+	"\x06status\x18\x05 \x01(\x0e2'.api.subscription.v1.SubscriptionStatusH\x04R\x06status\x88\x01\x01\x12\x1e\n" +
 	"\bis_trial\x18\x06 \x01(\bH\x05R\aisTrial\x88\x01\x01\x12\x1b\n" +
 	"\x06search\x18\a \x01(\tH\x06R\x06search\x88\x01\x01\x12\x1c\n" +
 	"\asort_by\x18\b \x01(\tH\aR\x06sortBy\x88\x01\x01\x12\"\n" +
@@ -1529,12 +1529,12 @@ const file_subscribe_v1_subscribe_internal_proto_rawDesc = "" +
 	"\a_searchB\n" +
 	"\n" +
 	"\b_sort_byB\r\n" +
-	"\v_sort_order\"\xa8\x01\n" +
-	"\x19ListSubscriptionsResponse\x12D\n" +
-	"\rsubscriptions\x18\x01 \x03(\v2\x1e.subscribe.v1.SubscriptionInfoR\rsubscriptions\x12\x14\n" +
+	"\v_sort_order\"\xaf\x01\n" +
+	"\x19ListSubscriptionsResponse\x12K\n" +
+	"\rsubscriptions\x18\x01 \x03(\v2%.api.subscription.v1.SubscriptionInfoR\rsubscriptions\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x12\n" +
 	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
-	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\"\xe2\x02\n" +
+	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\"\xe9\x02\n" +
 	"\x19CreateSubscriptionRequest\x12!\n" +
 	"\fproduct_code\x18\x01 \x01(\tR\vproductCode\x12\x1b\n" +
 	"\tplan_code\x18\x02 \x01(\tR\bplanCode\x12+\n" +
@@ -1542,30 +1542,30 @@ const file_subscribe_v1_subscribe_internal_proto_rawDesc = "" +
 	"\n" +
 	"start_date\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tstartDate\x12:\n" +
 	"\bend_date\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\aendDate\x88\x01\x01\x12\x19\n" +
-	"\bis_trial\x18\x06 \x01(\bR\aisTrial\x129\n" +
-	"\x05order\x18\a \x01(\v2#.subscribe.v1.SubscriptionOrderInfoR\x05orderB\v\n" +
-	"\t_end_date\"`\n" +
-	"\x1aCreateSubscriptionResponse\x12B\n" +
-	"\fsubscription\x18\x01 \x01(\v2\x1e.subscribe.v1.SubscriptionInfoR\fsubscription\"\xfd\x01\n" +
+	"\bis_trial\x18\x06 \x01(\bR\aisTrial\x12@\n" +
+	"\x05order\x18\a \x01(\v2*.api.subscription.v1.SubscriptionOrderInfoR\x05orderB\v\n" +
+	"\t_end_date\"g\n" +
+	"\x1aCreateSubscriptionResponse\x12I\n" +
+	"\fsubscription\x18\x01 \x01(\v2%.api.subscription.v1.SubscriptionInfoR\fsubscription\"\x84\x02\n" +
 	"\x18ReNewSubscriptionRequest\x12+\n" +
 	"\x11subscription_code\x18\x01 \x01(\tR\x10subscriptionCode\x12!\n" +
 	"\fproduct_code\x18\x02 \x01(\tR\vproductCode\x12\x1b\n" +
 	"\tplan_code\x18\x03 \x01(\tR\bplanCode\x129\n" +
-	"\vre_new_time\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\treNewTime\x129\n" +
-	"\x05order\x18\x05 \x01(\v2#.subscribe.v1.SubscriptionOrderInfoR\x05order\"_\n" +
-	"\x19ReNewSubscriptionResponse\x12B\n" +
-	"\fsubscription\x18\x01 \x01(\v2\x1e.subscribe.v1.SubscriptionInfoR\fsubscription\"\xc8\x02\n" +
+	"\vre_new_time\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\treNewTime\x12@\n" +
+	"\x05order\x18\x05 \x01(\v2*.api.subscription.v1.SubscriptionOrderInfoR\x05order\"f\n" +
+	"\x19ReNewSubscriptionResponse\x12I\n" +
+	"\fsubscription\x18\x01 \x01(\v2%.api.subscription.v1.SubscriptionInfoR\fsubscription\"\xcf\x02\n" +
 	"\x1aUpgradeSubscriptionRequest\x12+\n" +
 	"\x11subscription_code\x18\x01 \x01(\tR\x10subscriptionCode\x12!\n" +
 	"\fproduct_code\x18\x02 \x01(\tR\vproductCode\x12\x1b\n" +
 	"\tplan_code\x18\x03 \x01(\tR\bplanCode\x129\n" +
 	"\n" +
 	"start_date\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tstartDate\x12:\n" +
-	"\bend_date\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\aendDate\x88\x01\x01\x129\n" +
-	"\x05order\x18\x06 \x01(\v2#.subscribe.v1.SubscriptionOrderInfoR\x05orderB\v\n" +
-	"\t_end_date\"a\n" +
-	"\x1bUpgradeSubscriptionResponse\x12B\n" +
-	"\fsubscription\x18\x01 \x01(\v2\x1e.subscribe.v1.SubscriptionInfoR\fsubscription*\xdf\x01\n" +
+	"\bend_date\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\aendDate\x88\x01\x01\x12@\n" +
+	"\x05order\x18\x06 \x01(\v2*.api.subscription.v1.SubscriptionOrderInfoR\x05orderB\v\n" +
+	"\t_end_date\"h\n" +
+	"\x1bUpgradeSubscriptionResponse\x12I\n" +
+	"\fsubscription\x18\x01 \x01(\v2%.api.subscription.v1.SubscriptionInfoR\fsubscription*\xdf\x01\n" +
 	"\x12SubscriptionStatus\x12#\n" +
 	"\x1fSUBSCRIPTION_STATUS_UNSPECIFIED\x10\x00\x12\x1e\n" +
 	"\x1aSUBSCRIPTION_STATUS_ACTIVE\x10\x01\x12\x1d\n" +
@@ -1596,13 +1596,14 @@ const file_subscribe_v1_subscribe_internal_proto_rawDesc = "" +
 	"\x11ORDER_STATUS_PAID\x10\x02\x12\x1a\n" +
 	"\x16ORDER_STATUS_CANCELLED\x10\x03\x12\x19\n" +
 	"\x15ORDER_STATUS_REFUNDED\x10\x04\x12\x17\n" +
-	"\x13ORDER_STATUS_FAILED\x10\x052\xbb\x03\n" +
-	"\x18SubscribeInternalService\x12d\n" +
-	"\x11ListSubscriptions\x12&.subscribe.v1.ListSubscriptionsRequest\x1a'.subscribe.v1.ListSubscriptionsResponse\x12g\n" +
-	"\x12CreateSubscription\x12'.subscribe.v1.CreateSubscriptionRequest\x1a(.subscribe.v1.CreateSubscriptionResponse\x12d\n" +
-	"\x11ReNewSubscription\x12&.subscribe.v1.ReNewSubscriptionRequest\x1a'.subscribe.v1.ReNewSubscriptionResponse\x12j\n" +
-	"\x13UpgradeSubscription\x12(.subscribe.v1.UpgradeSubscriptionRequest\x1a).subscribe.v1.UpgradeSubscriptionResponseB\xbb\x01\n" +
-	"\x10com.subscribe.v1B\x16SubscribeInternalProtoP\x01Z>github.com/heyinLab/common/api/gen/go/subscribe/v1;subscribev1\xa2\x02\x03SXX\xaa\x02\fSubscribe.V1\xca\x02\fSubscribe\\V1\xe2\x02\x18Subscribe\\V1\\GPBMetadata\xea\x02\rSubscribe::V1b\x06proto3"
+	"\x13ORDER_STATUS_FAILED\x10\x052\x93\x01\n" +
+	"\x1dSubscriptionManagementService\x12r\n" +
+	"\x11ListSubscriptions\x12-.api.subscription.v1.ListSubscriptionsRequest\x1a..api.subscription.v1.ListSubscriptionsResponse2\x8a\x03\n" +
+	"#SubscriptionTenantManagementService\x12u\n" +
+	"\x12CreateSubscription\x12..api.subscription.v1.CreateSubscriptionRequest\x1a/.api.subscription.v1.CreateSubscriptionResponse\x12r\n" +
+	"\x11ReNewSubscription\x12-.api.subscription.v1.ReNewSubscriptionRequest\x1a..api.subscription.v1.ReNewSubscriptionResponse\x12x\n" +
+	"\x13UpgradeSubscription\x12/.api.subscription.v1.UpgradeSubscriptionRequest\x1a0.api.subscription.v1.UpgradeSubscriptionResponseB\xe2\x01\n" +
+	"\x17com.api.subscription.v1B\x16SubscribeInternalProtoP\x01ZAgithub.com/heyinLab/common/api/gen/go/subscribe/v1;subscriptionv1\xa2\x02\x03ASX\xaa\x02\x13Api.Subscription.V1\xca\x02\x13Api\\Subscription\\V1\xe2\x02\x1fApi\\Subscription\\V1\\GPBMetadata\xea\x02\x15Api::Subscription::V1b\x06proto3"
 
 var (
 	file_subscribe_v1_subscribe_internal_proto_rawDescOnce sync.Once
@@ -1619,69 +1620,69 @@ func file_subscribe_v1_subscribe_internal_proto_rawDescGZIP() []byte {
 var file_subscribe_v1_subscribe_internal_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
 var file_subscribe_v1_subscribe_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_subscribe_v1_subscribe_internal_proto_goTypes = []any{
-	(SubscriptionStatus)(0),             // 0: subscribe.v1.SubscriptionStatus
-	(QuotaType)(0),                      // 1: subscribe.v1.QuotaType
-	(OrderType)(0),                      // 2: subscribe.v1.OrderType
-	(BillingCycle)(0),                   // 3: subscribe.v1.BillingCycle
-	(OrderStatus)(0),                    // 4: subscribe.v1.OrderStatus
-	(*SubscriptionInfo)(nil),            // 5: subscribe.v1.SubscriptionInfo
-	(*QuotaUsageInfo)(nil),              // 6: subscribe.v1.QuotaUsageInfo
-	(*SubscriptionOrderInfo)(nil),       // 7: subscribe.v1.SubscriptionOrderInfo
-	(*ListSubscriptionsRequest)(nil),    // 8: subscribe.v1.ListSubscriptionsRequest
-	(*ListSubscriptionsResponse)(nil),   // 9: subscribe.v1.ListSubscriptionsResponse
-	(*CreateSubscriptionRequest)(nil),   // 10: subscribe.v1.CreateSubscriptionRequest
-	(*CreateSubscriptionResponse)(nil),  // 11: subscribe.v1.CreateSubscriptionResponse
-	(*ReNewSubscriptionRequest)(nil),    // 12: subscribe.v1.ReNewSubscriptionRequest
-	(*ReNewSubscriptionResponse)(nil),   // 13: subscribe.v1.ReNewSubscriptionResponse
-	(*UpgradeSubscriptionRequest)(nil),  // 14: subscribe.v1.UpgradeSubscriptionRequest
-	(*UpgradeSubscriptionResponse)(nil), // 15: subscribe.v1.UpgradeSubscriptionResponse
+	(SubscriptionStatus)(0),             // 0: api.subscription.v1.SubscriptionStatus
+	(QuotaType)(0),                      // 1: api.subscription.v1.QuotaType
+	(OrderType)(0),                      // 2: api.subscription.v1.OrderType
+	(BillingCycle)(0),                   // 3: api.subscription.v1.BillingCycle
+	(OrderStatus)(0),                    // 4: api.subscription.v1.OrderStatus
+	(*SubscriptionInfo)(nil),            // 5: api.subscription.v1.SubscriptionInfo
+	(*QuotaUsageInfo)(nil),              // 6: api.subscription.v1.QuotaUsageInfo
+	(*SubscriptionOrderInfo)(nil),       // 7: api.subscription.v1.SubscriptionOrderInfo
+	(*ListSubscriptionsRequest)(nil),    // 8: api.subscription.v1.ListSubscriptionsRequest
+	(*ListSubscriptionsResponse)(nil),   // 9: api.subscription.v1.ListSubscriptionsResponse
+	(*CreateSubscriptionRequest)(nil),   // 10: api.subscription.v1.CreateSubscriptionRequest
+	(*CreateSubscriptionResponse)(nil),  // 11: api.subscription.v1.CreateSubscriptionResponse
+	(*ReNewSubscriptionRequest)(nil),    // 12: api.subscription.v1.ReNewSubscriptionRequest
+	(*ReNewSubscriptionResponse)(nil),   // 13: api.subscription.v1.ReNewSubscriptionResponse
+	(*UpgradeSubscriptionRequest)(nil),  // 14: api.subscription.v1.UpgradeSubscriptionRequest
+	(*UpgradeSubscriptionResponse)(nil), // 15: api.subscription.v1.UpgradeSubscriptionResponse
 	(*structpb.Struct)(nil),             // 16: google.protobuf.Struct
 	(*timestamppb.Timestamp)(nil),       // 17: google.protobuf.Timestamp
 	(*durationpb.Duration)(nil),         // 18: google.protobuf.Duration
 }
 var file_subscribe_v1_subscribe_internal_proto_depIdxs = []int32{
-	16, // 0: subscribe.v1.SubscriptionInfo.product_i18n:type_name -> google.protobuf.Struct
-	16, // 1: subscribe.v1.SubscriptionInfo.plan_i18n:type_name -> google.protobuf.Struct
-	0,  // 2: subscribe.v1.SubscriptionInfo.status:type_name -> subscribe.v1.SubscriptionStatus
-	17, // 3: subscribe.v1.SubscriptionInfo.start_date:type_name -> google.protobuf.Timestamp
-	17, // 4: subscribe.v1.SubscriptionInfo.end_date:type_name -> google.protobuf.Timestamp
-	17, // 5: subscribe.v1.SubscriptionInfo.trial_end_date:type_name -> google.protobuf.Timestamp
-	16, // 6: subscribe.v1.SubscriptionInfo.quota_snapshot:type_name -> google.protobuf.Struct
-	6,  // 7: subscribe.v1.SubscriptionInfo.quota_usages:type_name -> subscribe.v1.QuotaUsageInfo
-	17, // 8: subscribe.v1.SubscriptionInfo.create_time:type_name -> google.protobuf.Timestamp
-	17, // 9: subscribe.v1.SubscriptionInfo.update_time:type_name -> google.protobuf.Timestamp
-	16, // 10: subscribe.v1.QuotaUsageInfo.dimension_i18n:type_name -> google.protobuf.Struct
-	1,  // 11: subscribe.v1.QuotaUsageInfo.quota_type:type_name -> subscribe.v1.QuotaType
-	2,  // 12: subscribe.v1.SubscriptionOrderInfo.order_type:type_name -> subscribe.v1.OrderType
-	3,  // 13: subscribe.v1.SubscriptionOrderInfo.billing_cycle:type_name -> subscribe.v1.BillingCycle
-	4,  // 14: subscribe.v1.SubscriptionOrderInfo.status:type_name -> subscribe.v1.OrderStatus
-	17, // 15: subscribe.v1.SubscriptionOrderInfo.paid_at:type_name -> google.protobuf.Timestamp
-	17, // 16: subscribe.v1.SubscriptionOrderInfo.cancelled_at:type_name -> google.protobuf.Timestamp
-	17, // 17: subscribe.v1.SubscriptionOrderInfo.refunded_at:type_name -> google.protobuf.Timestamp
-	17, // 18: subscribe.v1.SubscriptionOrderInfo.service_start_date:type_name -> google.protobuf.Timestamp
-	17, // 19: subscribe.v1.SubscriptionOrderInfo.service_end_date:type_name -> google.protobuf.Timestamp
-	16, // 20: subscribe.v1.SubscriptionOrderInfo.invoice_info:type_name -> google.protobuf.Struct
-	0,  // 21: subscribe.v1.ListSubscriptionsRequest.status:type_name -> subscribe.v1.SubscriptionStatus
-	5,  // 22: subscribe.v1.ListSubscriptionsResponse.subscriptions:type_name -> subscribe.v1.SubscriptionInfo
-	17, // 23: subscribe.v1.CreateSubscriptionRequest.start_date:type_name -> google.protobuf.Timestamp
-	17, // 24: subscribe.v1.CreateSubscriptionRequest.end_date:type_name -> google.protobuf.Timestamp
-	7,  // 25: subscribe.v1.CreateSubscriptionRequest.order:type_name -> subscribe.v1.SubscriptionOrderInfo
-	5,  // 26: subscribe.v1.CreateSubscriptionResponse.subscription:type_name -> subscribe.v1.SubscriptionInfo
-	18, // 27: subscribe.v1.ReNewSubscriptionRequest.re_new_time:type_name -> google.protobuf.Duration
-	7,  // 28: subscribe.v1.ReNewSubscriptionRequest.order:type_name -> subscribe.v1.SubscriptionOrderInfo
-	5,  // 29: subscribe.v1.ReNewSubscriptionResponse.subscription:type_name -> subscribe.v1.SubscriptionInfo
-	17, // 30: subscribe.v1.UpgradeSubscriptionRequest.start_date:type_name -> google.protobuf.Timestamp
-	17, // 31: subscribe.v1.UpgradeSubscriptionRequest.end_date:type_name -> google.protobuf.Timestamp
-	7,  // 32: subscribe.v1.UpgradeSubscriptionRequest.order:type_name -> subscribe.v1.SubscriptionOrderInfo
-	5,  // 33: subscribe.v1.UpgradeSubscriptionResponse.subscription:type_name -> subscribe.v1.SubscriptionInfo
-	8,  // 34: subscribe.v1.SubscribeInternalService.ListSubscriptions:input_type -> subscribe.v1.ListSubscriptionsRequest
-	10, // 35: subscribe.v1.SubscribeInternalService.CreateSubscription:input_type -> subscribe.v1.CreateSubscriptionRequest
-	12, // 36: subscribe.v1.SubscribeInternalService.ReNewSubscription:input_type -> subscribe.v1.ReNewSubscriptionRequest
-	14, // 37: subscribe.v1.SubscribeInternalService.UpgradeSubscription:input_type -> subscribe.v1.UpgradeSubscriptionRequest
-	9,  // 38: subscribe.v1.SubscribeInternalService.ListSubscriptions:output_type -> subscribe.v1.ListSubscriptionsResponse
-	11, // 39: subscribe.v1.SubscribeInternalService.CreateSubscription:output_type -> subscribe.v1.CreateSubscriptionResponse
-	13, // 40: subscribe.v1.SubscribeInternalService.ReNewSubscription:output_type -> subscribe.v1.ReNewSubscriptionResponse
-	15, // 41: subscribe.v1.SubscribeInternalService.UpgradeSubscription:output_type -> subscribe.v1.UpgradeSubscriptionResponse
+	16, // 0: api.subscription.v1.SubscriptionInfo.product_i18n:type_name -> google.protobuf.Struct
+	16, // 1: api.subscription.v1.SubscriptionInfo.plan_i18n:type_name -> google.protobuf.Struct
+	0,  // 2: api.subscription.v1.SubscriptionInfo.status:type_name -> api.subscription.v1.SubscriptionStatus
+	17, // 3: api.subscription.v1.SubscriptionInfo.start_date:type_name -> google.protobuf.Timestamp
+	17, // 4: api.subscription.v1.SubscriptionInfo.end_date:type_name -> google.protobuf.Timestamp
+	17, // 5: api.subscription.v1.SubscriptionInfo.trial_end_date:type_name -> google.protobuf.Timestamp
+	16, // 6: api.subscription.v1.SubscriptionInfo.quota_snapshot:type_name -> google.protobuf.Struct
+	6,  // 7: api.subscription.v1.SubscriptionInfo.quota_usages:type_name -> api.subscription.v1.QuotaUsageInfo
+	17, // 8: api.subscription.v1.SubscriptionInfo.create_time:type_name -> google.protobuf.Timestamp
+	17, // 9: api.subscription.v1.SubscriptionInfo.update_time:type_name -> google.protobuf.Timestamp
+	16, // 10: api.subscription.v1.QuotaUsageInfo.dimension_i18n:type_name -> google.protobuf.Struct
+	1,  // 11: api.subscription.v1.QuotaUsageInfo.quota_type:type_name -> api.subscription.v1.QuotaType
+	2,  // 12: api.subscription.v1.SubscriptionOrderInfo.order_type:type_name -> api.subscription.v1.OrderType
+	3,  // 13: api.subscription.v1.SubscriptionOrderInfo.billing_cycle:type_name -> api.subscription.v1.BillingCycle
+	4,  // 14: api.subscription.v1.SubscriptionOrderInfo.status:type_name -> api.subscription.v1.OrderStatus
+	17, // 15: api.subscription.v1.SubscriptionOrderInfo.paid_at:type_name -> google.protobuf.Timestamp
+	17, // 16: api.subscription.v1.SubscriptionOrderInfo.cancelled_at:type_name -> google.protobuf.Timestamp
+	17, // 17: api.subscription.v1.SubscriptionOrderInfo.refunded_at:type_name -> google.protobuf.Timestamp
+	17, // 18: api.subscription.v1.SubscriptionOrderInfo.service_start_date:type_name -> google.protobuf.Timestamp
+	17, // 19: api.subscription.v1.SubscriptionOrderInfo.service_end_date:type_name -> google.protobuf.Timestamp
+	16, // 20: api.subscription.v1.SubscriptionOrderInfo.invoice_info:type_name -> google.protobuf.Struct
+	0,  // 21: api.subscription.v1.ListSubscriptionsRequest.status:type_name -> api.subscription.v1.SubscriptionStatus
+	5,  // 22: api.subscription.v1.ListSubscriptionsResponse.subscriptions:type_name -> api.subscription.v1.SubscriptionInfo
+	17, // 23: api.subscription.v1.CreateSubscriptionRequest.start_date:type_name -> google.protobuf.Timestamp
+	17, // 24: api.subscription.v1.CreateSubscriptionRequest.end_date:type_name -> google.protobuf.Timestamp
+	7,  // 25: api.subscription.v1.CreateSubscriptionRequest.order:type_name -> api.subscription.v1.SubscriptionOrderInfo
+	5,  // 26: api.subscription.v1.CreateSubscriptionResponse.subscription:type_name -> api.subscription.v1.SubscriptionInfo
+	18, // 27: api.subscription.v1.ReNewSubscriptionRequest.re_new_time:type_name -> google.protobuf.Duration
+	7,  // 28: api.subscription.v1.ReNewSubscriptionRequest.order:type_name -> api.subscription.v1.SubscriptionOrderInfo
+	5,  // 29: api.subscription.v1.ReNewSubscriptionResponse.subscription:type_name -> api.subscription.v1.SubscriptionInfo
+	17, // 30: api.subscription.v1.UpgradeSubscriptionRequest.start_date:type_name -> google.protobuf.Timestamp
+	17, // 31: api.subscription.v1.UpgradeSubscriptionRequest.end_date:type_name -> google.protobuf.Timestamp
+	7,  // 32: api.subscription.v1.UpgradeSubscriptionRequest.order:type_name -> api.subscription.v1.SubscriptionOrderInfo
+	5,  // 33: api.subscription.v1.UpgradeSubscriptionResponse.subscription:type_name -> api.subscription.v1.SubscriptionInfo
+	8,  // 34: api.subscription.v1.SubscriptionManagementService.ListSubscriptions:input_type -> api.subscription.v1.ListSubscriptionsRequest
+	10, // 35: api.subscription.v1.SubscriptionTenantManagementService.CreateSubscription:input_type -> api.subscription.v1.CreateSubscriptionRequest
+	12, // 36: api.subscription.v1.SubscriptionTenantManagementService.ReNewSubscription:input_type -> api.subscription.v1.ReNewSubscriptionRequest
+	14, // 37: api.subscription.v1.SubscriptionTenantManagementService.UpgradeSubscription:input_type -> api.subscription.v1.UpgradeSubscriptionRequest
+	9,  // 38: api.subscription.v1.SubscriptionManagementService.ListSubscriptions:output_type -> api.subscription.v1.ListSubscriptionsResponse
+	11, // 39: api.subscription.v1.SubscriptionTenantManagementService.CreateSubscription:output_type -> api.subscription.v1.CreateSubscriptionResponse
+	13, // 40: api.subscription.v1.SubscriptionTenantManagementService.ReNewSubscription:output_type -> api.subscription.v1.ReNewSubscriptionResponse
+	15, // 41: api.subscription.v1.SubscriptionTenantManagementService.UpgradeSubscription:output_type -> api.subscription.v1.UpgradeSubscriptionResponse
 	38, // [38:42] is the sub-list for method output_type
 	34, // [34:38] is the sub-list for method input_type
 	34, // [34:34] is the sub-list for extension type_name
@@ -1708,7 +1709,7 @@ func file_subscribe_v1_subscribe_internal_proto_init() {
 			NumEnums:      5,
 			NumMessages:   11,
 			NumExtensions: 0,
-			NumServices:   1,
+			NumServices:   2,
 		},
 		GoTypes:           file_subscribe_v1_subscribe_internal_proto_goTypes,
 		DependencyIndexes: file_subscribe_v1_subscribe_internal_proto_depIdxs,

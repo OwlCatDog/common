@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package subscribe.v1;
+package api.subscription.v1;
 
 option go_package = "subscribe/v1;v1";
 
@@ -8,10 +8,14 @@ import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 
-// SubscribeInternalService 订阅服务内部接口
-service SubscribeInternalService {
+// SubscriptionTenantManagementService 订阅服务内部接口
+service SubscriptionManagementService {
   // ListSubscriptions 获取订阅列表
   rpc ListSubscriptions(ListSubscriptionsRequest) returns (ListSubscriptionsResponse);
+}
+
+// SubscriptionTenantManagementService 订阅服务内部接口
+service SubscriptionTenantManagementService {
   // CreateSubscription 商户创建订阅
   rpc CreateSubscription(CreateSubscriptionRequest) returns (CreateSubscriptionResponse);
   // ReNewSubscription 商户续订订阅
@@ -97,7 +101,7 @@ message SubscriptionInfo {
 
 // 配额使用信息
 message QuotaUsageInfo {
-  string subscription_code = 1 [json_name = "subscriptionCode"];                                           // 配额记录ID
+  string subscription_code = 1 [json_name = "subscriptionCode"];              // 配额记录ID
 
   string dimension_key = 2 [json_name = "dimensionKey"];                      // 维度键
   google.protobuf.Struct dimension_i18n = 3 [json_name = "dimensionI18n"];                    // 维度多语言内容
