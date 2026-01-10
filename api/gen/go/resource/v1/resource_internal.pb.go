@@ -30,7 +30,7 @@ type InternalFileInfo struct {
 	// 文件唯一标识符
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	// 租户ID
-	TenantId uint32 `protobuf:"varint,2,opt,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
+	TenantCode string `protobuf:"bytes,2,opt,name=tenant_code,json=tenantCode,proto3" json:"tenant_code,omitempty"`
 	// 原始文件名
 	Filename string `protobuf:"bytes,3,opt,name=filename,proto3" json:"filename,omitempty"`
 	// 文件大小（字节）
@@ -88,11 +88,11 @@ func (x *InternalFileInfo) GetId() string {
 	return ""
 }
 
-func (x *InternalFileInfo) GetTenantId() uint32 {
+func (x *InternalFileInfo) GetTenantCode() string {
 	if x != nil {
-		return x.TenantId
+		return x.TenantCode
 	}
-	return 0
+	return ""
 }
 
 func (x *InternalFileInfo) GetFilename() string {
@@ -373,7 +373,7 @@ func (x *InternalFileDownloadInfo) GetError() string {
 type InternalQuotaInfo struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// 租户ID
-	TenantId uint32 `protobuf:"varint,1,opt,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
+	TenantCode string `protobuf:"bytes,1,opt,name=tenant_code,json=tenantCode,proto3" json:"tenant_code,omitempty"`
 	// 存储配额（字节），0表示无限制
 	StorageQuota int64 `protobuf:"varint,2,opt,name=storage_quota,json=storageQuota,proto3" json:"storage_quota,omitempty"`
 	// 已用存储（字节）
@@ -428,11 +428,11 @@ func (*InternalQuotaInfo) Descriptor() ([]byte, []int) {
 	return file_resource_v1_resource_internal_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *InternalQuotaInfo) GetTenantId() uint32 {
+func (x *InternalQuotaInfo) GetTenantCode() string {
 	if x != nil {
-		return x.TenantId
+		return x.TenantCode
 	}
-	return 0
+	return ""
 }
 
 func (x *InternalQuotaInfo) GetStorageQuota() int64 {
@@ -509,7 +509,7 @@ func (x *InternalQuotaInfo) GetStatus() string {
 type InternalGetFileRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// 租户ID（必填）
-	TenantId uint32 `protobuf:"varint,1,opt,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
+	TenantCode string `protobuf:"bytes,1,opt,name=tenant_code,json=tenantCode,proto3" json:"tenant_code,omitempty"`
 	// 文件ID（必填）
 	FileId        string `protobuf:"bytes,2,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -546,11 +546,11 @@ func (*InternalGetFileRequest) Descriptor() ([]byte, []int) {
 	return file_resource_v1_resource_internal_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *InternalGetFileRequest) GetTenantId() uint32 {
+func (x *InternalGetFileRequest) GetTenantCode() string {
 	if x != nil {
-		return x.TenantId
+		return x.TenantCode
 	}
-	return 0
+	return ""
 }
 
 func (x *InternalGetFileRequest) GetFileId() string {
@@ -610,7 +610,7 @@ func (x *InternalGetFileResponse) GetFile() *InternalFileInfo {
 type InternalGetFilesRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// 租户ID（必填）
-	TenantId uint32 `protobuf:"varint,1,opt,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
+	TenantCode string `protobuf:"bytes,1,opt,name=tenant_code,json=tenantCode,proto3" json:"tenant_code,omitempty"`
 	// 文件ID列表（必填，最多100个）
 	FileIds       []string `protobuf:"bytes,2,rep,name=file_ids,json=fileIds,proto3" json:"file_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -647,11 +647,11 @@ func (*InternalGetFilesRequest) Descriptor() ([]byte, []int) {
 	return file_resource_v1_resource_internal_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *InternalGetFilesRequest) GetTenantId() uint32 {
+func (x *InternalGetFilesRequest) GetTenantCode() string {
 	if x != nil {
-		return x.TenantId
+		return x.TenantCode
 	}
-	return 0
+	return ""
 }
 
 func (x *InternalGetFilesRequest) GetFileIds() []string {
@@ -720,7 +720,7 @@ func (x *InternalGetFilesResponse) GetFailedIds() []string {
 type InternalGetFileUrlsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// 租户ID（必填）
-	TenantId uint32 `protobuf:"varint,1,opt,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
+	TenantCode string `protobuf:"bytes,1,opt,name=tenant_code,json=tenantCode,proto3" json:"tenant_code,omitempty"`
 	// 文件ID列表（必填，最多100个）
 	FileIds []string `protobuf:"bytes,2,rep,name=file_ids,json=fileIds,proto3" json:"file_ids,omitempty"`
 	// 是否包含变体URL（可选，默认false）
@@ -761,11 +761,11 @@ func (*InternalGetFileUrlsRequest) Descriptor() ([]byte, []int) {
 	return file_resource_v1_resource_internal_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *InternalGetFileUrlsRequest) GetTenantId() uint32 {
+func (x *InternalGetFileUrlsRequest) GetTenantCode() string {
 	if x != nil {
-		return x.TenantId
+		return x.TenantCode
 	}
-	return 0
+	return ""
 }
 
 func (x *InternalGetFileUrlsRequest) GetFileIds() []string {
@@ -912,7 +912,7 @@ func (x *InternalFileDownloadRequest) GetVariantId() string {
 type InternalGetDownloadUrlsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// 租户ID（必填）
-	TenantId uint32 `protobuf:"varint,1,opt,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
+	TenantCode string `protobuf:"bytes,1,opt,name=tenant_code,json=tenantCode,proto3" json:"tenant_code,omitempty"`
 	// 文件下载请求列表（最多50个）
 	Files []*InternalFileDownloadRequest `protobuf:"bytes,2,rep,name=files,proto3" json:"files,omitempty"`
 	// URL有效期（秒，可选），默认3600
@@ -951,11 +951,11 @@ func (*InternalGetDownloadUrlsRequest) Descriptor() ([]byte, []int) {
 	return file_resource_v1_resource_internal_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *InternalGetDownloadUrlsRequest) GetTenantId() uint32 {
+func (x *InternalGetDownloadUrlsRequest) GetTenantCode() string {
 	if x != nil {
-		return x.TenantId
+		return x.TenantCode
 	}
-	return 0
+	return ""
 }
 
 func (x *InternalGetDownloadUrlsRequest) GetFiles() []*InternalFileDownloadRequest {
@@ -1031,7 +1031,7 @@ func (x *InternalGetDownloadUrlsResponse) GetExpiresIn() int64 {
 type InternalCheckFileExistsRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// 租户ID（必填）
-	TenantId uint32 `protobuf:"varint,1,opt,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
+	TenantCode string `protobuf:"bytes,1,opt,name=tenant_code,json=tenantCode,proto3" json:"tenant_code,omitempty"`
 	// SHA256校验和（必填）
 	ChecksumSha256 string `protobuf:"bytes,2,opt,name=checksum_sha256,json=checksumSha256,proto3" json:"checksum_sha256,omitempty"`
 	// 文件大小（字节，可选但推荐）
@@ -1070,11 +1070,11 @@ func (*InternalCheckFileExistsRequest) Descriptor() ([]byte, []int) {
 	return file_resource_v1_resource_internal_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *InternalCheckFileExistsRequest) GetTenantId() uint32 {
+func (x *InternalCheckFileExistsRequest) GetTenantCode() string {
 	if x != nil {
-		return x.TenantId
+		return x.TenantCode
 	}
-	return 0
+	return ""
 }
 
 func (x *InternalCheckFileExistsRequest) GetChecksumSha256() string {
@@ -1150,7 +1150,7 @@ func (x *InternalCheckFileExistsResponse) GetFile() *InternalFileInfo {
 type InternalGetQuotaRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// 租户ID（必填）
-	TenantId      uint32 `protobuf:"varint,1,opt,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
+	TenantCode    string `protobuf:"bytes,1,opt,name=tenant_code,json=tenantCode,proto3" json:"tenant_code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1185,11 +1185,11 @@ func (*InternalGetQuotaRequest) Descriptor() ([]byte, []int) {
 	return file_resource_v1_resource_internal_proto_rawDescGZIP(), []int{15}
 }
 
-func (x *InternalGetQuotaRequest) GetTenantId() uint32 {
+func (x *InternalGetQuotaRequest) GetTenantCode() string {
 	if x != nil {
-		return x.TenantId
+		return x.TenantCode
 	}
-	return 0
+	return ""
 }
 
 // InternalGetQuotaResponse 内部获取配额响应
@@ -1242,7 +1242,7 @@ func (x *InternalGetQuotaResponse) GetQuota() *InternalQuotaInfo {
 type InternalCheckQuotaRequest struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// 租户ID（必填）
-	TenantId uint32 `protobuf:"varint,1,opt,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
+	TenantCode string `protobuf:"bytes,1,opt,name=tenant_code,json=tenantCode,proto3" json:"tenant_code,omitempty"`
 	// 检查类型（必填）：upload, download, storage
 	CheckType string `protobuf:"bytes,2,opt,name=check_type,json=checkType,proto3" json:"check_type,omitempty"`
 	// 预计使用量（字节，用于upload和storage检查）
@@ -1281,11 +1281,11 @@ func (*InternalCheckQuotaRequest) Descriptor() ([]byte, []int) {
 	return file_resource_v1_resource_internal_proto_rawDescGZIP(), []int{17}
 }
 
-func (x *InternalCheckQuotaRequest) GetTenantId() uint32 {
+func (x *InternalCheckQuotaRequest) GetTenantCode() string {
 	if x != nil {
-		return x.TenantId
+		return x.TenantCode
 	}
-	return 0
+	return ""
 }
 
 func (x *InternalCheckQuotaRequest) GetCheckType() string {
@@ -1374,7 +1374,7 @@ type InternalInitTenantRequest struct {
 	// - 必须为正整数
 	// - 不能为0（平台保留）
 	// - 同一租户不能重复初始化
-	TenantId uint32 `protobuf:"varint,1,opt,name=tenant_id,json=tenantId,proto3" json:"tenant_id,omitempty"`
+	TenantCode string `protobuf:"bytes,1,opt,name=tenant_code,json=tenantCode,proto3" json:"tenant_code,omitempty"`
 	// 存储区域（可选）
 	// 说明：
 	// - 可选值：cn|sea|us|eu
@@ -1415,11 +1415,11 @@ func (*InternalInitTenantRequest) Descriptor() ([]byte, []int) {
 	return file_resource_v1_resource_internal_proto_rawDescGZIP(), []int{19}
 }
 
-func (x *InternalInitTenantRequest) GetTenantId() uint32 {
+func (x *InternalInitTenantRequest) GetTenantCode() string {
 	if x != nil {
-		return x.TenantId
+		return x.TenantCode
 	}
-	return 0
+	return ""
 }
 
 func (x *InternalInitTenantRequest) GetRegion() string {
@@ -1533,10 +1533,11 @@ var File_resource_v1_resource_internal_proto protoreflect.FileDescriptor
 
 const file_resource_v1_resource_internal_proto_rawDesc = "" +
 	"\n" +
-	"#resource/v1/resource_internal.proto\x12\vresource.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xee\x02\n" +
+	"#resource/v1/resource_internal.proto\x12\vresource.v1\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf2\x02\n" +
 	"\x10InternalFileInfo\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +
-	"\ttenant_id\x18\x02 \x01(\rR\btenantId\x12\x1a\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1f\n" +
+	"\vtenant_code\x18\x02 \x01(\tR\n" +
+	"tenantCode\x12\x1a\n" +
 	"\bfilename\x18\x03 \x01(\tR\bfilename\x12\x12\n" +
 	"\x04size\x18\x04 \x01(\x03R\x04size\x12!\n" +
 	"\fcontent_type\x18\x05 \x01(\tR\vcontentType\x12\x16\n" +
@@ -1570,9 +1571,10 @@ const file_resource_v1_resource_internal_proto_rawDesc = "" +
 	"\n" +
 	"expires_in\x18\x05 \x01(\x03R\texpiresIn\x12\x18\n" +
 	"\asuccess\x18\x06 \x01(\bR\asuccess\x12\x14\n" +
-	"\x05error\x18\a \x01(\tR\x05error\"\xcb\x03\n" +
-	"\x11InternalQuotaInfo\x12\x1b\n" +
-	"\ttenant_id\x18\x01 \x01(\rR\btenantId\x12#\n" +
+	"\x05error\x18\a \x01(\tR\x05error\"\xcf\x03\n" +
+	"\x11InternalQuotaInfo\x12\x1f\n" +
+	"\vtenant_code\x18\x01 \x01(\tR\n" +
+	"tenantCode\x12#\n" +
 	"\rstorage_quota\x18\x02 \x01(\x03R\fstorageQuota\x12!\n" +
 	"\fstorage_used\x18\x03 \x01(\x03R\vstorageUsed\x122\n" +
 	"\x15storage_usage_percent\x18\x04 \x01(\x02R\x13storageUsagePercent\x12(\n" +
@@ -1583,14 +1585,16 @@ const file_resource_v1_resource_internal_proto_rawDesc = "" +
 	"\x15bandwidth_quota_daily\x18\t \x01(\x03R\x13bandwidthQuotaDaily\x12%\n" +
 	"\x0ebandwidth_used\x18\n" +
 	" \x01(\x03R\rbandwidthUsed\x12\x16\n" +
-	"\x06status\x18\v \x01(\tR\x06status\"N\n" +
-	"\x16InternalGetFileRequest\x12\x1b\n" +
-	"\ttenant_id\x18\x01 \x01(\rR\btenantId\x12\x17\n" +
+	"\x06status\x18\v \x01(\tR\x06status\"R\n" +
+	"\x16InternalGetFileRequest\x12\x1f\n" +
+	"\vtenant_code\x18\x01 \x01(\tR\n" +
+	"tenantCode\x12\x17\n" +
 	"\afile_id\x18\x02 \x01(\tR\x06fileId\"L\n" +
 	"\x17InternalGetFileResponse\x121\n" +
-	"\x04file\x18\x01 \x01(\v2\x1d.resource.v1.InternalFileInfoR\x04file\"Q\n" +
-	"\x17InternalGetFilesRequest\x12\x1b\n" +
-	"\ttenant_id\x18\x01 \x01(\rR\btenantId\x12\x19\n" +
+	"\x04file\x18\x01 \x01(\v2\x1d.resource.v1.InternalFileInfoR\x04file\"U\n" +
+	"\x17InternalGetFilesRequest\x12\x1f\n" +
+	"\vtenant_code\x18\x01 \x01(\tR\n" +
+	"tenantCode\x12\x19\n" +
 	"\bfile_ids\x18\x02 \x03(\tR\afileIds\"\xda\x01\n" +
 	"\x18InternalGetFilesResponse\x12F\n" +
 	"\x05files\x18\x01 \x03(\v20.resource.v1.InternalGetFilesResponse.FilesEntryR\x05files\x12\x1d\n" +
@@ -1599,9 +1603,10 @@ const file_resource_v1_resource_internal_proto_rawDesc = "" +
 	"\n" +
 	"FilesEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x123\n" +
-	"\x05value\x18\x02 \x01(\v2\x1d.resource.v1.InternalFileInfoR\x05value:\x028\x01\"\x9e\x01\n" +
-	"\x1aInternalGetFileUrlsRequest\x12\x1b\n" +
-	"\ttenant_id\x18\x01 \x01(\rR\btenantId\x12\x19\n" +
+	"\x05value\x18\x02 \x01(\v2\x1d.resource.v1.InternalFileInfoR\x05value:\x028\x01\"\xa2\x01\n" +
+	"\x1aInternalGetFileUrlsRequest\x12\x1f\n" +
+	"\vtenant_code\x18\x01 \x01(\tR\n" +
+	"tenantCode\x12\x19\n" +
 	"\bfile_ids\x18\x02 \x03(\tR\afileIds\x12)\n" +
 	"\x10include_variants\x18\x03 \x01(\bR\x0fincludeVariants\x12\x1d\n" +
 	"\n" +
@@ -1617,9 +1622,10 @@ const file_resource_v1_resource_internal_proto_rawDesc = "" +
 	"\afile_id\x18\x01 \x01(\tR\x06fileId\x12+\n" +
 	"\x11download_filename\x18\x02 \x01(\tR\x10downloadFilename\x12\x1d\n" +
 	"\n" +
-	"variant_id\x18\x03 \x01(\tR\tvariantId\"\x9c\x01\n" +
-	"\x1eInternalGetDownloadUrlsRequest\x12\x1b\n" +
-	"\ttenant_id\x18\x01 \x01(\rR\btenantId\x12>\n" +
+	"variant_id\x18\x03 \x01(\tR\tvariantId\"\xa0\x01\n" +
+	"\x1eInternalGetDownloadUrlsRequest\x12\x1f\n" +
+	"\vtenant_code\x18\x01 \x01(\tR\n" +
+	"tenantCode\x12>\n" +
 	"\x05files\x18\x02 \x03(\v2(.resource.v1.InternalFileDownloadRequestR\x05files\x12\x1d\n" +
 	"\n" +
 	"expires_in\x18\x03 \x01(\x03R\texpiresIn\"\xf8\x01\n" +
@@ -1629,29 +1635,33 @@ const file_resource_v1_resource_internal_proto_rawDesc = "" +
 	"expires_in\x18\x02 \x01(\x03R\texpiresIn\x1aa\n" +
 	"\fResultsEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12;\n" +
-	"\x05value\x18\x02 \x01(\v2%.resource.v1.InternalFileDownloadInfoR\x05value:\x028\x01\"z\n" +
-	"\x1eInternalCheckFileExistsRequest\x12\x1b\n" +
-	"\ttenant_id\x18\x01 \x01(\rR\btenantId\x12'\n" +
+	"\x05value\x18\x02 \x01(\v2%.resource.v1.InternalFileDownloadInfoR\x05value:\x028\x01\"~\n" +
+	"\x1eInternalCheckFileExistsRequest\x12\x1f\n" +
+	"\vtenant_code\x18\x01 \x01(\tR\n" +
+	"tenantCode\x12'\n" +
 	"\x0fchecksum_sha256\x18\x02 \x01(\tR\x0echecksumSha256\x12\x12\n" +
 	"\x04size\x18\x03 \x01(\x03R\x04size\"l\n" +
 	"\x1fInternalCheckFileExistsResponse\x12\x16\n" +
 	"\x06exists\x18\x01 \x01(\bR\x06exists\x121\n" +
-	"\x04file\x18\x02 \x01(\v2\x1d.resource.v1.InternalFileInfoR\x04file\"6\n" +
-	"\x17InternalGetQuotaRequest\x12\x1b\n" +
-	"\ttenant_id\x18\x01 \x01(\rR\btenantId\"P\n" +
+	"\x04file\x18\x02 \x01(\v2\x1d.resource.v1.InternalFileInfoR\x04file\":\n" +
+	"\x17InternalGetQuotaRequest\x12\x1f\n" +
+	"\vtenant_code\x18\x01 \x01(\tR\n" +
+	"tenantCode\"P\n" +
 	"\x18InternalGetQuotaResponse\x124\n" +
-	"\x05quota\x18\x01 \x01(\v2\x1e.resource.v1.InternalQuotaInfoR\x05quota\"k\n" +
-	"\x19InternalCheckQuotaRequest\x12\x1b\n" +
-	"\ttenant_id\x18\x01 \x01(\rR\btenantId\x12\x1d\n" +
+	"\x05quota\x18\x01 \x01(\v2\x1e.resource.v1.InternalQuotaInfoR\x05quota\"o\n" +
+	"\x19InternalCheckQuotaRequest\x12\x1f\n" +
+	"\vtenant_code\x18\x01 \x01(\tR\n" +
+	"tenantCode\x12\x1d\n" +
 	"\n" +
 	"check_type\x18\x02 \x01(\tR\tcheckType\x12\x12\n" +
 	"\x04size\x18\x03 \x01(\x03R\x04size\"\x84\x01\n" +
 	"\x1aInternalCheckQuotaResponse\x12\x18\n" +
 	"\aallowed\x18\x01 \x01(\bR\aallowed\x12\x16\n" +
 	"\x06reason\x18\x02 \x01(\tR\x06reason\x124\n" +
-	"\x05quota\x18\x03 \x01(\v2\x1e.resource.v1.InternalQuotaInfoR\x05quota\"P\n" +
-	"\x19InternalInitTenantRequest\x12\x1b\n" +
-	"\ttenant_id\x18\x01 \x01(\rR\btenantId\x12\x16\n" +
+	"\x05quota\x18\x03 \x01(\v2\x1e.resource.v1.InternalQuotaInfoR\x05quota\"T\n" +
+	"\x19InternalInitTenantRequest\x12\x1f\n" +
+	"\vtenant_code\x18\x01 \x01(\tR\n" +
+	"tenantCode\x12\x16\n" +
 	"\x06region\x18\x02 \x01(\tR\x06region\"\xf3\x01\n" +
 	"\x1aInternalInitTenantResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x1b\n" +

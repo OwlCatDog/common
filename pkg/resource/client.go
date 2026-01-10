@@ -28,7 +28,7 @@ import (
 //	defer client.Close()
 //
 //	// 获取文件信息
-//	file, err := client.GetFile(ctx, tenantID, fileID)
+//	file, err := client.GetFile(ctx, tenantCode, fileID)
 type ResourceClient struct {
 	config *InternalConfig
 	conn   *grpc.ClientConn
@@ -141,22 +141,22 @@ func (c *ResourceClient) Close() error {
 //
 // 参数:
 //   - ctx: 上下文
-//   - tenantID: 租户ID
+//   - TenantCode: 租户ID
 //   - fileID: 文件ID
 //
 // 返回:
 //   - *v1.InternalFileInfo: 文件信息
 //   - error: 错误信息
-func (c *ResourceClient) GetFile(ctx context.Context, tenantID uint32, fileID string) (*v1.InternalFileInfo, error) {
+func (c *ResourceClient) GetFile(ctx context.Context, tenantCode string, fileID string) (*v1.InternalFileInfo, error) {
 	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
 	defer cancel()
 
 	resp, err := c.client.InternalGetFile(ctx, &v1.InternalGetFileRequest{
-		TenantId: tenantID,
-		FileId:   fileID,
+		TenantCode: tenantCode,
+		FileId:     fileID,
 	})
 	if err != nil {
-		c.logger.WithContext(ctx).Errorf("获取文件信息失败: tenant_id=%d, file_id=%s, error=%v", tenantID, fileID, err)
+		c.logger.WithContext(ctx).Errorf("获取文件信息失败: tenant_id=%d, file_id=%s, error=%v", tenantCode, fileID, err)
 		return nil, err
 	}
 
@@ -167,14 +167,14 @@ func (c *ResourceClient) GetFile(ctx context.Context, tenantID uint32, fileID st
 //
 // 参数:
 //   - ctx: 上下文
-//   - tenantID: 租户ID
+//   - TenantCode: 租户ID
 //   - fileIDs: 文件ID列表（最多100个）
 //
 // 返回:
 //   - map[string]*v1.InternalFileInfo: 文件ID到文件信息的映射
 //   - []string: 获取失败的文件ID列表
 //   - error: 错误信息
-func (c *ResourceClient) GetFiles(ctx context.Context, tenantID uint32, fileIDs []string) (map[string]*v1.InternalFileInfo, []string, error) {
+func (c *ResourceClient) GetFiles(ctx context.Context, tenantCode string, fileIDs []string) (map[string]*v1.InternalFileInfo, []string, error) {
 	if len(fileIDs) == 0 {
 		return make(map[string]*v1.InternalFileInfo), nil, nil
 	}
@@ -187,11 +187,11 @@ func (c *ResourceClient) GetFiles(ctx context.Context, tenantID uint32, fileIDs 
 	defer cancel()
 
 	resp, err := c.client.InternalGetFiles(ctx, &v1.InternalGetFilesRequest{
-		TenantId: tenantID,
-		FileIds:  fileIDs,
+		TenantCode: tenantCode,
+		FileIds:    fileIDs,
 	})
 	if err != nil {
-		c.logger.WithContext(ctx).Errorf("批量获取文件信息失败: tenant_id=%d, count=%d, error=%v", tenantID, len(fileIDs), err)
+		c.logger.WithContext(ctx).Errorf("批量获取文件信息失败: tenant_id=%d, count=%d, error=%v", tenantCode, len(fileIDs), err)
 		return nil, nil, err
 	}
 
@@ -210,14 +210,14 @@ type GetFileUrlsOptions struct {
 //
 // 参数:
 //   - ctx: 上下文
-//   - tenantID: 租户ID
+//   - TenantCode: 租户ID
 //   - fileIDs: 文件ID列表（最多100个）
 //   - opts: 可选参数
 //
 // 返回:
 //   - map[string]*v1.InternalFileUrlInfo: 文件ID到URL信息的映射
 //   - error: 错误信息
-func (c *ResourceClient) GetFileUrls(ctx context.Context, tenantID uint32, fileIDs []string, opts *GetFileUrlsOptions) (map[string]*v1.InternalFileUrlInfo, error) {
+func (c *ResourceClient) GetFileUrls(ctx context.Context, tenantCode string, fileIDs []string, opts *GetFileUrlsOptions) (map[string]*v1.InternalFileUrlInfo, error) {
 	if len(fileIDs) == 0 {
 		return make(map[string]*v1.InternalFileUrlInfo), nil
 	}
@@ -230,8 +230,8 @@ func (c *ResourceClient) GetFileUrls(ctx context.Context, tenantID uint32, fileI
 	defer cancel()
 
 	req := &v1.InternalGetFileUrlsRequest{
-		TenantId: tenantID,
-		FileIds:  fileIDs,
+		TenantCode: tenantCode,
+		FileIds:    fileIDs,
 	}
 
 	if opts != nil {
@@ -241,7 +241,7 @@ func (c *ResourceClient) GetFileUrls(ctx context.Context, tenantID uint32, fileI
 
 	resp, err := c.client.InternalGetFileUrls(ctx, req)
 	if err != nil {
-		c.logger.WithContext(ctx).Errorf("批量获取文件URL失败: tenant_id=%d, count=%d, error=%v", tenantID, len(fileIDs), err)
+		c.logger.WithContext(ctx).Errorf("批量获取文件URL失败: tenant_id=%d, count=%d, error=%v", tenantCode, len(fileIDs), err)
 		return nil, err
 	}
 
@@ -252,14 +252,14 @@ func (c *ResourceClient) GetFileUrls(ctx context.Context, tenantID uint32, fileI
 //
 // 参数:
 //   - ctx: 上下文
-//   - tenantID: 租户ID
+//   - TenantCode: 租户ID
 //   - fileID: 文件ID
 //
 // 返回:
 //   - string: 文件URL
 //   - error: 错误信息
-func (c *ResourceClient) GetFileUrl(ctx context.Context, tenantID uint32, fileID string) (string, error) {
-	results, err := c.GetFileUrls(ctx, tenantID, []string{fileID}, nil)
+func (c *ResourceClient) GetFileUrl(ctx context.Context, tenantCode string, fileID string) (string, error) {
+	results, err := c.GetFileUrls(ctx, tenantCode, []string{fileID}, nil)
 	if err != nil {
 		return "", err
 	}
@@ -290,14 +290,14 @@ type DownloadFileRequest struct {
 //
 // 参数:
 //   - ctx: 上下文
-//   - tenantID: 租户ID
+//   - TenantCode: 租户ID
 //   - files: 下载文件请求列表（最多50个）
 //   - expiresIn: URL有效期（秒），默认3600
 //
 // 返回:
 //   - map[string]*v1.InternalFileDownloadInfo: 文件ID到下载信息的映射
 //   - error: 错误信息
-func (c *ResourceClient) GetDownloadUrls(ctx context.Context, tenantID uint32, files []DownloadFileRequest, expiresIn int64) (map[string]*v1.InternalFileDownloadInfo, error) {
+func (c *ResourceClient) GetDownloadUrls(ctx context.Context, tenantCode string, files []DownloadFileRequest, expiresIn int64) (map[string]*v1.InternalFileDownloadInfo, error) {
 	if len(files) == 0 {
 		return make(map[string]*v1.InternalFileDownloadInfo), nil
 	}
@@ -320,12 +320,12 @@ func (c *ResourceClient) GetDownloadUrls(ctx context.Context, tenantID uint32, f
 	}
 
 	resp, err := c.client.InternalGetDownloadUrls(ctx, &v1.InternalGetDownloadUrlsRequest{
-		TenantId:  tenantID,
-		Files:     protoFiles,
-		ExpiresIn: expiresIn,
+		TenantCode: tenantCode,
+		Files:      protoFiles,
+		ExpiresIn:  expiresIn,
 	})
 	if err != nil {
-		c.logger.WithContext(ctx).Errorf("批量获取下载URL失败: tenant_id=%d, count=%d, error=%v", tenantID, len(files), err)
+		c.logger.WithContext(ctx).Errorf("批量获取下载URL失败: tenant_id=%d, count=%d, error=%v", tenantCode, len(files), err)
 		return nil, err
 	}
 
@@ -336,14 +336,14 @@ func (c *ResourceClient) GetDownloadUrls(ctx context.Context, tenantID uint32, f
 //
 // 参数:
 //   - ctx: 上下文
-//   - tenantID: 租户ID
+//   - TenantCode: 租户ID
 //   - fileID: 文件ID
 //
 // 返回:
 //   - string: 下载URL
 //   - error: 错误信息
-func (c *ResourceClient) GetDownloadUrl(ctx context.Context, tenantID uint32, fileID string) (string, error) {
-	results, err := c.GetDownloadUrls(ctx, tenantID, []DownloadFileRequest{{FileID: fileID}}, 3600)
+func (c *ResourceClient) GetDownloadUrl(ctx context.Context, tenantCode string, fileID string) (string, error) {
+	results, err := c.GetDownloadUrls(ctx, tenantCode, []DownloadFileRequest{{FileID: fileID}}, 3600)
 	if err != nil {
 		return "", err
 	}
@@ -364,7 +364,7 @@ func (c *ResourceClient) GetDownloadUrl(ctx context.Context, tenantID uint32, fi
 //
 // 参数:
 //   - ctx: 上下文
-//   - tenantID: 租户ID
+//   - TenantCode: 租户ID
 //   - checksumSHA256: 文件的SHA256校验和
 //   - size: 文件大小（字节，可选但推荐）
 //
@@ -372,17 +372,17 @@ func (c *ResourceClient) GetDownloadUrl(ctx context.Context, tenantID uint32, fi
 //   - bool: 文件是否存在
 //   - *v1.InternalFileInfo: 已存在的文件信息（如果存在）
 //   - error: 错误信息
-func (c *ResourceClient) CheckFileExists(ctx context.Context, tenantID uint32, checksumSHA256 string, size int64) (bool, *v1.InternalFileInfo, error) {
+func (c *ResourceClient) CheckFileExists(ctx context.Context, tenantCode string, checksumSHA256 string, size int64) (bool, *v1.InternalFileInfo, error) {
 	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
 	defer cancel()
 
 	resp, err := c.client.InternalCheckFileExists(ctx, &v1.InternalCheckFileExistsRequest{
-		TenantId:       tenantID,
+		TenantCode:     tenantCode,
 		ChecksumSha256: checksumSHA256,
 		Size:           size,
 	})
 	if err != nil {
-		c.logger.WithContext(ctx).Errorf("检查文件是否存在失败: tenant_id=%d, checksum=%s, error=%v", tenantID, checksumSHA256, err)
+		c.logger.WithContext(ctx).Errorf("检查文件是否存在失败: tenant_id=%d, checksum=%s, error=%v", tenantCode, checksumSHA256, err)
 		return false, nil, err
 	}
 
@@ -395,20 +395,20 @@ func (c *ResourceClient) CheckFileExists(ctx context.Context, tenantID uint32, c
 //
 // 参数:
 //   - ctx: 上下文
-//   - tenantID: 租户ID
+//   - TenantCode: 租户ID
 //
 // 返回:
 //   - *v1.InternalQuotaInfo: 配额信息
 //   - error: 错误信息
-func (c *ResourceClient) GetQuota(ctx context.Context, tenantID uint32) (*v1.InternalQuotaInfo, error) {
+func (c *ResourceClient) GetQuota(ctx context.Context, tenantCode string) (*v1.InternalQuotaInfo, error) {
 	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
 	defer cancel()
 
 	resp, err := c.client.InternalGetQuota(ctx, &v1.InternalGetQuotaRequest{
-		TenantId: tenantID,
+		TenantCode: tenantCode,
 	})
 	if err != nil {
-		c.logger.WithContext(ctx).Errorf("获取配额信息失败: tenant_id=%d, error=%v", tenantID, err)
+		c.logger.WithContext(ctx).Errorf("获取配额信息失败: tenant_id=%d, error=%v", tenantCode, err)
 		return nil, err
 	}
 
@@ -438,24 +438,24 @@ type CheckQuotaResult struct {
 //
 // 参数:
 //   - ctx: 上下文
-//   - tenantID: 租户ID
+//   - TenantCode: 租户ID
 //   - checkType: 检查类型（upload, download, storage）
 //   - size: 预计使用量（字节）
 //
 // 返回:
 //   - *CheckQuotaResult: 检查结果
 //   - error: 错误信息
-func (c *ResourceClient) CheckQuota(ctx context.Context, tenantID uint32, checkType CheckQuotaType, size int64) (*CheckQuotaResult, error) {
+func (c *ResourceClient) CheckQuota(ctx context.Context, tenantCode string, checkType CheckQuotaType, size int64) (*CheckQuotaResult, error) {
 	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
 	defer cancel()
 
 	resp, err := c.client.InternalCheckQuota(ctx, &v1.InternalCheckQuotaRequest{
-		TenantId:  tenantID,
-		CheckType: string(checkType),
-		Size:      size,
+		TenantCode: tenantCode,
+		CheckType:  string(checkType),
+		Size:       size,
 	})
 	if err != nil {
-		c.logger.WithContext(ctx).Errorf("检查配额失败: tenant_id=%d, check_type=%s, size=%d, error=%v", tenantID, checkType, size, err)
+		c.logger.WithContext(ctx).Errorf("检查配额失败: tenant_id=%d, check_type=%s, size=%d, error=%v", tenantCode, checkType, size, err)
 		return nil, err
 	}
 
@@ -492,7 +492,7 @@ type InitTenantResult struct {
 //
 // 参数:
 //   - ctx: 上下文
-//   - tenantID: 租户ID（必填，大于0）
+//   - TenantCode: 租户ID（必填，大于0）
 //   - region: 存储区域（可选，默认"sea"）
 //     可选值: cn|sea|us|eu
 //
@@ -507,16 +507,16 @@ type InitTenantResult struct {
 // 注意:
 //   - 一个租户只能初始化一次
 //   - 重复调用会返回错误
-func (c *ResourceClient) InitTenant(ctx context.Context, tenantID uint32, region string) (*InitTenantResult, error) {
+func (c *ResourceClient) InitTenant(ctx context.Context, tenantCode string, region string) (*InitTenantResult, error) {
 	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
 	defer cancel()
 
 	resp, err := c.client.InternalInitTenant(ctx, &v1.InternalInitTenantRequest{
-		TenantId: tenantID,
-		Region:   region,
+		TenantCode: tenantCode,
+		Region:     region,
 	})
 	if err != nil {
-		c.logger.WithContext(ctx).Errorf("初始化租户失败: tenant_id=%d, region=%s, error=%v", tenantID, region, err)
+		c.logger.WithContext(ctx).Errorf("初始化租户失败: tenant_id=%d, region=%s, error=%v", tenantCode, region, err)
 		return nil, err
 	}
 

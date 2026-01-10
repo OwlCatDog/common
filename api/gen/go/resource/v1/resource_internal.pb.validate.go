@@ -59,7 +59,7 @@ func (m *InternalFileInfo) validate(all bool) error {
 
 	// no validation rules for Id
 
-	// no validation rules for TenantId
+	// no validation rules for TenantCode
 
 	// no validation rules for Filename
 
@@ -467,7 +467,7 @@ func (m *InternalQuotaInfo) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for TenantId
+	// no validation rules for TenantCode
 
 	// no validation rules for StorageQuota
 
@@ -591,7 +591,7 @@ func (m *InternalGetFileRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for TenantId
+	// no validation rules for TenantCode
 
 	// no validation rules for FileId
 
@@ -828,7 +828,7 @@ func (m *InternalGetFilesRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for TenantId
+	// no validation rules for TenantCode
 
 	if len(errors) > 0 {
 		return InternalGetFilesRequestMultiError(errors)
@@ -1080,7 +1080,7 @@ func (m *InternalGetFileUrlsRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for TenantId
+	// no validation rules for TenantCode
 
 	// no validation rules for IncludeVariants
 
@@ -1448,7 +1448,7 @@ func (m *InternalGetDownloadUrlsRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for TenantId
+	// no validation rules for TenantCode
 
 	for idx, item := range m.GetFiles() {
 		_, _ = idx, item
@@ -1740,7 +1740,7 @@ func (m *InternalCheckFileExistsRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for TenantId
+	// no validation rules for TenantCode
 
 	// no validation rules for ChecksumSha256
 
@@ -1983,7 +1983,7 @@ func (m *InternalGetQuotaRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for TenantId
+	// no validation rules for TenantCode
 
 	if len(errors) > 0 {
 		return InternalGetQuotaRequestMultiError(errors)
@@ -2218,7 +2218,7 @@ func (m *InternalCheckQuotaRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for TenantId
+	// no validation rules for TenantCode
 
 	// no validation rules for CheckType
 
@@ -2461,7 +2461,7 @@ func (m *InternalInitTenantRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for TenantId
+	// no validation rules for TenantCode
 
 	// no validation rules for Region
 
