@@ -202,12 +202,12 @@ func newIAMClient(conn *grpc.ClientConn, logger *log.Helper) *IAMClient {
 // 返回:
 //   - *v1.SetTenantPermissionsResponse: 返回结果，包含是否成功及总数
 //   - error: 调用失败的错误
-func (c *IAMClient) SetTenantPermissions(ctx context.Context, tenantId uint32, codes []string) (*v1.SetTenantPermissionsResponse, error) {
+func (c *IAMClient) SetTenantPermissions(ctx context.Context, tenantCode string, codes []string) (*v1.SetTenantPermissionsResponse, error) {
 	if len(codes) == 0 {
 		return nil, fmt.Errorf("权限代码列表不能为空")
 	}
 
-	resp, err := c.client.SetTenantPermissions(ctx, &v1.SetTenantPermissionsRequest{Codes: codes, TenantId: &tenantId})
+	resp, err := c.client.SetTenantPermissions(ctx, &v1.SetTenantPermissionsRequest{Codes: codes, TenantCode: &tenantCode})
 	if err != nil {
 		c.logger.WithContext(ctx).Errorf("设置租户权限失败, codes=%v, err=%v", codes, err)
 		return nil, err

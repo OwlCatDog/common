@@ -57,8 +57,8 @@ func (m *SetTenantPermissionsRequest) validate(all bool) error {
 
 	var errors []error
 
-	if m.TenantId != nil {
-		// no validation rules for TenantId
+	if m.TenantCode != nil {
+		// no validation rules for TenantCode
 	}
 
 	if len(errors) > 0 {

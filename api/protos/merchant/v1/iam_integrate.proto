@@ -8,8 +8,8 @@ import "google/protobuf/timestamp.proto";
 
 message SetTenantPermissionsRequest {
   repeated string codes = 1 [json_name = "codes"];
-  optional uint32 tenant_id = 2 [
-    json_name = "tenantId"];
+  optional string tenant_code = 2 [
+    json_name = "tenantCode"];
 }
 
 message SetTenantPermissionsResponse {
