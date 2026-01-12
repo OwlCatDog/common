@@ -59,7 +59,7 @@ func GetOperator(ctx context.Context) Operator {
 }
 
 // Server 统一认证中间件，支持 JWT Token 和 OpenAPI 两种认证方式
-func Server(needTenant bool) middleware.Middleware {
+func Server() middleware.Middleware {
 	return func(handler middleware.Handler) middleware.Handler {
 		return func(ctx context.Context, req interface{}) (reply interface{}, err error) {
 			// 从 context 中获取 transport 信息 (HTTP/gRPC)
@@ -95,16 +95,13 @@ func Server(needTenant bool) middleware.Middleware {
 
 			// 3. 处理租户 Code
 			var tenantCode string
-
-			if needTenant {
-				tenantCode = header.Get(common.TENANTCODE)
-				if tenantCode == "" {
-					return nil, errors.New(
-						int(businessErrors.ErrTenantMissing.HttpCode),
-						businessErrors.ErrTenantMissing.Type,
-						businessErrors.ErrTenantMissing.Message,
-					)
-				}
+			tenantCode = header.Get(common.TENANTCODE)
+			if tenantCode == "" {
+				return nil, errors.New(
+					int(businessErrors.ErrTenantMissing.HttpCode),
+					businessErrors.ErrTenantMissing.Type,
+					businessErrors.ErrTenantMissing.Message,
+				)
 			}
 
 			// 4. 创建 Claims 并注入 context
