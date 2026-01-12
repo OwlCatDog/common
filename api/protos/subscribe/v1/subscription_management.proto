@@ -6,22 +6,11 @@ option go_package = "subscribe/v1;v1";
 
 import "google/protobuf/struct.proto";
 import "google/protobuf/timestamp.proto";
-import "google/protobuf/duration.proto";
 
 // SubscriptionTenantManagementService 订阅服务内部接口
 service SubscriptionManagementService {
   // ListSubscriptions 获取订阅列表
   rpc ListSubscriptions(ListSubscriptionsRequest) returns (ListSubscriptionsResponse);
-}
-
-// SubscriptionTenantManagementService 订阅服务内部接口
-service SubscriptionTenantManagementService {
-  // CreateSubscription 商户创建订阅
-  rpc CreateSubscription(CreateSubscriptionRequest) returns (CreateSubscriptionResponse);
-  // ReNewSubscription 商户续订订阅
-  rpc ReNewSubscription(ReNewSubscriptionRequest) returns (ReNewSubscriptionResponse);
-  // UpgradeSubscription 商户升级订阅
-  rpc UpgradeSubscription(UpgradeSubscriptionRequest) returns (UpgradeSubscriptionResponse);
 }
 
 // 订阅状态枚举
@@ -74,7 +63,7 @@ enum OrderStatus {
 message SubscriptionInfo {
   uint32 id = 1 [json_name = "id"];                                           // 订阅ID
   string subscription_code = 2 [json_name = "subscriptionCode"];              // 订阅编号
-  uint32 tenant_id = 3 [json_name = "tenantId"];                              // 租户ID
+  string tenant_code = 3 [json_name = "tenantCode"];                          // 租户Code
   string tenant_name = 4 [json_name = "tenantName"];                          // 租户名称
 
   string product_code = 6 [json_name = "productCode"];                        // 产品编码
@@ -153,7 +142,7 @@ message SubscriptionOrderInfo {
 message ListSubscriptionsRequest {
   optional int32 page = 1 [json_name = "page"];                               // 页码
   optional int32 page_size = 2 [json_name = "pageSize"];                      // 每页数量
-  optional uint32 tenant_id = 3 [json_name = "tenantId"];                     // 租户ID筛选
+  optional string tenant_code = 3 [json_name = "tenantCode"];                 // 租户Code筛选
   optional string product_code = 4 [json_name = "productCode"];               // 产品编码筛选
   optional SubscriptionStatus status = 5 [json_name = "status"];              // 状态筛选
   optional bool is_trial = 6 [json_name = "isTrial"];                         // 是否试用期筛选
@@ -168,50 +157,4 @@ message ListSubscriptionsResponse {
   int32 total = 2 [json_name = "total"];                                      // 总数
   int32 page = 3 [json_name = "page"];                                        // 当前页码
   int32 page_size = 4 [json_name = "pageSize"];                               // 每页数量
-}
-
-// 创建订阅请求
-message CreateSubscriptionRequest {
-  string product_code = 1 [json_name = "productCode"];                       // 产品Code
-  string plan_code = 2 [json_name = "planCode"];                             // 套餐Code
-  bool automatic_renewal = 3 [json_name = "automaticRenewal"];               // 是否自动续费
-  google.protobuf.Timestamp start_date = 4 [json_name = "startDate"];        // 订阅开始时间
-  optional google.protobuf.Timestamp end_date = 5 [json_name = "endDate"];   // 订阅结束时间
-  bool is_trial = 6 [json_name = "isTrial"];                                 // 是否试用期
-  SubscriptionOrderInfo order = 7 [json_name = "order"];                     // 订单信息
-}
-
-// 创建订阅回复
-message CreateSubscriptionResponse {
-  SubscriptionInfo subscription = 1 [json_name = "subscription"];            // 订阅信息
-}
-
-// 续定订阅请求
-message ReNewSubscriptionRequest {
-  string subscription_code = 1 [json_name = "subscriptionCode"];             // 订阅Code
-  string product_code = 2 [json_name = "productCode"];                       // 产品Code
-  string plan_code = 3 [json_name = "planCode"];                             // 套餐Code
-  google.protobuf.Duration re_new_time = 4 [json_name = "reNewTime"];        // 续费时长
-  SubscriptionOrderInfo order = 5 [json_name = "order"];                     // 订单信息
-}
-
-// 续定订阅回复
-message ReNewSubscriptionResponse {
-  SubscriptionInfo subscription = 1 [json_name = "subscription"];            // 订阅信息
-}
-
-// 升级订阅请求
-message UpgradeSubscriptionRequest{
-  string subscription_code = 1 [json_name = "subscriptionCode"];             // 订阅Code
-  string product_code = 2 [json_name = "productCode"];                       // 产品Code
-  string plan_code = 3 [json_name = "planCode"];                             // 套餐Code
-  google.protobuf.Timestamp start_date = 4 [json_name = "startDate"];        // 订阅开始时间
-  optional google.protobuf.Timestamp end_date = 5 [json_name = "endDate"];   // 订阅结束时间
-  SubscriptionOrderInfo order = 6 [json_name = "order"];                     // 订单信息
-}
-
-
-// 升级订阅回复
-message UpgradeSubscriptionResponse {
-  SubscriptionInfo subscription = 1 [json_name = "subscription"];            // 订阅信息
 }
