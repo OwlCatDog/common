@@ -10,6 +10,8 @@ import "google/protobuf/timestamp.proto";
 service PackageManagement {
   // 获取套餐详情
   rpc GetPlan(GetPlanRequest) returns (GetPlanResponse);
+  //  商户获取套餐详情
+  rpc MerchantGetPlan(MerchantGetPlanRequest) returns (MerchantGetPlanResponse);
 }
 
 // 套餐状态枚举
@@ -71,5 +73,16 @@ message GetPlanRequest {
 
 // 获取套餐响应
 message GetPlanResponse {
+  ProductPlanInfo plan = 1 [json_name = "plan"];                          // 套餐信息
+}
+
+//  商户获取套餐请求
+message MerchantGetPlanRequest {
+  string plan_code = 3 [json_name = "planCode"];                          // 套餐编码
+  optional bool include_parameters = 2 [json_name = "includeParameters"]; // 是否包含规则配置
+}
+
+//  商户获取套餐响应
+message MerchantGetPlanResponse {
   ProductPlanInfo plan = 1 [json_name = "plan"];                          // 套餐信息
 }

@@ -663,3 +663,242 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = GetPlanResponseValidationError{}
+
+// Validate checks the field values on MerchantGetPlanRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *MerchantGetPlanRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on MerchantGetPlanRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// MerchantGetPlanRequestMultiError, or nil if none found.
+func (m *MerchantGetPlanRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *MerchantGetPlanRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for PlanCode
+
+	if m.IncludeParameters != nil {
+		// no validation rules for IncludeParameters
+	}
+
+	if len(errors) > 0 {
+		return MerchantGetPlanRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// MerchantGetPlanRequestMultiError is an error wrapping multiple validation
+// errors returned by MerchantGetPlanRequest.ValidateAll() if the designated
+// constraints aren't met.
+type MerchantGetPlanRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m MerchantGetPlanRequestMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m MerchantGetPlanRequestMultiError) AllErrors() []error { return m }
+
+// MerchantGetPlanRequestValidationError is the validation error returned by
+// MerchantGetPlanRequest.Validate if the designated constraints aren't met.
+type MerchantGetPlanRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e MerchantGetPlanRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e MerchantGetPlanRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e MerchantGetPlanRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e MerchantGetPlanRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e MerchantGetPlanRequestValidationError) ErrorName() string {
+	return "MerchantGetPlanRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e MerchantGetPlanRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sMerchantGetPlanRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = MerchantGetPlanRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = MerchantGetPlanRequestValidationError{}
+
+// Validate checks the field values on MerchantGetPlanResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *MerchantGetPlanResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on MerchantGetPlanResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// MerchantGetPlanResponseMultiError, or nil if none found.
+func (m *MerchantGetPlanResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *MerchantGetPlanResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetPlan()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, MerchantGetPlanResponseValidationError{
+					field:  "Plan",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, MerchantGetPlanResponseValidationError{
+					field:  "Plan",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetPlan()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return MerchantGetPlanResponseValidationError{
+				field:  "Plan",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return MerchantGetPlanResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// MerchantGetPlanResponseMultiError is an error wrapping multiple validation
+// errors returned by MerchantGetPlanResponse.ValidateAll() if the designated
+// constraints aren't met.
+type MerchantGetPlanResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m MerchantGetPlanResponseMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m MerchantGetPlanResponseMultiError) AllErrors() []error { return m }
+
+// MerchantGetPlanResponseValidationError is the validation error returned by
+// MerchantGetPlanResponse.Validate if the designated constraints aren't met.
+type MerchantGetPlanResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e MerchantGetPlanResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e MerchantGetPlanResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e MerchantGetPlanResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e MerchantGetPlanResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e MerchantGetPlanResponseValidationError) ErrorName() string {
+	return "MerchantGetPlanResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e MerchantGetPlanResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sMerchantGetPlanResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = MerchantGetPlanResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = MerchantGetPlanResponseValidationError{}

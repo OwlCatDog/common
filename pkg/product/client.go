@@ -160,6 +160,34 @@ func (c *ProductClient) GetPlan(ctx context.Context, planCode string, opt *GetPl
 	return resp.Plan, nil
 }
 
+type MerchantGetPlanOption struct {
+	IncludeParameters *bool // 是否包含规则
+}
+
+// MerchantGetPlan 商户获取套餐详情
+func (c *ProductClient) MerchantGetPlan(ctx context.Context, planCode string, opt *MerchantGetPlanOption) (*v1.ProductPlanInfo, error) {
+	req := &v1.MerchantGetPlanRequest{
+		PlanCode:          planCode,
+		IncludeParameters: nil,
+	}
+	if opt != nil {
+		if opt.IncludeParameters != nil {
+			req.IncludeParameters = opt.IncludeParameters
+		}
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
+	defer cancel()
+
+	resp, err := c.packageM.MerchantGetPlan(ctx, req)
+	if err != nil {
+		c.logger.WithContext(ctx).Errorf("商户获取套餐信息失败:plan_ode=%s,error=%v", planCode, err)
+		return nil, err
+	}
+
+	return resp.Plan, nil
+}
+
 type GetProductOption struct {
 	IncludePlans *bool // 是否包含套餐列表
 }
@@ -182,6 +210,34 @@ func (c *ProductClient) GetProduct(ctx context.Context, productCode string, opt 
 	resp, err := c.product.GetProduct(ctx, req)
 	if err != nil {
 		c.logger.WithContext(ctx).Errorf("获取产品信息失败:product_code=%s,error=%v", productCode, err)
+		return nil, err
+	}
+
+	return resp.Product, nil
+}
+
+type GetMerchantGetProduct struct {
+	IncludePlans *bool // 是否包含套餐列表
+}
+
+// MerchantGetProduct 商户获取产品
+func (c *ProductClient) MerchantGetProduct(ctx context.Context, productCode string, opt *GetMerchantGetProduct) (*v1.ProductInfo, error) {
+	req := &v1.MerchantGetProductRequest{
+		ProductCode:  productCode,
+		IncludePlans: nil,
+	}
+	if opt != nil {
+		if opt.IncludePlans != nil {
+			req.IncludePlans = opt.IncludePlans
+		}
+	}
+
+	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
+	defer cancel()
+
+	resp, err := c.product.MerchantGetProduct(ctx, req)
+	if err != nil {
+		c.logger.WithContext(ctx).Errorf("商户获取产品信息失败:product_code=%s,error=%v", productCode, err)
 		return nil, err
 	}
 
@@ -239,32 +295,4 @@ func (c *ProductClient) ListPricingRules(ctx context.Context, opt *ListPricingRu
 	}
 
 	return resp, nil
-}
-
-type GetMerchantGetProduct struct {
-	IncludePlans *bool // 是否包含套餐列表
-}
-
-// MerchantGetProduct 商户获取产品
-func (c *ProductClient) MerchantGetProduct(ctx context.Context, productCode string, opt *GetMerchantGetProduct) (*v1.ProductInfo, error) {
-	req := &v1.MerchantGetProductRequest{
-		ProductCode:  productCode,
-		IncludePlans: nil,
-	}
-	if opt != nil {
-		if opt.IncludePlans != nil {
-			req.IncludePlans = opt.IncludePlans
-		}
-	}
-
-	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
-	defer cancel()
-
-	resp, err := c.product.MerchantGetProduct(ctx, req)
-	if err != nil {
-		c.logger.WithContext(ctx).Errorf("获取产品信息失败:product_code=%s,error=%v", productCode, err)
-		return nil, err
-	}
-
-	return resp.Product, nil
 }

@@ -44,6 +44,42 @@ func TestGetPlan(t *testing.T) {
 	t.Logf("成功获取套餐信息: %v", plan)
 }
 
+func TestMerchantGetPlan(t *testing.T) {
+	config := consulapi.DefaultConfig()
+	config.Address = "192.168.3.6:8500"
+	config.Token = ""
+	config.Datacenter = "dc1"
+	config.Scheme = "http"
+
+	// 创建 Consul 客户端
+	consulClient, err := consulapi.NewClient(config)
+	if err != nil {
+		t.Skipf("无法连接到 Consul: %v", err)
+		return
+	}
+
+	// 创建 Consul 服务发现
+	discovery := consul.New(consulClient)
+
+	// 创建平台服务客户端
+	client, err := NewClientWithDiscovery(DefaultConfig(), discovery)
+	if err != nil {
+		t.Fatalf("创建客户端失败: %v", err)
+	}
+	defer client.Close()
+
+	// 测试商户获取套餐信息
+	ctx := context.Background()
+	plan, err := client.ProductClient().MerchantGetPlan(ctx, "1766108752535-8bd10afcb6494395a52f3c5282a3907d",
+		&MerchantGetPlanOption{IncludeParameters: func() *bool { tr := true; return &tr }()})
+	if err != nil {
+		t.Logf("商户获取套餐信息失败（可能服务未启动）: %v", err)
+		t.Skip("跳过测试，服务可能未启动")
+		return
+	}
+	t.Logf("商户成功获取套餐信息: %v", plan)
+}
+
 func TestGetProduct(t *testing.T) {
 	config := consulapi.DefaultConfig()
 	config.Address = "192.168.3.6:8500"
@@ -68,7 +104,7 @@ func TestGetProduct(t *testing.T) {
 	}
 	defer client.Close()
 
-	// 测试获取套餐信息
+	// 测试获取产品信息
 	ctx := context.Background()
 	product, err := client.ProductClient().GetProduct(ctx, "cloud_server",
 		&GetProductOption{IncludePlans: func() *bool { tr := true; return &tr }()})
@@ -78,6 +114,42 @@ func TestGetProduct(t *testing.T) {
 		return
 	}
 	t.Logf("成功获取产品信息: %v", product)
+}
+
+func TestMerchantGetProduct(t *testing.T) {
+	config := consulapi.DefaultConfig()
+	config.Address = "192.168.3.6:8500"
+	config.Token = ""
+	config.Datacenter = "dc1"
+	config.Scheme = "http"
+
+	// 创建 Consul 客户端
+	consulClient, err := consulapi.NewClient(config)
+	if err != nil {
+		t.Skipf("无法连接到 Consul: %v", err)
+		return
+	}
+
+	// 创建 Consul 服务发现
+	discovery := consul.New(consulClient)
+
+	// 创建平台服务客户端
+	client, err := NewClientWithDiscovery(DefaultConfig(), discovery)
+	if err != nil {
+		t.Fatalf("创建客户端失败: %v", err)
+	}
+	defer client.Close()
+
+	// 测试商户获取产品信息
+	ctx := context.Background()
+	product, err := client.ProductClient().MerchantGetProduct(ctx, "cloud_server",
+		&GetMerchantGetProduct{IncludePlans: func() *bool { tr := true; return &tr }()})
+	if err != nil {
+		t.Logf("商户获取产品信息失败（可能服务未启动）: %v", err)
+		t.Skip("跳过测试，服务可能未启动")
+		return
+	}
+	t.Logf("商户成功获取产品信息: %v", product)
 }
 
 func TestListPricingRules(t *testing.T) {
@@ -120,40 +192,4 @@ func TestListPricingRules(t *testing.T) {
 		return
 	}
 	t.Logf("成功定价规则列表 数量:%v", len(resp.Rules))
-}
-
-func TestMerchantGetProduct(t *testing.T) {
-	config := consulapi.DefaultConfig()
-	config.Address = "192.168.3.6:8500"
-	config.Token = ""
-	config.Datacenter = "dc1"
-	config.Scheme = "http"
-
-	// 创建 Consul 客户端
-	consulClient, err := consulapi.NewClient(config)
-	if err != nil {
-		t.Skipf("无法连接到 Consul: %v", err)
-		return
-	}
-
-	// 创建 Consul 服务发现
-	discovery := consul.New(consulClient)
-
-	// 创建平台服务客户端
-	client, err := NewClientWithDiscovery(DefaultConfig(), discovery)
-	if err != nil {
-		t.Fatalf("创建客户端失败: %v", err)
-	}
-	defer client.Close()
-
-	// 测试获取套餐信息
-	ctx := context.Background()
-	product, err := client.ProductClient().MerchantGetProduct(ctx, "cloud_server",
-		&GetMerchantGetProduct{IncludePlans: func() *bool { tr := true; return &tr }()})
-	if err != nil {
-		t.Logf("商户获取产品信息失败（可能服务未启动）: %v", err)
-		t.Skip("跳过测试，服务可能未启动")
-		return
-	}
-	t.Logf("商户成功获取产品信息: %v", product)
 }

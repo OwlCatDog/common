@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	PackageManagement_GetPlan_FullMethodName = "/api.product.v1.PackageManagement/GetPlan"
+	PackageManagement_GetPlan_FullMethodName         = "/api.product.v1.PackageManagement/GetPlan"
+	PackageManagement_MerchantGetPlan_FullMethodName = "/api.product.v1.PackageManagement/MerchantGetPlan"
 )
 
 // PackageManagementClient is the client API for PackageManagement service.
@@ -28,6 +29,8 @@ const (
 type PackageManagementClient interface {
 	// 获取套餐详情
 	GetPlan(ctx context.Context, in *GetPlanRequest, opts ...grpc.CallOption) (*GetPlanResponse, error)
+	//  商户获取套餐详情
+	MerchantGetPlan(ctx context.Context, in *MerchantGetPlanRequest, opts ...grpc.CallOption) (*MerchantGetPlanResponse, error)
 }
 
 type packageManagementClient struct {
@@ -48,12 +51,24 @@ func (c *packageManagementClient) GetPlan(ctx context.Context, in *GetPlanReques
 	return out, nil
 }
 
+func (c *packageManagementClient) MerchantGetPlan(ctx context.Context, in *MerchantGetPlanRequest, opts ...grpc.CallOption) (*MerchantGetPlanResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MerchantGetPlanResponse)
+	err := c.cc.Invoke(ctx, PackageManagement_MerchantGetPlan_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PackageManagementServer is the server API for PackageManagement service.
 // All implementations must embed UnimplementedPackageManagementServer
 // for forward compatibility.
 type PackageManagementServer interface {
 	// 获取套餐详情
 	GetPlan(context.Context, *GetPlanRequest) (*GetPlanResponse, error)
+	//  商户获取套餐详情
+	MerchantGetPlan(context.Context, *MerchantGetPlanRequest) (*MerchantGetPlanResponse, error)
 	mustEmbedUnimplementedPackageManagementServer()
 }
 
@@ -66,6 +81,9 @@ type UnimplementedPackageManagementServer struct{}
 
 func (UnimplementedPackageManagementServer) GetPlan(context.Context, *GetPlanRequest) (*GetPlanResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetPlan not implemented")
+}
+func (UnimplementedPackageManagementServer) MerchantGetPlan(context.Context, *MerchantGetPlanRequest) (*MerchantGetPlanResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method MerchantGetPlan not implemented")
 }
 func (UnimplementedPackageManagementServer) mustEmbedUnimplementedPackageManagementServer() {}
 func (UnimplementedPackageManagementServer) testEmbeddedByValue()                           {}
@@ -106,6 +124,24 @@ func _PackageManagement_GetPlan_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PackageManagement_MerchantGetPlan_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MerchantGetPlanRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PackageManagementServer).MerchantGetPlan(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: PackageManagement_MerchantGetPlan_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PackageManagementServer).MerchantGetPlan(ctx, req.(*MerchantGetPlanRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // PackageManagement_ServiceDesc is the grpc.ServiceDesc for PackageManagement service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -116,6 +152,10 @@ var PackageManagement_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPlan",
 			Handler:    _PackageManagement_GetPlan_Handler,
+		},
+		{
+			MethodName: "MerchantGetPlan",
+			Handler:    _PackageManagement_MerchantGetPlan_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -507,6 +507,104 @@ func (x *GetPlanResponse) GetPlan() *ProductPlanInfo {
 	return nil
 }
 
+//  商户获取套餐请求
+type MerchantGetPlanRequest struct {
+	state             protoimpl.MessageState `protogen:"open.v1"`
+	PlanCode          string                 `protobuf:"bytes,3,opt,name=plan_code,json=planCode,proto3" json:"plan_code,omitempty"`                                   // 套餐编码
+	IncludeParameters *bool                  `protobuf:"varint,2,opt,name=include_parameters,json=includeParameters,proto3,oneof" json:"include_parameters,omitempty"` // 是否包含规则配置
+	unknownFields     protoimpl.UnknownFields
+	sizeCache         protoimpl.SizeCache
+}
+
+func (x *MerchantGetPlanRequest) Reset() {
+	*x = MerchantGetPlanRequest{}
+	mi := &file_product_v1_package_management_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MerchantGetPlanRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MerchantGetPlanRequest) ProtoMessage() {}
+
+func (x *MerchantGetPlanRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_product_v1_package_management_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MerchantGetPlanRequest.ProtoReflect.Descriptor instead.
+func (*MerchantGetPlanRequest) Descriptor() ([]byte, []int) {
+	return file_product_v1_package_management_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *MerchantGetPlanRequest) GetPlanCode() string {
+	if x != nil {
+		return x.PlanCode
+	}
+	return ""
+}
+
+func (x *MerchantGetPlanRequest) GetIncludeParameters() bool {
+	if x != nil && x.IncludeParameters != nil {
+		return *x.IncludeParameters
+	}
+	return false
+}
+
+//  商户获取套餐响应
+type MerchantGetPlanResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Plan          *ProductPlanInfo       `protobuf:"bytes,1,opt,name=plan,proto3" json:"plan,omitempty"` // 套餐信息
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MerchantGetPlanResponse) Reset() {
+	*x = MerchantGetPlanResponse{}
+	mi := &file_product_v1_package_management_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MerchantGetPlanResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MerchantGetPlanResponse) ProtoMessage() {}
+
+func (x *MerchantGetPlanResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_product_v1_package_management_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MerchantGetPlanResponse.ProtoReflect.Descriptor instead.
+func (*MerchantGetPlanResponse) Descriptor() ([]byte, []int) {
+	return file_product_v1_package_management_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *MerchantGetPlanResponse) GetPlan() *ProductPlanInfo {
+	if x != nil {
+		return x.Plan
+	}
+	return nil
+}
+
 var File_product_v1_package_management_proto protoreflect.FileDescriptor
 
 const file_product_v1_package_management_proto_rawDesc = "" +
@@ -557,6 +655,12 @@ const file_product_v1_package_management_proto_rawDesc = "" +
 	"\x12include_parameters\x18\x02 \x01(\bH\x00R\x11includeParameters\x88\x01\x01B\x15\n" +
 	"\x13_include_parameters\"F\n" +
 	"\x0fGetPlanResponse\x123\n" +
+	"\x04plan\x18\x01 \x01(\v2\x1f.api.product.v1.ProductPlanInfoR\x04plan\"\x80\x01\n" +
+	"\x16MerchantGetPlanRequest\x12\x1b\n" +
+	"\tplan_code\x18\x03 \x01(\tR\bplanCode\x122\n" +
+	"\x12include_parameters\x18\x02 \x01(\bH\x00R\x11includeParameters\x88\x01\x01B\x15\n" +
+	"\x13_include_parameters\"N\n" +
+	"\x17MerchantGetPlanResponse\x123\n" +
 	"\x04plan\x18\x01 \x01(\v2\x1f.api.product.v1.ProductPlanInfoR\x04plan*\x90\x01\n" +
 	"\n" +
 	"PlanStatus\x12\x1b\n" +
@@ -570,9 +674,10 @@ const file_product_v1_package_management_proto_rawDesc = "" +
 	"\x11VALUE_TYPE_STRING\x10\x01\x12\x15\n" +
 	"\x11VALUE_TYPE_NUMBER\x10\x02\x12\x16\n" +
 	"\x12VALUE_TYPE_BOOLEAN\x10\x03\x12\x16\n" +
-	"\x12VALUE_TYPE_DECIMAL\x10\x042_\n" +
+	"\x12VALUE_TYPE_DECIMAL\x10\x042\xc3\x01\n" +
 	"\x11PackageManagement\x12J\n" +
-	"\aGetPlan\x12\x1e.api.product.v1.GetPlanRequest\x1a\x1f.api.product.v1.GetPlanResponseB\xc2\x01\n" +
+	"\aGetPlan\x12\x1e.api.product.v1.GetPlanRequest\x1a\x1f.api.product.v1.GetPlanResponse\x12b\n" +
+	"\x0fMerchantGetPlan\x12&.api.product.v1.MerchantGetPlanRequest\x1a'.api.product.v1.MerchantGetPlanResponseB\xc2\x01\n" +
 	"\x12com.api.product.v1B\x16PackageManagementProtoP\x01Z:github.com/heyinLab/common/api/gen/go/product/v1;productv1\xa2\x02\x03APX\xaa\x02\x0eApi.Product.V1\xca\x02\x0eApi\\Product\\V1\xe2\x02\x1aApi\\Product\\V1\\GPBMetadata\xea\x02\x10Api::Product::V1b\x06proto3"
 
 var (
@@ -588,33 +693,38 @@ func file_product_v1_package_management_proto_rawDescGZIP() []byte {
 }
 
 var file_product_v1_package_management_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_product_v1_package_management_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_product_v1_package_management_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
 var file_product_v1_package_management_proto_goTypes = []any{
-	(PlanStatus)(0),               // 0: api.product.v1.PlanStatus
-	(ValueType)(0),                // 1: api.product.v1.ValueType
-	(*PlanParameter)(nil),         // 2: api.product.v1.PlanParameter
-	(*ProductPlanInfo)(nil),       // 3: api.product.v1.ProductPlanInfo
-	(*GetPlanRequest)(nil),        // 4: api.product.v1.GetPlanRequest
-	(*GetPlanResponse)(nil),       // 5: api.product.v1.GetPlanResponse
-	(*structpb.Struct)(nil),       // 6: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
+	(PlanStatus)(0),                 // 0: api.product.v1.PlanStatus
+	(ValueType)(0),                  // 1: api.product.v1.ValueType
+	(*PlanParameter)(nil),           // 2: api.product.v1.PlanParameter
+	(*ProductPlanInfo)(nil),         // 3: api.product.v1.ProductPlanInfo
+	(*GetPlanRequest)(nil),          // 4: api.product.v1.GetPlanRequest
+	(*GetPlanResponse)(nil),         // 5: api.product.v1.GetPlanResponse
+	(*MerchantGetPlanRequest)(nil),  // 6: api.product.v1.MerchantGetPlanRequest
+	(*MerchantGetPlanResponse)(nil), // 7: api.product.v1.MerchantGetPlanResponse
+	(*structpb.Struct)(nil),         // 8: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),   // 9: google.protobuf.Timestamp
 }
 var file_product_v1_package_management_proto_depIdxs = []int32{
-	1, // 0: api.product.v1.PlanParameter.value_type:type_name -> api.product.v1.ValueType
-	6, // 1: api.product.v1.PlanParameter.rule_i18n:type_name -> google.protobuf.Struct
-	6, // 2: api.product.v1.ProductPlanInfo.i18n:type_name -> google.protobuf.Struct
-	0, // 3: api.product.v1.ProductPlanInfo.status:type_name -> api.product.v1.PlanStatus
-	7, // 4: api.product.v1.ProductPlanInfo.create_time:type_name -> google.protobuf.Timestamp
-	7, // 5: api.product.v1.ProductPlanInfo.update_time:type_name -> google.protobuf.Timestamp
-	2, // 6: api.product.v1.ProductPlanInfo.parameters:type_name -> api.product.v1.PlanParameter
-	3, // 7: api.product.v1.GetPlanResponse.plan:type_name -> api.product.v1.ProductPlanInfo
-	4, // 8: api.product.v1.PackageManagement.GetPlan:input_type -> api.product.v1.GetPlanRequest
-	5, // 9: api.product.v1.PackageManagement.GetPlan:output_type -> api.product.v1.GetPlanResponse
-	9, // [9:10] is the sub-list for method output_type
-	8, // [8:9] is the sub-list for method input_type
-	8, // [8:8] is the sub-list for extension type_name
-	8, // [8:8] is the sub-list for extension extendee
-	0, // [0:8] is the sub-list for field type_name
+	1,  // 0: api.product.v1.PlanParameter.value_type:type_name -> api.product.v1.ValueType
+	8,  // 1: api.product.v1.PlanParameter.rule_i18n:type_name -> google.protobuf.Struct
+	8,  // 2: api.product.v1.ProductPlanInfo.i18n:type_name -> google.protobuf.Struct
+	0,  // 3: api.product.v1.ProductPlanInfo.status:type_name -> api.product.v1.PlanStatus
+	9,  // 4: api.product.v1.ProductPlanInfo.create_time:type_name -> google.protobuf.Timestamp
+	9,  // 5: api.product.v1.ProductPlanInfo.update_time:type_name -> google.protobuf.Timestamp
+	2,  // 6: api.product.v1.ProductPlanInfo.parameters:type_name -> api.product.v1.PlanParameter
+	3,  // 7: api.product.v1.GetPlanResponse.plan:type_name -> api.product.v1.ProductPlanInfo
+	3,  // 8: api.product.v1.MerchantGetPlanResponse.plan:type_name -> api.product.v1.ProductPlanInfo
+	4,  // 9: api.product.v1.PackageManagement.GetPlan:input_type -> api.product.v1.GetPlanRequest
+	6,  // 10: api.product.v1.PackageManagement.MerchantGetPlan:input_type -> api.product.v1.MerchantGetPlanRequest
+	5,  // 11: api.product.v1.PackageManagement.GetPlan:output_type -> api.product.v1.GetPlanResponse
+	7,  // 12: api.product.v1.PackageManagement.MerchantGetPlan:output_type -> api.product.v1.MerchantGetPlanResponse
+	11, // [11:13] is the sub-list for method output_type
+	9,  // [9:11] is the sub-list for method input_type
+	9,  // [9:9] is the sub-list for extension type_name
+	9,  // [9:9] is the sub-list for extension extendee
+	0,  // [0:9] is the sub-list for field type_name
 }
 
 func init() { file_product_v1_package_management_proto_init() }
@@ -625,13 +735,14 @@ func file_product_v1_package_management_proto_init() {
 	file_product_v1_package_management_proto_msgTypes[0].OneofWrappers = []any{}
 	file_product_v1_package_management_proto_msgTypes[1].OneofWrappers = []any{}
 	file_product_v1_package_management_proto_msgTypes[2].OneofWrappers = []any{}
+	file_product_v1_package_management_proto_msgTypes[4].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_product_v1_package_management_proto_rawDesc), len(file_product_v1_package_management_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   4,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
