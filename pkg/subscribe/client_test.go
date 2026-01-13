@@ -12,12 +12,12 @@ import (
 )
 
 var (
-	testFreeOrder = &v1.SubscriptionOrderInfo{
+	testFreeOrder = &v1.InternalSubscriptionOrderInfo{
 		OrderNo:          "1111",
-		OrderType:        v1.OrderType_ORDER_TYPE_NEW,
-		BillingCycle:     v1.BillingCycle_BILLING_CYCLE_MONTHLY,
+		OrderType:        v1.InternalOrderType_INTERNAL_ORDER_TYPE_NEW,
+		BillingCycle:     v1.InternalBillingCycle_INTERNAL_BILLING_CYCLE_MONTHLY,
 		Currency:         "CNY",
-		Status:           v1.OrderStatus_ORDER_STATUS_PAID,
+		Status:           v1.InternalOrderStatus_INTERNAL_ORDER_STATUS_PAID,
 		ServiceStartDate: timestamppb.New(time.Now()),
 	}
 )
