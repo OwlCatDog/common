@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SubscriptionInternalService_ListSubscriptions_FullMethodName   = "/api.subscription.v1.SubscriptionInternalService/ListSubscriptions"
-	SubscriptionInternalService_CreateSubscription_FullMethodName  = "/api.subscription.v1.SubscriptionInternalService/CreateSubscription"
-	SubscriptionInternalService_ReNewSubscription_FullMethodName   = "/api.subscription.v1.SubscriptionInternalService/ReNewSubscription"
-	SubscriptionInternalService_UpgradeSubscription_FullMethodName = "/api.subscription.v1.SubscriptionInternalService/UpgradeSubscription"
+	SubscriptionInternalService_InternalListSubscriptions_FullMethodName   = "/api.subscription.v1.SubscriptionInternalService/InternalListSubscriptions"
+	SubscriptionInternalService_InternalCreateSubscription_FullMethodName  = "/api.subscription.v1.SubscriptionInternalService/InternalCreateSubscription"
+	SubscriptionInternalService_InternalReNewSubscription_FullMethodName   = "/api.subscription.v1.SubscriptionInternalService/InternalReNewSubscription"
+	SubscriptionInternalService_InternalUpgradeSubscription_FullMethodName = "/api.subscription.v1.SubscriptionInternalService/InternalUpgradeSubscription"
 )
 
 // SubscriptionInternalServiceClient is the client API for SubscriptionInternalService service.
@@ -32,13 +32,13 @@ const (
 // SubscriptionInternalService 订阅服务内部接口
 type SubscriptionInternalServiceClient interface {
 	// ListSubscriptions 获取订阅列表
-	ListSubscriptions(ctx context.Context, in *ListSubscriptionsRequest, opts ...grpc.CallOption) (*ListSubscriptionsResponse, error)
+	InternalListSubscriptions(ctx context.Context, in *InternalListSubscriptionsRequest, opts ...grpc.CallOption) (*InternalListSubscriptionsResponse, error)
 	// CreateSubscription 商户创建订阅
-	CreateSubscription(ctx context.Context, in *CreateSubscriptionRequest, opts ...grpc.CallOption) (*CreateSubscriptionResponse, error)
+	InternalCreateSubscription(ctx context.Context, in *InternalCreateSubscriptionRequest, opts ...grpc.CallOption) (*InternalCreateSubscriptionResponse, error)
 	// ReNewSubscription 商户续订订阅
-	ReNewSubscription(ctx context.Context, in *ReNewSubscriptionRequest, opts ...grpc.CallOption) (*ReNewSubscriptionResponse, error)
+	InternalReNewSubscription(ctx context.Context, in *InternalReNewSubscriptionRequest, opts ...grpc.CallOption) (*InternalReNewSubscriptionResponse, error)
 	// UpgradeSubscription 商户升级订阅
-	UpgradeSubscription(ctx context.Context, in *UpgradeSubscriptionRequest, opts ...grpc.CallOption) (*UpgradeSubscriptionResponse, error)
+	InternalUpgradeSubscription(ctx context.Context, in *InternalUpgradeSubscriptionRequest, opts ...grpc.CallOption) (*InternalUpgradeSubscriptionResponse, error)
 }
 
 type subscriptionInternalServiceClient struct {
@@ -49,40 +49,40 @@ func NewSubscriptionInternalServiceClient(cc grpc.ClientConnInterface) Subscript
 	return &subscriptionInternalServiceClient{cc}
 }
 
-func (c *subscriptionInternalServiceClient) ListSubscriptions(ctx context.Context, in *ListSubscriptionsRequest, opts ...grpc.CallOption) (*ListSubscriptionsResponse, error) {
+func (c *subscriptionInternalServiceClient) InternalListSubscriptions(ctx context.Context, in *InternalListSubscriptionsRequest, opts ...grpc.CallOption) (*InternalListSubscriptionsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListSubscriptionsResponse)
-	err := c.cc.Invoke(ctx, SubscriptionInternalService_ListSubscriptions_FullMethodName, in, out, cOpts...)
+	out := new(InternalListSubscriptionsResponse)
+	err := c.cc.Invoke(ctx, SubscriptionInternalService_InternalListSubscriptions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *subscriptionInternalServiceClient) CreateSubscription(ctx context.Context, in *CreateSubscriptionRequest, opts ...grpc.CallOption) (*CreateSubscriptionResponse, error) {
+func (c *subscriptionInternalServiceClient) InternalCreateSubscription(ctx context.Context, in *InternalCreateSubscriptionRequest, opts ...grpc.CallOption) (*InternalCreateSubscriptionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateSubscriptionResponse)
-	err := c.cc.Invoke(ctx, SubscriptionInternalService_CreateSubscription_FullMethodName, in, out, cOpts...)
+	out := new(InternalCreateSubscriptionResponse)
+	err := c.cc.Invoke(ctx, SubscriptionInternalService_InternalCreateSubscription_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *subscriptionInternalServiceClient) ReNewSubscription(ctx context.Context, in *ReNewSubscriptionRequest, opts ...grpc.CallOption) (*ReNewSubscriptionResponse, error) {
+func (c *subscriptionInternalServiceClient) InternalReNewSubscription(ctx context.Context, in *InternalReNewSubscriptionRequest, opts ...grpc.CallOption) (*InternalReNewSubscriptionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ReNewSubscriptionResponse)
-	err := c.cc.Invoke(ctx, SubscriptionInternalService_ReNewSubscription_FullMethodName, in, out, cOpts...)
+	out := new(InternalReNewSubscriptionResponse)
+	err := c.cc.Invoke(ctx, SubscriptionInternalService_InternalReNewSubscription_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *subscriptionInternalServiceClient) UpgradeSubscription(ctx context.Context, in *UpgradeSubscriptionRequest, opts ...grpc.CallOption) (*UpgradeSubscriptionResponse, error) {
+func (c *subscriptionInternalServiceClient) InternalUpgradeSubscription(ctx context.Context, in *InternalUpgradeSubscriptionRequest, opts ...grpc.CallOption) (*InternalUpgradeSubscriptionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpgradeSubscriptionResponse)
-	err := c.cc.Invoke(ctx, SubscriptionInternalService_UpgradeSubscription_FullMethodName, in, out, cOpts...)
+	out := new(InternalUpgradeSubscriptionResponse)
+	err := c.cc.Invoke(ctx, SubscriptionInternalService_InternalUpgradeSubscription_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -96,13 +96,13 @@ func (c *subscriptionInternalServiceClient) UpgradeSubscription(ctx context.Cont
 // SubscriptionInternalService 订阅服务内部接口
 type SubscriptionInternalServiceServer interface {
 	// ListSubscriptions 获取订阅列表
-	ListSubscriptions(context.Context, *ListSubscriptionsRequest) (*ListSubscriptionsResponse, error)
+	InternalListSubscriptions(context.Context, *InternalListSubscriptionsRequest) (*InternalListSubscriptionsResponse, error)
 	// CreateSubscription 商户创建订阅
-	CreateSubscription(context.Context, *CreateSubscriptionRequest) (*CreateSubscriptionResponse, error)
+	InternalCreateSubscription(context.Context, *InternalCreateSubscriptionRequest) (*InternalCreateSubscriptionResponse, error)
 	// ReNewSubscription 商户续订订阅
-	ReNewSubscription(context.Context, *ReNewSubscriptionRequest) (*ReNewSubscriptionResponse, error)
+	InternalReNewSubscription(context.Context, *InternalReNewSubscriptionRequest) (*InternalReNewSubscriptionResponse, error)
 	// UpgradeSubscription 商户升级订阅
-	UpgradeSubscription(context.Context, *UpgradeSubscriptionRequest) (*UpgradeSubscriptionResponse, error)
+	InternalUpgradeSubscription(context.Context, *InternalUpgradeSubscriptionRequest) (*InternalUpgradeSubscriptionResponse, error)
 	mustEmbedUnimplementedSubscriptionInternalServiceServer()
 }
 
@@ -113,17 +113,17 @@ type SubscriptionInternalServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedSubscriptionInternalServiceServer struct{}
 
-func (UnimplementedSubscriptionInternalServiceServer) ListSubscriptions(context.Context, *ListSubscriptionsRequest) (*ListSubscriptionsResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method ListSubscriptions not implemented")
+func (UnimplementedSubscriptionInternalServiceServer) InternalListSubscriptions(context.Context, *InternalListSubscriptionsRequest) (*InternalListSubscriptionsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method InternalListSubscriptions not implemented")
 }
-func (UnimplementedSubscriptionInternalServiceServer) CreateSubscription(context.Context, *CreateSubscriptionRequest) (*CreateSubscriptionResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method CreateSubscription not implemented")
+func (UnimplementedSubscriptionInternalServiceServer) InternalCreateSubscription(context.Context, *InternalCreateSubscriptionRequest) (*InternalCreateSubscriptionResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method InternalCreateSubscription not implemented")
 }
-func (UnimplementedSubscriptionInternalServiceServer) ReNewSubscription(context.Context, *ReNewSubscriptionRequest) (*ReNewSubscriptionResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method ReNewSubscription not implemented")
+func (UnimplementedSubscriptionInternalServiceServer) InternalReNewSubscription(context.Context, *InternalReNewSubscriptionRequest) (*InternalReNewSubscriptionResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method InternalReNewSubscription not implemented")
 }
-func (UnimplementedSubscriptionInternalServiceServer) UpgradeSubscription(context.Context, *UpgradeSubscriptionRequest) (*UpgradeSubscriptionResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method UpgradeSubscription not implemented")
+func (UnimplementedSubscriptionInternalServiceServer) InternalUpgradeSubscription(context.Context, *InternalUpgradeSubscriptionRequest) (*InternalUpgradeSubscriptionResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method InternalUpgradeSubscription not implemented")
 }
 func (UnimplementedSubscriptionInternalServiceServer) mustEmbedUnimplementedSubscriptionInternalServiceServer() {
 }
@@ -147,74 +147,74 @@ func RegisterSubscriptionInternalServiceServer(s grpc.ServiceRegistrar, srv Subs
 	s.RegisterService(&SubscriptionInternalService_ServiceDesc, srv)
 }
 
-func _SubscriptionInternalService_ListSubscriptions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListSubscriptionsRequest)
+func _SubscriptionInternalService_InternalListSubscriptions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InternalListSubscriptionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SubscriptionInternalServiceServer).ListSubscriptions(ctx, in)
+		return srv.(SubscriptionInternalServiceServer).InternalListSubscriptions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SubscriptionInternalService_ListSubscriptions_FullMethodName,
+		FullMethod: SubscriptionInternalService_InternalListSubscriptions_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SubscriptionInternalServiceServer).ListSubscriptions(ctx, req.(*ListSubscriptionsRequest))
+		return srv.(SubscriptionInternalServiceServer).InternalListSubscriptions(ctx, req.(*InternalListSubscriptionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SubscriptionInternalService_CreateSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateSubscriptionRequest)
+func _SubscriptionInternalService_InternalCreateSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InternalCreateSubscriptionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SubscriptionInternalServiceServer).CreateSubscription(ctx, in)
+		return srv.(SubscriptionInternalServiceServer).InternalCreateSubscription(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SubscriptionInternalService_CreateSubscription_FullMethodName,
+		FullMethod: SubscriptionInternalService_InternalCreateSubscription_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SubscriptionInternalServiceServer).CreateSubscription(ctx, req.(*CreateSubscriptionRequest))
+		return srv.(SubscriptionInternalServiceServer).InternalCreateSubscription(ctx, req.(*InternalCreateSubscriptionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SubscriptionInternalService_ReNewSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReNewSubscriptionRequest)
+func _SubscriptionInternalService_InternalReNewSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InternalReNewSubscriptionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SubscriptionInternalServiceServer).ReNewSubscription(ctx, in)
+		return srv.(SubscriptionInternalServiceServer).InternalReNewSubscription(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SubscriptionInternalService_ReNewSubscription_FullMethodName,
+		FullMethod: SubscriptionInternalService_InternalReNewSubscription_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SubscriptionInternalServiceServer).ReNewSubscription(ctx, req.(*ReNewSubscriptionRequest))
+		return srv.(SubscriptionInternalServiceServer).InternalReNewSubscription(ctx, req.(*InternalReNewSubscriptionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SubscriptionInternalService_UpgradeSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpgradeSubscriptionRequest)
+func _SubscriptionInternalService_InternalUpgradeSubscription_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InternalUpgradeSubscriptionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SubscriptionInternalServiceServer).UpgradeSubscription(ctx, in)
+		return srv.(SubscriptionInternalServiceServer).InternalUpgradeSubscription(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SubscriptionInternalService_UpgradeSubscription_FullMethodName,
+		FullMethod: SubscriptionInternalService_InternalUpgradeSubscription_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SubscriptionInternalServiceServer).UpgradeSubscription(ctx, req.(*UpgradeSubscriptionRequest))
+		return srv.(SubscriptionInternalServiceServer).InternalUpgradeSubscription(ctx, req.(*InternalUpgradeSubscriptionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -227,20 +227,20 @@ var SubscriptionInternalService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*SubscriptionInternalServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "ListSubscriptions",
-			Handler:    _SubscriptionInternalService_ListSubscriptions_Handler,
+			MethodName: "InternalListSubscriptions",
+			Handler:    _SubscriptionInternalService_InternalListSubscriptions_Handler,
 		},
 		{
-			MethodName: "CreateSubscription",
-			Handler:    _SubscriptionInternalService_CreateSubscription_Handler,
+			MethodName: "InternalCreateSubscription",
+			Handler:    _SubscriptionInternalService_InternalCreateSubscription_Handler,
 		},
 		{
-			MethodName: "ReNewSubscription",
-			Handler:    _SubscriptionInternalService_ReNewSubscription_Handler,
+			MethodName: "InternalReNewSubscription",
+			Handler:    _SubscriptionInternalService_InternalReNewSubscription_Handler,
 		},
 		{
-			MethodName: "UpgradeSubscription",
-			Handler:    _SubscriptionInternalService_UpgradeSubscription_Handler,
+			MethodName: "InternalUpgradeSubscription",
+			Handler:    _SubscriptionInternalService_InternalUpgradeSubscription_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

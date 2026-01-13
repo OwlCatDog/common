@@ -131,11 +131,11 @@ func newSubscribeClient(conn *grpc.ClientConn, logger *log.Helper, config *Confi
 }
 
 // GetTenantSubscriptions 获取商家指定产品订阅列表
-func (c *SubscribeClient) GetTenantSubscriptions(ctx context.Context, tenantCode string, productCode string) ([]*v1.SubscriptionInfo, error) {
+func (c *SubscribeClient) GetTenantSubscriptions(ctx context.Context, tenantCode string, productCode string) ([]*v1.InternalSubscriptionInfo, error) {
 	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
 	defer cancel()
 
-	resp, err := c.client.ListSubscriptions(ctx, &v1.ListSubscriptionsRequest{
+	resp, err := c.client.InternalListSubscriptions(ctx, &v1.InternalListSubscriptionsRequest{
 		TenantCode:  &tenantCode,
 		ProductCode: &productCode,
 	})
@@ -159,8 +159,8 @@ type CreateSubscriptionOptions struct {
 }
 
 // CreateSubscription 商家创建订阅
-func (c *SubscribeClient) CreateSubscription(ctx context.Context, productCode string, planCode string, order *v1.SubscriptionOrderInfo, opts *CreateSubscriptionOptions) (*v1.SubscriptionInfo, error) {
-	req := &v1.CreateSubscriptionRequest{
+func (c *SubscribeClient) CreateSubscription(ctx context.Context, productCode string, planCode string, order *v1.InternalSubscriptionOrderInfo, opts *CreateSubscriptionOptions) (*v1.InternalSubscriptionInfo, error) {
+	req := &v1.InternalCreateSubscriptionRequest{
 		ProductCode:      productCode,
 		PlanCode:         planCode,
 		AutomaticRenewal: false,
@@ -183,7 +183,7 @@ func (c *SubscribeClient) CreateSubscription(ctx context.Context, productCode st
 	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
 	defer cancel()
 
-	resp, err := c.client.CreateSubscription(ctx, req)
+	resp, err := c.client.InternalCreateSubscription(ctx, req)
 	if err != nil {
 		c.logger.WithContext(ctx).Errorf("创建订阅失败:product_code=%s plan_code=:%s err=%v", productCode, planCode, err)
 		return nil, err
@@ -192,8 +192,8 @@ func (c *SubscribeClient) CreateSubscription(ctx context.Context, productCode st
 }
 
 // ReNewSubscription 续订订阅
-func (c *SubscribeClient) ReNewSubscription(ctx context.Context, productCode string, planCode string, reNewTime *durationpb.Duration, order *v1.SubscriptionOrderInfo) (*v1.SubscriptionInfo, error) {
-	req := &v1.ReNewSubscriptionRequest{
+func (c *SubscribeClient) ReNewSubscription(ctx context.Context, productCode string, planCode string, reNewTime *durationpb.Duration, order *v1.InternalSubscriptionOrderInfo) (*v1.InternalSubscriptionInfo, error) {
+	req := &v1.InternalReNewSubscriptionRequest{
 		ProductCode: productCode,
 		PlanCode:    planCode,
 		ReNewTime:   reNewTime,
@@ -203,7 +203,7 @@ func (c *SubscribeClient) ReNewSubscription(ctx context.Context, productCode str
 	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
 	defer cancel()
 
-	resp, err := c.client.ReNewSubscription(ctx, req)
+	resp, err := c.client.InternalReNewSubscription(ctx, req)
 	if err != nil {
 		c.logger.WithContext(ctx).Errorf("续订订阅失败:product_code=%s plan_code=:%s renew_time=:%s err=%v", productCode, planCode, reNewTime.String(), err)
 		return nil, err
@@ -220,8 +220,8 @@ type UpgradeSubscriptionOptions struct {
 }
 
 // UpgradeSubscription 升级订阅
-func (c *SubscribeClient) UpgradeSubscription(ctx context.Context, productCode string, planCode string, order *v1.SubscriptionOrderInfo, opts *UpgradeSubscriptionOptions) (*v1.SubscriptionInfo, error) {
-	req := &v1.UpgradeSubscriptionRequest{
+func (c *SubscribeClient) UpgradeSubscription(ctx context.Context, productCode string, planCode string, order *v1.InternalSubscriptionOrderInfo, opts *UpgradeSubscriptionOptions) (*v1.InternalSubscriptionInfo, error) {
+	req := &v1.InternalUpgradeSubscriptionRequest{
 		ProductCode: productCode,
 		PlanCode:    planCode,
 		StartDate:   nil,
@@ -240,7 +240,7 @@ func (c *SubscribeClient) UpgradeSubscription(ctx context.Context, productCode s
 	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
 	defer cancel()
 
-	resp, err := c.client.UpgradeSubscription(ctx, req)
+	resp, err := c.client.InternalUpgradeSubscription(ctx, req)
 	if err != nil {
 		c.logger.WithContext(ctx).Errorf("升级订阅失败:product_code=%s plan_code=:%s err=%v", productCode, planCode, err)
 		return nil, err

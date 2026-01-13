@@ -25,20 +25,20 @@ const (
 )
 
 // 订阅状态枚举
-type SubscriptionStatus int32
+type InternalSubscriptionStatus int32
 
 const (
-	SubscriptionStatus_SUBSCRIPTION_STATUS_UNSPECIFIED SubscriptionStatus = 0
-	SubscriptionStatus_SUBSCRIPTION_STATUS_ACTIVE      SubscriptionStatus = 1 // 使用中
-	SubscriptionStatus_SUBSCRIPTION_STATUS_TRIAL       SubscriptionStatus = 2 // 试用中
-	SubscriptionStatus_SUBSCRIPTION_STATUS_SUSPENDED   SubscriptionStatus = 3 // 已暂停
-	SubscriptionStatus_SUBSCRIPTION_STATUS_EXPIRED     SubscriptionStatus = 4 // 已过期
-	SubscriptionStatus_SUBSCRIPTION_STATUS_CANCELLED   SubscriptionStatus = 5 // 已取消
+	InternalSubscriptionStatus_SUBSCRIPTION_STATUS_UNSPECIFIED InternalSubscriptionStatus = 0
+	InternalSubscriptionStatus_SUBSCRIPTION_STATUS_ACTIVE      InternalSubscriptionStatus = 1 // 使用中
+	InternalSubscriptionStatus_SUBSCRIPTION_STATUS_TRIAL       InternalSubscriptionStatus = 2 // 试用中
+	InternalSubscriptionStatus_SUBSCRIPTION_STATUS_SUSPENDED   InternalSubscriptionStatus = 3 // 已暂停
+	InternalSubscriptionStatus_SUBSCRIPTION_STATUS_EXPIRED     InternalSubscriptionStatus = 4 // 已过期
+	InternalSubscriptionStatus_SUBSCRIPTION_STATUS_CANCELLED   InternalSubscriptionStatus = 5 // 已取消
 )
 
-// Enum value maps for SubscriptionStatus.
+// Enum value maps for InternalSubscriptionStatus.
 var (
-	SubscriptionStatus_name = map[int32]string{
+	InternalSubscriptionStatus_name = map[int32]string{
 		0: "SUBSCRIPTION_STATUS_UNSPECIFIED",
 		1: "SUBSCRIPTION_STATUS_ACTIVE",
 		2: "SUBSCRIPTION_STATUS_TRIAL",
@@ -46,7 +46,7 @@ var (
 		4: "SUBSCRIPTION_STATUS_EXPIRED",
 		5: "SUBSCRIPTION_STATUS_CANCELLED",
 	}
-	SubscriptionStatus_value = map[string]int32{
+	InternalSubscriptionStatus_value = map[string]int32{
 		"SUBSCRIPTION_STATUS_UNSPECIFIED": 0,
 		"SUBSCRIPTION_STATUS_ACTIVE":      1,
 		"SUBSCRIPTION_STATUS_TRIAL":       2,
@@ -56,52 +56,52 @@ var (
 	}
 )
 
-func (x SubscriptionStatus) Enum() *SubscriptionStatus {
-	p := new(SubscriptionStatus)
+func (x InternalSubscriptionStatus) Enum() *InternalSubscriptionStatus {
+	p := new(InternalSubscriptionStatus)
 	*p = x
 	return p
 }
 
-func (x SubscriptionStatus) String() string {
+func (x InternalSubscriptionStatus) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (SubscriptionStatus) Descriptor() protoreflect.EnumDescriptor {
+func (InternalSubscriptionStatus) Descriptor() protoreflect.EnumDescriptor {
 	return file_subscribe_v1_subscription_internal_proto_enumTypes[0].Descriptor()
 }
 
-func (SubscriptionStatus) Type() protoreflect.EnumType {
+func (InternalSubscriptionStatus) Type() protoreflect.EnumType {
 	return &file_subscribe_v1_subscription_internal_proto_enumTypes[0]
 }
 
-func (x SubscriptionStatus) Number() protoreflect.EnumNumber {
+func (x InternalSubscriptionStatus) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use SubscriptionStatus.Descriptor instead.
-func (SubscriptionStatus) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use InternalSubscriptionStatus.Descriptor instead.
+func (InternalSubscriptionStatus) EnumDescriptor() ([]byte, []int) {
 	return file_subscribe_v1_subscription_internal_proto_rawDescGZIP(), []int{0}
 }
 
 // 配额类型枚举
-type QuotaType int32
+type InternalQuotaType int32
 
 const (
-	QuotaType_QUOTA_TYPE_UNSPECIFIED QuotaType = 0
-	QuotaType_QUOTA_TYPE_NUMERIC     QuotaType = 1 // 数字型
-	QuotaType_QUOTA_TYPE_USAGE       QuotaType = 2 // 用量型
-	QuotaType_QUOTA_TYPE_SWITCH      QuotaType = 3 // 开关型
+	InternalQuotaType_QUOTA_TYPE_UNSPECIFIED InternalQuotaType = 0
+	InternalQuotaType_QUOTA_TYPE_NUMERIC     InternalQuotaType = 1 // 数字型
+	InternalQuotaType_QUOTA_TYPE_USAGE       InternalQuotaType = 2 // 用量型
+	InternalQuotaType_QUOTA_TYPE_SWITCH      InternalQuotaType = 3 // 开关型
 )
 
-// Enum value maps for QuotaType.
+// Enum value maps for InternalQuotaType.
 var (
-	QuotaType_name = map[int32]string{
+	InternalQuotaType_name = map[int32]string{
 		0: "QUOTA_TYPE_UNSPECIFIED",
 		1: "QUOTA_TYPE_NUMERIC",
 		2: "QUOTA_TYPE_USAGE",
 		3: "QUOTA_TYPE_SWITCH",
 	}
-	QuotaType_value = map[string]int32{
+	InternalQuotaType_value = map[string]int32{
 		"QUOTA_TYPE_UNSPECIFIED": 0,
 		"QUOTA_TYPE_NUMERIC":     1,
 		"QUOTA_TYPE_USAGE":       2,
@@ -109,48 +109,48 @@ var (
 	}
 )
 
-func (x QuotaType) Enum() *QuotaType {
-	p := new(QuotaType)
+func (x InternalQuotaType) Enum() *InternalQuotaType {
+	p := new(InternalQuotaType)
 	*p = x
 	return p
 }
 
-func (x QuotaType) String() string {
+func (x InternalQuotaType) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (QuotaType) Descriptor() protoreflect.EnumDescriptor {
+func (InternalQuotaType) Descriptor() protoreflect.EnumDescriptor {
 	return file_subscribe_v1_subscription_internal_proto_enumTypes[1].Descriptor()
 }
 
-func (QuotaType) Type() protoreflect.EnumType {
+func (InternalQuotaType) Type() protoreflect.EnumType {
 	return &file_subscribe_v1_subscription_internal_proto_enumTypes[1]
 }
 
-func (x QuotaType) Number() protoreflect.EnumNumber {
+func (x InternalQuotaType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use QuotaType.Descriptor instead.
-func (QuotaType) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use InternalQuotaType.Descriptor instead.
+func (InternalQuotaType) EnumDescriptor() ([]byte, []int) {
 	return file_subscribe_v1_subscription_internal_proto_rawDescGZIP(), []int{1}
 }
 
 // 订单类型枚举
-type OrderType int32
+type InternalOrderType int32
 
 const (
-	OrderType_ORDER_TYPE_UNSPECIFIED OrderType = 0
-	OrderType_ORDER_TYPE_NEW         OrderType = 1 // 新购
-	OrderType_ORDER_TYPE_RENEW       OrderType = 2 // 续费
-	OrderType_ORDER_TYPE_UPGRADE     OrderType = 3 // 升级
-	OrderType_ORDER_TYPE_DOWNGRADE   OrderType = 4 // 降级
-	OrderType_ORDER_TYPE_TRIAL       OrderType = 5 // 试用
+	InternalOrderType_ORDER_TYPE_UNSPECIFIED InternalOrderType = 0
+	InternalOrderType_ORDER_TYPE_NEW         InternalOrderType = 1 // 新购
+	InternalOrderType_ORDER_TYPE_RENEW       InternalOrderType = 2 // 续费
+	InternalOrderType_ORDER_TYPE_UPGRADE     InternalOrderType = 3 // 升级
+	InternalOrderType_ORDER_TYPE_DOWNGRADE   InternalOrderType = 4 // 降级
+	InternalOrderType_ORDER_TYPE_TRIAL       InternalOrderType = 5 // 试用
 )
 
-// Enum value maps for OrderType.
+// Enum value maps for InternalOrderType.
 var (
-	OrderType_name = map[int32]string{
+	InternalOrderType_name = map[int32]string{
 		0: "ORDER_TYPE_UNSPECIFIED",
 		1: "ORDER_TYPE_NEW",
 		2: "ORDER_TYPE_RENEW",
@@ -158,7 +158,7 @@ var (
 		4: "ORDER_TYPE_DOWNGRADE",
 		5: "ORDER_TYPE_TRIAL",
 	}
-	OrderType_value = map[string]int32{
+	InternalOrderType_value = map[string]int32{
 		"ORDER_TYPE_UNSPECIFIED": 0,
 		"ORDER_TYPE_NEW":         1,
 		"ORDER_TYPE_RENEW":       2,
@@ -168,52 +168,52 @@ var (
 	}
 )
 
-func (x OrderType) Enum() *OrderType {
-	p := new(OrderType)
+func (x InternalOrderType) Enum() *InternalOrderType {
+	p := new(InternalOrderType)
 	*p = x
 	return p
 }
 
-func (x OrderType) String() string {
+func (x InternalOrderType) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (OrderType) Descriptor() protoreflect.EnumDescriptor {
+func (InternalOrderType) Descriptor() protoreflect.EnumDescriptor {
 	return file_subscribe_v1_subscription_internal_proto_enumTypes[2].Descriptor()
 }
 
-func (OrderType) Type() protoreflect.EnumType {
+func (InternalOrderType) Type() protoreflect.EnumType {
 	return &file_subscribe_v1_subscription_internal_proto_enumTypes[2]
 }
 
-func (x OrderType) Number() protoreflect.EnumNumber {
+func (x InternalOrderType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use OrderType.Descriptor instead.
-func (OrderType) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use InternalOrderType.Descriptor instead.
+func (InternalOrderType) EnumDescriptor() ([]byte, []int) {
 	return file_subscribe_v1_subscription_internal_proto_rawDescGZIP(), []int{2}
 }
 
 // 计费周期
-type BillingCycle int32
+type InternalBillingCycle int32
 
 const (
-	BillingCycle_BILLING_CYCLE_UNSPECIFIED BillingCycle = 0
-	BillingCycle_BILLING_CYCLE_MONTHLY     BillingCycle = 1 // 按月
-	BillingCycle_BILLING_CYCLE_YEARLY      BillingCycle = 2 // 按年
-	BillingCycle_BILLING_CYCLE_LIFETIME    BillingCycle = 3 // 终身
+	InternalBillingCycle_BILLING_CYCLE_UNSPECIFIED InternalBillingCycle = 0
+	InternalBillingCycle_BILLING_CYCLE_MONTHLY     InternalBillingCycle = 1 // 按月
+	InternalBillingCycle_BILLING_CYCLE_YEARLY      InternalBillingCycle = 2 // 按年
+	InternalBillingCycle_BILLING_CYCLE_LIFETIME    InternalBillingCycle = 3 // 终身
 )
 
-// Enum value maps for BillingCycle.
+// Enum value maps for InternalBillingCycle.
 var (
-	BillingCycle_name = map[int32]string{
+	InternalBillingCycle_name = map[int32]string{
 		0: "BILLING_CYCLE_UNSPECIFIED",
 		1: "BILLING_CYCLE_MONTHLY",
 		2: "BILLING_CYCLE_YEARLY",
 		3: "BILLING_CYCLE_LIFETIME",
 	}
-	BillingCycle_value = map[string]int32{
+	InternalBillingCycle_value = map[string]int32{
 		"BILLING_CYCLE_UNSPECIFIED": 0,
 		"BILLING_CYCLE_MONTHLY":     1,
 		"BILLING_CYCLE_YEARLY":      2,
@@ -221,48 +221,48 @@ var (
 	}
 )
 
-func (x BillingCycle) Enum() *BillingCycle {
-	p := new(BillingCycle)
+func (x InternalBillingCycle) Enum() *InternalBillingCycle {
+	p := new(InternalBillingCycle)
 	*p = x
 	return p
 }
 
-func (x BillingCycle) String() string {
+func (x InternalBillingCycle) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (BillingCycle) Descriptor() protoreflect.EnumDescriptor {
+func (InternalBillingCycle) Descriptor() protoreflect.EnumDescriptor {
 	return file_subscribe_v1_subscription_internal_proto_enumTypes[3].Descriptor()
 }
 
-func (BillingCycle) Type() protoreflect.EnumType {
+func (InternalBillingCycle) Type() protoreflect.EnumType {
 	return &file_subscribe_v1_subscription_internal_proto_enumTypes[3]
 }
 
-func (x BillingCycle) Number() protoreflect.EnumNumber {
+func (x InternalBillingCycle) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use BillingCycle.Descriptor instead.
-func (BillingCycle) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use InternalBillingCycle.Descriptor instead.
+func (InternalBillingCycle) EnumDescriptor() ([]byte, []int) {
 	return file_subscribe_v1_subscription_internal_proto_rawDescGZIP(), []int{3}
 }
 
 // 订单状态枚举
-type OrderStatus int32
+type InternalOrderStatus int32
 
 const (
-	OrderStatus_ORDER_STATUS_UNSPECIFIED OrderStatus = 0
-	OrderStatus_ORDER_STATUS_PENDING     OrderStatus = 1 // 待支付
-	OrderStatus_ORDER_STATUS_PAID        OrderStatus = 2 // 已支付
-	OrderStatus_ORDER_STATUS_CANCELLED   OrderStatus = 3 // 已取消
-	OrderStatus_ORDER_STATUS_REFUNDED    OrderStatus = 4 // 已退款
-	OrderStatus_ORDER_STATUS_FAILED      OrderStatus = 5 // 支付失败
+	InternalOrderStatus_ORDER_STATUS_UNSPECIFIED InternalOrderStatus = 0
+	InternalOrderStatus_ORDER_STATUS_PENDING     InternalOrderStatus = 1 // 待支付
+	InternalOrderStatus_ORDER_STATUS_PAID        InternalOrderStatus = 2 // 已支付
+	InternalOrderStatus_ORDER_STATUS_CANCELLED   InternalOrderStatus = 3 // 已取消
+	InternalOrderStatus_ORDER_STATUS_REFUNDED    InternalOrderStatus = 4 // 已退款
+	InternalOrderStatus_ORDER_STATUS_FAILED      InternalOrderStatus = 5 // 支付失败
 )
 
-// Enum value maps for OrderStatus.
+// Enum value maps for InternalOrderStatus.
 var (
-	OrderStatus_name = map[int32]string{
+	InternalOrderStatus_name = map[int32]string{
 		0: "ORDER_STATUS_UNSPECIFIED",
 		1: "ORDER_STATUS_PENDING",
 		2: "ORDER_STATUS_PAID",
@@ -270,7 +270,7 @@ var (
 		4: "ORDER_STATUS_REFUNDED",
 		5: "ORDER_STATUS_FAILED",
 	}
-	OrderStatus_value = map[string]int32{
+	InternalOrderStatus_value = map[string]int32{
 		"ORDER_STATUS_UNSPECIFIED": 0,
 		"ORDER_STATUS_PENDING":     1,
 		"ORDER_STATUS_PAID":        2,
@@ -280,75 +280,75 @@ var (
 	}
 )
 
-func (x OrderStatus) Enum() *OrderStatus {
-	p := new(OrderStatus)
+func (x InternalOrderStatus) Enum() *InternalOrderStatus {
+	p := new(InternalOrderStatus)
 	*p = x
 	return p
 }
 
-func (x OrderStatus) String() string {
+func (x InternalOrderStatus) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (OrderStatus) Descriptor() protoreflect.EnumDescriptor {
+func (InternalOrderStatus) Descriptor() protoreflect.EnumDescriptor {
 	return file_subscribe_v1_subscription_internal_proto_enumTypes[4].Descriptor()
 }
 
-func (OrderStatus) Type() protoreflect.EnumType {
+func (InternalOrderStatus) Type() protoreflect.EnumType {
 	return &file_subscribe_v1_subscription_internal_proto_enumTypes[4]
 }
 
-func (x OrderStatus) Number() protoreflect.EnumNumber {
+func (x InternalOrderStatus) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use OrderStatus.Descriptor instead.
-func (OrderStatus) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use InternalOrderStatus.Descriptor instead.
+func (InternalOrderStatus) EnumDescriptor() ([]byte, []int) {
 	return file_subscribe_v1_subscription_internal_proto_rawDescGZIP(), []int{4}
 }
 
 // 订阅信息
-type SubscriptionInfo struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	Id               uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                                                      // 订阅ID
-	SubscriptionCode string                 `protobuf:"bytes,2,opt,name=subscription_code,json=subscriptionCode,proto3" json:"subscription_code,omitempty"`   // 订阅编号
-	TenantCode       string                 `protobuf:"bytes,3,opt,name=tenant_code,json=tenantCode,proto3" json:"tenant_code,omitempty"`                     // 租户Code
-	TenantName       string                 `protobuf:"bytes,4,opt,name=tenant_name,json=tenantName,proto3" json:"tenant_name,omitempty"`                     // 租户名称
-	ProductCode      string                 `protobuf:"bytes,6,opt,name=product_code,json=productCode,proto3" json:"product_code,omitempty"`                  // 产品编码
-	ProductI18N      *structpb.Struct       `protobuf:"bytes,5,opt,name=product_i18n,json=productI18n,proto3" json:"product_i18n,omitempty"`                  // 产品多语言内容
-	PlanCode         string                 `protobuf:"bytes,9,opt,name=plan_code,json=planCode,proto3" json:"plan_code,omitempty"`                           // 套餐编码
-	PlanI18N         *structpb.Struct       `protobuf:"bytes,7,opt,name=plan_i18n,json=planI18n,proto3" json:"plan_i18n,omitempty"`                           // 套餐多语言内容
-	Status           SubscriptionStatus     `protobuf:"varint,11,opt,name=status,proto3,enum=api.subscription.v1.SubscriptionStatus" json:"status,omitempty"` // 订阅状态
-	AutomaticRenewal bool                   `protobuf:"varint,12,opt,name=automatic_renewal,json=automaticRenewal,proto3" json:"automatic_renewal,omitempty"` // 是否自动续费
-	StartDate        *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"`                       // 订阅开始时间
-	EndDate          *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=end_date,json=endDate,proto3" json:"end_date,omitempty"`                             // 订阅结束时间
-	IsTrial          bool                   `protobuf:"varint,16,opt,name=is_trial,json=isTrial,proto3" json:"is_trial,omitempty"`                            // 是否试用期
-	TrialDays        int32                  `protobuf:"varint,17,opt,name=trial_days,json=trialDays,proto3" json:"trial_days,omitempty"`                      // 试用天数
-	TrialEndDate     *timestamppb.Timestamp `protobuf:"bytes,18,opt,name=trial_end_date,json=trialEndDate,proto3" json:"trial_end_date,omitempty"`            // 试用结束时间
-	QuotaSnapshot    *structpb.Struct       `protobuf:"bytes,19,opt,name=quota_snapshot,json=quotaSnapshot,proto3" json:"quota_snapshot,omitempty"`           // 配额上限快照
-	QuotaUsages      []*QuotaUsageInfo      `protobuf:"bytes,20,rep,name=quota_usages,json=quotaUsages,proto3" json:"quota_usages,omitempty"`                 // 配额使用列表
-	CreateTime       *timestamppb.Timestamp `protobuf:"bytes,21,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`                    // 创建时间
-	UpdateTime       *timestamppb.Timestamp `protobuf:"bytes,22,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`                    // 更新时间
-	CreatedBy        *string                `protobuf:"bytes,23,opt,name=created_by,json=createdBy,proto3,oneof" json:"created_by,omitempty"`                 // 创建人
-	UpdatedBy        *string                `protobuf:"bytes,24,opt,name=updated_by,json=updatedBy,proto3,oneof" json:"updated_by,omitempty"`                 // 更新人
+type InternalSubscriptionInfo struct {
+	state            protoimpl.MessageState     `protogen:"open.v1"`
+	Id               uint32                     `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                                                              // 订阅ID
+	SubscriptionCode string                     `protobuf:"bytes,2,opt,name=subscription_code,json=subscriptionCode,proto3" json:"subscription_code,omitempty"`           // 订阅编号
+	TenantCode       string                     `protobuf:"bytes,3,opt,name=tenant_code,json=tenantCode,proto3" json:"tenant_code,omitempty"`                             // 租户Code
+	TenantName       string                     `protobuf:"bytes,4,opt,name=tenant_name,json=tenantName,proto3" json:"tenant_name,omitempty"`                             // 租户名称
+	ProductCode      string                     `protobuf:"bytes,6,opt,name=product_code,json=productCode,proto3" json:"product_code,omitempty"`                          // 产品编码
+	ProductI18N      *structpb.Struct           `protobuf:"bytes,5,opt,name=product_i18n,json=productI18n,proto3" json:"product_i18n,omitempty"`                          // 产品多语言内容
+	PlanCode         string                     `protobuf:"bytes,9,opt,name=plan_code,json=planCode,proto3" json:"plan_code,omitempty"`                                   // 套餐编码
+	PlanI18N         *structpb.Struct           `protobuf:"bytes,7,opt,name=plan_i18n,json=planI18n,proto3" json:"plan_i18n,omitempty"`                                   // 套餐多语言内容
+	Status           InternalSubscriptionStatus `protobuf:"varint,11,opt,name=status,proto3,enum=api.subscription.v1.InternalSubscriptionStatus" json:"status,omitempty"` // 订阅状态
+	AutomaticRenewal bool                       `protobuf:"varint,12,opt,name=automatic_renewal,json=automaticRenewal,proto3" json:"automatic_renewal,omitempty"`         // 是否自动续费
+	StartDate        *timestamppb.Timestamp     `protobuf:"bytes,13,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"`                               // 订阅开始时间
+	EndDate          *timestamppb.Timestamp     `protobuf:"bytes,14,opt,name=end_date,json=endDate,proto3" json:"end_date,omitempty"`                                     // 订阅结束时间
+	IsTrial          bool                       `protobuf:"varint,16,opt,name=is_trial,json=isTrial,proto3" json:"is_trial,omitempty"`                                    // 是否试用期
+	TrialDays        int32                      `protobuf:"varint,17,opt,name=trial_days,json=trialDays,proto3" json:"trial_days,omitempty"`                              // 试用天数
+	TrialEndDate     *timestamppb.Timestamp     `protobuf:"bytes,18,opt,name=trial_end_date,json=trialEndDate,proto3" json:"trial_end_date,omitempty"`                    // 试用结束时间
+	QuotaSnapshot    *structpb.Struct           `protobuf:"bytes,19,opt,name=quota_snapshot,json=quotaSnapshot,proto3" json:"quota_snapshot,omitempty"`                   // 配额上限快照
+	QuotaUsages      []*InternalQuotaUsageInfo  `protobuf:"bytes,20,rep,name=quota_usages,json=quotaUsages,proto3" json:"quota_usages,omitempty"`                         // 配额使用列表
+	CreateTime       *timestamppb.Timestamp     `protobuf:"bytes,21,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`                            // 创建时间
+	UpdateTime       *timestamppb.Timestamp     `protobuf:"bytes,22,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`                            // 更新时间
+	CreatedBy        *string                    `protobuf:"bytes,23,opt,name=created_by,json=createdBy,proto3,oneof" json:"created_by,omitempty"`                         // 创建人
+	UpdatedBy        *string                    `protobuf:"bytes,24,opt,name=updated_by,json=updatedBy,proto3,oneof" json:"updated_by,omitempty"`                         // 更新人
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
 
-func (x *SubscriptionInfo) Reset() {
-	*x = SubscriptionInfo{}
+func (x *InternalSubscriptionInfo) Reset() {
+	*x = InternalSubscriptionInfo{}
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SubscriptionInfo) String() string {
+func (x *InternalSubscriptionInfo) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SubscriptionInfo) ProtoMessage() {}
+func (*InternalSubscriptionInfo) ProtoMessage() {}
 
-func (x *SubscriptionInfo) ProtoReflect() protoreflect.Message {
+func (x *InternalSubscriptionInfo) ProtoReflect() protoreflect.Message {
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -360,152 +360,152 @@ func (x *SubscriptionInfo) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SubscriptionInfo.ProtoReflect.Descriptor instead.
-func (*SubscriptionInfo) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalSubscriptionInfo.ProtoReflect.Descriptor instead.
+func (*InternalSubscriptionInfo) Descriptor() ([]byte, []int) {
 	return file_subscribe_v1_subscription_internal_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *SubscriptionInfo) GetId() uint32 {
+func (x *InternalSubscriptionInfo) GetId() uint32 {
 	if x != nil {
 		return x.Id
 	}
 	return 0
 }
 
-func (x *SubscriptionInfo) GetSubscriptionCode() string {
+func (x *InternalSubscriptionInfo) GetSubscriptionCode() string {
 	if x != nil {
 		return x.SubscriptionCode
 	}
 	return ""
 }
 
-func (x *SubscriptionInfo) GetTenantCode() string {
+func (x *InternalSubscriptionInfo) GetTenantCode() string {
 	if x != nil {
 		return x.TenantCode
 	}
 	return ""
 }
 
-func (x *SubscriptionInfo) GetTenantName() string {
+func (x *InternalSubscriptionInfo) GetTenantName() string {
 	if x != nil {
 		return x.TenantName
 	}
 	return ""
 }
 
-func (x *SubscriptionInfo) GetProductCode() string {
+func (x *InternalSubscriptionInfo) GetProductCode() string {
 	if x != nil {
 		return x.ProductCode
 	}
 	return ""
 }
 
-func (x *SubscriptionInfo) GetProductI18N() *structpb.Struct {
+func (x *InternalSubscriptionInfo) GetProductI18N() *structpb.Struct {
 	if x != nil {
 		return x.ProductI18N
 	}
 	return nil
 }
 
-func (x *SubscriptionInfo) GetPlanCode() string {
+func (x *InternalSubscriptionInfo) GetPlanCode() string {
 	if x != nil {
 		return x.PlanCode
 	}
 	return ""
 }
 
-func (x *SubscriptionInfo) GetPlanI18N() *structpb.Struct {
+func (x *InternalSubscriptionInfo) GetPlanI18N() *structpb.Struct {
 	if x != nil {
 		return x.PlanI18N
 	}
 	return nil
 }
 
-func (x *SubscriptionInfo) GetStatus() SubscriptionStatus {
+func (x *InternalSubscriptionInfo) GetStatus() InternalSubscriptionStatus {
 	if x != nil {
 		return x.Status
 	}
-	return SubscriptionStatus_SUBSCRIPTION_STATUS_UNSPECIFIED
+	return InternalSubscriptionStatus_SUBSCRIPTION_STATUS_UNSPECIFIED
 }
 
-func (x *SubscriptionInfo) GetAutomaticRenewal() bool {
+func (x *InternalSubscriptionInfo) GetAutomaticRenewal() bool {
 	if x != nil {
 		return x.AutomaticRenewal
 	}
 	return false
 }
 
-func (x *SubscriptionInfo) GetStartDate() *timestamppb.Timestamp {
+func (x *InternalSubscriptionInfo) GetStartDate() *timestamppb.Timestamp {
 	if x != nil {
 		return x.StartDate
 	}
 	return nil
 }
 
-func (x *SubscriptionInfo) GetEndDate() *timestamppb.Timestamp {
+func (x *InternalSubscriptionInfo) GetEndDate() *timestamppb.Timestamp {
 	if x != nil {
 		return x.EndDate
 	}
 	return nil
 }
 
-func (x *SubscriptionInfo) GetIsTrial() bool {
+func (x *InternalSubscriptionInfo) GetIsTrial() bool {
 	if x != nil {
 		return x.IsTrial
 	}
 	return false
 }
 
-func (x *SubscriptionInfo) GetTrialDays() int32 {
+func (x *InternalSubscriptionInfo) GetTrialDays() int32 {
 	if x != nil {
 		return x.TrialDays
 	}
 	return 0
 }
 
-func (x *SubscriptionInfo) GetTrialEndDate() *timestamppb.Timestamp {
+func (x *InternalSubscriptionInfo) GetTrialEndDate() *timestamppb.Timestamp {
 	if x != nil {
 		return x.TrialEndDate
 	}
 	return nil
 }
 
-func (x *SubscriptionInfo) GetQuotaSnapshot() *structpb.Struct {
+func (x *InternalSubscriptionInfo) GetQuotaSnapshot() *structpb.Struct {
 	if x != nil {
 		return x.QuotaSnapshot
 	}
 	return nil
 }
 
-func (x *SubscriptionInfo) GetQuotaUsages() []*QuotaUsageInfo {
+func (x *InternalSubscriptionInfo) GetQuotaUsages() []*InternalQuotaUsageInfo {
 	if x != nil {
 		return x.QuotaUsages
 	}
 	return nil
 }
 
-func (x *SubscriptionInfo) GetCreateTime() *timestamppb.Timestamp {
+func (x *InternalSubscriptionInfo) GetCreateTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreateTime
 	}
 	return nil
 }
 
-func (x *SubscriptionInfo) GetUpdateTime() *timestamppb.Timestamp {
+func (x *InternalSubscriptionInfo) GetUpdateTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdateTime
 	}
 	return nil
 }
 
-func (x *SubscriptionInfo) GetCreatedBy() string {
+func (x *InternalSubscriptionInfo) GetCreatedBy() string {
 	if x != nil && x.CreatedBy != nil {
 		return *x.CreatedBy
 	}
 	return ""
 }
 
-func (x *SubscriptionInfo) GetUpdatedBy() string {
+func (x *InternalSubscriptionInfo) GetUpdatedBy() string {
 	if x != nil && x.UpdatedBy != nil {
 		return *x.UpdatedBy
 	}
@@ -513,36 +513,36 @@ func (x *SubscriptionInfo) GetUpdatedBy() string {
 }
 
 // 配额使用信息
-type QuotaUsageInfo struct {
+type InternalQuotaUsageInfo struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	SubscriptionCode string                 `protobuf:"bytes,1,opt,name=subscription_code,json=subscriptionCode,proto3" json:"subscription_code,omitempty"`                 // 配额记录ID
-	DimensionKey     string                 `protobuf:"bytes,2,opt,name=dimension_key,json=dimensionKey,proto3" json:"dimension_key,omitempty"`                             // 维度键
-	DimensionI18N    *structpb.Struct       `protobuf:"bytes,3,opt,name=dimension_i18n,json=dimensionI18n,proto3" json:"dimension_i18n,omitempty"`                          // 维度多语言内容
-	QuotaLimit       int32                  `protobuf:"varint,4,opt,name=quota_limit,json=quotaLimit,proto3" json:"quota_limit,omitempty"`                                  // 配额限制（-1表示无限）
-	IsUnlimited      bool                   `protobuf:"varint,5,opt,name=is_unlimited,json=isUnlimited,proto3" json:"is_unlimited,omitempty"`                               // 是否无限制
-	QuotaUsed        int32                  `protobuf:"varint,8,opt,name=quota_used,json=quotaUsed,proto3" json:"quota_used,omitempty"`                                     // 已使用配额
-	QuotaRemaining   int32                  `protobuf:"varint,9,opt,name=quota_remaining,json=quotaRemaining,proto3" json:"quota_remaining,omitempty"`                      // 剩余配额
-	UsagePercentage  float64                `protobuf:"fixed64,10,opt,name=usage_percentage,json=usagePercentage,proto3" json:"usage_percentage,omitempty"`                 // 使用率（百分比）
-	Unit             *string                `protobuf:"bytes,11,opt,name=unit,proto3,oneof" json:"unit,omitempty"`                                                          // 单位（个、GB、次）
-	QuotaType        QuotaType              `protobuf:"varint,12,opt,name=quota_type,json=quotaType,proto3,enum=api.subscription.v1.QuotaType" json:"quota_type,omitempty"` // 配额类型
+	SubscriptionCode string                 `protobuf:"bytes,1,opt,name=subscription_code,json=subscriptionCode,proto3" json:"subscription_code,omitempty"`                         // 配额记录ID
+	DimensionKey     string                 `protobuf:"bytes,2,opt,name=dimension_key,json=dimensionKey,proto3" json:"dimension_key,omitempty"`                                     // 维度键
+	DimensionI18N    *structpb.Struct       `protobuf:"bytes,3,opt,name=dimension_i18n,json=dimensionI18n,proto3" json:"dimension_i18n,omitempty"`                                  // 维度多语言内容
+	QuotaLimit       int32                  `protobuf:"varint,4,opt,name=quota_limit,json=quotaLimit,proto3" json:"quota_limit,omitempty"`                                          // 配额限制（-1表示无限）
+	IsUnlimited      bool                   `protobuf:"varint,5,opt,name=is_unlimited,json=isUnlimited,proto3" json:"is_unlimited,omitempty"`                                       // 是否无限制
+	QuotaUsed        int32                  `protobuf:"varint,8,opt,name=quota_used,json=quotaUsed,proto3" json:"quota_used,omitempty"`                                             // 已使用配额
+	QuotaRemaining   int32                  `protobuf:"varint,9,opt,name=quota_remaining,json=quotaRemaining,proto3" json:"quota_remaining,omitempty"`                              // 剩余配额
+	UsagePercentage  float64                `protobuf:"fixed64,10,opt,name=usage_percentage,json=usagePercentage,proto3" json:"usage_percentage,omitempty"`                         // 使用率（百分比）
+	Unit             *string                `protobuf:"bytes,11,opt,name=unit,proto3,oneof" json:"unit,omitempty"`                                                                  // 单位（个、GB、次）
+	QuotaType        InternalQuotaType      `protobuf:"varint,12,opt,name=quota_type,json=quotaType,proto3,enum=api.subscription.v1.InternalQuotaType" json:"quota_type,omitempty"` // 配额类型
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
 
-func (x *QuotaUsageInfo) Reset() {
-	*x = QuotaUsageInfo{}
+func (x *InternalQuotaUsageInfo) Reset() {
+	*x = InternalQuotaUsageInfo{}
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *QuotaUsageInfo) String() string {
+func (x *InternalQuotaUsageInfo) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*QuotaUsageInfo) ProtoMessage() {}
+func (*InternalQuotaUsageInfo) ProtoMessage() {}
 
-func (x *QuotaUsageInfo) ProtoReflect() protoreflect.Message {
+func (x *InternalQuotaUsageInfo) ProtoReflect() protoreflect.Message {
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -554,124 +554,124 @@ func (x *QuotaUsageInfo) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use QuotaUsageInfo.ProtoReflect.Descriptor instead.
-func (*QuotaUsageInfo) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalQuotaUsageInfo.ProtoReflect.Descriptor instead.
+func (*InternalQuotaUsageInfo) Descriptor() ([]byte, []int) {
 	return file_subscribe_v1_subscription_internal_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *QuotaUsageInfo) GetSubscriptionCode() string {
+func (x *InternalQuotaUsageInfo) GetSubscriptionCode() string {
 	if x != nil {
 		return x.SubscriptionCode
 	}
 	return ""
 }
 
-func (x *QuotaUsageInfo) GetDimensionKey() string {
+func (x *InternalQuotaUsageInfo) GetDimensionKey() string {
 	if x != nil {
 		return x.DimensionKey
 	}
 	return ""
 }
 
-func (x *QuotaUsageInfo) GetDimensionI18N() *structpb.Struct {
+func (x *InternalQuotaUsageInfo) GetDimensionI18N() *structpb.Struct {
 	if x != nil {
 		return x.DimensionI18N
 	}
 	return nil
 }
 
-func (x *QuotaUsageInfo) GetQuotaLimit() int32 {
+func (x *InternalQuotaUsageInfo) GetQuotaLimit() int32 {
 	if x != nil {
 		return x.QuotaLimit
 	}
 	return 0
 }
 
-func (x *QuotaUsageInfo) GetIsUnlimited() bool {
+func (x *InternalQuotaUsageInfo) GetIsUnlimited() bool {
 	if x != nil {
 		return x.IsUnlimited
 	}
 	return false
 }
 
-func (x *QuotaUsageInfo) GetQuotaUsed() int32 {
+func (x *InternalQuotaUsageInfo) GetQuotaUsed() int32 {
 	if x != nil {
 		return x.QuotaUsed
 	}
 	return 0
 }
 
-func (x *QuotaUsageInfo) GetQuotaRemaining() int32 {
+func (x *InternalQuotaUsageInfo) GetQuotaRemaining() int32 {
 	if x != nil {
 		return x.QuotaRemaining
 	}
 	return 0
 }
 
-func (x *QuotaUsageInfo) GetUsagePercentage() float64 {
+func (x *InternalQuotaUsageInfo) GetUsagePercentage() float64 {
 	if x != nil {
 		return x.UsagePercentage
 	}
 	return 0
 }
 
-func (x *QuotaUsageInfo) GetUnit() string {
+func (x *InternalQuotaUsageInfo) GetUnit() string {
 	if x != nil && x.Unit != nil {
 		return *x.Unit
 	}
 	return ""
 }
 
-func (x *QuotaUsageInfo) GetQuotaType() QuotaType {
+func (x *InternalQuotaUsageInfo) GetQuotaType() InternalQuotaType {
 	if x != nil {
 		return x.QuotaType
 	}
-	return QuotaType_QUOTA_TYPE_UNSPECIFIED
+	return InternalQuotaType_QUOTA_TYPE_UNSPECIFIED
 }
 
 // 订单信息
-type SubscriptionOrderInfo struct {
+type InternalSubscriptionOrderInfo struct {
 	state                protoimpl.MessageState `protogen:"open.v1"`
-	OrderNo              string                 `protobuf:"bytes,1,opt,name=order_no,json=orderNo,proto3" json:"order_no,omitempty"`                                                       // 订单号
-	OrderType            OrderType              `protobuf:"varint,2,opt,name=order_type,json=orderType,proto3,enum=api.subscription.v1.OrderType" json:"order_type,omitempty"`             // 订单状态
-	BillingCycle         BillingCycle           `protobuf:"varint,3,opt,name=billing_cycle,json=billingCycle,proto3,enum=api.subscription.v1.BillingCycle" json:"billing_cycle,omitempty"` // 计费周期
-	OriginalPrice        int64                  `protobuf:"varint,4,opt,name=original_price,json=originalPrice,proto3" json:"original_price,omitempty"`                                    // 原价
-	DiscountAmount       int64                  `protobuf:"varint,5,opt,name=discount_amount,json=discountAmount,proto3" json:"discount_amount,omitempty"`                                 // 优惠金额
-	FinalPrice           int64                  `protobuf:"varint,6,opt,name=final_price,json=finalPrice,proto3" json:"final_price,omitempty"`                                             // 实付金额
-	Currency             string                 `protobuf:"bytes,7,opt,name=currency,proto3" json:"currency,omitempty"`                                                                    // 货币单位
-	CouponCode           *string                `protobuf:"bytes,8,opt,name=coupon_code,json=couponCode,proto3,oneof" json:"coupon_code,omitempty"`                                        // 优惠券代码
-	PromotionCode        *string                `protobuf:"bytes,9,opt,name=promotion_code,json=promotionCode,proto3,oneof" json:"promotion_code,omitempty"`                               // 促销代码
-	Status               OrderStatus            `protobuf:"varint,10,opt,name=status,proto3,enum=api.subscription.v1.OrderStatus" json:"status,omitempty"`                                 // 订单状态
-	PaymentMethod        *string                `protobuf:"bytes,11,opt,name=payment_method,json=paymentMethod,proto3,oneof" json:"payment_method,omitempty"`                              // 支付方式
-	PaymentTransactionId *string                `protobuf:"bytes,12,opt,name=payment_transaction_id,json=paymentTransactionId,proto3,oneof" json:"payment_transaction_id,omitempty"`       // 支付交易号
-	PaidAt               *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=paid_at,json=paidAt,proto3,oneof" json:"paid_at,omitempty"`                                                   // 支付时间
-	CancelledAt          *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=cancelled_at,json=cancelledAt,proto3,oneof" json:"cancelled_at,omitempty"`                                    // 取消时间
-	RefundedAt           *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=refunded_at,json=refundedAt,proto3,oneof" json:"refunded_at,omitempty"`                                       // 退款时间
-	ServiceStartDate     *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=service_start_date,json=serviceStartDate,proto3,oneof" json:"service_start_date,omitempty"`                   // 服务开始时间
-	ServiceEndDate       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=service_end_date,json=serviceEndDate,proto3,oneof" json:"service_end_date,omitempty"`                         // 服务结束时间
-	NeedInvoice          bool                   `protobuf:"varint,18,opt,name=need_invoice,json=needInvoice,proto3" json:"need_invoice,omitempty"`                                         // 是否需要发票
-	InvoiceInfo          *structpb.Struct       `protobuf:"bytes,19,opt,name=invoice_info,json=invoiceInfo,proto3" json:"invoice_info,omitempty"`                                          // 发票信息
-	InvoiceNo            *string                `protobuf:"bytes,20,opt,name=invoice_no,json=invoiceNo,proto3,oneof" json:"invoice_no,omitempty"`                                          // 发票号
-	Remark               *string                `protobuf:"bytes,21,opt,name=remark,proto3,oneof" json:"remark,omitempty"`                                                                 // 备注
-	CreatedBy            *string                `protobuf:"bytes,22,opt,name=created_by,json=createdBy,proto3,oneof" json:"created_by,omitempty"`                                          // 创建人
+	OrderNo              string                 `protobuf:"bytes,1,opt,name=order_no,json=orderNo,proto3" json:"order_no,omitempty"`                                                               // 订单号
+	OrderType            InternalOrderType      `protobuf:"varint,2,opt,name=order_type,json=orderType,proto3,enum=api.subscription.v1.InternalOrderType" json:"order_type,omitempty"`             // 订单状态
+	BillingCycle         InternalBillingCycle   `protobuf:"varint,3,opt,name=billing_cycle,json=billingCycle,proto3,enum=api.subscription.v1.InternalBillingCycle" json:"billing_cycle,omitempty"` // 计费周期
+	OriginalPrice        int64                  `protobuf:"varint,4,opt,name=original_price,json=originalPrice,proto3" json:"original_price,omitempty"`                                            // 原价
+	DiscountAmount       int64                  `protobuf:"varint,5,opt,name=discount_amount,json=discountAmount,proto3" json:"discount_amount,omitempty"`                                         // 优惠金额
+	FinalPrice           int64                  `protobuf:"varint,6,opt,name=final_price,json=finalPrice,proto3" json:"final_price,omitempty"`                                                     // 实付金额
+	Currency             string                 `protobuf:"bytes,7,opt,name=currency,proto3" json:"currency,omitempty"`                                                                            // 货币单位
+	CouponCode           *string                `protobuf:"bytes,8,opt,name=coupon_code,json=couponCode,proto3,oneof" json:"coupon_code,omitempty"`                                                // 优惠券代码
+	PromotionCode        *string                `protobuf:"bytes,9,opt,name=promotion_code,json=promotionCode,proto3,oneof" json:"promotion_code,omitempty"`                                       // 促销代码
+	Status               InternalOrderStatus    `protobuf:"varint,10,opt,name=status,proto3,enum=api.subscription.v1.InternalOrderStatus" json:"status,omitempty"`                                 // 订单状态
+	PaymentMethod        *string                `protobuf:"bytes,11,opt,name=payment_method,json=paymentMethod,proto3,oneof" json:"payment_method,omitempty"`                                      // 支付方式
+	PaymentTransactionId *string                `protobuf:"bytes,12,opt,name=payment_transaction_id,json=paymentTransactionId,proto3,oneof" json:"payment_transaction_id,omitempty"`               // 支付交易号
+	PaidAt               *timestamppb.Timestamp `protobuf:"bytes,13,opt,name=paid_at,json=paidAt,proto3,oneof" json:"paid_at,omitempty"`                                                           // 支付时间
+	CancelledAt          *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=cancelled_at,json=cancelledAt,proto3,oneof" json:"cancelled_at,omitempty"`                                            // 取消时间
+	RefundedAt           *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=refunded_at,json=refundedAt,proto3,oneof" json:"refunded_at,omitempty"`                                               // 退款时间
+	ServiceStartDate     *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=service_start_date,json=serviceStartDate,proto3,oneof" json:"service_start_date,omitempty"`                           // 服务开始时间
+	ServiceEndDate       *timestamppb.Timestamp `protobuf:"bytes,17,opt,name=service_end_date,json=serviceEndDate,proto3,oneof" json:"service_end_date,omitempty"`                                 // 服务结束时间
+	NeedInvoice          bool                   `protobuf:"varint,18,opt,name=need_invoice,json=needInvoice,proto3" json:"need_invoice,omitempty"`                                                 // 是否需要发票
+	InvoiceInfo          *structpb.Struct       `protobuf:"bytes,19,opt,name=invoice_info,json=invoiceInfo,proto3" json:"invoice_info,omitempty"`                                                  // 发票信息
+	InvoiceNo            *string                `protobuf:"bytes,20,opt,name=invoice_no,json=invoiceNo,proto3,oneof" json:"invoice_no,omitempty"`                                                  // 发票号
+	Remark               *string                `protobuf:"bytes,21,opt,name=remark,proto3,oneof" json:"remark,omitempty"`                                                                         // 备注
+	CreatedBy            *string                `protobuf:"bytes,22,opt,name=created_by,json=createdBy,proto3,oneof" json:"created_by,omitempty"`                                                  // 创建人
 	unknownFields        protoimpl.UnknownFields
 	sizeCache            protoimpl.SizeCache
 }
 
-func (x *SubscriptionOrderInfo) Reset() {
-	*x = SubscriptionOrderInfo{}
+func (x *InternalSubscriptionOrderInfo) Reset() {
+	*x = InternalSubscriptionOrderInfo{}
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *SubscriptionOrderInfo) String() string {
+func (x *InternalSubscriptionOrderInfo) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*SubscriptionOrderInfo) ProtoMessage() {}
+func (*InternalSubscriptionOrderInfo) ProtoMessage() {}
 
-func (x *SubscriptionOrderInfo) ProtoReflect() protoreflect.Message {
+func (x *InternalSubscriptionOrderInfo) ProtoReflect() protoreflect.Message {
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -683,159 +683,159 @@ func (x *SubscriptionOrderInfo) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use SubscriptionOrderInfo.ProtoReflect.Descriptor instead.
-func (*SubscriptionOrderInfo) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalSubscriptionOrderInfo.ProtoReflect.Descriptor instead.
+func (*InternalSubscriptionOrderInfo) Descriptor() ([]byte, []int) {
 	return file_subscribe_v1_subscription_internal_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *SubscriptionOrderInfo) GetOrderNo() string {
+func (x *InternalSubscriptionOrderInfo) GetOrderNo() string {
 	if x != nil {
 		return x.OrderNo
 	}
 	return ""
 }
 
-func (x *SubscriptionOrderInfo) GetOrderType() OrderType {
+func (x *InternalSubscriptionOrderInfo) GetOrderType() InternalOrderType {
 	if x != nil {
 		return x.OrderType
 	}
-	return OrderType_ORDER_TYPE_UNSPECIFIED
+	return InternalOrderType_ORDER_TYPE_UNSPECIFIED
 }
 
-func (x *SubscriptionOrderInfo) GetBillingCycle() BillingCycle {
+func (x *InternalSubscriptionOrderInfo) GetBillingCycle() InternalBillingCycle {
 	if x != nil {
 		return x.BillingCycle
 	}
-	return BillingCycle_BILLING_CYCLE_UNSPECIFIED
+	return InternalBillingCycle_BILLING_CYCLE_UNSPECIFIED
 }
 
-func (x *SubscriptionOrderInfo) GetOriginalPrice() int64 {
+func (x *InternalSubscriptionOrderInfo) GetOriginalPrice() int64 {
 	if x != nil {
 		return x.OriginalPrice
 	}
 	return 0
 }
 
-func (x *SubscriptionOrderInfo) GetDiscountAmount() int64 {
+func (x *InternalSubscriptionOrderInfo) GetDiscountAmount() int64 {
 	if x != nil {
 		return x.DiscountAmount
 	}
 	return 0
 }
 
-func (x *SubscriptionOrderInfo) GetFinalPrice() int64 {
+func (x *InternalSubscriptionOrderInfo) GetFinalPrice() int64 {
 	if x != nil {
 		return x.FinalPrice
 	}
 	return 0
 }
 
-func (x *SubscriptionOrderInfo) GetCurrency() string {
+func (x *InternalSubscriptionOrderInfo) GetCurrency() string {
 	if x != nil {
 		return x.Currency
 	}
 	return ""
 }
 
-func (x *SubscriptionOrderInfo) GetCouponCode() string {
+func (x *InternalSubscriptionOrderInfo) GetCouponCode() string {
 	if x != nil && x.CouponCode != nil {
 		return *x.CouponCode
 	}
 	return ""
 }
 
-func (x *SubscriptionOrderInfo) GetPromotionCode() string {
+func (x *InternalSubscriptionOrderInfo) GetPromotionCode() string {
 	if x != nil && x.PromotionCode != nil {
 		return *x.PromotionCode
 	}
 	return ""
 }
 
-func (x *SubscriptionOrderInfo) GetStatus() OrderStatus {
+func (x *InternalSubscriptionOrderInfo) GetStatus() InternalOrderStatus {
 	if x != nil {
 		return x.Status
 	}
-	return OrderStatus_ORDER_STATUS_UNSPECIFIED
+	return InternalOrderStatus_ORDER_STATUS_UNSPECIFIED
 }
 
-func (x *SubscriptionOrderInfo) GetPaymentMethod() string {
+func (x *InternalSubscriptionOrderInfo) GetPaymentMethod() string {
 	if x != nil && x.PaymentMethod != nil {
 		return *x.PaymentMethod
 	}
 	return ""
 }
 
-func (x *SubscriptionOrderInfo) GetPaymentTransactionId() string {
+func (x *InternalSubscriptionOrderInfo) GetPaymentTransactionId() string {
 	if x != nil && x.PaymentTransactionId != nil {
 		return *x.PaymentTransactionId
 	}
 	return ""
 }
 
-func (x *SubscriptionOrderInfo) GetPaidAt() *timestamppb.Timestamp {
+func (x *InternalSubscriptionOrderInfo) GetPaidAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.PaidAt
 	}
 	return nil
 }
 
-func (x *SubscriptionOrderInfo) GetCancelledAt() *timestamppb.Timestamp {
+func (x *InternalSubscriptionOrderInfo) GetCancelledAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CancelledAt
 	}
 	return nil
 }
 
-func (x *SubscriptionOrderInfo) GetRefundedAt() *timestamppb.Timestamp {
+func (x *InternalSubscriptionOrderInfo) GetRefundedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.RefundedAt
 	}
 	return nil
 }
 
-func (x *SubscriptionOrderInfo) GetServiceStartDate() *timestamppb.Timestamp {
+func (x *InternalSubscriptionOrderInfo) GetServiceStartDate() *timestamppb.Timestamp {
 	if x != nil {
 		return x.ServiceStartDate
 	}
 	return nil
 }
 
-func (x *SubscriptionOrderInfo) GetServiceEndDate() *timestamppb.Timestamp {
+func (x *InternalSubscriptionOrderInfo) GetServiceEndDate() *timestamppb.Timestamp {
 	if x != nil {
 		return x.ServiceEndDate
 	}
 	return nil
 }
 
-func (x *SubscriptionOrderInfo) GetNeedInvoice() bool {
+func (x *InternalSubscriptionOrderInfo) GetNeedInvoice() bool {
 	if x != nil {
 		return x.NeedInvoice
 	}
 	return false
 }
 
-func (x *SubscriptionOrderInfo) GetInvoiceInfo() *structpb.Struct {
+func (x *InternalSubscriptionOrderInfo) GetInvoiceInfo() *structpb.Struct {
 	if x != nil {
 		return x.InvoiceInfo
 	}
 	return nil
 }
 
-func (x *SubscriptionOrderInfo) GetInvoiceNo() string {
+func (x *InternalSubscriptionOrderInfo) GetInvoiceNo() string {
 	if x != nil && x.InvoiceNo != nil {
 		return *x.InvoiceNo
 	}
 	return ""
 }
 
-func (x *SubscriptionOrderInfo) GetRemark() string {
+func (x *InternalSubscriptionOrderInfo) GetRemark() string {
 	if x != nil && x.Remark != nil {
 		return *x.Remark
 	}
 	return ""
 }
 
-func (x *SubscriptionOrderInfo) GetCreatedBy() string {
+func (x *InternalSubscriptionOrderInfo) GetCreatedBy() string {
 	if x != nil && x.CreatedBy != nil {
 		return *x.CreatedBy
 	}
@@ -843,35 +843,35 @@ func (x *SubscriptionOrderInfo) GetCreatedBy() string {
 }
 
 // 获取订阅列表请求
-type ListSubscriptionsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Page          *int32                 `protobuf:"varint,1,opt,name=page,proto3,oneof" json:"page,omitempty"`                                                 // 页码
-	PageSize      *int32                 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`                         // 每页数量
-	TenantCode    *string                `protobuf:"bytes,3,opt,name=tenant_code,json=tenantCode,proto3,oneof" json:"tenant_code,omitempty"`                    // 租户Code筛选
-	ProductCode   *string                `protobuf:"bytes,4,opt,name=product_code,json=productCode,proto3,oneof" json:"product_code,omitempty"`                 // 产品编码筛选
-	Status        *SubscriptionStatus    `protobuf:"varint,5,opt,name=status,proto3,enum=api.subscription.v1.SubscriptionStatus,oneof" json:"status,omitempty"` // 状态筛选
-	IsTrial       *bool                  `protobuf:"varint,6,opt,name=is_trial,json=isTrial,proto3,oneof" json:"is_trial,omitempty"`                            // 是否试用期筛选
-	Search        *string                `protobuf:"bytes,7,opt,name=search,proto3,oneof" json:"search,omitempty"`                                              // 搜索关键词（租户名、产品名）
-	SortBy        *string                `protobuf:"bytes,8,opt,name=sort_by,json=sortBy,proto3,oneof" json:"sort_by,omitempty"`                                // 排序字段（create_time, end_date）
-	SortOrder     *string                `protobuf:"bytes,9,opt,name=sort_order,json=sortOrder,proto3,oneof" json:"sort_order,omitempty"`                       // 排序方向（asc, desc）
+type InternalListSubscriptionsRequest struct {
+	state         protoimpl.MessageState      `protogen:"open.v1"`
+	Page          *int32                      `protobuf:"varint,1,opt,name=page,proto3,oneof" json:"page,omitempty"`                                                         // 页码
+	PageSize      *int32                      `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`                                 // 每页数量
+	TenantCode    *string                     `protobuf:"bytes,3,opt,name=tenant_code,json=tenantCode,proto3,oneof" json:"tenant_code,omitempty"`                            // 租户Code筛选
+	ProductCode   *string                     `protobuf:"bytes,4,opt,name=product_code,json=productCode,proto3,oneof" json:"product_code,omitempty"`                         // 产品编码筛选
+	Status        *InternalSubscriptionStatus `protobuf:"varint,5,opt,name=status,proto3,enum=api.subscription.v1.InternalSubscriptionStatus,oneof" json:"status,omitempty"` // 状态筛选
+	IsTrial       *bool                       `protobuf:"varint,6,opt,name=is_trial,json=isTrial,proto3,oneof" json:"is_trial,omitempty"`                                    // 是否试用期筛选
+	Search        *string                     `protobuf:"bytes,7,opt,name=search,proto3,oneof" json:"search,omitempty"`                                                      // 搜索关键词（租户名、产品名）
+	SortBy        *string                     `protobuf:"bytes,8,opt,name=sort_by,json=sortBy,proto3,oneof" json:"sort_by,omitempty"`                                        // 排序字段（create_time, end_date）
+	SortOrder     *string                     `protobuf:"bytes,9,opt,name=sort_order,json=sortOrder,proto3,oneof" json:"sort_order,omitempty"`                               // 排序方向（asc, desc）
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListSubscriptionsRequest) Reset() {
-	*x = ListSubscriptionsRequest{}
+func (x *InternalListSubscriptionsRequest) Reset() {
+	*x = InternalListSubscriptionsRequest{}
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListSubscriptionsRequest) String() string {
+func (x *InternalListSubscriptionsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListSubscriptionsRequest) ProtoMessage() {}
+func (*InternalListSubscriptionsRequest) ProtoMessage() {}
 
-func (x *ListSubscriptionsRequest) ProtoReflect() protoreflect.Message {
+func (x *InternalListSubscriptionsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -883,68 +883,68 @@ func (x *ListSubscriptionsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListSubscriptionsRequest.ProtoReflect.Descriptor instead.
-func (*ListSubscriptionsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalListSubscriptionsRequest.ProtoReflect.Descriptor instead.
+func (*InternalListSubscriptionsRequest) Descriptor() ([]byte, []int) {
 	return file_subscribe_v1_subscription_internal_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *ListSubscriptionsRequest) GetPage() int32 {
+func (x *InternalListSubscriptionsRequest) GetPage() int32 {
 	if x != nil && x.Page != nil {
 		return *x.Page
 	}
 	return 0
 }
 
-func (x *ListSubscriptionsRequest) GetPageSize() int32 {
+func (x *InternalListSubscriptionsRequest) GetPageSize() int32 {
 	if x != nil && x.PageSize != nil {
 		return *x.PageSize
 	}
 	return 0
 }
 
-func (x *ListSubscriptionsRequest) GetTenantCode() string {
+func (x *InternalListSubscriptionsRequest) GetTenantCode() string {
 	if x != nil && x.TenantCode != nil {
 		return *x.TenantCode
 	}
 	return ""
 }
 
-func (x *ListSubscriptionsRequest) GetProductCode() string {
+func (x *InternalListSubscriptionsRequest) GetProductCode() string {
 	if x != nil && x.ProductCode != nil {
 		return *x.ProductCode
 	}
 	return ""
 }
 
-func (x *ListSubscriptionsRequest) GetStatus() SubscriptionStatus {
+func (x *InternalListSubscriptionsRequest) GetStatus() InternalSubscriptionStatus {
 	if x != nil && x.Status != nil {
 		return *x.Status
 	}
-	return SubscriptionStatus_SUBSCRIPTION_STATUS_UNSPECIFIED
+	return InternalSubscriptionStatus_SUBSCRIPTION_STATUS_UNSPECIFIED
 }
 
-func (x *ListSubscriptionsRequest) GetIsTrial() bool {
+func (x *InternalListSubscriptionsRequest) GetIsTrial() bool {
 	if x != nil && x.IsTrial != nil {
 		return *x.IsTrial
 	}
 	return false
 }
 
-func (x *ListSubscriptionsRequest) GetSearch() string {
+func (x *InternalListSubscriptionsRequest) GetSearch() string {
 	if x != nil && x.Search != nil {
 		return *x.Search
 	}
 	return ""
 }
 
-func (x *ListSubscriptionsRequest) GetSortBy() string {
+func (x *InternalListSubscriptionsRequest) GetSortBy() string {
 	if x != nil && x.SortBy != nil {
 		return *x.SortBy
 	}
 	return ""
 }
 
-func (x *ListSubscriptionsRequest) GetSortOrder() string {
+func (x *InternalListSubscriptionsRequest) GetSortOrder() string {
 	if x != nil && x.SortOrder != nil {
 		return *x.SortOrder
 	}
@@ -952,30 +952,30 @@ func (x *ListSubscriptionsRequest) GetSortOrder() string {
 }
 
 // 获取订阅列表响应
-type ListSubscriptionsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Subscriptions []*SubscriptionInfo    `protobuf:"bytes,1,rep,name=subscriptions,proto3" json:"subscriptions,omitempty"`        // 订阅列表
-	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`                       // 总数
-	Page          int32                  `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`                         // 当前页码
-	PageSize      int32                  `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"` // 每页数量
+type InternalListSubscriptionsResponse struct {
+	state         protoimpl.MessageState      `protogen:"open.v1"`
+	Subscriptions []*InternalSubscriptionInfo `protobuf:"bytes,1,rep,name=subscriptions,proto3" json:"subscriptions,omitempty"`        // 订阅列表
+	Total         int32                       `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`                       // 总数
+	Page          int32                       `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`                         // 当前页码
+	PageSize      int32                       `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"` // 每页数量
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListSubscriptionsResponse) Reset() {
-	*x = ListSubscriptionsResponse{}
+func (x *InternalListSubscriptionsResponse) Reset() {
+	*x = InternalListSubscriptionsResponse{}
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListSubscriptionsResponse) String() string {
+func (x *InternalListSubscriptionsResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListSubscriptionsResponse) ProtoMessage() {}
+func (*InternalListSubscriptionsResponse) ProtoMessage() {}
 
-func (x *ListSubscriptionsResponse) ProtoReflect() protoreflect.Message {
+func (x *InternalListSubscriptionsResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -987,33 +987,33 @@ func (x *ListSubscriptionsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListSubscriptionsResponse.ProtoReflect.Descriptor instead.
-func (*ListSubscriptionsResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalListSubscriptionsResponse.ProtoReflect.Descriptor instead.
+func (*InternalListSubscriptionsResponse) Descriptor() ([]byte, []int) {
 	return file_subscribe_v1_subscription_internal_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *ListSubscriptionsResponse) GetSubscriptions() []*SubscriptionInfo {
+func (x *InternalListSubscriptionsResponse) GetSubscriptions() []*InternalSubscriptionInfo {
 	if x != nil {
 		return x.Subscriptions
 	}
 	return nil
 }
 
-func (x *ListSubscriptionsResponse) GetTotal() int32 {
+func (x *InternalListSubscriptionsResponse) GetTotal() int32 {
 	if x != nil {
 		return x.Total
 	}
 	return 0
 }
 
-func (x *ListSubscriptionsResponse) GetPage() int32 {
+func (x *InternalListSubscriptionsResponse) GetPage() int32 {
 	if x != nil {
 		return x.Page
 	}
 	return 0
 }
 
-func (x *ListSubscriptionsResponse) GetPageSize() int32 {
+func (x *InternalListSubscriptionsResponse) GetPageSize() int32 {
 	if x != nil {
 		return x.PageSize
 	}
@@ -1021,33 +1021,33 @@ func (x *ListSubscriptionsResponse) GetPageSize() int32 {
 }
 
 // 创建订阅请求
-type CreateSubscriptionRequest struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	ProductCode      string                 `protobuf:"bytes,1,opt,name=product_code,json=productCode,proto3" json:"product_code,omitempty"`                 // 产品Code
-	PlanCode         string                 `protobuf:"bytes,2,opt,name=plan_code,json=planCode,proto3" json:"plan_code,omitempty"`                          // 套餐Code
-	AutomaticRenewal bool                   `protobuf:"varint,3,opt,name=automatic_renewal,json=automaticRenewal,proto3" json:"automatic_renewal,omitempty"` // 是否自动续费
-	StartDate        *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"`                       // 订阅开始时间
-	EndDate          *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=end_date,json=endDate,proto3,oneof" json:"end_date,omitempty"`                       // 订阅结束时间
-	IsTrial          bool                   `protobuf:"varint,6,opt,name=is_trial,json=isTrial,proto3" json:"is_trial,omitempty"`                            // 是否试用期
-	Order            *SubscriptionOrderInfo `protobuf:"bytes,7,opt,name=order,proto3" json:"order,omitempty"`                                                // 订单信息
+type InternalCreateSubscriptionRequest struct {
+	state            protoimpl.MessageState         `protogen:"open.v1"`
+	ProductCode      string                         `protobuf:"bytes,1,opt,name=product_code,json=productCode,proto3" json:"product_code,omitempty"`                 // 产品Code
+	PlanCode         string                         `protobuf:"bytes,2,opt,name=plan_code,json=planCode,proto3" json:"plan_code,omitempty"`                          // 套餐Code
+	AutomaticRenewal bool                           `protobuf:"varint,3,opt,name=automatic_renewal,json=automaticRenewal,proto3" json:"automatic_renewal,omitempty"` // 是否自动续费
+	StartDate        *timestamppb.Timestamp         `protobuf:"bytes,4,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"`                       // 订阅开始时间
+	EndDate          *timestamppb.Timestamp         `protobuf:"bytes,5,opt,name=end_date,json=endDate,proto3,oneof" json:"end_date,omitempty"`                       // 订阅结束时间
+	IsTrial          bool                           `protobuf:"varint,6,opt,name=is_trial,json=isTrial,proto3" json:"is_trial,omitempty"`                            // 是否试用期
+	Order            *InternalSubscriptionOrderInfo `protobuf:"bytes,7,opt,name=order,proto3" json:"order,omitempty"`                                                // 订单信息
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
 
-func (x *CreateSubscriptionRequest) Reset() {
-	*x = CreateSubscriptionRequest{}
+func (x *InternalCreateSubscriptionRequest) Reset() {
+	*x = InternalCreateSubscriptionRequest{}
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateSubscriptionRequest) String() string {
+func (x *InternalCreateSubscriptionRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateSubscriptionRequest) ProtoMessage() {}
+func (*InternalCreateSubscriptionRequest) ProtoMessage() {}
 
-func (x *CreateSubscriptionRequest) ProtoReflect() protoreflect.Message {
+func (x *InternalCreateSubscriptionRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1059,54 +1059,54 @@ func (x *CreateSubscriptionRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateSubscriptionRequest.ProtoReflect.Descriptor instead.
-func (*CreateSubscriptionRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalCreateSubscriptionRequest.ProtoReflect.Descriptor instead.
+func (*InternalCreateSubscriptionRequest) Descriptor() ([]byte, []int) {
 	return file_subscribe_v1_subscription_internal_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *CreateSubscriptionRequest) GetProductCode() string {
+func (x *InternalCreateSubscriptionRequest) GetProductCode() string {
 	if x != nil {
 		return x.ProductCode
 	}
 	return ""
 }
 
-func (x *CreateSubscriptionRequest) GetPlanCode() string {
+func (x *InternalCreateSubscriptionRequest) GetPlanCode() string {
 	if x != nil {
 		return x.PlanCode
 	}
 	return ""
 }
 
-func (x *CreateSubscriptionRequest) GetAutomaticRenewal() bool {
+func (x *InternalCreateSubscriptionRequest) GetAutomaticRenewal() bool {
 	if x != nil {
 		return x.AutomaticRenewal
 	}
 	return false
 }
 
-func (x *CreateSubscriptionRequest) GetStartDate() *timestamppb.Timestamp {
+func (x *InternalCreateSubscriptionRequest) GetStartDate() *timestamppb.Timestamp {
 	if x != nil {
 		return x.StartDate
 	}
 	return nil
 }
 
-func (x *CreateSubscriptionRequest) GetEndDate() *timestamppb.Timestamp {
+func (x *InternalCreateSubscriptionRequest) GetEndDate() *timestamppb.Timestamp {
 	if x != nil {
 		return x.EndDate
 	}
 	return nil
 }
 
-func (x *CreateSubscriptionRequest) GetIsTrial() bool {
+func (x *InternalCreateSubscriptionRequest) GetIsTrial() bool {
 	if x != nil {
 		return x.IsTrial
 	}
 	return false
 }
 
-func (x *CreateSubscriptionRequest) GetOrder() *SubscriptionOrderInfo {
+func (x *InternalCreateSubscriptionRequest) GetOrder() *InternalSubscriptionOrderInfo {
 	if x != nil {
 		return x.Order
 	}
@@ -1114,27 +1114,27 @@ func (x *CreateSubscriptionRequest) GetOrder() *SubscriptionOrderInfo {
 }
 
 // 创建订阅回复
-type CreateSubscriptionResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Subscription  *SubscriptionInfo      `protobuf:"bytes,1,opt,name=subscription,proto3" json:"subscription,omitempty"` // 订阅信息
+type InternalCreateSubscriptionResponse struct {
+	state         protoimpl.MessageState    `protogen:"open.v1"`
+	Subscription  *InternalSubscriptionInfo `protobuf:"bytes,1,opt,name=subscription,proto3" json:"subscription,omitempty"` // 订阅信息
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateSubscriptionResponse) Reset() {
-	*x = CreateSubscriptionResponse{}
+func (x *InternalCreateSubscriptionResponse) Reset() {
+	*x = InternalCreateSubscriptionResponse{}
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateSubscriptionResponse) String() string {
+func (x *InternalCreateSubscriptionResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateSubscriptionResponse) ProtoMessage() {}
+func (*InternalCreateSubscriptionResponse) ProtoMessage() {}
 
-func (x *CreateSubscriptionResponse) ProtoReflect() protoreflect.Message {
+func (x *InternalCreateSubscriptionResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1146,12 +1146,12 @@ func (x *CreateSubscriptionResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateSubscriptionResponse.ProtoReflect.Descriptor instead.
-func (*CreateSubscriptionResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalCreateSubscriptionResponse.ProtoReflect.Descriptor instead.
+func (*InternalCreateSubscriptionResponse) Descriptor() ([]byte, []int) {
 	return file_subscribe_v1_subscription_internal_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *CreateSubscriptionResponse) GetSubscription() *SubscriptionInfo {
+func (x *InternalCreateSubscriptionResponse) GetSubscription() *InternalSubscriptionInfo {
 	if x != nil {
 		return x.Subscription
 	}
@@ -1159,31 +1159,31 @@ func (x *CreateSubscriptionResponse) GetSubscription() *SubscriptionInfo {
 }
 
 // 续定订阅请求
-type ReNewSubscriptionRequest struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	SubscriptionCode string                 `protobuf:"bytes,1,opt,name=subscription_code,json=subscriptionCode,proto3" json:"subscription_code,omitempty"` // 订阅Code
-	ProductCode      string                 `protobuf:"bytes,2,opt,name=product_code,json=productCode,proto3" json:"product_code,omitempty"`                // 产品Code
-	PlanCode         string                 `protobuf:"bytes,3,opt,name=plan_code,json=planCode,proto3" json:"plan_code,omitempty"`                         // 套餐Code
-	ReNewTime        *durationpb.Duration   `protobuf:"bytes,4,opt,name=re_new_time,json=reNewTime,proto3" json:"re_new_time,omitempty"`                    // 续费时长
-	Order            *SubscriptionOrderInfo `protobuf:"bytes,5,opt,name=order,proto3" json:"order,omitempty"`                                               // 订单信息
+type InternalReNewSubscriptionRequest struct {
+	state            protoimpl.MessageState         `protogen:"open.v1"`
+	SubscriptionCode string                         `protobuf:"bytes,1,opt,name=subscription_code,json=subscriptionCode,proto3" json:"subscription_code,omitempty"` // 订阅Code
+	ProductCode      string                         `protobuf:"bytes,2,opt,name=product_code,json=productCode,proto3" json:"product_code,omitempty"`                // 产品Code
+	PlanCode         string                         `protobuf:"bytes,3,opt,name=plan_code,json=planCode,proto3" json:"plan_code,omitempty"`                         // 套餐Code
+	ReNewTime        *durationpb.Duration           `protobuf:"bytes,4,opt,name=re_new_time,json=reNewTime,proto3" json:"re_new_time,omitempty"`                    // 续费时长
+	Order            *InternalSubscriptionOrderInfo `protobuf:"bytes,5,opt,name=order,proto3" json:"order,omitempty"`                                               // 订单信息
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
 
-func (x *ReNewSubscriptionRequest) Reset() {
-	*x = ReNewSubscriptionRequest{}
+func (x *InternalReNewSubscriptionRequest) Reset() {
+	*x = InternalReNewSubscriptionRequest{}
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ReNewSubscriptionRequest) String() string {
+func (x *InternalReNewSubscriptionRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ReNewSubscriptionRequest) ProtoMessage() {}
+func (*InternalReNewSubscriptionRequest) ProtoMessage() {}
 
-func (x *ReNewSubscriptionRequest) ProtoReflect() protoreflect.Message {
+func (x *InternalReNewSubscriptionRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1195,40 +1195,40 @@ func (x *ReNewSubscriptionRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ReNewSubscriptionRequest.ProtoReflect.Descriptor instead.
-func (*ReNewSubscriptionRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalReNewSubscriptionRequest.ProtoReflect.Descriptor instead.
+func (*InternalReNewSubscriptionRequest) Descriptor() ([]byte, []int) {
 	return file_subscribe_v1_subscription_internal_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *ReNewSubscriptionRequest) GetSubscriptionCode() string {
+func (x *InternalReNewSubscriptionRequest) GetSubscriptionCode() string {
 	if x != nil {
 		return x.SubscriptionCode
 	}
 	return ""
 }
 
-func (x *ReNewSubscriptionRequest) GetProductCode() string {
+func (x *InternalReNewSubscriptionRequest) GetProductCode() string {
 	if x != nil {
 		return x.ProductCode
 	}
 	return ""
 }
 
-func (x *ReNewSubscriptionRequest) GetPlanCode() string {
+func (x *InternalReNewSubscriptionRequest) GetPlanCode() string {
 	if x != nil {
 		return x.PlanCode
 	}
 	return ""
 }
 
-func (x *ReNewSubscriptionRequest) GetReNewTime() *durationpb.Duration {
+func (x *InternalReNewSubscriptionRequest) GetReNewTime() *durationpb.Duration {
 	if x != nil {
 		return x.ReNewTime
 	}
 	return nil
 }
 
-func (x *ReNewSubscriptionRequest) GetOrder() *SubscriptionOrderInfo {
+func (x *InternalReNewSubscriptionRequest) GetOrder() *InternalSubscriptionOrderInfo {
 	if x != nil {
 		return x.Order
 	}
@@ -1236,27 +1236,27 @@ func (x *ReNewSubscriptionRequest) GetOrder() *SubscriptionOrderInfo {
 }
 
 // 续定订阅回复
-type ReNewSubscriptionResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Subscription  *SubscriptionInfo      `protobuf:"bytes,1,opt,name=subscription,proto3" json:"subscription,omitempty"` // 订阅信息
+type InternalReNewSubscriptionResponse struct {
+	state         protoimpl.MessageState    `protogen:"open.v1"`
+	Subscription  *InternalSubscriptionInfo `protobuf:"bytes,1,opt,name=subscription,proto3" json:"subscription,omitempty"` // 订阅信息
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ReNewSubscriptionResponse) Reset() {
-	*x = ReNewSubscriptionResponse{}
+func (x *InternalReNewSubscriptionResponse) Reset() {
+	*x = InternalReNewSubscriptionResponse{}
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ReNewSubscriptionResponse) String() string {
+func (x *InternalReNewSubscriptionResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ReNewSubscriptionResponse) ProtoMessage() {}
+func (*InternalReNewSubscriptionResponse) ProtoMessage() {}
 
-func (x *ReNewSubscriptionResponse) ProtoReflect() protoreflect.Message {
+func (x *InternalReNewSubscriptionResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1268,12 +1268,12 @@ func (x *ReNewSubscriptionResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ReNewSubscriptionResponse.ProtoReflect.Descriptor instead.
-func (*ReNewSubscriptionResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalReNewSubscriptionResponse.ProtoReflect.Descriptor instead.
+func (*InternalReNewSubscriptionResponse) Descriptor() ([]byte, []int) {
 	return file_subscribe_v1_subscription_internal_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *ReNewSubscriptionResponse) GetSubscription() *SubscriptionInfo {
+func (x *InternalReNewSubscriptionResponse) GetSubscription() *InternalSubscriptionInfo {
 	if x != nil {
 		return x.Subscription
 	}
@@ -1281,32 +1281,32 @@ func (x *ReNewSubscriptionResponse) GetSubscription() *SubscriptionInfo {
 }
 
 // 升级订阅请求
-type UpgradeSubscriptionRequest struct {
-	state            protoimpl.MessageState `protogen:"open.v1"`
-	SubscriptionCode string                 `protobuf:"bytes,1,opt,name=subscription_code,json=subscriptionCode,proto3" json:"subscription_code,omitempty"` // 订阅Code
-	ProductCode      string                 `protobuf:"bytes,2,opt,name=product_code,json=productCode,proto3" json:"product_code,omitempty"`                // 产品Code
-	PlanCode         string                 `protobuf:"bytes,3,opt,name=plan_code,json=planCode,proto3" json:"plan_code,omitempty"`                         // 套餐Code
-	StartDate        *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"`                      // 订阅开始时间
-	EndDate          *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=end_date,json=endDate,proto3,oneof" json:"end_date,omitempty"`                      // 订阅结束时间
-	Order            *SubscriptionOrderInfo `protobuf:"bytes,6,opt,name=order,proto3" json:"order,omitempty"`                                               // 订单信息
+type InternalUpgradeSubscriptionRequest struct {
+	state            protoimpl.MessageState         `protogen:"open.v1"`
+	SubscriptionCode string                         `protobuf:"bytes,1,opt,name=subscription_code,json=subscriptionCode,proto3" json:"subscription_code,omitempty"` // 订阅Code
+	ProductCode      string                         `protobuf:"bytes,2,opt,name=product_code,json=productCode,proto3" json:"product_code,omitempty"`                // 产品Code
+	PlanCode         string                         `protobuf:"bytes,3,opt,name=plan_code,json=planCode,proto3" json:"plan_code,omitempty"`                         // 套餐Code
+	StartDate        *timestamppb.Timestamp         `protobuf:"bytes,4,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"`                      // 订阅开始时间
+	EndDate          *timestamppb.Timestamp         `protobuf:"bytes,5,opt,name=end_date,json=endDate,proto3,oneof" json:"end_date,omitempty"`                      // 订阅结束时间
+	Order            *InternalSubscriptionOrderInfo `protobuf:"bytes,6,opt,name=order,proto3" json:"order,omitempty"`                                               // 订单信息
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
 
-func (x *UpgradeSubscriptionRequest) Reset() {
-	*x = UpgradeSubscriptionRequest{}
+func (x *InternalUpgradeSubscriptionRequest) Reset() {
+	*x = InternalUpgradeSubscriptionRequest{}
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpgradeSubscriptionRequest) String() string {
+func (x *InternalUpgradeSubscriptionRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpgradeSubscriptionRequest) ProtoMessage() {}
+func (*InternalUpgradeSubscriptionRequest) ProtoMessage() {}
 
-func (x *UpgradeSubscriptionRequest) ProtoReflect() protoreflect.Message {
+func (x *InternalUpgradeSubscriptionRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1318,47 +1318,47 @@ func (x *UpgradeSubscriptionRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpgradeSubscriptionRequest.ProtoReflect.Descriptor instead.
-func (*UpgradeSubscriptionRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalUpgradeSubscriptionRequest.ProtoReflect.Descriptor instead.
+func (*InternalUpgradeSubscriptionRequest) Descriptor() ([]byte, []int) {
 	return file_subscribe_v1_subscription_internal_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *UpgradeSubscriptionRequest) GetSubscriptionCode() string {
+func (x *InternalUpgradeSubscriptionRequest) GetSubscriptionCode() string {
 	if x != nil {
 		return x.SubscriptionCode
 	}
 	return ""
 }
 
-func (x *UpgradeSubscriptionRequest) GetProductCode() string {
+func (x *InternalUpgradeSubscriptionRequest) GetProductCode() string {
 	if x != nil {
 		return x.ProductCode
 	}
 	return ""
 }
 
-func (x *UpgradeSubscriptionRequest) GetPlanCode() string {
+func (x *InternalUpgradeSubscriptionRequest) GetPlanCode() string {
 	if x != nil {
 		return x.PlanCode
 	}
 	return ""
 }
 
-func (x *UpgradeSubscriptionRequest) GetStartDate() *timestamppb.Timestamp {
+func (x *InternalUpgradeSubscriptionRequest) GetStartDate() *timestamppb.Timestamp {
 	if x != nil {
 		return x.StartDate
 	}
 	return nil
 }
 
-func (x *UpgradeSubscriptionRequest) GetEndDate() *timestamppb.Timestamp {
+func (x *InternalUpgradeSubscriptionRequest) GetEndDate() *timestamppb.Timestamp {
 	if x != nil {
 		return x.EndDate
 	}
 	return nil
 }
 
-func (x *UpgradeSubscriptionRequest) GetOrder() *SubscriptionOrderInfo {
+func (x *InternalUpgradeSubscriptionRequest) GetOrder() *InternalSubscriptionOrderInfo {
 	if x != nil {
 		return x.Order
 	}
@@ -1366,27 +1366,27 @@ func (x *UpgradeSubscriptionRequest) GetOrder() *SubscriptionOrderInfo {
 }
 
 // 升级订阅回复
-type UpgradeSubscriptionResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Subscription  *SubscriptionInfo      `protobuf:"bytes,1,opt,name=subscription,proto3" json:"subscription,omitempty"` // 订阅信息
+type InternalUpgradeSubscriptionResponse struct {
+	state         protoimpl.MessageState    `protogen:"open.v1"`
+	Subscription  *InternalSubscriptionInfo `protobuf:"bytes,1,opt,name=subscription,proto3" json:"subscription,omitempty"` // 订阅信息
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *UpgradeSubscriptionResponse) Reset() {
-	*x = UpgradeSubscriptionResponse{}
+func (x *InternalUpgradeSubscriptionResponse) Reset() {
+	*x = InternalUpgradeSubscriptionResponse{}
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *UpgradeSubscriptionResponse) String() string {
+func (x *InternalUpgradeSubscriptionResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*UpgradeSubscriptionResponse) ProtoMessage() {}
+func (*InternalUpgradeSubscriptionResponse) ProtoMessage() {}
 
-func (x *UpgradeSubscriptionResponse) ProtoReflect() protoreflect.Message {
+func (x *InternalUpgradeSubscriptionResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_subscribe_v1_subscription_internal_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1398,12 +1398,12 @@ func (x *UpgradeSubscriptionResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use UpgradeSubscriptionResponse.ProtoReflect.Descriptor instead.
-func (*UpgradeSubscriptionResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalUpgradeSubscriptionResponse.ProtoReflect.Descriptor instead.
+func (*InternalUpgradeSubscriptionResponse) Descriptor() ([]byte, []int) {
 	return file_subscribe_v1_subscription_internal_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *UpgradeSubscriptionResponse) GetSubscription() *SubscriptionInfo {
+func (x *InternalUpgradeSubscriptionResponse) GetSubscription() *InternalSubscriptionInfo {
 	if x != nil {
 		return x.Subscription
 	}
@@ -1414,8 +1414,8 @@ var File_subscribe_v1_subscription_internal_proto protoreflect.FileDescriptor
 
 const file_subscribe_v1_subscription_internal_proto_rawDesc = "" +
 	"\n" +
-	"(subscribe/v1/subscription_internal.proto\x12\x13api.subscription.v1\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\"\x87\b\n" +
-	"\x10SubscriptionInfo\x12\x0e\n" +
+	"(subscribe/v1/subscription_internal.proto\x12\x13api.subscription.v1\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\"\x9f\b\n" +
+	"\x18InternalSubscriptionInfo\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\x12+\n" +
 	"\x11subscription_code\x18\x02 \x01(\tR\x10subscriptionCode\x12\x1f\n" +
 	"\vtenant_code\x18\x03 \x01(\tR\n" +
@@ -1425,8 +1425,8 @@ const file_subscribe_v1_subscription_internal_proto_rawDesc = "" +
 	"\fproduct_code\x18\x06 \x01(\tR\vproductCode\x12:\n" +
 	"\fproduct_i18n\x18\x05 \x01(\v2\x17.google.protobuf.StructR\vproductI18n\x12\x1b\n" +
 	"\tplan_code\x18\t \x01(\tR\bplanCode\x124\n" +
-	"\tplan_i18n\x18\a \x01(\v2\x17.google.protobuf.StructR\bplanI18n\x12?\n" +
-	"\x06status\x18\v \x01(\x0e2'.api.subscription.v1.SubscriptionStatusR\x06status\x12+\n" +
+	"\tplan_i18n\x18\a \x01(\v2\x17.google.protobuf.StructR\bplanI18n\x12G\n" +
+	"\x06status\x18\v \x01(\x0e2/.api.subscription.v1.InternalSubscriptionStatusR\x06status\x12+\n" +
 	"\x11automatic_renewal\x18\f \x01(\bR\x10automaticRenewal\x129\n" +
 	"\n" +
 	"start_date\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\tstartDate\x125\n" +
@@ -1435,8 +1435,8 @@ const file_subscribe_v1_subscription_internal_proto_rawDesc = "" +
 	"\n" +
 	"trial_days\x18\x11 \x01(\x05R\ttrialDays\x12@\n" +
 	"\x0etrial_end_date\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampR\ftrialEndDate\x12>\n" +
-	"\x0equota_snapshot\x18\x13 \x01(\v2\x17.google.protobuf.StructR\rquotaSnapshot\x12F\n" +
-	"\fquota_usages\x18\x14 \x03(\v2#.api.subscription.v1.QuotaUsageInfoR\vquotaUsages\x12;\n" +
+	"\x0equota_snapshot\x18\x13 \x01(\v2\x17.google.protobuf.StructR\rquotaSnapshot\x12N\n" +
+	"\fquota_usages\x18\x14 \x03(\v2+.api.subscription.v1.InternalQuotaUsageInfoR\vquotaUsages\x12;\n" +
 	"\vcreate_time\x18\x15 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"createTime\x12;\n" +
 	"\vupdate_time\x18\x16 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
@@ -1446,8 +1446,8 @@ const file_subscribe_v1_subscription_internal_proto_rawDesc = "" +
 	"\n" +
 	"updated_by\x18\x18 \x01(\tH\x01R\tupdatedBy\x88\x01\x01B\r\n" +
 	"\v_created_byB\r\n" +
-	"\v_updated_by\"\xba\x03\n" +
-	"\x0eQuotaUsageInfo\x12+\n" +
+	"\v_updated_by\"\xca\x03\n" +
+	"\x16InternalQuotaUsageInfo\x12+\n" +
 	"\x11subscription_code\x18\x01 \x01(\tR\x10subscriptionCode\x12#\n" +
 	"\rdimension_key\x18\x02 \x01(\tR\fdimensionKey\x12>\n" +
 	"\x0edimension_i18n\x18\x03 \x01(\v2\x17.google.protobuf.StructR\rdimensionI18n\x12\x1f\n" +
@@ -1459,16 +1459,16 @@ const file_subscribe_v1_subscription_internal_proto_rawDesc = "" +
 	"\x0fquota_remaining\x18\t \x01(\x05R\x0equotaRemaining\x12)\n" +
 	"\x10usage_percentage\x18\n" +
 	" \x01(\x01R\x0fusagePercentage\x12\x17\n" +
-	"\x04unit\x18\v \x01(\tH\x00R\x04unit\x88\x01\x01\x12=\n" +
+	"\x04unit\x18\v \x01(\tH\x00R\x04unit\x88\x01\x01\x12E\n" +
 	"\n" +
-	"quota_type\x18\f \x01(\x0e2\x1e.api.subscription.v1.QuotaTypeR\tquotaTypeB\a\n" +
-	"\x05_unit\"\xaa\n" +
+	"quota_type\x18\f \x01(\x0e2&.api.subscription.v1.InternalQuotaTypeR\tquotaTypeB\a\n" +
+	"\x05_unit\"\xca\n" +
 	"\n" +
-	"\x15SubscriptionOrderInfo\x12\x19\n" +
-	"\border_no\x18\x01 \x01(\tR\aorderNo\x12=\n" +
+	"\x1dInternalSubscriptionOrderInfo\x12\x19\n" +
+	"\border_no\x18\x01 \x01(\tR\aorderNo\x12E\n" +
 	"\n" +
-	"order_type\x18\x02 \x01(\x0e2\x1e.api.subscription.v1.OrderTypeR\torderType\x12F\n" +
-	"\rbilling_cycle\x18\x03 \x01(\x0e2!.api.subscription.v1.BillingCycleR\fbillingCycle\x12%\n" +
+	"order_type\x18\x02 \x01(\x0e2&.api.subscription.v1.InternalOrderTypeR\torderType\x12N\n" +
+	"\rbilling_cycle\x18\x03 \x01(\x0e2).api.subscription.v1.InternalBillingCycleR\fbillingCycle\x12%\n" +
 	"\x0eoriginal_price\x18\x04 \x01(\x03R\roriginalPrice\x12'\n" +
 	"\x0fdiscount_amount\x18\x05 \x01(\x03R\x0ediscountAmount\x12\x1f\n" +
 	"\vfinal_price\x18\x06 \x01(\x03R\n" +
@@ -1476,9 +1476,9 @@ const file_subscribe_v1_subscription_internal_proto_rawDesc = "" +
 	"\bcurrency\x18\a \x01(\tR\bcurrency\x12$\n" +
 	"\vcoupon_code\x18\b \x01(\tH\x00R\n" +
 	"couponCode\x88\x01\x01\x12*\n" +
-	"\x0epromotion_code\x18\t \x01(\tH\x01R\rpromotionCode\x88\x01\x01\x128\n" +
+	"\x0epromotion_code\x18\t \x01(\tH\x01R\rpromotionCode\x88\x01\x01\x12@\n" +
 	"\x06status\x18\n" +
-	" \x01(\x0e2 .api.subscription.v1.OrderStatusR\x06status\x12*\n" +
+	" \x01(\x0e2(.api.subscription.v1.InternalOrderStatusR\x06status\x12*\n" +
 	"\x0epayment_method\x18\v \x01(\tH\x02R\rpaymentMethod\x88\x01\x01\x129\n" +
 	"\x16payment_transaction_id\x18\f \x01(\tH\x03R\x14paymentTransactionId\x88\x01\x01\x128\n" +
 	"\apaid_at\x18\r \x01(\v2\x1a.google.protobuf.TimestampH\x04R\x06paidAt\x88\x01\x01\x12B\n" +
@@ -1507,14 +1507,14 @@ const file_subscribe_v1_subscription_internal_proto_rawDesc = "" +
 	"\x11_service_end_dateB\r\n" +
 	"\v_invoice_noB\t\n" +
 	"\a_remarkB\r\n" +
-	"\v_created_by\"\xde\x03\n" +
-	"\x18ListSubscriptionsRequest\x12\x17\n" +
+	"\v_created_by\"\xee\x03\n" +
+	" InternalListSubscriptionsRequest\x12\x17\n" +
 	"\x04page\x18\x01 \x01(\x05H\x00R\x04page\x88\x01\x01\x12 \n" +
 	"\tpage_size\x18\x02 \x01(\x05H\x01R\bpageSize\x88\x01\x01\x12$\n" +
 	"\vtenant_code\x18\x03 \x01(\tH\x02R\n" +
 	"tenantCode\x88\x01\x01\x12&\n" +
-	"\fproduct_code\x18\x04 \x01(\tH\x03R\vproductCode\x88\x01\x01\x12D\n" +
-	"\x06status\x18\x05 \x01(\x0e2'.api.subscription.v1.SubscriptionStatusH\x04R\x06status\x88\x01\x01\x12\x1e\n" +
+	"\fproduct_code\x18\x04 \x01(\tH\x03R\vproductCode\x88\x01\x01\x12L\n" +
+	"\x06status\x18\x05 \x01(\x0e2/.api.subscription.v1.InternalSubscriptionStatusH\x04R\x06status\x88\x01\x01\x12\x1e\n" +
 	"\bis_trial\x18\x06 \x01(\bH\x05R\aisTrial\x88\x01\x01\x12\x1b\n" +
 	"\x06search\x18\a \x01(\tH\x06R\x06search\x88\x01\x01\x12\x1c\n" +
 	"\asort_by\x18\b \x01(\tH\aR\x06sortBy\x88\x01\x01\x12\"\n" +
@@ -1530,79 +1530,79 @@ const file_subscribe_v1_subscription_internal_proto_rawDesc = "" +
 	"\a_searchB\n" +
 	"\n" +
 	"\b_sort_byB\r\n" +
-	"\v_sort_order\"\xaf\x01\n" +
-	"\x19ListSubscriptionsResponse\x12K\n" +
-	"\rsubscriptions\x18\x01 \x03(\v2%.api.subscription.v1.SubscriptionInfoR\rsubscriptions\x12\x14\n" +
+	"\v_sort_order\"\xbf\x01\n" +
+	"!InternalListSubscriptionsResponse\x12S\n" +
+	"\rsubscriptions\x18\x01 \x03(\v2-.api.subscription.v1.InternalSubscriptionInfoR\rsubscriptions\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x12\n" +
 	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
-	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\"\xe9\x02\n" +
-	"\x19CreateSubscriptionRequest\x12!\n" +
+	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\"\xf9\x02\n" +
+	"!InternalCreateSubscriptionRequest\x12!\n" +
 	"\fproduct_code\x18\x01 \x01(\tR\vproductCode\x12\x1b\n" +
 	"\tplan_code\x18\x02 \x01(\tR\bplanCode\x12+\n" +
 	"\x11automatic_renewal\x18\x03 \x01(\bR\x10automaticRenewal\x129\n" +
 	"\n" +
 	"start_date\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tstartDate\x12:\n" +
 	"\bend_date\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\aendDate\x88\x01\x01\x12\x19\n" +
-	"\bis_trial\x18\x06 \x01(\bR\aisTrial\x12@\n" +
-	"\x05order\x18\a \x01(\v2*.api.subscription.v1.SubscriptionOrderInfoR\x05orderB\v\n" +
-	"\t_end_date\"g\n" +
-	"\x1aCreateSubscriptionResponse\x12I\n" +
-	"\fsubscription\x18\x01 \x01(\v2%.api.subscription.v1.SubscriptionInfoR\fsubscription\"\x84\x02\n" +
-	"\x18ReNewSubscriptionRequest\x12+\n" +
+	"\bis_trial\x18\x06 \x01(\bR\aisTrial\x12H\n" +
+	"\x05order\x18\a \x01(\v22.api.subscription.v1.InternalSubscriptionOrderInfoR\x05orderB\v\n" +
+	"\t_end_date\"w\n" +
+	"\"InternalCreateSubscriptionResponse\x12Q\n" +
+	"\fsubscription\x18\x01 \x01(\v2-.api.subscription.v1.InternalSubscriptionInfoR\fsubscription\"\x94\x02\n" +
+	" InternalReNewSubscriptionRequest\x12+\n" +
 	"\x11subscription_code\x18\x01 \x01(\tR\x10subscriptionCode\x12!\n" +
 	"\fproduct_code\x18\x02 \x01(\tR\vproductCode\x12\x1b\n" +
 	"\tplan_code\x18\x03 \x01(\tR\bplanCode\x129\n" +
-	"\vre_new_time\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\treNewTime\x12@\n" +
-	"\x05order\x18\x05 \x01(\v2*.api.subscription.v1.SubscriptionOrderInfoR\x05order\"f\n" +
-	"\x19ReNewSubscriptionResponse\x12I\n" +
-	"\fsubscription\x18\x01 \x01(\v2%.api.subscription.v1.SubscriptionInfoR\fsubscription\"\xcf\x02\n" +
-	"\x1aUpgradeSubscriptionRequest\x12+\n" +
+	"\vre_new_time\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\treNewTime\x12H\n" +
+	"\x05order\x18\x05 \x01(\v22.api.subscription.v1.InternalSubscriptionOrderInfoR\x05order\"v\n" +
+	"!InternalReNewSubscriptionResponse\x12Q\n" +
+	"\fsubscription\x18\x01 \x01(\v2-.api.subscription.v1.InternalSubscriptionInfoR\fsubscription\"\xdf\x02\n" +
+	"\"InternalUpgradeSubscriptionRequest\x12+\n" +
 	"\x11subscription_code\x18\x01 \x01(\tR\x10subscriptionCode\x12!\n" +
 	"\fproduct_code\x18\x02 \x01(\tR\vproductCode\x12\x1b\n" +
 	"\tplan_code\x18\x03 \x01(\tR\bplanCode\x129\n" +
 	"\n" +
 	"start_date\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\tstartDate\x12:\n" +
-	"\bend_date\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\aendDate\x88\x01\x01\x12@\n" +
-	"\x05order\x18\x06 \x01(\v2*.api.subscription.v1.SubscriptionOrderInfoR\x05orderB\v\n" +
-	"\t_end_date\"h\n" +
-	"\x1bUpgradeSubscriptionResponse\x12I\n" +
-	"\fsubscription\x18\x01 \x01(\v2%.api.subscription.v1.SubscriptionInfoR\fsubscription*\xdf\x01\n" +
-	"\x12SubscriptionStatus\x12#\n" +
+	"\bend_date\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\aendDate\x88\x01\x01\x12H\n" +
+	"\x05order\x18\x06 \x01(\v22.api.subscription.v1.InternalSubscriptionOrderInfoR\x05orderB\v\n" +
+	"\t_end_date\"x\n" +
+	"#InternalUpgradeSubscriptionResponse\x12Q\n" +
+	"\fsubscription\x18\x01 \x01(\v2-.api.subscription.v1.InternalSubscriptionInfoR\fsubscription*\xe7\x01\n" +
+	"\x1aInternalSubscriptionStatus\x12#\n" +
 	"\x1fSUBSCRIPTION_STATUS_UNSPECIFIED\x10\x00\x12\x1e\n" +
 	"\x1aSUBSCRIPTION_STATUS_ACTIVE\x10\x01\x12\x1d\n" +
 	"\x19SUBSCRIPTION_STATUS_TRIAL\x10\x02\x12!\n" +
 	"\x1dSUBSCRIPTION_STATUS_SUSPENDED\x10\x03\x12\x1f\n" +
 	"\x1bSUBSCRIPTION_STATUS_EXPIRED\x10\x04\x12!\n" +
-	"\x1dSUBSCRIPTION_STATUS_CANCELLED\x10\x05*l\n" +
-	"\tQuotaType\x12\x1a\n" +
+	"\x1dSUBSCRIPTION_STATUS_CANCELLED\x10\x05*t\n" +
+	"\x11InternalQuotaType\x12\x1a\n" +
 	"\x16QUOTA_TYPE_UNSPECIFIED\x10\x00\x12\x16\n" +
 	"\x12QUOTA_TYPE_NUMERIC\x10\x01\x12\x14\n" +
 	"\x10QUOTA_TYPE_USAGE\x10\x02\x12\x15\n" +
-	"\x11QUOTA_TYPE_SWITCH\x10\x03*\x99\x01\n" +
-	"\tOrderType\x12\x1a\n" +
+	"\x11QUOTA_TYPE_SWITCH\x10\x03*\xa1\x01\n" +
+	"\x11InternalOrderType\x12\x1a\n" +
 	"\x16ORDER_TYPE_UNSPECIFIED\x10\x00\x12\x12\n" +
 	"\x0eORDER_TYPE_NEW\x10\x01\x12\x14\n" +
 	"\x10ORDER_TYPE_RENEW\x10\x02\x12\x16\n" +
 	"\x12ORDER_TYPE_UPGRADE\x10\x03\x12\x18\n" +
 	"\x14ORDER_TYPE_DOWNGRADE\x10\x04\x12\x14\n" +
-	"\x10ORDER_TYPE_TRIAL\x10\x05*~\n" +
-	"\fBillingCycle\x12\x1d\n" +
+	"\x10ORDER_TYPE_TRIAL\x10\x05*\x86\x01\n" +
+	"\x14InternalBillingCycle\x12\x1d\n" +
 	"\x19BILLING_CYCLE_UNSPECIFIED\x10\x00\x12\x19\n" +
 	"\x15BILLING_CYCLE_MONTHLY\x10\x01\x12\x18\n" +
 	"\x14BILLING_CYCLE_YEARLY\x10\x02\x12\x1a\n" +
-	"\x16BILLING_CYCLE_LIFETIME\x10\x03*\xac\x01\n" +
-	"\vOrderStatus\x12\x1c\n" +
+	"\x16BILLING_CYCLE_LIFETIME\x10\x03*\xb4\x01\n" +
+	"\x13InternalOrderStatus\x12\x1c\n" +
 	"\x18ORDER_STATUS_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14ORDER_STATUS_PENDING\x10\x01\x12\x15\n" +
 	"\x11ORDER_STATUS_PAID\x10\x02\x12\x1a\n" +
 	"\x16ORDER_STATUS_CANCELLED\x10\x03\x12\x19\n" +
 	"\x15ORDER_STATUS_REFUNDED\x10\x04\x12\x17\n" +
-	"\x13ORDER_STATUS_FAILED\x10\x052\xf6\x03\n" +
-	"\x1bSubscriptionInternalService\x12r\n" +
-	"\x11ListSubscriptions\x12-.api.subscription.v1.ListSubscriptionsRequest\x1a..api.subscription.v1.ListSubscriptionsResponse\x12u\n" +
-	"\x12CreateSubscription\x12..api.subscription.v1.CreateSubscriptionRequest\x1a/.api.subscription.v1.CreateSubscriptionResponse\x12r\n" +
-	"\x11ReNewSubscription\x12-.api.subscription.v1.ReNewSubscriptionRequest\x1a..api.subscription.v1.ReNewSubscriptionResponse\x12x\n" +
-	"\x13UpgradeSubscription\x12/.api.subscription.v1.UpgradeSubscriptionRequest\x1a0.api.subscription.v1.UpgradeSubscriptionResponseB\xe5\x01\n" +
+	"\x13ORDER_STATUS_FAILED\x10\x052\xda\x04\n" +
+	"\x1bSubscriptionInternalService\x12\x8a\x01\n" +
+	"\x19InternalListSubscriptions\x125.api.subscription.v1.InternalListSubscriptionsRequest\x1a6.api.subscription.v1.InternalListSubscriptionsResponse\x12\x8d\x01\n" +
+	"\x1aInternalCreateSubscription\x126.api.subscription.v1.InternalCreateSubscriptionRequest\x1a7.api.subscription.v1.InternalCreateSubscriptionResponse\x12\x8a\x01\n" +
+	"\x19InternalReNewSubscription\x125.api.subscription.v1.InternalReNewSubscriptionRequest\x1a6.api.subscription.v1.InternalReNewSubscriptionResponse\x12\x90\x01\n" +
+	"\x1bInternalUpgradeSubscription\x127.api.subscription.v1.InternalUpgradeSubscriptionRequest\x1a8.api.subscription.v1.InternalUpgradeSubscriptionResponseB\xe5\x01\n" +
 	"\x17com.api.subscription.v1B\x19SubscriptionInternalProtoP\x01ZAgithub.com/heyinLab/common/api/gen/go/subscribe/v1;subscriptionv1\xa2\x02\x03ASX\xaa\x02\x13Api.Subscription.V1\xca\x02\x13Api\\Subscription\\V1\xe2\x02\x1fApi\\Subscription\\V1\\GPBMetadata\xea\x02\x15Api::Subscription::V1b\x06proto3"
 
 var (
@@ -1620,69 +1620,69 @@ func file_subscribe_v1_subscription_internal_proto_rawDescGZIP() []byte {
 var file_subscribe_v1_subscription_internal_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
 var file_subscribe_v1_subscription_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
 var file_subscribe_v1_subscription_internal_proto_goTypes = []any{
-	(SubscriptionStatus)(0),             // 0: api.subscription.v1.SubscriptionStatus
-	(QuotaType)(0),                      // 1: api.subscription.v1.QuotaType
-	(OrderType)(0),                      // 2: api.subscription.v1.OrderType
-	(BillingCycle)(0),                   // 3: api.subscription.v1.BillingCycle
-	(OrderStatus)(0),                    // 4: api.subscription.v1.OrderStatus
-	(*SubscriptionInfo)(nil),            // 5: api.subscription.v1.SubscriptionInfo
-	(*QuotaUsageInfo)(nil),              // 6: api.subscription.v1.QuotaUsageInfo
-	(*SubscriptionOrderInfo)(nil),       // 7: api.subscription.v1.SubscriptionOrderInfo
-	(*ListSubscriptionsRequest)(nil),    // 8: api.subscription.v1.ListSubscriptionsRequest
-	(*ListSubscriptionsResponse)(nil),   // 9: api.subscription.v1.ListSubscriptionsResponse
-	(*CreateSubscriptionRequest)(nil),   // 10: api.subscription.v1.CreateSubscriptionRequest
-	(*CreateSubscriptionResponse)(nil),  // 11: api.subscription.v1.CreateSubscriptionResponse
-	(*ReNewSubscriptionRequest)(nil),    // 12: api.subscription.v1.ReNewSubscriptionRequest
-	(*ReNewSubscriptionResponse)(nil),   // 13: api.subscription.v1.ReNewSubscriptionResponse
-	(*UpgradeSubscriptionRequest)(nil),  // 14: api.subscription.v1.UpgradeSubscriptionRequest
-	(*UpgradeSubscriptionResponse)(nil), // 15: api.subscription.v1.UpgradeSubscriptionResponse
-	(*structpb.Struct)(nil),             // 16: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil),       // 17: google.protobuf.Timestamp
-	(*durationpb.Duration)(nil),         // 18: google.protobuf.Duration
+	(InternalSubscriptionStatus)(0),             // 0: api.subscription.v1.InternalSubscriptionStatus
+	(InternalQuotaType)(0),                      // 1: api.subscription.v1.InternalQuotaType
+	(InternalOrderType)(0),                      // 2: api.subscription.v1.InternalOrderType
+	(InternalBillingCycle)(0),                   // 3: api.subscription.v1.InternalBillingCycle
+	(InternalOrderStatus)(0),                    // 4: api.subscription.v1.InternalOrderStatus
+	(*InternalSubscriptionInfo)(nil),            // 5: api.subscription.v1.InternalSubscriptionInfo
+	(*InternalQuotaUsageInfo)(nil),              // 6: api.subscription.v1.InternalQuotaUsageInfo
+	(*InternalSubscriptionOrderInfo)(nil),       // 7: api.subscription.v1.InternalSubscriptionOrderInfo
+	(*InternalListSubscriptionsRequest)(nil),    // 8: api.subscription.v1.InternalListSubscriptionsRequest
+	(*InternalListSubscriptionsResponse)(nil),   // 9: api.subscription.v1.InternalListSubscriptionsResponse
+	(*InternalCreateSubscriptionRequest)(nil),   // 10: api.subscription.v1.InternalCreateSubscriptionRequest
+	(*InternalCreateSubscriptionResponse)(nil),  // 11: api.subscription.v1.InternalCreateSubscriptionResponse
+	(*InternalReNewSubscriptionRequest)(nil),    // 12: api.subscription.v1.InternalReNewSubscriptionRequest
+	(*InternalReNewSubscriptionResponse)(nil),   // 13: api.subscription.v1.InternalReNewSubscriptionResponse
+	(*InternalUpgradeSubscriptionRequest)(nil),  // 14: api.subscription.v1.InternalUpgradeSubscriptionRequest
+	(*InternalUpgradeSubscriptionResponse)(nil), // 15: api.subscription.v1.InternalUpgradeSubscriptionResponse
+	(*structpb.Struct)(nil),                     // 16: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),               // 17: google.protobuf.Timestamp
+	(*durationpb.Duration)(nil),                 // 18: google.protobuf.Duration
 }
 var file_subscribe_v1_subscription_internal_proto_depIdxs = []int32{
-	16, // 0: api.subscription.v1.SubscriptionInfo.product_i18n:type_name -> google.protobuf.Struct
-	16, // 1: api.subscription.v1.SubscriptionInfo.plan_i18n:type_name -> google.protobuf.Struct
-	0,  // 2: api.subscription.v1.SubscriptionInfo.status:type_name -> api.subscription.v1.SubscriptionStatus
-	17, // 3: api.subscription.v1.SubscriptionInfo.start_date:type_name -> google.protobuf.Timestamp
-	17, // 4: api.subscription.v1.SubscriptionInfo.end_date:type_name -> google.protobuf.Timestamp
-	17, // 5: api.subscription.v1.SubscriptionInfo.trial_end_date:type_name -> google.protobuf.Timestamp
-	16, // 6: api.subscription.v1.SubscriptionInfo.quota_snapshot:type_name -> google.protobuf.Struct
-	6,  // 7: api.subscription.v1.SubscriptionInfo.quota_usages:type_name -> api.subscription.v1.QuotaUsageInfo
-	17, // 8: api.subscription.v1.SubscriptionInfo.create_time:type_name -> google.protobuf.Timestamp
-	17, // 9: api.subscription.v1.SubscriptionInfo.update_time:type_name -> google.protobuf.Timestamp
-	16, // 10: api.subscription.v1.QuotaUsageInfo.dimension_i18n:type_name -> google.protobuf.Struct
-	1,  // 11: api.subscription.v1.QuotaUsageInfo.quota_type:type_name -> api.subscription.v1.QuotaType
-	2,  // 12: api.subscription.v1.SubscriptionOrderInfo.order_type:type_name -> api.subscription.v1.OrderType
-	3,  // 13: api.subscription.v1.SubscriptionOrderInfo.billing_cycle:type_name -> api.subscription.v1.BillingCycle
-	4,  // 14: api.subscription.v1.SubscriptionOrderInfo.status:type_name -> api.subscription.v1.OrderStatus
-	17, // 15: api.subscription.v1.SubscriptionOrderInfo.paid_at:type_name -> google.protobuf.Timestamp
-	17, // 16: api.subscription.v1.SubscriptionOrderInfo.cancelled_at:type_name -> google.protobuf.Timestamp
-	17, // 17: api.subscription.v1.SubscriptionOrderInfo.refunded_at:type_name -> google.protobuf.Timestamp
-	17, // 18: api.subscription.v1.SubscriptionOrderInfo.service_start_date:type_name -> google.protobuf.Timestamp
-	17, // 19: api.subscription.v1.SubscriptionOrderInfo.service_end_date:type_name -> google.protobuf.Timestamp
-	16, // 20: api.subscription.v1.SubscriptionOrderInfo.invoice_info:type_name -> google.protobuf.Struct
-	0,  // 21: api.subscription.v1.ListSubscriptionsRequest.status:type_name -> api.subscription.v1.SubscriptionStatus
-	5,  // 22: api.subscription.v1.ListSubscriptionsResponse.subscriptions:type_name -> api.subscription.v1.SubscriptionInfo
-	17, // 23: api.subscription.v1.CreateSubscriptionRequest.start_date:type_name -> google.protobuf.Timestamp
-	17, // 24: api.subscription.v1.CreateSubscriptionRequest.end_date:type_name -> google.protobuf.Timestamp
-	7,  // 25: api.subscription.v1.CreateSubscriptionRequest.order:type_name -> api.subscription.v1.SubscriptionOrderInfo
-	5,  // 26: api.subscription.v1.CreateSubscriptionResponse.subscription:type_name -> api.subscription.v1.SubscriptionInfo
-	18, // 27: api.subscription.v1.ReNewSubscriptionRequest.re_new_time:type_name -> google.protobuf.Duration
-	7,  // 28: api.subscription.v1.ReNewSubscriptionRequest.order:type_name -> api.subscription.v1.SubscriptionOrderInfo
-	5,  // 29: api.subscription.v1.ReNewSubscriptionResponse.subscription:type_name -> api.subscription.v1.SubscriptionInfo
-	17, // 30: api.subscription.v1.UpgradeSubscriptionRequest.start_date:type_name -> google.protobuf.Timestamp
-	17, // 31: api.subscription.v1.UpgradeSubscriptionRequest.end_date:type_name -> google.protobuf.Timestamp
-	7,  // 32: api.subscription.v1.UpgradeSubscriptionRequest.order:type_name -> api.subscription.v1.SubscriptionOrderInfo
-	5,  // 33: api.subscription.v1.UpgradeSubscriptionResponse.subscription:type_name -> api.subscription.v1.SubscriptionInfo
-	8,  // 34: api.subscription.v1.SubscriptionInternalService.ListSubscriptions:input_type -> api.subscription.v1.ListSubscriptionsRequest
-	10, // 35: api.subscription.v1.SubscriptionInternalService.CreateSubscription:input_type -> api.subscription.v1.CreateSubscriptionRequest
-	12, // 36: api.subscription.v1.SubscriptionInternalService.ReNewSubscription:input_type -> api.subscription.v1.ReNewSubscriptionRequest
-	14, // 37: api.subscription.v1.SubscriptionInternalService.UpgradeSubscription:input_type -> api.subscription.v1.UpgradeSubscriptionRequest
-	9,  // 38: api.subscription.v1.SubscriptionInternalService.ListSubscriptions:output_type -> api.subscription.v1.ListSubscriptionsResponse
-	11, // 39: api.subscription.v1.SubscriptionInternalService.CreateSubscription:output_type -> api.subscription.v1.CreateSubscriptionResponse
-	13, // 40: api.subscription.v1.SubscriptionInternalService.ReNewSubscription:output_type -> api.subscription.v1.ReNewSubscriptionResponse
-	15, // 41: api.subscription.v1.SubscriptionInternalService.UpgradeSubscription:output_type -> api.subscription.v1.UpgradeSubscriptionResponse
+	16, // 0: api.subscription.v1.InternalSubscriptionInfo.product_i18n:type_name -> google.protobuf.Struct
+	16, // 1: api.subscription.v1.InternalSubscriptionInfo.plan_i18n:type_name -> google.protobuf.Struct
+	0,  // 2: api.subscription.v1.InternalSubscriptionInfo.status:type_name -> api.subscription.v1.InternalSubscriptionStatus
+	17, // 3: api.subscription.v1.InternalSubscriptionInfo.start_date:type_name -> google.protobuf.Timestamp
+	17, // 4: api.subscription.v1.InternalSubscriptionInfo.end_date:type_name -> google.protobuf.Timestamp
+	17, // 5: api.subscription.v1.InternalSubscriptionInfo.trial_end_date:type_name -> google.protobuf.Timestamp
+	16, // 6: api.subscription.v1.InternalSubscriptionInfo.quota_snapshot:type_name -> google.protobuf.Struct
+	6,  // 7: api.subscription.v1.InternalSubscriptionInfo.quota_usages:type_name -> api.subscription.v1.InternalQuotaUsageInfo
+	17, // 8: api.subscription.v1.InternalSubscriptionInfo.create_time:type_name -> google.protobuf.Timestamp
+	17, // 9: api.subscription.v1.InternalSubscriptionInfo.update_time:type_name -> google.protobuf.Timestamp
+	16, // 10: api.subscription.v1.InternalQuotaUsageInfo.dimension_i18n:type_name -> google.protobuf.Struct
+	1,  // 11: api.subscription.v1.InternalQuotaUsageInfo.quota_type:type_name -> api.subscription.v1.InternalQuotaType
+	2,  // 12: api.subscription.v1.InternalSubscriptionOrderInfo.order_type:type_name -> api.subscription.v1.InternalOrderType
+	3,  // 13: api.subscription.v1.InternalSubscriptionOrderInfo.billing_cycle:type_name -> api.subscription.v1.InternalBillingCycle
+	4,  // 14: api.subscription.v1.InternalSubscriptionOrderInfo.status:type_name -> api.subscription.v1.InternalOrderStatus
+	17, // 15: api.subscription.v1.InternalSubscriptionOrderInfo.paid_at:type_name -> google.protobuf.Timestamp
+	17, // 16: api.subscription.v1.InternalSubscriptionOrderInfo.cancelled_at:type_name -> google.protobuf.Timestamp
+	17, // 17: api.subscription.v1.InternalSubscriptionOrderInfo.refunded_at:type_name -> google.protobuf.Timestamp
+	17, // 18: api.subscription.v1.InternalSubscriptionOrderInfo.service_start_date:type_name -> google.protobuf.Timestamp
+	17, // 19: api.subscription.v1.InternalSubscriptionOrderInfo.service_end_date:type_name -> google.protobuf.Timestamp
+	16, // 20: api.subscription.v1.InternalSubscriptionOrderInfo.invoice_info:type_name -> google.protobuf.Struct
+	0,  // 21: api.subscription.v1.InternalListSubscriptionsRequest.status:type_name -> api.subscription.v1.InternalSubscriptionStatus
+	5,  // 22: api.subscription.v1.InternalListSubscriptionsResponse.subscriptions:type_name -> api.subscription.v1.InternalSubscriptionInfo
+	17, // 23: api.subscription.v1.InternalCreateSubscriptionRequest.start_date:type_name -> google.protobuf.Timestamp
+	17, // 24: api.subscription.v1.InternalCreateSubscriptionRequest.end_date:type_name -> google.protobuf.Timestamp
+	7,  // 25: api.subscription.v1.InternalCreateSubscriptionRequest.order:type_name -> api.subscription.v1.InternalSubscriptionOrderInfo
+	5,  // 26: api.subscription.v1.InternalCreateSubscriptionResponse.subscription:type_name -> api.subscription.v1.InternalSubscriptionInfo
+	18, // 27: api.subscription.v1.InternalReNewSubscriptionRequest.re_new_time:type_name -> google.protobuf.Duration
+	7,  // 28: api.subscription.v1.InternalReNewSubscriptionRequest.order:type_name -> api.subscription.v1.InternalSubscriptionOrderInfo
+	5,  // 29: api.subscription.v1.InternalReNewSubscriptionResponse.subscription:type_name -> api.subscription.v1.InternalSubscriptionInfo
+	17, // 30: api.subscription.v1.InternalUpgradeSubscriptionRequest.start_date:type_name -> google.protobuf.Timestamp
+	17, // 31: api.subscription.v1.InternalUpgradeSubscriptionRequest.end_date:type_name -> google.protobuf.Timestamp
+	7,  // 32: api.subscription.v1.InternalUpgradeSubscriptionRequest.order:type_name -> api.subscription.v1.InternalSubscriptionOrderInfo
+	5,  // 33: api.subscription.v1.InternalUpgradeSubscriptionResponse.subscription:type_name -> api.subscription.v1.InternalSubscriptionInfo
+	8,  // 34: api.subscription.v1.SubscriptionInternalService.InternalListSubscriptions:input_type -> api.subscription.v1.InternalListSubscriptionsRequest
+	10, // 35: api.subscription.v1.SubscriptionInternalService.InternalCreateSubscription:input_type -> api.subscription.v1.InternalCreateSubscriptionRequest
+	12, // 36: api.subscription.v1.SubscriptionInternalService.InternalReNewSubscription:input_type -> api.subscription.v1.InternalReNewSubscriptionRequest
+	14, // 37: api.subscription.v1.SubscriptionInternalService.InternalUpgradeSubscription:input_type -> api.subscription.v1.InternalUpgradeSubscriptionRequest
+	9,  // 38: api.subscription.v1.SubscriptionInternalService.InternalListSubscriptions:output_type -> api.subscription.v1.InternalListSubscriptionsResponse
+	11, // 39: api.subscription.v1.SubscriptionInternalService.InternalCreateSubscription:output_type -> api.subscription.v1.InternalCreateSubscriptionResponse
+	13, // 40: api.subscription.v1.SubscriptionInternalService.InternalReNewSubscription:output_type -> api.subscription.v1.InternalReNewSubscriptionResponse
+	15, // 41: api.subscription.v1.SubscriptionInternalService.InternalUpgradeSubscription:output_type -> api.subscription.v1.InternalUpgradeSubscriptionResponse
 	38, // [38:42] is the sub-list for method output_type
 	34, // [34:38] is the sub-list for method input_type
 	34, // [34:34] is the sub-list for extension type_name
