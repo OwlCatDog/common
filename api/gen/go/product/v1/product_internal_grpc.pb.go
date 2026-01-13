@@ -19,11 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ProductInternalService_GetPlan_FullMethodName            = "/api.product.v1.ProductInternalService/GetPlan"
-	ProductInternalService_MerchantGetPlan_FullMethodName    = "/api.product.v1.ProductInternalService/MerchantGetPlan"
-	ProductInternalService_ListPricingRules_FullMethodName   = "/api.product.v1.ProductInternalService/ListPricingRules"
-	ProductInternalService_GetProduct_FullMethodName         = "/api.product.v1.ProductInternalService/GetProduct"
-	ProductInternalService_MerchantGetProduct_FullMethodName = "/api.product.v1.ProductInternalService/MerchantGetProduct"
+	ProductInternalService_InternalGetPlan_FullMethodName            = "/api.product.v1.ProductInternalService/InternalGetPlan"
+	ProductInternalService_InternalMerchantGetPlan_FullMethodName    = "/api.product.v1.ProductInternalService/InternalMerchantGetPlan"
+	ProductInternalService_InternalListPricingRules_FullMethodName   = "/api.product.v1.ProductInternalService/InternalListPricingRules"
+	ProductInternalService_InternalGetProduct_FullMethodName         = "/api.product.v1.ProductInternalService/InternalGetProduct"
+	ProductInternalService_InternalMerchantGetProduct_FullMethodName = "/api.product.v1.ProductInternalService/InternalMerchantGetProduct"
 )
 
 // ProductInternalServiceClient is the client API for ProductInternalService service.
@@ -31,15 +31,15 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ProductInternalServiceClient interface {
 	// 获取套餐详情
-	GetPlan(ctx context.Context, in *GetPlanRequest, opts ...grpc.CallOption) (*GetPlanResponse, error)
+	InternalGetPlan(ctx context.Context, in *InternalGetPlanRequest, opts ...grpc.CallOption) (*InternalGetPlanResponse, error)
 	//  商户获取套餐详情
-	MerchantGetPlan(ctx context.Context, in *MerchantGetPlanRequest, opts ...grpc.CallOption) (*MerchantGetPlanResponse, error)
+	InternalMerchantGetPlan(ctx context.Context, in *InternalMerchantGetPlanRequest, opts ...grpc.CallOption) (*InternalMerchantGetPlanResponse, error)
 	// 获取定价规则列表
-	ListPricingRules(ctx context.Context, in *ListPricingRulesRequest, opts ...grpc.CallOption) (*ListPricingRulesResponse, error)
+	InternalListPricingRules(ctx context.Context, in *InternalListPricingRulesRequest, opts ...grpc.CallOption) (*InternalListPricingRulesResponse, error)
 	// 获取产品详情
-	GetProduct(ctx context.Context, in *GetProductRequest, opts ...grpc.CallOption) (*GetProductResponse, error)
+	InternalGetProduct(ctx context.Context, in *InternalGetProductRequest, opts ...grpc.CallOption) (*InternalGetProductResponse, error)
 	// 商户获取产品详情
-	MerchantGetProduct(ctx context.Context, in *MerchantGetProductRequest, opts ...grpc.CallOption) (*MerchantGetProductResponse, error)
+	InternalMerchantGetProduct(ctx context.Context, in *InternalMerchantGetProductRequest, opts ...grpc.CallOption) (*InternalMerchantGetProductResponse, error)
 }
 
 type productInternalServiceClient struct {
@@ -50,50 +50,50 @@ func NewProductInternalServiceClient(cc grpc.ClientConnInterface) ProductInterna
 	return &productInternalServiceClient{cc}
 }
 
-func (c *productInternalServiceClient) GetPlan(ctx context.Context, in *GetPlanRequest, opts ...grpc.CallOption) (*GetPlanResponse, error) {
+func (c *productInternalServiceClient) InternalGetPlan(ctx context.Context, in *InternalGetPlanRequest, opts ...grpc.CallOption) (*InternalGetPlanResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetPlanResponse)
-	err := c.cc.Invoke(ctx, ProductInternalService_GetPlan_FullMethodName, in, out, cOpts...)
+	out := new(InternalGetPlanResponse)
+	err := c.cc.Invoke(ctx, ProductInternalService_InternalGetPlan_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *productInternalServiceClient) MerchantGetPlan(ctx context.Context, in *MerchantGetPlanRequest, opts ...grpc.CallOption) (*MerchantGetPlanResponse, error) {
+func (c *productInternalServiceClient) InternalMerchantGetPlan(ctx context.Context, in *InternalMerchantGetPlanRequest, opts ...grpc.CallOption) (*InternalMerchantGetPlanResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(MerchantGetPlanResponse)
-	err := c.cc.Invoke(ctx, ProductInternalService_MerchantGetPlan_FullMethodName, in, out, cOpts...)
+	out := new(InternalMerchantGetPlanResponse)
+	err := c.cc.Invoke(ctx, ProductInternalService_InternalMerchantGetPlan_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *productInternalServiceClient) ListPricingRules(ctx context.Context, in *ListPricingRulesRequest, opts ...grpc.CallOption) (*ListPricingRulesResponse, error) {
+func (c *productInternalServiceClient) InternalListPricingRules(ctx context.Context, in *InternalListPricingRulesRequest, opts ...grpc.CallOption) (*InternalListPricingRulesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ListPricingRulesResponse)
-	err := c.cc.Invoke(ctx, ProductInternalService_ListPricingRules_FullMethodName, in, out, cOpts...)
+	out := new(InternalListPricingRulesResponse)
+	err := c.cc.Invoke(ctx, ProductInternalService_InternalListPricingRules_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *productInternalServiceClient) GetProduct(ctx context.Context, in *GetProductRequest, opts ...grpc.CallOption) (*GetProductResponse, error) {
+func (c *productInternalServiceClient) InternalGetProduct(ctx context.Context, in *InternalGetProductRequest, opts ...grpc.CallOption) (*InternalGetProductResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetProductResponse)
-	err := c.cc.Invoke(ctx, ProductInternalService_GetProduct_FullMethodName, in, out, cOpts...)
+	out := new(InternalGetProductResponse)
+	err := c.cc.Invoke(ctx, ProductInternalService_InternalGetProduct_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *productInternalServiceClient) MerchantGetProduct(ctx context.Context, in *MerchantGetProductRequest, opts ...grpc.CallOption) (*MerchantGetProductResponse, error) {
+func (c *productInternalServiceClient) InternalMerchantGetProduct(ctx context.Context, in *InternalMerchantGetProductRequest, opts ...grpc.CallOption) (*InternalMerchantGetProductResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(MerchantGetProductResponse)
-	err := c.cc.Invoke(ctx, ProductInternalService_MerchantGetProduct_FullMethodName, in, out, cOpts...)
+	out := new(InternalMerchantGetProductResponse)
+	err := c.cc.Invoke(ctx, ProductInternalService_InternalMerchantGetProduct_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -105,15 +105,15 @@ func (c *productInternalServiceClient) MerchantGetProduct(ctx context.Context, i
 // for forward compatibility.
 type ProductInternalServiceServer interface {
 	// 获取套餐详情
-	GetPlan(context.Context, *GetPlanRequest) (*GetPlanResponse, error)
+	InternalGetPlan(context.Context, *InternalGetPlanRequest) (*InternalGetPlanResponse, error)
 	//  商户获取套餐详情
-	MerchantGetPlan(context.Context, *MerchantGetPlanRequest) (*MerchantGetPlanResponse, error)
+	InternalMerchantGetPlan(context.Context, *InternalMerchantGetPlanRequest) (*InternalMerchantGetPlanResponse, error)
 	// 获取定价规则列表
-	ListPricingRules(context.Context, *ListPricingRulesRequest) (*ListPricingRulesResponse, error)
+	InternalListPricingRules(context.Context, *InternalListPricingRulesRequest) (*InternalListPricingRulesResponse, error)
 	// 获取产品详情
-	GetProduct(context.Context, *GetProductRequest) (*GetProductResponse, error)
+	InternalGetProduct(context.Context, *InternalGetProductRequest) (*InternalGetProductResponse, error)
 	// 商户获取产品详情
-	MerchantGetProduct(context.Context, *MerchantGetProductRequest) (*MerchantGetProductResponse, error)
+	InternalMerchantGetProduct(context.Context, *InternalMerchantGetProductRequest) (*InternalMerchantGetProductResponse, error)
 	mustEmbedUnimplementedProductInternalServiceServer()
 }
 
@@ -124,20 +124,20 @@ type ProductInternalServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedProductInternalServiceServer struct{}
 
-func (UnimplementedProductInternalServiceServer) GetPlan(context.Context, *GetPlanRequest) (*GetPlanResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetPlan not implemented")
+func (UnimplementedProductInternalServiceServer) InternalGetPlan(context.Context, *InternalGetPlanRequest) (*InternalGetPlanResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method InternalGetPlan not implemented")
 }
-func (UnimplementedProductInternalServiceServer) MerchantGetPlan(context.Context, *MerchantGetPlanRequest) (*MerchantGetPlanResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method MerchantGetPlan not implemented")
+func (UnimplementedProductInternalServiceServer) InternalMerchantGetPlan(context.Context, *InternalMerchantGetPlanRequest) (*InternalMerchantGetPlanResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method InternalMerchantGetPlan not implemented")
 }
-func (UnimplementedProductInternalServiceServer) ListPricingRules(context.Context, *ListPricingRulesRequest) (*ListPricingRulesResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method ListPricingRules not implemented")
+func (UnimplementedProductInternalServiceServer) InternalListPricingRules(context.Context, *InternalListPricingRulesRequest) (*InternalListPricingRulesResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method InternalListPricingRules not implemented")
 }
-func (UnimplementedProductInternalServiceServer) GetProduct(context.Context, *GetProductRequest) (*GetProductResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method GetProduct not implemented")
+func (UnimplementedProductInternalServiceServer) InternalGetProduct(context.Context, *InternalGetProductRequest) (*InternalGetProductResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method InternalGetProduct not implemented")
 }
-func (UnimplementedProductInternalServiceServer) MerchantGetProduct(context.Context, *MerchantGetProductRequest) (*MerchantGetProductResponse, error) {
-	return nil, status.Error(codes.Unimplemented, "method MerchantGetProduct not implemented")
+func (UnimplementedProductInternalServiceServer) InternalMerchantGetProduct(context.Context, *InternalMerchantGetProductRequest) (*InternalMerchantGetProductResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method InternalMerchantGetProduct not implemented")
 }
 func (UnimplementedProductInternalServiceServer) mustEmbedUnimplementedProductInternalServiceServer() {
 }
@@ -161,92 +161,92 @@ func RegisterProductInternalServiceServer(s grpc.ServiceRegistrar, srv ProductIn
 	s.RegisterService(&ProductInternalService_ServiceDesc, srv)
 }
 
-func _ProductInternalService_GetPlan_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPlanRequest)
+func _ProductInternalService_InternalGetPlan_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InternalGetPlanRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProductInternalServiceServer).GetPlan(ctx, in)
+		return srv.(ProductInternalServiceServer).InternalGetPlan(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProductInternalService_GetPlan_FullMethodName,
+		FullMethod: ProductInternalService_InternalGetPlan_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductInternalServiceServer).GetPlan(ctx, req.(*GetPlanRequest))
+		return srv.(ProductInternalServiceServer).InternalGetPlan(ctx, req.(*InternalGetPlanRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProductInternalService_MerchantGetPlan_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MerchantGetPlanRequest)
+func _ProductInternalService_InternalMerchantGetPlan_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InternalMerchantGetPlanRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProductInternalServiceServer).MerchantGetPlan(ctx, in)
+		return srv.(ProductInternalServiceServer).InternalMerchantGetPlan(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProductInternalService_MerchantGetPlan_FullMethodName,
+		FullMethod: ProductInternalService_InternalMerchantGetPlan_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductInternalServiceServer).MerchantGetPlan(ctx, req.(*MerchantGetPlanRequest))
+		return srv.(ProductInternalServiceServer).InternalMerchantGetPlan(ctx, req.(*InternalMerchantGetPlanRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProductInternalService_ListPricingRules_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListPricingRulesRequest)
+func _ProductInternalService_InternalListPricingRules_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InternalListPricingRulesRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProductInternalServiceServer).ListPricingRules(ctx, in)
+		return srv.(ProductInternalServiceServer).InternalListPricingRules(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProductInternalService_ListPricingRules_FullMethodName,
+		FullMethod: ProductInternalService_InternalListPricingRules_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductInternalServiceServer).ListPricingRules(ctx, req.(*ListPricingRulesRequest))
+		return srv.(ProductInternalServiceServer).InternalListPricingRules(ctx, req.(*InternalListPricingRulesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProductInternalService_GetProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetProductRequest)
+func _ProductInternalService_InternalGetProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InternalGetProductRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProductInternalServiceServer).GetProduct(ctx, in)
+		return srv.(ProductInternalServiceServer).InternalGetProduct(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProductInternalService_GetProduct_FullMethodName,
+		FullMethod: ProductInternalService_InternalGetProduct_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductInternalServiceServer).GetProduct(ctx, req.(*GetProductRequest))
+		return srv.(ProductInternalServiceServer).InternalGetProduct(ctx, req.(*InternalGetProductRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProductInternalService_MerchantGetProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(MerchantGetProductRequest)
+func _ProductInternalService_InternalMerchantGetProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(InternalMerchantGetProductRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProductInternalServiceServer).MerchantGetProduct(ctx, in)
+		return srv.(ProductInternalServiceServer).InternalMerchantGetProduct(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ProductInternalService_MerchantGetProduct_FullMethodName,
+		FullMethod: ProductInternalService_InternalMerchantGetProduct_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProductInternalServiceServer).MerchantGetProduct(ctx, req.(*MerchantGetProductRequest))
+		return srv.(ProductInternalServiceServer).InternalMerchantGetProduct(ctx, req.(*InternalMerchantGetProductRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -259,24 +259,24 @@ var ProductInternalService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ProductInternalServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetPlan",
-			Handler:    _ProductInternalService_GetPlan_Handler,
+			MethodName: "InternalGetPlan",
+			Handler:    _ProductInternalService_InternalGetPlan_Handler,
 		},
 		{
-			MethodName: "MerchantGetPlan",
-			Handler:    _ProductInternalService_MerchantGetPlan_Handler,
+			MethodName: "InternalMerchantGetPlan",
+			Handler:    _ProductInternalService_InternalMerchantGetPlan_Handler,
 		},
 		{
-			MethodName: "ListPricingRules",
-			Handler:    _ProductInternalService_ListPricingRules_Handler,
+			MethodName: "InternalListPricingRules",
+			Handler:    _ProductInternalService_InternalListPricingRules_Handler,
 		},
 		{
-			MethodName: "GetProduct",
-			Handler:    _ProductInternalService_GetProduct_Handler,
+			MethodName: "InternalGetProduct",
+			Handler:    _ProductInternalService_InternalGetProduct_Handler,
 		},
 		{
-			MethodName: "MerchantGetProduct",
-			Handler:    _ProductInternalService_MerchantGetProduct_Handler,
+			MethodName: "InternalMerchantGetProduct",
+			Handler:    _ProductInternalService_InternalMerchantGetProduct_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

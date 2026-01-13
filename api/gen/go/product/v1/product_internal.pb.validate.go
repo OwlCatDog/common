@@ -35,22 +35,22 @@ var (
 	_ = sort.Sort
 )
 
-// Validate checks the field values on PlanParameter with the rules defined in
-// the proto definition for this message. If any rules are violated, the first
-// error encountered is returned, or nil if there are no violations.
-func (m *PlanParameter) Validate() error {
+// Validate checks the field values on InternalPlanParameter with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *InternalPlanParameter) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on PlanParameter with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in PlanParameterMultiError, or
-// nil if none found.
-func (m *PlanParameter) ValidateAll() error {
+// ValidateAll checks the field values on InternalPlanParameter with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// InternalPlanParameterMultiError, or nil if none found.
+func (m *InternalPlanParameter) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *PlanParameter) validate(all bool) error {
+func (m *InternalPlanParameter) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -73,7 +73,7 @@ func (m *PlanParameter) validate(all bool) error {
 		switch v := interface{}(m.GetRuleI18N()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, PlanParameterValidationError{
+				errors = append(errors, InternalPlanParameterValidationError{
 					field:  "RuleI18N",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -81,7 +81,7 @@ func (m *PlanParameter) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, PlanParameterValidationError{
+				errors = append(errors, InternalPlanParameterValidationError{
 					field:  "RuleI18N",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -90,7 +90,7 @@ func (m *PlanParameter) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetRuleI18N()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return PlanParameterValidationError{
+			return InternalPlanParameterValidationError{
 				field:  "RuleI18N",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -107,19 +107,19 @@ func (m *PlanParameter) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return PlanParameterMultiError(errors)
+		return InternalPlanParameterMultiError(errors)
 	}
 
 	return nil
 }
 
-// PlanParameterMultiError is an error wrapping multiple validation errors
-// returned by PlanParameter.ValidateAll() if the designated constraints
-// aren't met.
-type PlanParameterMultiError []error
+// InternalPlanParameterMultiError is an error wrapping multiple validation
+// errors returned by InternalPlanParameter.ValidateAll() if the designated
+// constraints aren't met.
+type InternalPlanParameterMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m PlanParameterMultiError) Error() string {
+func (m InternalPlanParameterMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -128,11 +128,11 @@ func (m PlanParameterMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m PlanParameterMultiError) AllErrors() []error { return m }
+func (m InternalPlanParameterMultiError) AllErrors() []error { return m }
 
-// PlanParameterValidationError is the validation error returned by
-// PlanParameter.Validate if the designated constraints aren't met.
-type PlanParameterValidationError struct {
+// InternalPlanParameterValidationError is the validation error returned by
+// InternalPlanParameter.Validate if the designated constraints aren't met.
+type InternalPlanParameterValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -140,22 +140,24 @@ type PlanParameterValidationError struct {
 }
 
 // Field function returns field value.
-func (e PlanParameterValidationError) Field() string { return e.field }
+func (e InternalPlanParameterValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e PlanParameterValidationError) Reason() string { return e.reason }
+func (e InternalPlanParameterValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e PlanParameterValidationError) Cause() error { return e.cause }
+func (e InternalPlanParameterValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e PlanParameterValidationError) Key() bool { return e.key }
+func (e InternalPlanParameterValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e PlanParameterValidationError) ErrorName() string { return "PlanParameterValidationError" }
+func (e InternalPlanParameterValidationError) ErrorName() string {
+	return "InternalPlanParameterValidationError"
+}
 
 // Error satisfies the builtin error interface
-func (e PlanParameterValidationError) Error() string {
+func (e InternalPlanParameterValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -167,14 +169,14 @@ func (e PlanParameterValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sPlanParameter.%s: %s%s",
+		"invalid %sInternalPlanParameter.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = PlanParameterValidationError{}
+var _ error = InternalPlanParameterValidationError{}
 
 var _ interface {
 	Field() string
@@ -182,24 +184,24 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = PlanParameterValidationError{}
+} = InternalPlanParameterValidationError{}
 
-// Validate checks the field values on ProductPlanInfo with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *ProductPlanInfo) Validate() error {
+// Validate checks the field values on InternalProductPlanInfo with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *InternalProductPlanInfo) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on ProductPlanInfo with the rules
-// defined in the proto definition for this message. If any rules are
+// ValidateAll checks the field values on InternalProductPlanInfo with the
+// rules defined in the proto definition for this message. If any rules are
 // violated, the result is a list of violation errors wrapped in
-// ProductPlanInfoMultiError, or nil if none found.
-func (m *ProductPlanInfo) ValidateAll() error {
+// InternalProductPlanInfoMultiError, or nil if none found.
+func (m *InternalProductPlanInfo) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *ProductPlanInfo) validate(all bool) error {
+func (m *InternalProductPlanInfo) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -216,7 +218,7 @@ func (m *ProductPlanInfo) validate(all bool) error {
 		switch v := interface{}(m.GetI18N()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ProductPlanInfoValidationError{
+				errors = append(errors, InternalProductPlanInfoValidationError{
 					field:  "I18N",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -224,7 +226,7 @@ func (m *ProductPlanInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, ProductPlanInfoValidationError{
+				errors = append(errors, InternalProductPlanInfoValidationError{
 					field:  "I18N",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -233,7 +235,7 @@ func (m *ProductPlanInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetI18N()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ProductPlanInfoValidationError{
+			return InternalProductPlanInfoValidationError{
 				field:  "I18N",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -259,7 +261,7 @@ func (m *ProductPlanInfo) validate(all bool) error {
 		switch v := interface{}(m.GetCreateTime()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ProductPlanInfoValidationError{
+				errors = append(errors, InternalProductPlanInfoValidationError{
 					field:  "CreateTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -267,7 +269,7 @@ func (m *ProductPlanInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, ProductPlanInfoValidationError{
+				errors = append(errors, InternalProductPlanInfoValidationError{
 					field:  "CreateTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -276,7 +278,7 @@ func (m *ProductPlanInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetCreateTime()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ProductPlanInfoValidationError{
+			return InternalProductPlanInfoValidationError{
 				field:  "CreateTime",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -288,7 +290,7 @@ func (m *ProductPlanInfo) validate(all bool) error {
 		switch v := interface{}(m.GetUpdateTime()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ProductPlanInfoValidationError{
+				errors = append(errors, InternalProductPlanInfoValidationError{
 					field:  "UpdateTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -296,7 +298,7 @@ func (m *ProductPlanInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, ProductPlanInfoValidationError{
+				errors = append(errors, InternalProductPlanInfoValidationError{
 					field:  "UpdateTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -305,7 +307,7 @@ func (m *ProductPlanInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetUpdateTime()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ProductPlanInfoValidationError{
+			return InternalProductPlanInfoValidationError{
 				field:  "UpdateTime",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -320,7 +322,7 @@ func (m *ProductPlanInfo) validate(all bool) error {
 			switch v := interface{}(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, ProductPlanInfoValidationError{
+					errors = append(errors, InternalProductPlanInfoValidationError{
 						field:  fmt.Sprintf("Parameters[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -328,7 +330,7 @@ func (m *ProductPlanInfo) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, ProductPlanInfoValidationError{
+					errors = append(errors, InternalProductPlanInfoValidationError{
 						field:  fmt.Sprintf("Parameters[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -337,7 +339,7 @@ func (m *ProductPlanInfo) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return ProductPlanInfoValidationError{
+				return InternalProductPlanInfoValidationError{
 					field:  fmt.Sprintf("Parameters[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -352,360 +354,19 @@ func (m *ProductPlanInfo) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return ProductPlanInfoMultiError(errors)
+		return InternalProductPlanInfoMultiError(errors)
 	}
 
 	return nil
 }
 
-// ProductPlanInfoMultiError is an error wrapping multiple validation errors
-// returned by ProductPlanInfo.ValidateAll() if the designated constraints
-// aren't met.
-type ProductPlanInfoMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m ProductPlanInfoMultiError) Error() string {
-	msgs := make([]string, 0, len(m))
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m ProductPlanInfoMultiError) AllErrors() []error { return m }
-
-// ProductPlanInfoValidationError is the validation error returned by
-// ProductPlanInfo.Validate if the designated constraints aren't met.
-type ProductPlanInfoValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e ProductPlanInfoValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e ProductPlanInfoValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e ProductPlanInfoValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e ProductPlanInfoValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e ProductPlanInfoValidationError) ErrorName() string { return "ProductPlanInfoValidationError" }
-
-// Error satisfies the builtin error interface
-func (e ProductPlanInfoValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sProductPlanInfo.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = ProductPlanInfoValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = ProductPlanInfoValidationError{}
-
-// Validate checks the field values on GetPlanRequest with the rules defined in
-// the proto definition for this message. If any rules are violated, the first
-// error encountered is returned, or nil if there are no violations.
-func (m *GetPlanRequest) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on GetPlanRequest with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in GetPlanRequestMultiError,
-// or nil if none found.
-func (m *GetPlanRequest) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *GetPlanRequest) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	// no validation rules for PlanCode
-
-	if m.IncludeParameters != nil {
-		// no validation rules for IncludeParameters
-	}
-
-	if len(errors) > 0 {
-		return GetPlanRequestMultiError(errors)
-	}
-
-	return nil
-}
-
-// GetPlanRequestMultiError is an error wrapping multiple validation errors
-// returned by GetPlanRequest.ValidateAll() if the designated constraints
-// aren't met.
-type GetPlanRequestMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m GetPlanRequestMultiError) Error() string {
-	msgs := make([]string, 0, len(m))
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m GetPlanRequestMultiError) AllErrors() []error { return m }
-
-// GetPlanRequestValidationError is the validation error returned by
-// GetPlanRequest.Validate if the designated constraints aren't met.
-type GetPlanRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e GetPlanRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e GetPlanRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e GetPlanRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e GetPlanRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e GetPlanRequestValidationError) ErrorName() string { return "GetPlanRequestValidationError" }
-
-// Error satisfies the builtin error interface
-func (e GetPlanRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sGetPlanRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = GetPlanRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = GetPlanRequestValidationError{}
-
-// Validate checks the field values on GetPlanResponse with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *GetPlanResponse) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on GetPlanResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// GetPlanResponseMultiError, or nil if none found.
-func (m *GetPlanResponse) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *GetPlanResponse) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	if all {
-		switch v := interface{}(m.GetPlan()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, GetPlanResponseValidationError{
-					field:  "Plan",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, GetPlanResponseValidationError{
-					field:  "Plan",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetPlan()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return GetPlanResponseValidationError{
-				field:  "Plan",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if len(errors) > 0 {
-		return GetPlanResponseMultiError(errors)
-	}
-
-	return nil
-}
-
-// GetPlanResponseMultiError is an error wrapping multiple validation errors
-// returned by GetPlanResponse.ValidateAll() if the designated constraints
-// aren't met.
-type GetPlanResponseMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m GetPlanResponseMultiError) Error() string {
-	msgs := make([]string, 0, len(m))
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m GetPlanResponseMultiError) AllErrors() []error { return m }
-
-// GetPlanResponseValidationError is the validation error returned by
-// GetPlanResponse.Validate if the designated constraints aren't met.
-type GetPlanResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e GetPlanResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e GetPlanResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e GetPlanResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e GetPlanResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e GetPlanResponseValidationError) ErrorName() string { return "GetPlanResponseValidationError" }
-
-// Error satisfies the builtin error interface
-func (e GetPlanResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sGetPlanResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = GetPlanResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = GetPlanResponseValidationError{}
-
-// Validate checks the field values on MerchantGetPlanRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *MerchantGetPlanRequest) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on MerchantGetPlanRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// MerchantGetPlanRequestMultiError, or nil if none found.
-func (m *MerchantGetPlanRequest) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *MerchantGetPlanRequest) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	// no validation rules for PlanCode
-
-	if m.IncludeParameters != nil {
-		// no validation rules for IncludeParameters
-	}
-
-	if len(errors) > 0 {
-		return MerchantGetPlanRequestMultiError(errors)
-	}
-
-	return nil
-}
-
-// MerchantGetPlanRequestMultiError is an error wrapping multiple validation
-// errors returned by MerchantGetPlanRequest.ValidateAll() if the designated
+// InternalProductPlanInfoMultiError is an error wrapping multiple validation
+// errors returned by InternalProductPlanInfo.ValidateAll() if the designated
 // constraints aren't met.
-type MerchantGetPlanRequestMultiError []error
+type InternalProductPlanInfoMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m MerchantGetPlanRequestMultiError) Error() string {
+func (m InternalProductPlanInfoMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -714,11 +375,11 @@ func (m MerchantGetPlanRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m MerchantGetPlanRequestMultiError) AllErrors() []error { return m }
+func (m InternalProductPlanInfoMultiError) AllErrors() []error { return m }
 
-// MerchantGetPlanRequestValidationError is the validation error returned by
-// MerchantGetPlanRequest.Validate if the designated constraints aren't met.
-type MerchantGetPlanRequestValidationError struct {
+// InternalProductPlanInfoValidationError is the validation error returned by
+// InternalProductPlanInfo.Validate if the designated constraints aren't met.
+type InternalProductPlanInfoValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -726,24 +387,24 @@ type MerchantGetPlanRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e MerchantGetPlanRequestValidationError) Field() string { return e.field }
+func (e InternalProductPlanInfoValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e MerchantGetPlanRequestValidationError) Reason() string { return e.reason }
+func (e InternalProductPlanInfoValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e MerchantGetPlanRequestValidationError) Cause() error { return e.cause }
+func (e InternalProductPlanInfoValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e MerchantGetPlanRequestValidationError) Key() bool { return e.key }
+func (e InternalProductPlanInfoValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e MerchantGetPlanRequestValidationError) ErrorName() string {
-	return "MerchantGetPlanRequestValidationError"
+func (e InternalProductPlanInfoValidationError) ErrorName() string {
+	return "InternalProductPlanInfoValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e MerchantGetPlanRequestValidationError) Error() string {
+func (e InternalProductPlanInfoValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -755,14 +416,14 @@ func (e MerchantGetPlanRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sMerchantGetPlanRequest.%s: %s%s",
+		"invalid %sInternalProductPlanInfo.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = MerchantGetPlanRequestValidationError{}
+var _ error = InternalProductPlanInfoValidationError{}
 
 var _ interface {
 	Field() string
@@ -770,24 +431,132 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = MerchantGetPlanRequestValidationError{}
+} = InternalProductPlanInfoValidationError{}
 
-// Validate checks the field values on MerchantGetPlanResponse with the rules
+// Validate checks the field values on InternalGetPlanRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
-func (m *MerchantGetPlanResponse) Validate() error {
+func (m *InternalGetPlanRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on MerchantGetPlanResponse with the
+// ValidateAll checks the field values on InternalGetPlanRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// InternalGetPlanRequestMultiError, or nil if none found.
+func (m *InternalGetPlanRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *InternalGetPlanRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for PlanCode
+
+	if m.IncludeParameters != nil {
+		// no validation rules for IncludeParameters
+	}
+
+	if len(errors) > 0 {
+		return InternalGetPlanRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// InternalGetPlanRequestMultiError is an error wrapping multiple validation
+// errors returned by InternalGetPlanRequest.ValidateAll() if the designated
+// constraints aren't met.
+type InternalGetPlanRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m InternalGetPlanRequestMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m InternalGetPlanRequestMultiError) AllErrors() []error { return m }
+
+// InternalGetPlanRequestValidationError is the validation error returned by
+// InternalGetPlanRequest.Validate if the designated constraints aren't met.
+type InternalGetPlanRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e InternalGetPlanRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e InternalGetPlanRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e InternalGetPlanRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e InternalGetPlanRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e InternalGetPlanRequestValidationError) ErrorName() string {
+	return "InternalGetPlanRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e InternalGetPlanRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sInternalGetPlanRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = InternalGetPlanRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = InternalGetPlanRequestValidationError{}
+
+// Validate checks the field values on InternalGetPlanResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *InternalGetPlanResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on InternalGetPlanResponse with the
 // rules defined in the proto definition for this message. If any rules are
 // violated, the result is a list of violation errors wrapped in
-// MerchantGetPlanResponseMultiError, or nil if none found.
-func (m *MerchantGetPlanResponse) ValidateAll() error {
+// InternalGetPlanResponseMultiError, or nil if none found.
+func (m *InternalGetPlanResponse) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *MerchantGetPlanResponse) validate(all bool) error {
+func (m *InternalGetPlanResponse) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -798,7 +567,7 @@ func (m *MerchantGetPlanResponse) validate(all bool) error {
 		switch v := interface{}(m.GetPlan()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, MerchantGetPlanResponseValidationError{
+				errors = append(errors, InternalGetPlanResponseValidationError{
 					field:  "Plan",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -806,7 +575,7 @@ func (m *MerchantGetPlanResponse) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, MerchantGetPlanResponseValidationError{
+				errors = append(errors, InternalGetPlanResponseValidationError{
 					field:  "Plan",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -815,7 +584,7 @@ func (m *MerchantGetPlanResponse) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetPlan()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return MerchantGetPlanResponseValidationError{
+			return InternalGetPlanResponseValidationError{
 				field:  "Plan",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -824,19 +593,19 @@ func (m *MerchantGetPlanResponse) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return MerchantGetPlanResponseMultiError(errors)
+		return InternalGetPlanResponseMultiError(errors)
 	}
 
 	return nil
 }
 
-// MerchantGetPlanResponseMultiError is an error wrapping multiple validation
-// errors returned by MerchantGetPlanResponse.ValidateAll() if the designated
+// InternalGetPlanResponseMultiError is an error wrapping multiple validation
+// errors returned by InternalGetPlanResponse.ValidateAll() if the designated
 // constraints aren't met.
-type MerchantGetPlanResponseMultiError []error
+type InternalGetPlanResponseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m MerchantGetPlanResponseMultiError) Error() string {
+func (m InternalGetPlanResponseMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -845,11 +614,11 @@ func (m MerchantGetPlanResponseMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m MerchantGetPlanResponseMultiError) AllErrors() []error { return m }
+func (m InternalGetPlanResponseMultiError) AllErrors() []error { return m }
 
-// MerchantGetPlanResponseValidationError is the validation error returned by
-// MerchantGetPlanResponse.Validate if the designated constraints aren't met.
-type MerchantGetPlanResponseValidationError struct {
+// InternalGetPlanResponseValidationError is the validation error returned by
+// InternalGetPlanResponse.Validate if the designated constraints aren't met.
+type InternalGetPlanResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -857,24 +626,24 @@ type MerchantGetPlanResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e MerchantGetPlanResponseValidationError) Field() string { return e.field }
+func (e InternalGetPlanResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e MerchantGetPlanResponseValidationError) Reason() string { return e.reason }
+func (e InternalGetPlanResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e MerchantGetPlanResponseValidationError) Cause() error { return e.cause }
+func (e InternalGetPlanResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e MerchantGetPlanResponseValidationError) Key() bool { return e.key }
+func (e InternalGetPlanResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e MerchantGetPlanResponseValidationError) ErrorName() string {
-	return "MerchantGetPlanResponseValidationError"
+func (e InternalGetPlanResponseValidationError) ErrorName() string {
+	return "InternalGetPlanResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e MerchantGetPlanResponseValidationError) Error() string {
+func (e InternalGetPlanResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -886,14 +655,14 @@ func (e MerchantGetPlanResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sMerchantGetPlanResponse.%s: %s%s",
+		"invalid %sInternalGetPlanResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = MerchantGetPlanResponseValidationError{}
+var _ error = InternalGetPlanResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -901,24 +670,265 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = MerchantGetPlanResponseValidationError{}
+} = InternalGetPlanResponseValidationError{}
 
-// Validate checks the field values on PricingRuleInfo with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *PricingRuleInfo) Validate() error {
+// Validate checks the field values on InternalMerchantGetPlanRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *InternalMerchantGetPlanRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on PricingRuleInfo with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// PricingRuleInfoMultiError, or nil if none found.
-func (m *PricingRuleInfo) ValidateAll() error {
+// ValidateAll checks the field values on InternalMerchantGetPlanRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// InternalMerchantGetPlanRequestMultiError, or nil if none found.
+func (m *InternalMerchantGetPlanRequest) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *PricingRuleInfo) validate(all bool) error {
+func (m *InternalMerchantGetPlanRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for PlanCode
+
+	if m.IncludeParameters != nil {
+		// no validation rules for IncludeParameters
+	}
+
+	if len(errors) > 0 {
+		return InternalMerchantGetPlanRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// InternalMerchantGetPlanRequestMultiError is an error wrapping multiple
+// validation errors returned by InternalMerchantGetPlanRequest.ValidateAll()
+// if the designated constraints aren't met.
+type InternalMerchantGetPlanRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m InternalMerchantGetPlanRequestMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m InternalMerchantGetPlanRequestMultiError) AllErrors() []error { return m }
+
+// InternalMerchantGetPlanRequestValidationError is the validation error
+// returned by InternalMerchantGetPlanRequest.Validate if the designated
+// constraints aren't met.
+type InternalMerchantGetPlanRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e InternalMerchantGetPlanRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e InternalMerchantGetPlanRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e InternalMerchantGetPlanRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e InternalMerchantGetPlanRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e InternalMerchantGetPlanRequestValidationError) ErrorName() string {
+	return "InternalMerchantGetPlanRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e InternalMerchantGetPlanRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sInternalMerchantGetPlanRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = InternalMerchantGetPlanRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = InternalMerchantGetPlanRequestValidationError{}
+
+// Validate checks the field values on InternalMerchantGetPlanResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *InternalMerchantGetPlanResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on InternalMerchantGetPlanResponse with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// InternalMerchantGetPlanResponseMultiError, or nil if none found.
+func (m *InternalMerchantGetPlanResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *InternalMerchantGetPlanResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetPlan()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, InternalMerchantGetPlanResponseValidationError{
+					field:  "Plan",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, InternalMerchantGetPlanResponseValidationError{
+					field:  "Plan",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetPlan()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return InternalMerchantGetPlanResponseValidationError{
+				field:  "Plan",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return InternalMerchantGetPlanResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// InternalMerchantGetPlanResponseMultiError is an error wrapping multiple
+// validation errors returned by InternalMerchantGetPlanResponse.ValidateAll()
+// if the designated constraints aren't met.
+type InternalMerchantGetPlanResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m InternalMerchantGetPlanResponseMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m InternalMerchantGetPlanResponseMultiError) AllErrors() []error { return m }
+
+// InternalMerchantGetPlanResponseValidationError is the validation error
+// returned by InternalMerchantGetPlanResponse.Validate if the designated
+// constraints aren't met.
+type InternalMerchantGetPlanResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e InternalMerchantGetPlanResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e InternalMerchantGetPlanResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e InternalMerchantGetPlanResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e InternalMerchantGetPlanResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e InternalMerchantGetPlanResponseValidationError) ErrorName() string {
+	return "InternalMerchantGetPlanResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e InternalMerchantGetPlanResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sInternalMerchantGetPlanResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = InternalMerchantGetPlanResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = InternalMerchantGetPlanResponseValidationError{}
+
+// Validate checks the field values on InternalPricingRuleInfo with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *InternalPricingRuleInfo) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on InternalPricingRuleInfo with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// InternalPricingRuleInfoMultiError, or nil if none found.
+func (m *InternalPricingRuleInfo) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *InternalPricingRuleInfo) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -933,7 +943,7 @@ func (m *PricingRuleInfo) validate(all bool) error {
 		switch v := interface{}(m.GetI18N()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, PricingRuleInfoValidationError{
+				errors = append(errors, InternalPricingRuleInfoValidationError{
 					field:  "I18N",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -941,7 +951,7 @@ func (m *PricingRuleInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, PricingRuleInfoValidationError{
+				errors = append(errors, InternalPricingRuleInfoValidationError{
 					field:  "I18N",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -950,7 +960,7 @@ func (m *PricingRuleInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetI18N()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return PricingRuleInfoValidationError{
+			return InternalPricingRuleInfoValidationError{
 				field:  "I18N",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -978,7 +988,7 @@ func (m *PricingRuleInfo) validate(all bool) error {
 		switch v := interface{}(m.GetCreateTime()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, PricingRuleInfoValidationError{
+				errors = append(errors, InternalPricingRuleInfoValidationError{
 					field:  "CreateTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -986,7 +996,7 @@ func (m *PricingRuleInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, PricingRuleInfoValidationError{
+				errors = append(errors, InternalPricingRuleInfoValidationError{
 					field:  "CreateTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -995,7 +1005,7 @@ func (m *PricingRuleInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetCreateTime()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return PricingRuleInfoValidationError{
+			return InternalPricingRuleInfoValidationError{
 				field:  "CreateTime",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -1007,7 +1017,7 @@ func (m *PricingRuleInfo) validate(all bool) error {
 		switch v := interface{}(m.GetUpdateTime()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, PricingRuleInfoValidationError{
+				errors = append(errors, InternalPricingRuleInfoValidationError{
 					field:  "UpdateTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1015,7 +1025,7 @@ func (m *PricingRuleInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, PricingRuleInfoValidationError{
+				errors = append(errors, InternalPricingRuleInfoValidationError{
 					field:  "UpdateTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1024,7 +1034,7 @@ func (m *PricingRuleInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetUpdateTime()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return PricingRuleInfoValidationError{
+			return InternalPricingRuleInfoValidationError{
 				field:  "UpdateTime",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -1039,19 +1049,19 @@ func (m *PricingRuleInfo) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return PricingRuleInfoMultiError(errors)
+		return InternalPricingRuleInfoMultiError(errors)
 	}
 
 	return nil
 }
 
-// PricingRuleInfoMultiError is an error wrapping multiple validation errors
-// returned by PricingRuleInfo.ValidateAll() if the designated constraints
-// aren't met.
-type PricingRuleInfoMultiError []error
+// InternalPricingRuleInfoMultiError is an error wrapping multiple validation
+// errors returned by InternalPricingRuleInfo.ValidateAll() if the designated
+// constraints aren't met.
+type InternalPricingRuleInfoMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m PricingRuleInfoMultiError) Error() string {
+func (m InternalPricingRuleInfoMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1060,11 +1070,11 @@ func (m PricingRuleInfoMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m PricingRuleInfoMultiError) AllErrors() []error { return m }
+func (m InternalPricingRuleInfoMultiError) AllErrors() []error { return m }
 
-// PricingRuleInfoValidationError is the validation error returned by
-// PricingRuleInfo.Validate if the designated constraints aren't met.
-type PricingRuleInfoValidationError struct {
+// InternalPricingRuleInfoValidationError is the validation error returned by
+// InternalPricingRuleInfo.Validate if the designated constraints aren't met.
+type InternalPricingRuleInfoValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1072,22 +1082,24 @@ type PricingRuleInfoValidationError struct {
 }
 
 // Field function returns field value.
-func (e PricingRuleInfoValidationError) Field() string { return e.field }
+func (e InternalPricingRuleInfoValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e PricingRuleInfoValidationError) Reason() string { return e.reason }
+func (e InternalPricingRuleInfoValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e PricingRuleInfoValidationError) Cause() error { return e.cause }
+func (e InternalPricingRuleInfoValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e PricingRuleInfoValidationError) Key() bool { return e.key }
+func (e InternalPricingRuleInfoValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e PricingRuleInfoValidationError) ErrorName() string { return "PricingRuleInfoValidationError" }
+func (e InternalPricingRuleInfoValidationError) ErrorName() string {
+	return "InternalPricingRuleInfoValidationError"
+}
 
 // Error satisfies the builtin error interface
-func (e PricingRuleInfoValidationError) Error() string {
+func (e InternalPricingRuleInfoValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1099,14 +1111,14 @@ func (e PricingRuleInfoValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sPricingRuleInfo.%s: %s%s",
+		"invalid %sInternalPricingRuleInfo.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = PricingRuleInfoValidationError{}
+var _ error = InternalPricingRuleInfoValidationError{}
 
 var _ interface {
 	Field() string
@@ -1114,24 +1126,24 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = PricingRuleInfoValidationError{}
+} = InternalPricingRuleInfoValidationError{}
 
-// Validate checks the field values on ListPricingRulesRequest with the rules
-// defined in the proto definition for this message. If any rules are
+// Validate checks the field values on InternalListPricingRulesRequest with the
+// rules defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
-func (m *ListPricingRulesRequest) Validate() error {
+func (m *InternalListPricingRulesRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on ListPricingRulesRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// ListPricingRulesRequestMultiError, or nil if none found.
-func (m *ListPricingRulesRequest) ValidateAll() error {
+// ValidateAll checks the field values on InternalListPricingRulesRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// InternalListPricingRulesRequestMultiError, or nil if none found.
+func (m *InternalListPricingRulesRequest) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *ListPricingRulesRequest) validate(all bool) error {
+func (m *InternalListPricingRulesRequest) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -1163,19 +1175,19 @@ func (m *ListPricingRulesRequest) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return ListPricingRulesRequestMultiError(errors)
+		return InternalListPricingRulesRequestMultiError(errors)
 	}
 
 	return nil
 }
 
-// ListPricingRulesRequestMultiError is an error wrapping multiple validation
-// errors returned by ListPricingRulesRequest.ValidateAll() if the designated
-// constraints aren't met.
-type ListPricingRulesRequestMultiError []error
+// InternalListPricingRulesRequestMultiError is an error wrapping multiple
+// validation errors returned by InternalListPricingRulesRequest.ValidateAll()
+// if the designated constraints aren't met.
+type InternalListPricingRulesRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m ListPricingRulesRequestMultiError) Error() string {
+func (m InternalListPricingRulesRequestMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1184,11 +1196,12 @@ func (m ListPricingRulesRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m ListPricingRulesRequestMultiError) AllErrors() []error { return m }
+func (m InternalListPricingRulesRequestMultiError) AllErrors() []error { return m }
 
-// ListPricingRulesRequestValidationError is the validation error returned by
-// ListPricingRulesRequest.Validate if the designated constraints aren't met.
-type ListPricingRulesRequestValidationError struct {
+// InternalListPricingRulesRequestValidationError is the validation error
+// returned by InternalListPricingRulesRequest.Validate if the designated
+// constraints aren't met.
+type InternalListPricingRulesRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1196,24 +1209,24 @@ type ListPricingRulesRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e ListPricingRulesRequestValidationError) Field() string { return e.field }
+func (e InternalListPricingRulesRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ListPricingRulesRequestValidationError) Reason() string { return e.reason }
+func (e InternalListPricingRulesRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ListPricingRulesRequestValidationError) Cause() error { return e.cause }
+func (e InternalListPricingRulesRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ListPricingRulesRequestValidationError) Key() bool { return e.key }
+func (e InternalListPricingRulesRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ListPricingRulesRequestValidationError) ErrorName() string {
-	return "ListPricingRulesRequestValidationError"
+func (e InternalListPricingRulesRequestValidationError) ErrorName() string {
+	return "InternalListPricingRulesRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ListPricingRulesRequestValidationError) Error() string {
+func (e InternalListPricingRulesRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1225,14 +1238,14 @@ func (e ListPricingRulesRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sListPricingRulesRequest.%s: %s%s",
+		"invalid %sInternalListPricingRulesRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ListPricingRulesRequestValidationError{}
+var _ error = InternalListPricingRulesRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -1240,24 +1253,25 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ListPricingRulesRequestValidationError{}
+} = InternalListPricingRulesRequestValidationError{}
 
-// Validate checks the field values on ListPricingRulesResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *ListPricingRulesResponse) Validate() error {
+// Validate checks the field values on InternalListPricingRulesResponse with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *InternalListPricingRulesResponse) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on ListPricingRulesResponse with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// ListPricingRulesResponseMultiError, or nil if none found.
-func (m *ListPricingRulesResponse) ValidateAll() error {
+// ValidateAll checks the field values on InternalListPricingRulesResponse with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// InternalListPricingRulesResponseMultiError, or nil if none found.
+func (m *InternalListPricingRulesResponse) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *ListPricingRulesResponse) validate(all bool) error {
+func (m *InternalListPricingRulesResponse) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -1271,7 +1285,7 @@ func (m *ListPricingRulesResponse) validate(all bool) error {
 			switch v := interface{}(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, ListPricingRulesResponseValidationError{
+					errors = append(errors, InternalListPricingRulesResponseValidationError{
 						field:  fmt.Sprintf("Rules[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1279,7 +1293,7 @@ func (m *ListPricingRulesResponse) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, ListPricingRulesResponseValidationError{
+					errors = append(errors, InternalListPricingRulesResponseValidationError{
 						field:  fmt.Sprintf("Rules[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1288,7 +1302,7 @@ func (m *ListPricingRulesResponse) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return ListPricingRulesResponseValidationError{
+				return InternalListPricingRulesResponseValidationError{
 					field:  fmt.Sprintf("Rules[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1309,19 +1323,20 @@ func (m *ListPricingRulesResponse) validate(all bool) error {
 	// no validation rules for Success
 
 	if len(errors) > 0 {
-		return ListPricingRulesResponseMultiError(errors)
+		return InternalListPricingRulesResponseMultiError(errors)
 	}
 
 	return nil
 }
 
-// ListPricingRulesResponseMultiError is an error wrapping multiple validation
-// errors returned by ListPricingRulesResponse.ValidateAll() if the designated
+// InternalListPricingRulesResponseMultiError is an error wrapping multiple
+// validation errors returned by
+// InternalListPricingRulesResponse.ValidateAll() if the designated
 // constraints aren't met.
-type ListPricingRulesResponseMultiError []error
+type InternalListPricingRulesResponseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m ListPricingRulesResponseMultiError) Error() string {
+func (m InternalListPricingRulesResponseMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1330,11 +1345,12 @@ func (m ListPricingRulesResponseMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m ListPricingRulesResponseMultiError) AllErrors() []error { return m }
+func (m InternalListPricingRulesResponseMultiError) AllErrors() []error { return m }
 
-// ListPricingRulesResponseValidationError is the validation error returned by
-// ListPricingRulesResponse.Validate if the designated constraints aren't met.
-type ListPricingRulesResponseValidationError struct {
+// InternalListPricingRulesResponseValidationError is the validation error
+// returned by InternalListPricingRulesResponse.Validate if the designated
+// constraints aren't met.
+type InternalListPricingRulesResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1342,24 +1358,24 @@ type ListPricingRulesResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e ListPricingRulesResponseValidationError) Field() string { return e.field }
+func (e InternalListPricingRulesResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ListPricingRulesResponseValidationError) Reason() string { return e.reason }
+func (e InternalListPricingRulesResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ListPricingRulesResponseValidationError) Cause() error { return e.cause }
+func (e InternalListPricingRulesResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ListPricingRulesResponseValidationError) Key() bool { return e.key }
+func (e InternalListPricingRulesResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ListPricingRulesResponseValidationError) ErrorName() string {
-	return "ListPricingRulesResponseValidationError"
+func (e InternalListPricingRulesResponseValidationError) ErrorName() string {
+	return "InternalListPricingRulesResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ListPricingRulesResponseValidationError) Error() string {
+func (e InternalListPricingRulesResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1371,14 +1387,14 @@ func (e ListPricingRulesResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sListPricingRulesResponse.%s: %s%s",
+		"invalid %sInternalListPricingRulesResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ListPricingRulesResponseValidationError{}
+var _ error = InternalListPricingRulesResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -1386,24 +1402,24 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ListPricingRulesResponseValidationError{}
+} = InternalListPricingRulesResponseValidationError{}
 
-// Validate checks the field values on ProductInfo with the rules defined in
-// the proto definition for this message. If any rules are violated, the first
-// error encountered is returned, or nil if there are no violations.
-func (m *ProductInfo) Validate() error {
+// Validate checks the field values on InternalProductInfo with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *InternalProductInfo) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on ProductInfo with the rules defined in
-// the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in ProductInfoMultiError, or
-// nil if none found.
-func (m *ProductInfo) ValidateAll() error {
+// ValidateAll checks the field values on InternalProductInfo with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// InternalProductInfoMultiError, or nil if none found.
+func (m *InternalProductInfo) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *ProductInfo) validate(all bool) error {
+func (m *InternalProductInfo) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -1420,7 +1436,7 @@ func (m *ProductInfo) validate(all bool) error {
 		switch v := interface{}(m.GetI18N()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ProductInfoValidationError{
+				errors = append(errors, InternalProductInfoValidationError{
 					field:  "I18N",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1428,7 +1444,7 @@ func (m *ProductInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, ProductInfoValidationError{
+				errors = append(errors, InternalProductInfoValidationError{
 					field:  "I18N",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1437,7 +1453,7 @@ func (m *ProductInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetI18N()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ProductInfoValidationError{
+			return InternalProductInfoValidationError{
 				field:  "I18N",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -1457,7 +1473,7 @@ func (m *ProductInfo) validate(all bool) error {
 		switch v := interface{}(m.GetCreateTime()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ProductInfoValidationError{
+				errors = append(errors, InternalProductInfoValidationError{
 					field:  "CreateTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1465,7 +1481,7 @@ func (m *ProductInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, ProductInfoValidationError{
+				errors = append(errors, InternalProductInfoValidationError{
 					field:  "CreateTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1474,7 +1490,7 @@ func (m *ProductInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetCreateTime()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ProductInfoValidationError{
+			return InternalProductInfoValidationError{
 				field:  "CreateTime",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -1486,7 +1502,7 @@ func (m *ProductInfo) validate(all bool) error {
 		switch v := interface{}(m.GetUpdateTime()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ProductInfoValidationError{
+				errors = append(errors, InternalProductInfoValidationError{
 					field:  "UpdateTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1494,7 +1510,7 @@ func (m *ProductInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, ProductInfoValidationError{
+				errors = append(errors, InternalProductInfoValidationError{
 					field:  "UpdateTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1503,7 +1519,7 @@ func (m *ProductInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetUpdateTime()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ProductInfoValidationError{
+			return InternalProductInfoValidationError{
 				field:  "UpdateTime",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -1524,18 +1540,19 @@ func (m *ProductInfo) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return ProductInfoMultiError(errors)
+		return InternalProductInfoMultiError(errors)
 	}
 
 	return nil
 }
 
-// ProductInfoMultiError is an error wrapping multiple validation errors
-// returned by ProductInfo.ValidateAll() if the designated constraints aren't met.
-type ProductInfoMultiError []error
+// InternalProductInfoMultiError is an error wrapping multiple validation
+// errors returned by InternalProductInfo.ValidateAll() if the designated
+// constraints aren't met.
+type InternalProductInfoMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m ProductInfoMultiError) Error() string {
+func (m InternalProductInfoMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1544,11 +1561,11 @@ func (m ProductInfoMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m ProductInfoMultiError) AllErrors() []error { return m }
+func (m InternalProductInfoMultiError) AllErrors() []error { return m }
 
-// ProductInfoValidationError is the validation error returned by
-// ProductInfo.Validate if the designated constraints aren't met.
-type ProductInfoValidationError struct {
+// InternalProductInfoValidationError is the validation error returned by
+// InternalProductInfo.Validate if the designated constraints aren't met.
+type InternalProductInfoValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1556,22 +1573,24 @@ type ProductInfoValidationError struct {
 }
 
 // Field function returns field value.
-func (e ProductInfoValidationError) Field() string { return e.field }
+func (e InternalProductInfoValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ProductInfoValidationError) Reason() string { return e.reason }
+func (e InternalProductInfoValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ProductInfoValidationError) Cause() error { return e.cause }
+func (e InternalProductInfoValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ProductInfoValidationError) Key() bool { return e.key }
+func (e InternalProductInfoValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ProductInfoValidationError) ErrorName() string { return "ProductInfoValidationError" }
+func (e InternalProductInfoValidationError) ErrorName() string {
+	return "InternalProductInfoValidationError"
+}
 
 // Error satisfies the builtin error interface
-func (e ProductInfoValidationError) Error() string {
+func (e InternalProductInfoValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1583,14 +1602,14 @@ func (e ProductInfoValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sProductInfo.%s: %s%s",
+		"invalid %sInternalProductInfo.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ProductInfoValidationError{}
+var _ error = InternalProductInfoValidationError{}
 
 var _ interface {
 	Field() string
@@ -1598,263 +1617,24 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ProductInfoValidationError{}
+} = InternalProductInfoValidationError{}
 
-// Validate checks the field values on GetProductRequest with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *GetProductRequest) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on GetProductRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// GetProductRequestMultiError, or nil if none found.
-func (m *GetProductRequest) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *GetProductRequest) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	// no validation rules for ProductCode
-
-	if m.IncludePlans != nil {
-		// no validation rules for IncludePlans
-	}
-
-	if len(errors) > 0 {
-		return GetProductRequestMultiError(errors)
-	}
-
-	return nil
-}
-
-// GetProductRequestMultiError is an error wrapping multiple validation errors
-// returned by GetProductRequest.ValidateAll() if the designated constraints
-// aren't met.
-type GetProductRequestMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m GetProductRequestMultiError) Error() string {
-	msgs := make([]string, 0, len(m))
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m GetProductRequestMultiError) AllErrors() []error { return m }
-
-// GetProductRequestValidationError is the validation error returned by
-// GetProductRequest.Validate if the designated constraints aren't met.
-type GetProductRequestValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e GetProductRequestValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e GetProductRequestValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e GetProductRequestValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e GetProductRequestValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e GetProductRequestValidationError) ErrorName() string {
-	return "GetProductRequestValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e GetProductRequestValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sGetProductRequest.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = GetProductRequestValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = GetProductRequestValidationError{}
-
-// Validate checks the field values on GetProductResponse with the rules
+// Validate checks the field values on InternalGetProductRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
-func (m *GetProductResponse) Validate() error {
+func (m *InternalGetProductRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on GetProductResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// GetProductResponseMultiError, or nil if none found.
-func (m *GetProductResponse) ValidateAll() error {
-	return m.validate(true)
-}
-
-func (m *GetProductResponse) validate(all bool) error {
-	if m == nil {
-		return nil
-	}
-
-	var errors []error
-
-	if all {
-		switch v := interface{}(m.GetProduct()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, GetProductResponseValidationError{
-					field:  "Product",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, GetProductResponseValidationError{
-					field:  "Product",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetProduct()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return GetProductResponseValidationError{
-				field:  "Product",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
-
-	if len(errors) > 0 {
-		return GetProductResponseMultiError(errors)
-	}
-
-	return nil
-}
-
-// GetProductResponseMultiError is an error wrapping multiple validation errors
-// returned by GetProductResponse.ValidateAll() if the designated constraints
-// aren't met.
-type GetProductResponseMultiError []error
-
-// Error returns a concatenation of all the error messages it wraps.
-func (m GetProductResponseMultiError) Error() string {
-	msgs := make([]string, 0, len(m))
-	for _, err := range m {
-		msgs = append(msgs, err.Error())
-	}
-	return strings.Join(msgs, "; ")
-}
-
-// AllErrors returns a list of validation violation errors.
-func (m GetProductResponseMultiError) AllErrors() []error { return m }
-
-// GetProductResponseValidationError is the validation error returned by
-// GetProductResponse.Validate if the designated constraints aren't met.
-type GetProductResponseValidationError struct {
-	field  string
-	reason string
-	cause  error
-	key    bool
-}
-
-// Field function returns field value.
-func (e GetProductResponseValidationError) Field() string { return e.field }
-
-// Reason function returns reason value.
-func (e GetProductResponseValidationError) Reason() string { return e.reason }
-
-// Cause function returns cause value.
-func (e GetProductResponseValidationError) Cause() error { return e.cause }
-
-// Key function returns key value.
-func (e GetProductResponseValidationError) Key() bool { return e.key }
-
-// ErrorName returns error name.
-func (e GetProductResponseValidationError) ErrorName() string {
-	return "GetProductResponseValidationError"
-}
-
-// Error satisfies the builtin error interface
-func (e GetProductResponseValidationError) Error() string {
-	cause := ""
-	if e.cause != nil {
-		cause = fmt.Sprintf(" | caused by: %v", e.cause)
-	}
-
-	key := ""
-	if e.key {
-		key = "key for "
-	}
-
-	return fmt.Sprintf(
-		"invalid %sGetProductResponse.%s: %s%s",
-		key,
-		e.field,
-		e.reason,
-		cause)
-}
-
-var _ error = GetProductResponseValidationError{}
-
-var _ interface {
-	Field() string
-	Reason() string
-	Key() bool
-	Cause() error
-	ErrorName() string
-} = GetProductResponseValidationError{}
-
-// Validate checks the field values on MerchantGetProductRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *MerchantGetProductRequest) Validate() error {
-	return m.validate(false)
-}
-
-// ValidateAll checks the field values on MerchantGetProductRequest with the
+// ValidateAll checks the field values on InternalGetProductRequest with the
 // rules defined in the proto definition for this message. If any rules are
 // violated, the result is a list of violation errors wrapped in
-// MerchantGetProductRequestMultiError, or nil if none found.
-func (m *MerchantGetProductRequest) ValidateAll() error {
+// InternalGetProductRequestMultiError, or nil if none found.
+func (m *InternalGetProductRequest) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *MerchantGetProductRequest) validate(all bool) error {
+func (m *InternalGetProductRequest) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -1868,19 +1648,19 @@ func (m *MerchantGetProductRequest) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return MerchantGetProductRequestMultiError(errors)
+		return InternalGetProductRequestMultiError(errors)
 	}
 
 	return nil
 }
 
-// MerchantGetProductRequestMultiError is an error wrapping multiple validation
-// errors returned by MerchantGetProductRequest.ValidateAll() if the
+// InternalGetProductRequestMultiError is an error wrapping multiple validation
+// errors returned by InternalGetProductRequest.ValidateAll() if the
 // designated constraints aren't met.
-type MerchantGetProductRequestMultiError []error
+type InternalGetProductRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m MerchantGetProductRequestMultiError) Error() string {
+func (m InternalGetProductRequestMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1889,11 +1669,11 @@ func (m MerchantGetProductRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m MerchantGetProductRequestMultiError) AllErrors() []error { return m }
+func (m InternalGetProductRequestMultiError) AllErrors() []error { return m }
 
-// MerchantGetProductRequestValidationError is the validation error returned by
-// MerchantGetProductRequest.Validate if the designated constraints aren't met.
-type MerchantGetProductRequestValidationError struct {
+// InternalGetProductRequestValidationError is the validation error returned by
+// InternalGetProductRequest.Validate if the designated constraints aren't met.
+type InternalGetProductRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1901,24 +1681,24 @@ type MerchantGetProductRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e MerchantGetProductRequestValidationError) Field() string { return e.field }
+func (e InternalGetProductRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e MerchantGetProductRequestValidationError) Reason() string { return e.reason }
+func (e InternalGetProductRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e MerchantGetProductRequestValidationError) Cause() error { return e.cause }
+func (e InternalGetProductRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e MerchantGetProductRequestValidationError) Key() bool { return e.key }
+func (e InternalGetProductRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e MerchantGetProductRequestValidationError) ErrorName() string {
-	return "MerchantGetProductRequestValidationError"
+func (e InternalGetProductRequestValidationError) ErrorName() string {
+	return "InternalGetProductRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e MerchantGetProductRequestValidationError) Error() string {
+func (e InternalGetProductRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1930,14 +1710,14 @@ func (e MerchantGetProductRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sMerchantGetProductRequest.%s: %s%s",
+		"invalid %sInternalGetProductRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = MerchantGetProductRequestValidationError{}
+var _ error = InternalGetProductRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -1945,24 +1725,24 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = MerchantGetProductRequestValidationError{}
+} = InternalGetProductRequestValidationError{}
 
-// Validate checks the field values on MerchantGetProductResponse with the
+// Validate checks the field values on InternalGetProductResponse with the
 // rules defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
-func (m *MerchantGetProductResponse) Validate() error {
+func (m *InternalGetProductResponse) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on MerchantGetProductResponse with the
+// ValidateAll checks the field values on InternalGetProductResponse with the
 // rules defined in the proto definition for this message. If any rules are
 // violated, the result is a list of violation errors wrapped in
-// MerchantGetProductResponseMultiError, or nil if none found.
-func (m *MerchantGetProductResponse) ValidateAll() error {
+// InternalGetProductResponseMultiError, or nil if none found.
+func (m *InternalGetProductResponse) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *MerchantGetProductResponse) validate(all bool) error {
+func (m *InternalGetProductResponse) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -1973,7 +1753,7 @@ func (m *MerchantGetProductResponse) validate(all bool) error {
 		switch v := interface{}(m.GetProduct()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, MerchantGetProductResponseValidationError{
+				errors = append(errors, InternalGetProductResponseValidationError{
 					field:  "Product",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1981,7 +1761,7 @@ func (m *MerchantGetProductResponse) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, MerchantGetProductResponseValidationError{
+				errors = append(errors, InternalGetProductResponseValidationError{
 					field:  "Product",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1990,7 +1770,7 @@ func (m *MerchantGetProductResponse) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetProduct()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return MerchantGetProductResponseValidationError{
+			return InternalGetProductResponseValidationError{
 				field:  "Product",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -1999,19 +1779,19 @@ func (m *MerchantGetProductResponse) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return MerchantGetProductResponseMultiError(errors)
+		return InternalGetProductResponseMultiError(errors)
 	}
 
 	return nil
 }
 
-// MerchantGetProductResponseMultiError is an error wrapping multiple
-// validation errors returned by MerchantGetProductResponse.ValidateAll() if
+// InternalGetProductResponseMultiError is an error wrapping multiple
+// validation errors returned by InternalGetProductResponse.ValidateAll() if
 // the designated constraints aren't met.
-type MerchantGetProductResponseMultiError []error
+type InternalGetProductResponseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m MerchantGetProductResponseMultiError) Error() string {
+func (m InternalGetProductResponseMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -2020,11 +1800,11 @@ func (m MerchantGetProductResponseMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m MerchantGetProductResponseMultiError) AllErrors() []error { return m }
+func (m InternalGetProductResponseMultiError) AllErrors() []error { return m }
 
-// MerchantGetProductResponseValidationError is the validation error returned
-// by MerchantGetProductResponse.Validate if the designated constraints aren't met.
-type MerchantGetProductResponseValidationError struct {
+// InternalGetProductResponseValidationError is the validation error returned
+// by InternalGetProductResponse.Validate if the designated constraints aren't met.
+type InternalGetProductResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -2032,24 +1812,24 @@ type MerchantGetProductResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e MerchantGetProductResponseValidationError) Field() string { return e.field }
+func (e InternalGetProductResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e MerchantGetProductResponseValidationError) Reason() string { return e.reason }
+func (e InternalGetProductResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e MerchantGetProductResponseValidationError) Cause() error { return e.cause }
+func (e InternalGetProductResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e MerchantGetProductResponseValidationError) Key() bool { return e.key }
+func (e InternalGetProductResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e MerchantGetProductResponseValidationError) ErrorName() string {
-	return "MerchantGetProductResponseValidationError"
+func (e InternalGetProductResponseValidationError) ErrorName() string {
+	return "InternalGetProductResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e MerchantGetProductResponseValidationError) Error() string {
+func (e InternalGetProductResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -2061,14 +1841,14 @@ func (e MerchantGetProductResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sMerchantGetProductResponse.%s: %s%s",
+		"invalid %sInternalGetProductResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = MerchantGetProductResponseValidationError{}
+var _ error = InternalGetProductResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -2076,4 +1856,249 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = MerchantGetProductResponseValidationError{}
+} = InternalGetProductResponseValidationError{}
+
+// Validate checks the field values on InternalMerchantGetProductRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *InternalMerchantGetProductRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on InternalMerchantGetProductRequest
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// InternalMerchantGetProductRequestMultiError, or nil if none found.
+func (m *InternalMerchantGetProductRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *InternalMerchantGetProductRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for ProductCode
+
+	if m.IncludePlans != nil {
+		// no validation rules for IncludePlans
+	}
+
+	if len(errors) > 0 {
+		return InternalMerchantGetProductRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// InternalMerchantGetProductRequestMultiError is an error wrapping multiple
+// validation errors returned by
+// InternalMerchantGetProductRequest.ValidateAll() if the designated
+// constraints aren't met.
+type InternalMerchantGetProductRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m InternalMerchantGetProductRequestMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m InternalMerchantGetProductRequestMultiError) AllErrors() []error { return m }
+
+// InternalMerchantGetProductRequestValidationError is the validation error
+// returned by InternalMerchantGetProductRequest.Validate if the designated
+// constraints aren't met.
+type InternalMerchantGetProductRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e InternalMerchantGetProductRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e InternalMerchantGetProductRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e InternalMerchantGetProductRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e InternalMerchantGetProductRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e InternalMerchantGetProductRequestValidationError) ErrorName() string {
+	return "InternalMerchantGetProductRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e InternalMerchantGetProductRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sInternalMerchantGetProductRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = InternalMerchantGetProductRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = InternalMerchantGetProductRequestValidationError{}
+
+// Validate checks the field values on InternalMerchantGetProductResponse with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *InternalMerchantGetProductResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on InternalMerchantGetProductResponse
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// InternalMerchantGetProductResponseMultiError, or nil if none found.
+func (m *InternalMerchantGetProductResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *InternalMerchantGetProductResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetProduct()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, InternalMerchantGetProductResponseValidationError{
+					field:  "Product",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, InternalMerchantGetProductResponseValidationError{
+					field:  "Product",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetProduct()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return InternalMerchantGetProductResponseValidationError{
+				field:  "Product",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return InternalMerchantGetProductResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// InternalMerchantGetProductResponseMultiError is an error wrapping multiple
+// validation errors returned by
+// InternalMerchantGetProductResponse.ValidateAll() if the designated
+// constraints aren't met.
+type InternalMerchantGetProductResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m InternalMerchantGetProductResponseMultiError) Error() string {
+	msgs := make([]string, 0, len(m))
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m InternalMerchantGetProductResponseMultiError) AllErrors() []error { return m }
+
+// InternalMerchantGetProductResponseValidationError is the validation error
+// returned by InternalMerchantGetProductResponse.Validate if the designated
+// constraints aren't met.
+type InternalMerchantGetProductResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e InternalMerchantGetProductResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e InternalMerchantGetProductResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e InternalMerchantGetProductResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e InternalMerchantGetProductResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e InternalMerchantGetProductResponseValidationError) ErrorName() string {
+	return "InternalMerchantGetProductResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e InternalMerchantGetProductResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sInternalMerchantGetProductResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = InternalMerchantGetProductResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = InternalMerchantGetProductResponseValidationError{}

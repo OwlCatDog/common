@@ -9,19 +9,19 @@ import "google/protobuf/timestamp.proto";
 
 service ProductInternalService {
   // 获取套餐详情
-  rpc GetPlan(GetPlanRequest) returns (GetPlanResponse);
+  rpc InternalGetPlan(InternalGetPlanRequest) returns (InternalGetPlanResponse);
   //  商户获取套餐详情
-  rpc MerchantGetPlan(MerchantGetPlanRequest) returns (MerchantGetPlanResponse);
+  rpc InternalMerchantGetPlan(InternalMerchantGetPlanRequest) returns (InternalMerchantGetPlanResponse);
   // 获取定价规则列表
-  rpc ListPricingRules(ListPricingRulesRequest)returns (ListPricingRulesResponse);
+  rpc InternalListPricingRules(InternalListPricingRulesRequest)returns (InternalListPricingRulesResponse);
   // 获取产品详情
-  rpc GetProduct(GetProductRequest) returns (GetProductResponse);
+  rpc InternalGetProduct(InternalGetProductRequest) returns (InternalGetProductResponse);
   // 商户获取产品详情
-  rpc MerchantGetProduct(MerchantGetProductRequest) returns (MerchantGetProductResponse);
+  rpc InternalMerchantGetProduct(InternalMerchantGetProductRequest) returns (InternalMerchantGetProductResponse);
 }
 
 // 套餐状态枚举
-enum PlanStatus {
+enum InternalPlanStatus {
   PLAN_STATUS_UNSPECIFIED = 0;
   PLAN_STATUS_DRAFT = 1;        // 草稿
   PLAN_STATUS_ACTIVE = 2;       // 上架
@@ -30,7 +30,7 @@ enum PlanStatus {
 }
 
 // 值类型枚举
-enum ValueType {
+enum InternalValueType {
   VALUE_TYPE_UNSPECIFIED = 0;
   VALUE_TYPE_STRING = 1;        // 字符串
   VALUE_TYPE_NUMBER = 2;        // 数字
@@ -39,12 +39,12 @@ enum ValueType {
 }
 
 // 套餐规则配置
-message PlanParameter {
+message InternalPlanParameter {
   uint32 id = 1 [json_name = "id"];                                       // 参数ID
   uint32 rule_id = 2 [json_name = "ruleId"];                              // 规则ID
   string rule_key = 3 [json_name = "ruleKey"];                            // 规则键名
   string rule_value = 4 [json_name = "ruleValue"];                        // 规则值
-  ValueType value_type = 5 [json_name = "valueType"];                     // 值类型
+  InternalValueType value_type = 5 [json_name = "valueType"];                     // 值类型
   bool is_stackable = 6 [json_name = "isStackable"];                      // 是否可叠加购买
   google.protobuf.Struct rule_i18n = 7 [json_name = "ruleI18n"];          // 规则多语言内容
   optional string unit = 8 [json_name = "unit"];                          // 单位
@@ -53,7 +53,7 @@ message PlanParameter {
 }
 
 // 产品套餐信息
-message ProductPlanInfo {
+message InternalProductPlanInfo {
   string product_code = 2 [json_name = "productCode"];                        // 产品ID
   string plan_code = 3 [json_name = "planCode"];                          // 套餐编码
   string plan_name = 17 [json_name = "planName"];                        // 套餐名称
@@ -63,38 +63,38 @@ message ProductPlanInfo {
   int64 price_yearly = 7 [json_name = "priceYearly"];                    // 年付价格
   string currency = 8 [json_name = "currency"];                           // 货币单位
   int32 sort_order = 10 [json_name = "sortOrder"];                        // 排序
-  PlanStatus status = 11 [json_name = "status"];                          // 状态
+  InternalPlanStatus status = 11 [json_name = "status"];                          // 状态
   bool is_trial_enabled = 12 [json_name = "isTrialEnabled"];              // 是否支持试用
   int32 trial_days = 13 [json_name = "trialDays"];                        // 试用天数
   google.protobuf.Timestamp create_time = 14 [json_name = "createTime"];  // 创建时间
   google.protobuf.Timestamp update_time = 15 [json_name = "updateTime"];  // 更新时间
-  repeated PlanParameter parameters = 16 [json_name = "parameters"];      // 套餐规则配置
+  repeated InternalPlanParameter parameters = 16 [json_name = "parameters"];      // 套餐规则配置
 }
 
 // 获取套餐请求
-message GetPlanRequest {
+message InternalGetPlanRequest {
   string plan_code = 1 [json_name = "planCode"];                          // 套餐编码
   optional bool include_parameters = 2 [json_name = "includeParameters"]; // 是否包含规则配置
 }
 
 // 获取套餐响应
-message GetPlanResponse {
-  ProductPlanInfo plan = 1 [json_name = "plan"];                          // 套餐信息
+message InternalGetPlanResponse {
+  InternalProductPlanInfo plan = 1 [json_name = "plan"];                          // 套餐信息
 }
 
 //  商户获取套餐请求
-message MerchantGetPlanRequest {
+message InternalMerchantGetPlanRequest {
   string plan_code = 3 [json_name = "planCode"];                          // 套餐编码
   optional bool include_parameters = 2 [json_name = "includeParameters"]; // 是否包含规则配置
 }
 
 //  商户获取套餐响应
-message MerchantGetPlanResponse {
-  ProductPlanInfo plan = 1 [json_name = "plan"];                          // 套餐信息
+message InternalMerchantGetPlanResponse {
+  InternalProductPlanInfo plan = 1 [json_name = "plan"];                          // 套餐信息
 }
 
 // 规则类型枚举
-enum RuleType {
+enum InternalRuleType {
   RULE_TYPE_UNSPECIFIED = 0;
   NUMERIC = 1;       // 数字型
   USAGE = 2;         // 用量型
@@ -102,14 +102,14 @@ enum RuleType {
 }
 
 // 规则状态枚举
-enum RuleStatus {
+enum InternalRuleStatus {
   RULE_STATUS_UNSPECIFIED = 0;
   RULE_ACTIVE = 1;   // 启用
   RULE_INACTIVE = 2; // 禁用
 }
 
 // 重置周期枚举
-enum ResetPeriod {
+enum InternalResetPeriod {
   RESET_PERIOD_UNSPECIFIED = 0;
   NONE = 1;          // 不重置
   DAILY = 2;         // 每日
@@ -119,18 +119,18 @@ enum ResetPeriod {
 }
 
 // 定价规则信息
-message PricingRuleInfo {
+message InternalPricingRuleInfo {
   uint32 id = 1 [json_name = "id"];                                       // 规则ID
   string rule_key = 2 [json_name = "ruleKey"];                            // 规则键名
   google.protobuf.Struct i18n = 3 [json_name = "i18n"];                   // 多语言内容
-  RuleType rule_type = 4 [json_name = "ruleType"];                        // 规则类型
+  InternalRuleType rule_type = 4 [json_name = "ruleType"];                        // 规则类型
   optional string unit = 5 [json_name = "unit"];                          // 单位
   repeated string checkpoints = 6 [json_name = "checkpoints"];            // 检查点列表
   bool is_visible = 7 [json_name = "isVisible"];                          // 是否显示在前端
   bool is_accumulative = 8 [json_name = "isAccumulative"];                // 是否累加计算
   bool is_reset_periodically = 9 [json_name = "isResetPeriodically"];    // 是否按周期重置
-  ResetPeriod reset_period = 10 [json_name = "resetPeriod"];              // 重置周期
-  RuleStatus status = 12 [json_name = "status"];                          // 状态
+  InternalResetPeriod reset_period = 10 [json_name = "resetPeriod"];              // 重置周期
+  InternalRuleStatus status = 12 [json_name = "status"];                          // 状态
   int32 sort_order = 13 [json_name = "sortOrder"];                        // 排序顺序
   int32 usage_count = 14 [json_name = "usageCount"];                      // 使用次数
   google.protobuf.Timestamp create_time = 15 [json_name = "createTime"];  // 创建时间
@@ -139,17 +139,17 @@ message PricingRuleInfo {
 }
 
 // 获取定价规则列表请求
-message ListPricingRulesRequest {
+message InternalListPricingRulesRequest {
   optional int32 page = 1 [json_name = "page"];                           // 页码
   optional int32 page_size = 2 [json_name = "pageSize"];                  // 每页数量
   optional string search = 3 [json_name = "search"];                      // 关键词搜索
-  optional RuleType rule_type = 4 [json_name = "ruleType"];               // 规则类型筛选
-  optional RuleStatus status = 5 [json_name = "status"];                  // 状态筛选
+  optional InternalRuleType rule_type = 4 [json_name = "ruleType"];               // 规则类型筛选
+  optional InternalRuleStatus status = 5 [json_name = "status"];                  // 状态筛选
   optional bool is_visible = 6 [json_name = "isVisible"];                 // 是否可见筛选
 }
 
-message ListPricingRulesResponse {
-  repeated PricingRuleInfo rules = 1 [json_name = "rules"];               // 规则列表
+message InternalListPricingRulesResponse {
+  repeated InternalPricingRuleInfo rules = 1 [json_name = "rules"];               // 规则列表
   int32 total = 2 [json_name = "total"];                                  // 总数
   int32 page = 3 [json_name = "page"];                                    // 当前页码
   int32 page_size = 4 [json_name = "pageSize"];
@@ -158,7 +158,7 @@ message ListPricingRulesResponse {
 }
 
 // 产品状态枚举
-enum ProductStatus {
+enum InternalProductStatus {
   PRODUCT_STATUS_UNSPECIFIED = 0;
   // 草稿
   PRODUCT_STATUS_DRAFT = 1;
@@ -171,7 +171,7 @@ enum ProductStatus {
 }
 
 // 产品信息
-message ProductInfo {
+message InternalProductInfo {
   uint32 id = 1 [json_name = "id"];                                       // 产品ID
   string product_code = 2 [json_name = "productCode"];                    // 产品编码
   string product_name = 11 [json_name = "productName"];                    // 产品名称
@@ -182,7 +182,7 @@ message ProductInfo {
   optional string category_name = 7 [json_name = "categoryName"];         // 分类名称
   repeated string tags = 8 [json_name = "tags"];                          // 产品标签
   int32 sort_order = 9 [json_name = "sortOrder"];                         // 排序
-  ProductStatus status = 10 [json_name = "status"];                       // 状态
+  InternalProductStatus status = 10 [json_name = "status"];                       // 状态
   int32 subscription_count = 16 [json_name = "subscriptionCount"];        // 订阅数量
   optional int64 price_monthly = 17 [json_name = "priceMonthly"];        // 月付价格（商户端使用）
   //  repeated PlanInfo plans = 18 [json_name = "plans"];                    // 套餐列表（仅当 includePlans=true 时返回）
@@ -191,23 +191,23 @@ message ProductInfo {
 }
 
 // 获取产品请求
-message GetProductRequest {
+message InternalGetProductRequest {
   string product_code = 1 [json_name = "productCode"];                    // 产品编码
   optional bool include_plans = 2 [json_name = "includePlans"];           // 是否包含套餐列表
 }
 
 // 获取产品响应
-message GetProductResponse {
-  ProductInfo product = 1 [json_name = "product"];                        // 产品信息
+message InternalGetProductResponse {
+  InternalProductInfo product = 1 [json_name = "product"];                        // 产品信息
 }
 
 // 商户获取产品请求
-message MerchantGetProductRequest {
+message InternalMerchantGetProductRequest {
   string product_code = 1 [json_name = "productCode"];                    // 产品编码
   optional bool include_plans = 2 [json_name = "includePlans"];           // 是否包含套餐列表
 }
 
 //商户获取产品响应
-message MerchantGetProductResponse {
-  ProductInfo product = 1 [json_name = "product"];                        // 产品信息
+message InternalMerchantGetProductResponse {
+  InternalProductInfo product = 1 [json_name = "product"];                        // 产品信息
 }

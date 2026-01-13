@@ -133,8 +133,8 @@ type GetPlanOption struct {
 }
 
 // GetPlan 获取套餐信息
-func (c *ProductClient) GetPlan(ctx context.Context, planCode string, opt *GetPlanOption) (*v1.ProductPlanInfo, error) {
-	req := &v1.GetPlanRequest{
+func (c *ProductClient) GetPlan(ctx context.Context, planCode string, opt *GetPlanOption) (*v1.InternalProductPlanInfo, error) {
+	req := &v1.InternalGetPlanRequest{
 		PlanCode:          planCode,
 		IncludeParameters: nil,
 	}
@@ -147,7 +147,7 @@ func (c *ProductClient) GetPlan(ctx context.Context, planCode string, opt *GetPl
 	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
 	defer cancel()
 
-	resp, err := c.client.GetPlan(ctx, req)
+	resp, err := c.client.InternalGetPlan(ctx, req)
 	if err != nil {
 		c.logger.WithContext(ctx).Errorf("获取套餐信息失败:plan_ode=%s,error=%v", planCode, err)
 		return nil, err
@@ -161,8 +161,8 @@ type MerchantGetPlanOption struct {
 }
 
 // MerchantGetPlan 商户获取套餐详情
-func (c *ProductClient) MerchantGetPlan(ctx context.Context, planCode string, opt *MerchantGetPlanOption) (*v1.ProductPlanInfo, error) {
-	req := &v1.MerchantGetPlanRequest{
+func (c *ProductClient) MerchantGetPlan(ctx context.Context, planCode string, opt *MerchantGetPlanOption) (*v1.InternalProductPlanInfo, error) {
+	req := &v1.InternalMerchantGetPlanRequest{
 		PlanCode:          planCode,
 		IncludeParameters: nil,
 	}
@@ -175,7 +175,7 @@ func (c *ProductClient) MerchantGetPlan(ctx context.Context, planCode string, op
 	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
 	defer cancel()
 
-	resp, err := c.client.MerchantGetPlan(ctx, req)
+	resp, err := c.client.InternalMerchantGetPlan(ctx, req)
 	if err != nil {
 		c.logger.WithContext(ctx).Errorf("商户获取套餐信息失败:plan_ode=%s,error=%v", planCode, err)
 		return nil, err
@@ -189,8 +189,8 @@ type GetProductOption struct {
 }
 
 // GetProduct 获取产品信息
-func (c *ProductClient) GetProduct(ctx context.Context, productCode string, opt *GetProductOption) (*v1.ProductInfo, error) {
-	req := &v1.GetProductRequest{
+func (c *ProductClient) GetProduct(ctx context.Context, productCode string, opt *GetProductOption) (*v1.InternalProductInfo, error) {
+	req := &v1.InternalGetProductRequest{
 		ProductCode:  productCode,
 		IncludePlans: nil,
 	}
@@ -203,7 +203,7 @@ func (c *ProductClient) GetProduct(ctx context.Context, productCode string, opt 
 	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
 	defer cancel()
 
-	resp, err := c.client.GetProduct(ctx, req)
+	resp, err := c.client.InternalGetProduct(ctx, req)
 	if err != nil {
 		c.logger.WithContext(ctx).Errorf("获取产品信息失败:product_code=%s,error=%v", productCode, err)
 		return nil, err
@@ -217,8 +217,8 @@ type GetMerchantGetProduct struct {
 }
 
 // MerchantGetProduct 商户获取产品
-func (c *ProductClient) MerchantGetProduct(ctx context.Context, productCode string, opt *GetMerchantGetProduct) (*v1.ProductInfo, error) {
-	req := &v1.MerchantGetProductRequest{
+func (c *ProductClient) MerchantGetProduct(ctx context.Context, productCode string, opt *GetMerchantGetProduct) (*v1.InternalProductInfo, error) {
+	req := &v1.InternalMerchantGetProductRequest{
 		ProductCode:  productCode,
 		IncludePlans: nil,
 	}
@@ -231,7 +231,7 @@ func (c *ProductClient) MerchantGetProduct(ctx context.Context, productCode stri
 	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
 	defer cancel()
 
-	resp, err := c.client.MerchantGetProduct(ctx, req)
+	resp, err := c.client.InternalMerchantGetProduct(ctx, req)
 	if err != nil {
 		c.logger.WithContext(ctx).Errorf("商户获取产品信息失败:product_code=%s,error=%v", productCode, err)
 		return nil, err
@@ -241,17 +241,17 @@ func (c *ProductClient) MerchantGetProduct(ctx context.Context, productCode stri
 }
 
 type ListPricingRulesOption struct {
-	Page      *int32         // 页码
-	PageSize  *int32         // 每页数量
-	Search    *string        // 关键词搜索
-	RuleType  *v1.RuleType   // 规则类型筛选
-	Status    *v1.RuleStatus // 状态筛选
-	IsVisible *bool          // 是否可见筛选
+	Page      *int32                 // 页码
+	PageSize  *int32                 // 每页数量
+	Search    *string                // 关键词搜索
+	RuleType  *v1.InternalRuleType   // 规则类型筛选
+	Status    *v1.InternalRuleStatus // 状态筛选
+	IsVisible *bool                  // 是否可见筛选
 }
 
 // 获取定价规则列表
-func (c *ProductClient) ListPricingRules(ctx context.Context, opt *ListPricingRulesOption) (*v1.ListPricingRulesResponse, error) {
-	req := &v1.ListPricingRulesRequest{
+func (c *ProductClient) ListPricingRules(ctx context.Context, opt *ListPricingRulesOption) (*v1.InternalListPricingRulesResponse, error) {
+	req := &v1.InternalListPricingRulesRequest{
 		Page:      nil,
 		PageSize:  nil,
 		Search:    nil,
@@ -284,7 +284,7 @@ func (c *ProductClient) ListPricingRules(ctx context.Context, opt *ListPricingRu
 	ctx, cancel := context.WithTimeout(ctx, c.config.Timeout)
 	defer cancel()
 
-	resp, err := c.client.ListPricingRules(ctx, req)
+	resp, err := c.client.InternalListPricingRules(ctx, req)
 	if err != nil {
 		c.logger.WithContext(ctx).Errorf("获取定价规则列表失败:error=%v", err)
 		return nil, err

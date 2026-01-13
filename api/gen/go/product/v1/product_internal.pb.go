@@ -24,26 +24,26 @@ const (
 )
 
 // 套餐状态枚举
-type PlanStatus int32
+type InternalPlanStatus int32
 
 const (
-	PlanStatus_PLAN_STATUS_UNSPECIFIED  PlanStatus = 0
-	PlanStatus_PLAN_STATUS_DRAFT        PlanStatus = 1 // 草稿
-	PlanStatus_PLAN_STATUS_ACTIVE       PlanStatus = 2 // 上架
-	PlanStatus_PLAN_STATUS_INACTIVE     PlanStatus = 3 // 下架
-	PlanStatus_PLAN_STATUS_DISCONTINUED PlanStatus = 4 // 停产
+	InternalPlanStatus_PLAN_STATUS_UNSPECIFIED  InternalPlanStatus = 0
+	InternalPlanStatus_PLAN_STATUS_DRAFT        InternalPlanStatus = 1 // 草稿
+	InternalPlanStatus_PLAN_STATUS_ACTIVE       InternalPlanStatus = 2 // 上架
+	InternalPlanStatus_PLAN_STATUS_INACTIVE     InternalPlanStatus = 3 // 下架
+	InternalPlanStatus_PLAN_STATUS_DISCONTINUED InternalPlanStatus = 4 // 停产
 )
 
-// Enum value maps for PlanStatus.
+// Enum value maps for InternalPlanStatus.
 var (
-	PlanStatus_name = map[int32]string{
+	InternalPlanStatus_name = map[int32]string{
 		0: "PLAN_STATUS_UNSPECIFIED",
 		1: "PLAN_STATUS_DRAFT",
 		2: "PLAN_STATUS_ACTIVE",
 		3: "PLAN_STATUS_INACTIVE",
 		4: "PLAN_STATUS_DISCONTINUED",
 	}
-	PlanStatus_value = map[string]int32{
+	InternalPlanStatus_value = map[string]int32{
 		"PLAN_STATUS_UNSPECIFIED":  0,
 		"PLAN_STATUS_DRAFT":        1,
 		"PLAN_STATUS_ACTIVE":       2,
@@ -52,54 +52,54 @@ var (
 	}
 )
 
-func (x PlanStatus) Enum() *PlanStatus {
-	p := new(PlanStatus)
+func (x InternalPlanStatus) Enum() *InternalPlanStatus {
+	p := new(InternalPlanStatus)
 	*p = x
 	return p
 }
 
-func (x PlanStatus) String() string {
+func (x InternalPlanStatus) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (PlanStatus) Descriptor() protoreflect.EnumDescriptor {
+func (InternalPlanStatus) Descriptor() protoreflect.EnumDescriptor {
 	return file_product_v1_product_internal_proto_enumTypes[0].Descriptor()
 }
 
-func (PlanStatus) Type() protoreflect.EnumType {
+func (InternalPlanStatus) Type() protoreflect.EnumType {
 	return &file_product_v1_product_internal_proto_enumTypes[0]
 }
 
-func (x PlanStatus) Number() protoreflect.EnumNumber {
+func (x InternalPlanStatus) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use PlanStatus.Descriptor instead.
-func (PlanStatus) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use InternalPlanStatus.Descriptor instead.
+func (InternalPlanStatus) EnumDescriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{0}
 }
 
 // 值类型枚举
-type ValueType int32
+type InternalValueType int32
 
 const (
-	ValueType_VALUE_TYPE_UNSPECIFIED ValueType = 0
-	ValueType_VALUE_TYPE_STRING      ValueType = 1 // 字符串
-	ValueType_VALUE_TYPE_NUMBER      ValueType = 2 // 数字
-	ValueType_VALUE_TYPE_BOOLEAN     ValueType = 3 // 布尔值
-	ValueType_VALUE_TYPE_DECIMAL     ValueType = 4 // 小数
+	InternalValueType_VALUE_TYPE_UNSPECIFIED InternalValueType = 0
+	InternalValueType_VALUE_TYPE_STRING      InternalValueType = 1 // 字符串
+	InternalValueType_VALUE_TYPE_NUMBER      InternalValueType = 2 // 数字
+	InternalValueType_VALUE_TYPE_BOOLEAN     InternalValueType = 3 // 布尔值
+	InternalValueType_VALUE_TYPE_DECIMAL     InternalValueType = 4 // 小数
 )
 
-// Enum value maps for ValueType.
+// Enum value maps for InternalValueType.
 var (
-	ValueType_name = map[int32]string{
+	InternalValueType_name = map[int32]string{
 		0: "VALUE_TYPE_UNSPECIFIED",
 		1: "VALUE_TYPE_STRING",
 		2: "VALUE_TYPE_NUMBER",
 		3: "VALUE_TYPE_BOOLEAN",
 		4: "VALUE_TYPE_DECIMAL",
 	}
-	ValueType_value = map[string]int32{
+	InternalValueType_value = map[string]int32{
 		"VALUE_TYPE_UNSPECIFIED": 0,
 		"VALUE_TYPE_STRING":      1,
 		"VALUE_TYPE_NUMBER":      2,
@@ -108,52 +108,52 @@ var (
 	}
 )
 
-func (x ValueType) Enum() *ValueType {
-	p := new(ValueType)
+func (x InternalValueType) Enum() *InternalValueType {
+	p := new(InternalValueType)
 	*p = x
 	return p
 }
 
-func (x ValueType) String() string {
+func (x InternalValueType) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (ValueType) Descriptor() protoreflect.EnumDescriptor {
+func (InternalValueType) Descriptor() protoreflect.EnumDescriptor {
 	return file_product_v1_product_internal_proto_enumTypes[1].Descriptor()
 }
 
-func (ValueType) Type() protoreflect.EnumType {
+func (InternalValueType) Type() protoreflect.EnumType {
 	return &file_product_v1_product_internal_proto_enumTypes[1]
 }
 
-func (x ValueType) Number() protoreflect.EnumNumber {
+func (x InternalValueType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use ValueType.Descriptor instead.
-func (ValueType) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use InternalValueType.Descriptor instead.
+func (InternalValueType) EnumDescriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{1}
 }
 
 // 规则类型枚举
-type RuleType int32
+type InternalRuleType int32
 
 const (
-	RuleType_RULE_TYPE_UNSPECIFIED RuleType = 0
-	RuleType_NUMERIC               RuleType = 1 // 数字型
-	RuleType_USAGE                 RuleType = 2 // 用量型
-	RuleType_SWITCH                RuleType = 3 // 开关型
+	InternalRuleType_RULE_TYPE_UNSPECIFIED InternalRuleType = 0
+	InternalRuleType_NUMERIC               InternalRuleType = 1 // 数字型
+	InternalRuleType_USAGE                 InternalRuleType = 2 // 用量型
+	InternalRuleType_SWITCH                InternalRuleType = 3 // 开关型
 )
 
-// Enum value maps for RuleType.
+// Enum value maps for InternalRuleType.
 var (
-	RuleType_name = map[int32]string{
+	InternalRuleType_name = map[int32]string{
 		0: "RULE_TYPE_UNSPECIFIED",
 		1: "NUMERIC",
 		2: "USAGE",
 		3: "SWITCH",
 	}
-	RuleType_value = map[string]int32{
+	InternalRuleType_value = map[string]int32{
 		"RULE_TYPE_UNSPECIFIED": 0,
 		"NUMERIC":               1,
 		"USAGE":                 2,
@@ -161,98 +161,98 @@ var (
 	}
 )
 
-func (x RuleType) Enum() *RuleType {
-	p := new(RuleType)
+func (x InternalRuleType) Enum() *InternalRuleType {
+	p := new(InternalRuleType)
 	*p = x
 	return p
 }
 
-func (x RuleType) String() string {
+func (x InternalRuleType) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (RuleType) Descriptor() protoreflect.EnumDescriptor {
+func (InternalRuleType) Descriptor() protoreflect.EnumDescriptor {
 	return file_product_v1_product_internal_proto_enumTypes[2].Descriptor()
 }
 
-func (RuleType) Type() protoreflect.EnumType {
+func (InternalRuleType) Type() protoreflect.EnumType {
 	return &file_product_v1_product_internal_proto_enumTypes[2]
 }
 
-func (x RuleType) Number() protoreflect.EnumNumber {
+func (x InternalRuleType) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use RuleType.Descriptor instead.
-func (RuleType) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use InternalRuleType.Descriptor instead.
+func (InternalRuleType) EnumDescriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{2}
 }
 
 // 规则状态枚举
-type RuleStatus int32
+type InternalRuleStatus int32
 
 const (
-	RuleStatus_RULE_STATUS_UNSPECIFIED RuleStatus = 0
-	RuleStatus_RULE_ACTIVE             RuleStatus = 1 // 启用
-	RuleStatus_RULE_INACTIVE           RuleStatus = 2 // 禁用
+	InternalRuleStatus_RULE_STATUS_UNSPECIFIED InternalRuleStatus = 0
+	InternalRuleStatus_RULE_ACTIVE             InternalRuleStatus = 1 // 启用
+	InternalRuleStatus_RULE_INACTIVE           InternalRuleStatus = 2 // 禁用
 )
 
-// Enum value maps for RuleStatus.
+// Enum value maps for InternalRuleStatus.
 var (
-	RuleStatus_name = map[int32]string{
+	InternalRuleStatus_name = map[int32]string{
 		0: "RULE_STATUS_UNSPECIFIED",
 		1: "RULE_ACTIVE",
 		2: "RULE_INACTIVE",
 	}
-	RuleStatus_value = map[string]int32{
+	InternalRuleStatus_value = map[string]int32{
 		"RULE_STATUS_UNSPECIFIED": 0,
 		"RULE_ACTIVE":             1,
 		"RULE_INACTIVE":           2,
 	}
 )
 
-func (x RuleStatus) Enum() *RuleStatus {
-	p := new(RuleStatus)
+func (x InternalRuleStatus) Enum() *InternalRuleStatus {
+	p := new(InternalRuleStatus)
 	*p = x
 	return p
 }
 
-func (x RuleStatus) String() string {
+func (x InternalRuleStatus) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (RuleStatus) Descriptor() protoreflect.EnumDescriptor {
+func (InternalRuleStatus) Descriptor() protoreflect.EnumDescriptor {
 	return file_product_v1_product_internal_proto_enumTypes[3].Descriptor()
 }
 
-func (RuleStatus) Type() protoreflect.EnumType {
+func (InternalRuleStatus) Type() protoreflect.EnumType {
 	return &file_product_v1_product_internal_proto_enumTypes[3]
 }
 
-func (x RuleStatus) Number() protoreflect.EnumNumber {
+func (x InternalRuleStatus) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use RuleStatus.Descriptor instead.
-func (RuleStatus) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use InternalRuleStatus.Descriptor instead.
+func (InternalRuleStatus) EnumDescriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{3}
 }
 
 // 重置周期枚举
-type ResetPeriod int32
+type InternalResetPeriod int32
 
 const (
-	ResetPeriod_RESET_PERIOD_UNSPECIFIED ResetPeriod = 0
-	ResetPeriod_NONE                     ResetPeriod = 1 // 不重置
-	ResetPeriod_DAILY                    ResetPeriod = 2 // 每日
-	ResetPeriod_WEEKLY                   ResetPeriod = 3 // 每周
-	ResetPeriod_MONTHLY                  ResetPeriod = 4 // 每月
-	ResetPeriod_YEARLY                   ResetPeriod = 5 // 每年
+	InternalResetPeriod_RESET_PERIOD_UNSPECIFIED InternalResetPeriod = 0
+	InternalResetPeriod_NONE                     InternalResetPeriod = 1 // 不重置
+	InternalResetPeriod_DAILY                    InternalResetPeriod = 2 // 每日
+	InternalResetPeriod_WEEKLY                   InternalResetPeriod = 3 // 每周
+	InternalResetPeriod_MONTHLY                  InternalResetPeriod = 4 // 每月
+	InternalResetPeriod_YEARLY                   InternalResetPeriod = 5 // 每年
 )
 
-// Enum value maps for ResetPeriod.
+// Enum value maps for InternalResetPeriod.
 var (
-	ResetPeriod_name = map[int32]string{
+	InternalResetPeriod_name = map[int32]string{
 		0: "RESET_PERIOD_UNSPECIFIED",
 		1: "NONE",
 		2: "DAILY",
@@ -260,7 +260,7 @@ var (
 		4: "MONTHLY",
 		5: "YEARLY",
 	}
-	ResetPeriod_value = map[string]int32{
+	InternalResetPeriod_value = map[string]int32{
 		"RESET_PERIOD_UNSPECIFIED": 0,
 		"NONE":                     1,
 		"DAILY":                    2,
@@ -270,58 +270,58 @@ var (
 	}
 )
 
-func (x ResetPeriod) Enum() *ResetPeriod {
-	p := new(ResetPeriod)
+func (x InternalResetPeriod) Enum() *InternalResetPeriod {
+	p := new(InternalResetPeriod)
 	*p = x
 	return p
 }
 
-func (x ResetPeriod) String() string {
+func (x InternalResetPeriod) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (ResetPeriod) Descriptor() protoreflect.EnumDescriptor {
+func (InternalResetPeriod) Descriptor() protoreflect.EnumDescriptor {
 	return file_product_v1_product_internal_proto_enumTypes[4].Descriptor()
 }
 
-func (ResetPeriod) Type() protoreflect.EnumType {
+func (InternalResetPeriod) Type() protoreflect.EnumType {
 	return &file_product_v1_product_internal_proto_enumTypes[4]
 }
 
-func (x ResetPeriod) Number() protoreflect.EnumNumber {
+func (x InternalResetPeriod) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use ResetPeriod.Descriptor instead.
-func (ResetPeriod) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use InternalResetPeriod.Descriptor instead.
+func (InternalResetPeriod) EnumDescriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{4}
 }
 
 // 产品状态枚举
-type ProductStatus int32
+type InternalProductStatus int32
 
 const (
-	ProductStatus_PRODUCT_STATUS_UNSPECIFIED ProductStatus = 0
+	InternalProductStatus_PRODUCT_STATUS_UNSPECIFIED InternalProductStatus = 0
 	// 草稿
-	ProductStatus_PRODUCT_STATUS_DRAFT ProductStatus = 1
+	InternalProductStatus_PRODUCT_STATUS_DRAFT InternalProductStatus = 1
 	// 上架
-	ProductStatus_PRODUCT_STATUS_ACTIVE ProductStatus = 2
+	InternalProductStatus_PRODUCT_STATUS_ACTIVE InternalProductStatus = 2
 	// 下架
-	ProductStatus_PRODUCT_STATUS_INACTIVE ProductStatus = 3
+	InternalProductStatus_PRODUCT_STATUS_INACTIVE InternalProductStatus = 3
 	// 停产
-	ProductStatus_PRODUCT_STATUS_DISCONTINUED ProductStatus = 4
+	InternalProductStatus_PRODUCT_STATUS_DISCONTINUED InternalProductStatus = 4
 )
 
-// Enum value maps for ProductStatus.
+// Enum value maps for InternalProductStatus.
 var (
-	ProductStatus_name = map[int32]string{
+	InternalProductStatus_name = map[int32]string{
 		0: "PRODUCT_STATUS_UNSPECIFIED",
 		1: "PRODUCT_STATUS_DRAFT",
 		2: "PRODUCT_STATUS_ACTIVE",
 		3: "PRODUCT_STATUS_INACTIVE",
 		4: "PRODUCT_STATUS_DISCONTINUED",
 	}
-	ProductStatus_value = map[string]int32{
+	InternalProductStatus_value = map[string]int32{
 		"PRODUCT_STATUS_UNSPECIFIED":  0,
 		"PRODUCT_STATUS_DRAFT":        1,
 		"PRODUCT_STATUS_ACTIVE":       2,
@@ -330,64 +330,64 @@ var (
 	}
 )
 
-func (x ProductStatus) Enum() *ProductStatus {
-	p := new(ProductStatus)
+func (x InternalProductStatus) Enum() *InternalProductStatus {
+	p := new(InternalProductStatus)
 	*p = x
 	return p
 }
 
-func (x ProductStatus) String() string {
+func (x InternalProductStatus) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (ProductStatus) Descriptor() protoreflect.EnumDescriptor {
+func (InternalProductStatus) Descriptor() protoreflect.EnumDescriptor {
 	return file_product_v1_product_internal_proto_enumTypes[5].Descriptor()
 }
 
-func (ProductStatus) Type() protoreflect.EnumType {
+func (InternalProductStatus) Type() protoreflect.EnumType {
 	return &file_product_v1_product_internal_proto_enumTypes[5]
 }
 
-func (x ProductStatus) Number() protoreflect.EnumNumber {
+func (x InternalProductStatus) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use ProductStatus.Descriptor instead.
-func (ProductStatus) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use InternalProductStatus.Descriptor instead.
+func (InternalProductStatus) EnumDescriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{5}
 }
 
 // 套餐规则配置
-type PlanParameter struct {
+type InternalPlanParameter struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                                                              // 参数ID
-	RuleId        uint32                 `protobuf:"varint,2,opt,name=rule_id,json=ruleId,proto3" json:"rule_id,omitempty"`                                        // 规则ID
-	RuleKey       string                 `protobuf:"bytes,3,opt,name=rule_key,json=ruleKey,proto3" json:"rule_key,omitempty"`                                      // 规则键名
-	RuleValue     string                 `protobuf:"bytes,4,opt,name=rule_value,json=ruleValue,proto3" json:"rule_value,omitempty"`                                // 规则值
-	ValueType     ValueType              `protobuf:"varint,5,opt,name=value_type,json=valueType,proto3,enum=api.product.v1.ValueType" json:"value_type,omitempty"` // 值类型
-	IsStackable   bool                   `protobuf:"varint,6,opt,name=is_stackable,json=isStackable,proto3" json:"is_stackable,omitempty"`                         // 是否可叠加购买
-	RuleI18N      *structpb.Struct       `protobuf:"bytes,7,opt,name=rule_i18n,json=ruleI18n,proto3" json:"rule_i18n,omitempty"`                                   // 规则多语言内容
-	Unit          *string                `protobuf:"bytes,8,opt,name=unit,proto3,oneof" json:"unit,omitempty"`                                                     // 单位
-	RuleType      string                 `protobuf:"bytes,9,opt,name=rule_type,json=ruleType,proto3" json:"rule_type,omitempty"`                                   // 规则类型
-	IsUnlimited   bool                   `protobuf:"varint,10,opt,name=is_unlimited,json=isUnlimited,proto3" json:"is_unlimited,omitempty"`                        // 是否无限制
+	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                                                                      // 参数ID
+	RuleId        uint32                 `protobuf:"varint,2,opt,name=rule_id,json=ruleId,proto3" json:"rule_id,omitempty"`                                                // 规则ID
+	RuleKey       string                 `protobuf:"bytes,3,opt,name=rule_key,json=ruleKey,proto3" json:"rule_key,omitempty"`                                              // 规则键名
+	RuleValue     string                 `protobuf:"bytes,4,opt,name=rule_value,json=ruleValue,proto3" json:"rule_value,omitempty"`                                        // 规则值
+	ValueType     InternalValueType      `protobuf:"varint,5,opt,name=value_type,json=valueType,proto3,enum=api.product.v1.InternalValueType" json:"value_type,omitempty"` // 值类型
+	IsStackable   bool                   `protobuf:"varint,6,opt,name=is_stackable,json=isStackable,proto3" json:"is_stackable,omitempty"`                                 // 是否可叠加购买
+	RuleI18N      *structpb.Struct       `protobuf:"bytes,7,opt,name=rule_i18n,json=ruleI18n,proto3" json:"rule_i18n,omitempty"`                                           // 规则多语言内容
+	Unit          *string                `protobuf:"bytes,8,opt,name=unit,proto3,oneof" json:"unit,omitempty"`                                                             // 单位
+	RuleType      string                 `protobuf:"bytes,9,opt,name=rule_type,json=ruleType,proto3" json:"rule_type,omitempty"`                                           // 规则类型
+	IsUnlimited   bool                   `protobuf:"varint,10,opt,name=is_unlimited,json=isUnlimited,proto3" json:"is_unlimited,omitempty"`                                // 是否无限制
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *PlanParameter) Reset() {
-	*x = PlanParameter{}
+func (x *InternalPlanParameter) Reset() {
+	*x = InternalPlanParameter{}
 	mi := &file_product_v1_product_internal_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *PlanParameter) String() string {
+func (x *InternalPlanParameter) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*PlanParameter) ProtoMessage() {}
+func (*InternalPlanParameter) ProtoMessage() {}
 
-func (x *PlanParameter) ProtoReflect() protoreflect.Message {
+func (x *InternalPlanParameter) ProtoReflect() protoreflect.Message {
 	mi := &file_product_v1_product_internal_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -399,75 +399,75 @@ func (x *PlanParameter) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use PlanParameter.ProtoReflect.Descriptor instead.
-func (*PlanParameter) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalPlanParameter.ProtoReflect.Descriptor instead.
+func (*InternalPlanParameter) Descriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *PlanParameter) GetId() uint32 {
+func (x *InternalPlanParameter) GetId() uint32 {
 	if x != nil {
 		return x.Id
 	}
 	return 0
 }
 
-func (x *PlanParameter) GetRuleId() uint32 {
+func (x *InternalPlanParameter) GetRuleId() uint32 {
 	if x != nil {
 		return x.RuleId
 	}
 	return 0
 }
 
-func (x *PlanParameter) GetRuleKey() string {
+func (x *InternalPlanParameter) GetRuleKey() string {
 	if x != nil {
 		return x.RuleKey
 	}
 	return ""
 }
 
-func (x *PlanParameter) GetRuleValue() string {
+func (x *InternalPlanParameter) GetRuleValue() string {
 	if x != nil {
 		return x.RuleValue
 	}
 	return ""
 }
 
-func (x *PlanParameter) GetValueType() ValueType {
+func (x *InternalPlanParameter) GetValueType() InternalValueType {
 	if x != nil {
 		return x.ValueType
 	}
-	return ValueType_VALUE_TYPE_UNSPECIFIED
+	return InternalValueType_VALUE_TYPE_UNSPECIFIED
 }
 
-func (x *PlanParameter) GetIsStackable() bool {
+func (x *InternalPlanParameter) GetIsStackable() bool {
 	if x != nil {
 		return x.IsStackable
 	}
 	return false
 }
 
-func (x *PlanParameter) GetRuleI18N() *structpb.Struct {
+func (x *InternalPlanParameter) GetRuleI18N() *structpb.Struct {
 	if x != nil {
 		return x.RuleI18N
 	}
 	return nil
 }
 
-func (x *PlanParameter) GetUnit() string {
+func (x *InternalPlanParameter) GetUnit() string {
 	if x != nil && x.Unit != nil {
 		return *x.Unit
 	}
 	return ""
 }
 
-func (x *PlanParameter) GetRuleType() string {
+func (x *InternalPlanParameter) GetRuleType() string {
 	if x != nil {
 		return x.RuleType
 	}
 	return ""
 }
 
-func (x *PlanParameter) GetIsUnlimited() bool {
+func (x *InternalPlanParameter) GetIsUnlimited() bool {
 	if x != nil {
 		return x.IsUnlimited
 	}
@@ -475,41 +475,41 @@ func (x *PlanParameter) GetIsUnlimited() bool {
 }
 
 // 产品套餐信息
-type ProductPlanInfo struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	ProductCode    string                 `protobuf:"bytes,2,opt,name=product_code,json=productCode,proto3" json:"product_code,omitempty"`              // 产品ID
-	PlanCode       string                 `protobuf:"bytes,3,opt,name=plan_code,json=planCode,proto3" json:"plan_code,omitempty"`                       // 套餐编码
-	PlanName       string                 `protobuf:"bytes,17,opt,name=plan_name,json=planName,proto3" json:"plan_name,omitempty"`                      // 套餐名称
-	I18N           *structpb.Struct       `protobuf:"bytes,4,opt,name=i18n,proto3" json:"i18n,omitempty"`                                               // 多语言内容
-	BadgeColor     *string                `protobuf:"bytes,5,opt,name=badge_color,json=badgeColor,proto3,oneof" json:"badge_color,omitempty"`           // 标识颜色
-	PriceMonthly   int64                  `protobuf:"varint,6,opt,name=price_monthly,json=priceMonthly,proto3" json:"price_monthly,omitempty"`          // 月付价格
-	PriceYearly    int64                  `protobuf:"varint,7,opt,name=price_yearly,json=priceYearly,proto3" json:"price_yearly,omitempty"`             // 年付价格
-	Currency       string                 `protobuf:"bytes,8,opt,name=currency,proto3" json:"currency,omitempty"`                                       // 货币单位
-	SortOrder      int32                  `protobuf:"varint,10,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"`                  // 排序
-	Status         PlanStatus             `protobuf:"varint,11,opt,name=status,proto3,enum=api.product.v1.PlanStatus" json:"status,omitempty"`          // 状态
-	IsTrialEnabled bool                   `protobuf:"varint,12,opt,name=is_trial_enabled,json=isTrialEnabled,proto3" json:"is_trial_enabled,omitempty"` // 是否支持试用
-	TrialDays      int32                  `protobuf:"varint,13,opt,name=trial_days,json=trialDays,proto3" json:"trial_days,omitempty"`                  // 试用天数
-	CreateTime     *timestamppb.Timestamp `protobuf:"bytes,14,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`                // 创建时间
-	UpdateTime     *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`                // 更新时间
-	Parameters     []*PlanParameter       `protobuf:"bytes,16,rep,name=parameters,proto3" json:"parameters,omitempty"`                                  // 套餐规则配置
+type InternalProductPlanInfo struct {
+	state          protoimpl.MessageState   `protogen:"open.v1"`
+	ProductCode    string                   `protobuf:"bytes,2,opt,name=product_code,json=productCode,proto3" json:"product_code,omitempty"`              // 产品ID
+	PlanCode       string                   `protobuf:"bytes,3,opt,name=plan_code,json=planCode,proto3" json:"plan_code,omitempty"`                       // 套餐编码
+	PlanName       string                   `protobuf:"bytes,17,opt,name=plan_name,json=planName,proto3" json:"plan_name,omitempty"`                      // 套餐名称
+	I18N           *structpb.Struct         `protobuf:"bytes,4,opt,name=i18n,proto3" json:"i18n,omitempty"`                                               // 多语言内容
+	BadgeColor     *string                  `protobuf:"bytes,5,opt,name=badge_color,json=badgeColor,proto3,oneof" json:"badge_color,omitempty"`           // 标识颜色
+	PriceMonthly   int64                    `protobuf:"varint,6,opt,name=price_monthly,json=priceMonthly,proto3" json:"price_monthly,omitempty"`          // 月付价格
+	PriceYearly    int64                    `protobuf:"varint,7,opt,name=price_yearly,json=priceYearly,proto3" json:"price_yearly,omitempty"`             // 年付价格
+	Currency       string                   `protobuf:"bytes,8,opt,name=currency,proto3" json:"currency,omitempty"`                                       // 货币单位
+	SortOrder      int32                    `protobuf:"varint,10,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"`                  // 排序
+	Status         InternalPlanStatus       `protobuf:"varint,11,opt,name=status,proto3,enum=api.product.v1.InternalPlanStatus" json:"status,omitempty"`  // 状态
+	IsTrialEnabled bool                     `protobuf:"varint,12,opt,name=is_trial_enabled,json=isTrialEnabled,proto3" json:"is_trial_enabled,omitempty"` // 是否支持试用
+	TrialDays      int32                    `protobuf:"varint,13,opt,name=trial_days,json=trialDays,proto3" json:"trial_days,omitempty"`                  // 试用天数
+	CreateTime     *timestamppb.Timestamp   `protobuf:"bytes,14,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`                // 创建时间
+	UpdateTime     *timestamppb.Timestamp   `protobuf:"bytes,15,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`                // 更新时间
+	Parameters     []*InternalPlanParameter `protobuf:"bytes,16,rep,name=parameters,proto3" json:"parameters,omitempty"`                                  // 套餐规则配置
 	unknownFields  protoimpl.UnknownFields
 	sizeCache      protoimpl.SizeCache
 }
 
-func (x *ProductPlanInfo) Reset() {
-	*x = ProductPlanInfo{}
+func (x *InternalProductPlanInfo) Reset() {
+	*x = InternalProductPlanInfo{}
 	mi := &file_product_v1_product_internal_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ProductPlanInfo) String() string {
+func (x *InternalProductPlanInfo) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ProductPlanInfo) ProtoMessage() {}
+func (*InternalProductPlanInfo) ProtoMessage() {}
 
-func (x *ProductPlanInfo) ProtoReflect() protoreflect.Message {
+func (x *InternalProductPlanInfo) ProtoReflect() protoreflect.Message {
 	mi := &file_product_v1_product_internal_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -521,110 +521,110 @@ func (x *ProductPlanInfo) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ProductPlanInfo.ProtoReflect.Descriptor instead.
-func (*ProductPlanInfo) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalProductPlanInfo.ProtoReflect.Descriptor instead.
+func (*InternalProductPlanInfo) Descriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *ProductPlanInfo) GetProductCode() string {
+func (x *InternalProductPlanInfo) GetProductCode() string {
 	if x != nil {
 		return x.ProductCode
 	}
 	return ""
 }
 
-func (x *ProductPlanInfo) GetPlanCode() string {
+func (x *InternalProductPlanInfo) GetPlanCode() string {
 	if x != nil {
 		return x.PlanCode
 	}
 	return ""
 }
 
-func (x *ProductPlanInfo) GetPlanName() string {
+func (x *InternalProductPlanInfo) GetPlanName() string {
 	if x != nil {
 		return x.PlanName
 	}
 	return ""
 }
 
-func (x *ProductPlanInfo) GetI18N() *structpb.Struct {
+func (x *InternalProductPlanInfo) GetI18N() *structpb.Struct {
 	if x != nil {
 		return x.I18N
 	}
 	return nil
 }
 
-func (x *ProductPlanInfo) GetBadgeColor() string {
+func (x *InternalProductPlanInfo) GetBadgeColor() string {
 	if x != nil && x.BadgeColor != nil {
 		return *x.BadgeColor
 	}
 	return ""
 }
 
-func (x *ProductPlanInfo) GetPriceMonthly() int64 {
+func (x *InternalProductPlanInfo) GetPriceMonthly() int64 {
 	if x != nil {
 		return x.PriceMonthly
 	}
 	return 0
 }
 
-func (x *ProductPlanInfo) GetPriceYearly() int64 {
+func (x *InternalProductPlanInfo) GetPriceYearly() int64 {
 	if x != nil {
 		return x.PriceYearly
 	}
 	return 0
 }
 
-func (x *ProductPlanInfo) GetCurrency() string {
+func (x *InternalProductPlanInfo) GetCurrency() string {
 	if x != nil {
 		return x.Currency
 	}
 	return ""
 }
 
-func (x *ProductPlanInfo) GetSortOrder() int32 {
+func (x *InternalProductPlanInfo) GetSortOrder() int32 {
 	if x != nil {
 		return x.SortOrder
 	}
 	return 0
 }
 
-func (x *ProductPlanInfo) GetStatus() PlanStatus {
+func (x *InternalProductPlanInfo) GetStatus() InternalPlanStatus {
 	if x != nil {
 		return x.Status
 	}
-	return PlanStatus_PLAN_STATUS_UNSPECIFIED
+	return InternalPlanStatus_PLAN_STATUS_UNSPECIFIED
 }
 
-func (x *ProductPlanInfo) GetIsTrialEnabled() bool {
+func (x *InternalProductPlanInfo) GetIsTrialEnabled() bool {
 	if x != nil {
 		return x.IsTrialEnabled
 	}
 	return false
 }
 
-func (x *ProductPlanInfo) GetTrialDays() int32 {
+func (x *InternalProductPlanInfo) GetTrialDays() int32 {
 	if x != nil {
 		return x.TrialDays
 	}
 	return 0
 }
 
-func (x *ProductPlanInfo) GetCreateTime() *timestamppb.Timestamp {
+func (x *InternalProductPlanInfo) GetCreateTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreateTime
 	}
 	return nil
 }
 
-func (x *ProductPlanInfo) GetUpdateTime() *timestamppb.Timestamp {
+func (x *InternalProductPlanInfo) GetUpdateTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdateTime
 	}
 	return nil
 }
 
-func (x *ProductPlanInfo) GetParameters() []*PlanParameter {
+func (x *InternalProductPlanInfo) GetParameters() []*InternalPlanParameter {
 	if x != nil {
 		return x.Parameters
 	}
@@ -632,7 +632,7 @@ func (x *ProductPlanInfo) GetParameters() []*PlanParameter {
 }
 
 // 获取套餐请求
-type GetPlanRequest struct {
+type InternalGetPlanRequest struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	PlanCode          string                 `protobuf:"bytes,1,opt,name=plan_code,json=planCode,proto3" json:"plan_code,omitempty"`                                   // 套餐编码
 	IncludeParameters *bool                  `protobuf:"varint,2,opt,name=include_parameters,json=includeParameters,proto3,oneof" json:"include_parameters,omitempty"` // 是否包含规则配置
@@ -640,20 +640,20 @@ type GetPlanRequest struct {
 	sizeCache         protoimpl.SizeCache
 }
 
-func (x *GetPlanRequest) Reset() {
-	*x = GetPlanRequest{}
+func (x *InternalGetPlanRequest) Reset() {
+	*x = InternalGetPlanRequest{}
 	mi := &file_product_v1_product_internal_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetPlanRequest) String() string {
+func (x *InternalGetPlanRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetPlanRequest) ProtoMessage() {}
+func (*InternalGetPlanRequest) ProtoMessage() {}
 
-func (x *GetPlanRequest) ProtoReflect() protoreflect.Message {
+func (x *InternalGetPlanRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_product_v1_product_internal_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -665,19 +665,19 @@ func (x *GetPlanRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetPlanRequest.ProtoReflect.Descriptor instead.
-func (*GetPlanRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalGetPlanRequest.ProtoReflect.Descriptor instead.
+func (*InternalGetPlanRequest) Descriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetPlanRequest) GetPlanCode() string {
+func (x *InternalGetPlanRequest) GetPlanCode() string {
 	if x != nil {
 		return x.PlanCode
 	}
 	return ""
 }
 
-func (x *GetPlanRequest) GetIncludeParameters() bool {
+func (x *InternalGetPlanRequest) GetIncludeParameters() bool {
 	if x != nil && x.IncludeParameters != nil {
 		return *x.IncludeParameters
 	}
@@ -685,27 +685,27 @@ func (x *GetPlanRequest) GetIncludeParameters() bool {
 }
 
 // 获取套餐响应
-type GetPlanResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Plan          *ProductPlanInfo       `protobuf:"bytes,1,opt,name=plan,proto3" json:"plan,omitempty"` // 套餐信息
+type InternalGetPlanResponse struct {
+	state         protoimpl.MessageState   `protogen:"open.v1"`
+	Plan          *InternalProductPlanInfo `protobuf:"bytes,1,opt,name=plan,proto3" json:"plan,omitempty"` // 套餐信息
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetPlanResponse) Reset() {
-	*x = GetPlanResponse{}
+func (x *InternalGetPlanResponse) Reset() {
+	*x = InternalGetPlanResponse{}
 	mi := &file_product_v1_product_internal_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetPlanResponse) String() string {
+func (x *InternalGetPlanResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetPlanResponse) ProtoMessage() {}
+func (*InternalGetPlanResponse) ProtoMessage() {}
 
-func (x *GetPlanResponse) ProtoReflect() protoreflect.Message {
+func (x *InternalGetPlanResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_product_v1_product_internal_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -717,12 +717,12 @@ func (x *GetPlanResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetPlanResponse.ProtoReflect.Descriptor instead.
-func (*GetPlanResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalGetPlanResponse.ProtoReflect.Descriptor instead.
+func (*InternalGetPlanResponse) Descriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *GetPlanResponse) GetPlan() *ProductPlanInfo {
+func (x *InternalGetPlanResponse) GetPlan() *InternalProductPlanInfo {
 	if x != nil {
 		return x.Plan
 	}
@@ -730,7 +730,7 @@ func (x *GetPlanResponse) GetPlan() *ProductPlanInfo {
 }
 
 //  商户获取套餐请求
-type MerchantGetPlanRequest struct {
+type InternalMerchantGetPlanRequest struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	PlanCode          string                 `protobuf:"bytes,3,opt,name=plan_code,json=planCode,proto3" json:"plan_code,omitempty"`                                   // 套餐编码
 	IncludeParameters *bool                  `protobuf:"varint,2,opt,name=include_parameters,json=includeParameters,proto3,oneof" json:"include_parameters,omitempty"` // 是否包含规则配置
@@ -738,20 +738,20 @@ type MerchantGetPlanRequest struct {
 	sizeCache         protoimpl.SizeCache
 }
 
-func (x *MerchantGetPlanRequest) Reset() {
-	*x = MerchantGetPlanRequest{}
+func (x *InternalMerchantGetPlanRequest) Reset() {
+	*x = InternalMerchantGetPlanRequest{}
 	mi := &file_product_v1_product_internal_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MerchantGetPlanRequest) String() string {
+func (x *InternalMerchantGetPlanRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MerchantGetPlanRequest) ProtoMessage() {}
+func (*InternalMerchantGetPlanRequest) ProtoMessage() {}
 
-func (x *MerchantGetPlanRequest) ProtoReflect() protoreflect.Message {
+func (x *InternalMerchantGetPlanRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_product_v1_product_internal_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -763,19 +763,19 @@ func (x *MerchantGetPlanRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MerchantGetPlanRequest.ProtoReflect.Descriptor instead.
-func (*MerchantGetPlanRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalMerchantGetPlanRequest.ProtoReflect.Descriptor instead.
+func (*InternalMerchantGetPlanRequest) Descriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *MerchantGetPlanRequest) GetPlanCode() string {
+func (x *InternalMerchantGetPlanRequest) GetPlanCode() string {
 	if x != nil {
 		return x.PlanCode
 	}
 	return ""
 }
 
-func (x *MerchantGetPlanRequest) GetIncludeParameters() bool {
+func (x *InternalMerchantGetPlanRequest) GetIncludeParameters() bool {
 	if x != nil && x.IncludeParameters != nil {
 		return *x.IncludeParameters
 	}
@@ -783,27 +783,27 @@ func (x *MerchantGetPlanRequest) GetIncludeParameters() bool {
 }
 
 //  商户获取套餐响应
-type MerchantGetPlanResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Plan          *ProductPlanInfo       `protobuf:"bytes,1,opt,name=plan,proto3" json:"plan,omitempty"` // 套餐信息
+type InternalMerchantGetPlanResponse struct {
+	state         protoimpl.MessageState   `protogen:"open.v1"`
+	Plan          *InternalProductPlanInfo `protobuf:"bytes,1,opt,name=plan,proto3" json:"plan,omitempty"` // 套餐信息
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MerchantGetPlanResponse) Reset() {
-	*x = MerchantGetPlanResponse{}
+func (x *InternalMerchantGetPlanResponse) Reset() {
+	*x = InternalMerchantGetPlanResponse{}
 	mi := &file_product_v1_product_internal_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MerchantGetPlanResponse) String() string {
+func (x *InternalMerchantGetPlanResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MerchantGetPlanResponse) ProtoMessage() {}
+func (*InternalMerchantGetPlanResponse) ProtoMessage() {}
 
-func (x *MerchantGetPlanResponse) ProtoReflect() protoreflect.Message {
+func (x *InternalMerchantGetPlanResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_product_v1_product_internal_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -815,12 +815,12 @@ func (x *MerchantGetPlanResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MerchantGetPlanResponse.ProtoReflect.Descriptor instead.
-func (*MerchantGetPlanResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalMerchantGetPlanResponse.ProtoReflect.Descriptor instead.
+func (*InternalMerchantGetPlanResponse) Descriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *MerchantGetPlanResponse) GetPlan() *ProductPlanInfo {
+func (x *InternalMerchantGetPlanResponse) GetPlan() *InternalProductPlanInfo {
 	if x != nil {
 		return x.Plan
 	}
@@ -828,42 +828,42 @@ func (x *MerchantGetPlanResponse) GetPlan() *ProductPlanInfo {
 }
 
 // 定价规则信息
-type PricingRuleInfo struct {
+type InternalPricingRuleInfo struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
-	Id                  uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                                                                       // 规则ID
-	RuleKey             string                 `protobuf:"bytes,2,opt,name=rule_key,json=ruleKey,proto3" json:"rule_key,omitempty"`                                               // 规则键名
-	I18N                *structpb.Struct       `protobuf:"bytes,3,opt,name=i18n,proto3" json:"i18n,omitempty"`                                                                    // 多语言内容
-	RuleType            RuleType               `protobuf:"varint,4,opt,name=rule_type,json=ruleType,proto3,enum=api.product.v1.RuleType" json:"rule_type,omitempty"`              // 规则类型
-	Unit                *string                `protobuf:"bytes,5,opt,name=unit,proto3,oneof" json:"unit,omitempty"`                                                              // 单位
-	Checkpoints         []string               `protobuf:"bytes,6,rep,name=checkpoints,proto3" json:"checkpoints,omitempty"`                                                      // 检查点列表
-	IsVisible           bool                   `protobuf:"varint,7,opt,name=is_visible,json=isVisible,proto3" json:"is_visible,omitempty"`                                        // 是否显示在前端
-	IsAccumulative      bool                   `protobuf:"varint,8,opt,name=is_accumulative,json=isAccumulative,proto3" json:"is_accumulative,omitempty"`                         // 是否累加计算
-	IsResetPeriodically bool                   `protobuf:"varint,9,opt,name=is_reset_periodically,json=isResetPeriodically,proto3" json:"is_reset_periodically,omitempty"`        // 是否按周期重置
-	ResetPeriod         ResetPeriod            `protobuf:"varint,10,opt,name=reset_period,json=resetPeriod,proto3,enum=api.product.v1.ResetPeriod" json:"reset_period,omitempty"` // 重置周期
-	Status              RuleStatus             `protobuf:"varint,12,opt,name=status,proto3,enum=api.product.v1.RuleStatus" json:"status,omitempty"`                               // 状态
-	SortOrder           int32                  `protobuf:"varint,13,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"`                                       // 排序顺序
-	UsageCount          int32                  `protobuf:"varint,14,opt,name=usage_count,json=usageCount,proto3" json:"usage_count,omitempty"`                                    // 使用次数
-	CreateTime          *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`                                     // 创建时间
-	UpdateTime          *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`                                     // 更新时间
-	AllowUnlimited      bool                   `protobuf:"varint,17,opt,name=allow_unlimited,json=allowUnlimited,proto3" json:"allow_unlimited,omitempty"`                        // 是否允许不限
+	Id                  uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                                                                               // 规则ID
+	RuleKey             string                 `protobuf:"bytes,2,opt,name=rule_key,json=ruleKey,proto3" json:"rule_key,omitempty"`                                                       // 规则键名
+	I18N                *structpb.Struct       `protobuf:"bytes,3,opt,name=i18n,proto3" json:"i18n,omitempty"`                                                                            // 多语言内容
+	RuleType            InternalRuleType       `protobuf:"varint,4,opt,name=rule_type,json=ruleType,proto3,enum=api.product.v1.InternalRuleType" json:"rule_type,omitempty"`              // 规则类型
+	Unit                *string                `protobuf:"bytes,5,opt,name=unit,proto3,oneof" json:"unit,omitempty"`                                                                      // 单位
+	Checkpoints         []string               `protobuf:"bytes,6,rep,name=checkpoints,proto3" json:"checkpoints,omitempty"`                                                              // 检查点列表
+	IsVisible           bool                   `protobuf:"varint,7,opt,name=is_visible,json=isVisible,proto3" json:"is_visible,omitempty"`                                                // 是否显示在前端
+	IsAccumulative      bool                   `protobuf:"varint,8,opt,name=is_accumulative,json=isAccumulative,proto3" json:"is_accumulative,omitempty"`                                 // 是否累加计算
+	IsResetPeriodically bool                   `protobuf:"varint,9,opt,name=is_reset_periodically,json=isResetPeriodically,proto3" json:"is_reset_periodically,omitempty"`                // 是否按周期重置
+	ResetPeriod         InternalResetPeriod    `protobuf:"varint,10,opt,name=reset_period,json=resetPeriod,proto3,enum=api.product.v1.InternalResetPeriod" json:"reset_period,omitempty"` // 重置周期
+	Status              InternalRuleStatus     `protobuf:"varint,12,opt,name=status,proto3,enum=api.product.v1.InternalRuleStatus" json:"status,omitempty"`                               // 状态
+	SortOrder           int32                  `protobuf:"varint,13,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"`                                               // 排序顺序
+	UsageCount          int32                  `protobuf:"varint,14,opt,name=usage_count,json=usageCount,proto3" json:"usage_count,omitempty"`                                            // 使用次数
+	CreateTime          *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty"`                                             // 创建时间
+	UpdateTime          *timestamppb.Timestamp `protobuf:"bytes,16,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`                                             // 更新时间
+	AllowUnlimited      bool                   `protobuf:"varint,17,opt,name=allow_unlimited,json=allowUnlimited,proto3" json:"allow_unlimited,omitempty"`                                // 是否允许不限
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
 
-func (x *PricingRuleInfo) Reset() {
-	*x = PricingRuleInfo{}
+func (x *InternalPricingRuleInfo) Reset() {
+	*x = InternalPricingRuleInfo{}
 	mi := &file_product_v1_product_internal_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *PricingRuleInfo) String() string {
+func (x *InternalPricingRuleInfo) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*PricingRuleInfo) ProtoMessage() {}
+func (*InternalPricingRuleInfo) ProtoMessage() {}
 
-func (x *PricingRuleInfo) ProtoReflect() protoreflect.Message {
+func (x *InternalPricingRuleInfo) ProtoReflect() protoreflect.Message {
 	mi := &file_product_v1_product_internal_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -875,117 +875,117 @@ func (x *PricingRuleInfo) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use PricingRuleInfo.ProtoReflect.Descriptor instead.
-func (*PricingRuleInfo) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalPricingRuleInfo.ProtoReflect.Descriptor instead.
+func (*InternalPricingRuleInfo) Descriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{6}
 }
 
-func (x *PricingRuleInfo) GetId() uint32 {
+func (x *InternalPricingRuleInfo) GetId() uint32 {
 	if x != nil {
 		return x.Id
 	}
 	return 0
 }
 
-func (x *PricingRuleInfo) GetRuleKey() string {
+func (x *InternalPricingRuleInfo) GetRuleKey() string {
 	if x != nil {
 		return x.RuleKey
 	}
 	return ""
 }
 
-func (x *PricingRuleInfo) GetI18N() *structpb.Struct {
+func (x *InternalPricingRuleInfo) GetI18N() *structpb.Struct {
 	if x != nil {
 		return x.I18N
 	}
 	return nil
 }
 
-func (x *PricingRuleInfo) GetRuleType() RuleType {
+func (x *InternalPricingRuleInfo) GetRuleType() InternalRuleType {
 	if x != nil {
 		return x.RuleType
 	}
-	return RuleType_RULE_TYPE_UNSPECIFIED
+	return InternalRuleType_RULE_TYPE_UNSPECIFIED
 }
 
-func (x *PricingRuleInfo) GetUnit() string {
+func (x *InternalPricingRuleInfo) GetUnit() string {
 	if x != nil && x.Unit != nil {
 		return *x.Unit
 	}
 	return ""
 }
 
-func (x *PricingRuleInfo) GetCheckpoints() []string {
+func (x *InternalPricingRuleInfo) GetCheckpoints() []string {
 	if x != nil {
 		return x.Checkpoints
 	}
 	return nil
 }
 
-func (x *PricingRuleInfo) GetIsVisible() bool {
+func (x *InternalPricingRuleInfo) GetIsVisible() bool {
 	if x != nil {
 		return x.IsVisible
 	}
 	return false
 }
 
-func (x *PricingRuleInfo) GetIsAccumulative() bool {
+func (x *InternalPricingRuleInfo) GetIsAccumulative() bool {
 	if x != nil {
 		return x.IsAccumulative
 	}
 	return false
 }
 
-func (x *PricingRuleInfo) GetIsResetPeriodically() bool {
+func (x *InternalPricingRuleInfo) GetIsResetPeriodically() bool {
 	if x != nil {
 		return x.IsResetPeriodically
 	}
 	return false
 }
 
-func (x *PricingRuleInfo) GetResetPeriod() ResetPeriod {
+func (x *InternalPricingRuleInfo) GetResetPeriod() InternalResetPeriod {
 	if x != nil {
 		return x.ResetPeriod
 	}
-	return ResetPeriod_RESET_PERIOD_UNSPECIFIED
+	return InternalResetPeriod_RESET_PERIOD_UNSPECIFIED
 }
 
-func (x *PricingRuleInfo) GetStatus() RuleStatus {
+func (x *InternalPricingRuleInfo) GetStatus() InternalRuleStatus {
 	if x != nil {
 		return x.Status
 	}
-	return RuleStatus_RULE_STATUS_UNSPECIFIED
+	return InternalRuleStatus_RULE_STATUS_UNSPECIFIED
 }
 
-func (x *PricingRuleInfo) GetSortOrder() int32 {
+func (x *InternalPricingRuleInfo) GetSortOrder() int32 {
 	if x != nil {
 		return x.SortOrder
 	}
 	return 0
 }
 
-func (x *PricingRuleInfo) GetUsageCount() int32 {
+func (x *InternalPricingRuleInfo) GetUsageCount() int32 {
 	if x != nil {
 		return x.UsageCount
 	}
 	return 0
 }
 
-func (x *PricingRuleInfo) GetCreateTime() *timestamppb.Timestamp {
+func (x *InternalPricingRuleInfo) GetCreateTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreateTime
 	}
 	return nil
 }
 
-func (x *PricingRuleInfo) GetUpdateTime() *timestamppb.Timestamp {
+func (x *InternalPricingRuleInfo) GetUpdateTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdateTime
 	}
 	return nil
 }
 
-func (x *PricingRuleInfo) GetAllowUnlimited() bool {
+func (x *InternalPricingRuleInfo) GetAllowUnlimited() bool {
 	if x != nil {
 		return x.AllowUnlimited
 	}
@@ -993,32 +993,32 @@ func (x *PricingRuleInfo) GetAllowUnlimited() bool {
 }
 
 // 获取定价规则列表请求
-type ListPricingRulesRequest struct {
+type InternalListPricingRulesRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Page          *int32                 `protobuf:"varint,1,opt,name=page,proto3,oneof" json:"page,omitempty"`                                                      // 页码
-	PageSize      *int32                 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`                              // 每页数量
-	Search        *string                `protobuf:"bytes,3,opt,name=search,proto3,oneof" json:"search,omitempty"`                                                   // 关键词搜索
-	RuleType      *RuleType              `protobuf:"varint,4,opt,name=rule_type,json=ruleType,proto3,enum=api.product.v1.RuleType,oneof" json:"rule_type,omitempty"` // 规则类型筛选
-	Status        *RuleStatus            `protobuf:"varint,5,opt,name=status,proto3,enum=api.product.v1.RuleStatus,oneof" json:"status,omitempty"`                   // 状态筛选
-	IsVisible     *bool                  `protobuf:"varint,6,opt,name=is_visible,json=isVisible,proto3,oneof" json:"is_visible,omitempty"`                           // 是否可见筛选
+	Page          *int32                 `protobuf:"varint,1,opt,name=page,proto3,oneof" json:"page,omitempty"`                                                              // 页码
+	PageSize      *int32                 `protobuf:"varint,2,opt,name=page_size,json=pageSize,proto3,oneof" json:"page_size,omitempty"`                                      // 每页数量
+	Search        *string                `protobuf:"bytes,3,opt,name=search,proto3,oneof" json:"search,omitempty"`                                                           // 关键词搜索
+	RuleType      *InternalRuleType      `protobuf:"varint,4,opt,name=rule_type,json=ruleType,proto3,enum=api.product.v1.InternalRuleType,oneof" json:"rule_type,omitempty"` // 规则类型筛选
+	Status        *InternalRuleStatus    `protobuf:"varint,5,opt,name=status,proto3,enum=api.product.v1.InternalRuleStatus,oneof" json:"status,omitempty"`                   // 状态筛选
+	IsVisible     *bool                  `protobuf:"varint,6,opt,name=is_visible,json=isVisible,proto3,oneof" json:"is_visible,omitempty"`                                   // 是否可见筛选
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListPricingRulesRequest) Reset() {
-	*x = ListPricingRulesRequest{}
+func (x *InternalListPricingRulesRequest) Reset() {
+	*x = InternalListPricingRulesRequest{}
 	mi := &file_product_v1_product_internal_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListPricingRulesRequest) String() string {
+func (x *InternalListPricingRulesRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListPricingRulesRequest) ProtoMessage() {}
+func (*InternalListPricingRulesRequest) ProtoMessage() {}
 
-func (x *ListPricingRulesRequest) ProtoReflect() protoreflect.Message {
+func (x *InternalListPricingRulesRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_product_v1_product_internal_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1030,79 +1030,79 @@ func (x *ListPricingRulesRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListPricingRulesRequest.ProtoReflect.Descriptor instead.
-func (*ListPricingRulesRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalListPricingRulesRequest.ProtoReflect.Descriptor instead.
+func (*InternalListPricingRulesRequest) Descriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *ListPricingRulesRequest) GetPage() int32 {
+func (x *InternalListPricingRulesRequest) GetPage() int32 {
 	if x != nil && x.Page != nil {
 		return *x.Page
 	}
 	return 0
 }
 
-func (x *ListPricingRulesRequest) GetPageSize() int32 {
+func (x *InternalListPricingRulesRequest) GetPageSize() int32 {
 	if x != nil && x.PageSize != nil {
 		return *x.PageSize
 	}
 	return 0
 }
 
-func (x *ListPricingRulesRequest) GetSearch() string {
+func (x *InternalListPricingRulesRequest) GetSearch() string {
 	if x != nil && x.Search != nil {
 		return *x.Search
 	}
 	return ""
 }
 
-func (x *ListPricingRulesRequest) GetRuleType() RuleType {
+func (x *InternalListPricingRulesRequest) GetRuleType() InternalRuleType {
 	if x != nil && x.RuleType != nil {
 		return *x.RuleType
 	}
-	return RuleType_RULE_TYPE_UNSPECIFIED
+	return InternalRuleType_RULE_TYPE_UNSPECIFIED
 }
 
-func (x *ListPricingRulesRequest) GetStatus() RuleStatus {
+func (x *InternalListPricingRulesRequest) GetStatus() InternalRuleStatus {
 	if x != nil && x.Status != nil {
 		return *x.Status
 	}
-	return RuleStatus_RULE_STATUS_UNSPECIFIED
+	return InternalRuleStatus_RULE_STATUS_UNSPECIFIED
 }
 
-func (x *ListPricingRulesRequest) GetIsVisible() bool {
+func (x *InternalListPricingRulesRequest) GetIsVisible() bool {
 	if x != nil && x.IsVisible != nil {
 		return *x.IsVisible
 	}
 	return false
 }
 
-type ListPricingRulesResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Rules         []*PricingRuleInfo     `protobuf:"bytes,1,rep,name=rules,proto3" json:"rules,omitempty"`  // 规则列表
-	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"` // 总数
-	Page          int32                  `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`   // 当前页码
-	PageSize      int32                  `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
-	Message       string                 `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
-	Success       bool                   `protobuf:"varint,6,opt,name=success,proto3" json:"success,omitempty"`
+type InternalListPricingRulesResponse struct {
+	state         protoimpl.MessageState     `protogen:"open.v1"`
+	Rules         []*InternalPricingRuleInfo `protobuf:"bytes,1,rep,name=rules,proto3" json:"rules,omitempty"`  // 规则列表
+	Total         int32                      `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"` // 总数
+	Page          int32                      `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`   // 当前页码
+	PageSize      int32                      `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	Message       string                     `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
+	Success       bool                       `protobuf:"varint,6,opt,name=success,proto3" json:"success,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ListPricingRulesResponse) Reset() {
-	*x = ListPricingRulesResponse{}
+func (x *InternalListPricingRulesResponse) Reset() {
+	*x = InternalListPricingRulesResponse{}
 	mi := &file_product_v1_product_internal_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ListPricingRulesResponse) String() string {
+func (x *InternalListPricingRulesResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListPricingRulesResponse) ProtoMessage() {}
+func (*InternalListPricingRulesResponse) ProtoMessage() {}
 
-func (x *ListPricingRulesResponse) ProtoReflect() protoreflect.Message {
+func (x *InternalListPricingRulesResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_product_v1_product_internal_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1114,47 +1114,47 @@ func (x *ListPricingRulesResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListPricingRulesResponse.ProtoReflect.Descriptor instead.
-func (*ListPricingRulesResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalListPricingRulesResponse.ProtoReflect.Descriptor instead.
+func (*InternalListPricingRulesResponse) Descriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *ListPricingRulesResponse) GetRules() []*PricingRuleInfo {
+func (x *InternalListPricingRulesResponse) GetRules() []*InternalPricingRuleInfo {
 	if x != nil {
 		return x.Rules
 	}
 	return nil
 }
 
-func (x *ListPricingRulesResponse) GetTotal() int32 {
+func (x *InternalListPricingRulesResponse) GetTotal() int32 {
 	if x != nil {
 		return x.Total
 	}
 	return 0
 }
 
-func (x *ListPricingRulesResponse) GetPage() int32 {
+func (x *InternalListPricingRulesResponse) GetPage() int32 {
 	if x != nil {
 		return x.Page
 	}
 	return 0
 }
 
-func (x *ListPricingRulesResponse) GetPageSize() int32 {
+func (x *InternalListPricingRulesResponse) GetPageSize() int32 {
 	if x != nil {
 		return x.PageSize
 	}
 	return 0
 }
 
-func (x *ListPricingRulesResponse) GetMessage() string {
+func (x *InternalListPricingRulesResponse) GetMessage() string {
 	if x != nil {
 		return x.Message
 	}
 	return ""
 }
 
-func (x *ListPricingRulesResponse) GetSuccess() bool {
+func (x *InternalListPricingRulesResponse) GetSuccess() bool {
 	if x != nil {
 		return x.Success
 	}
@@ -1162,7 +1162,7 @@ func (x *ListPricingRulesResponse) GetSuccess() bool {
 }
 
 // 产品信息
-type ProductInfo struct {
+type InternalProductInfo struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	Id                uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                                                         // 产品ID
 	ProductCode       string                 `protobuf:"bytes,2,opt,name=product_code,json=productCode,proto3" json:"product_code,omitempty"`                     // 产品编码
@@ -1174,7 +1174,7 @@ type ProductInfo struct {
 	CategoryName      *string                `protobuf:"bytes,7,opt,name=category_name,json=categoryName,proto3,oneof" json:"category_name,omitempty"`            // 分类名称
 	Tags              []string               `protobuf:"bytes,8,rep,name=tags,proto3" json:"tags,omitempty"`                                                      // 产品标签
 	SortOrder         int32                  `protobuf:"varint,9,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"`                          // 排序
-	Status            ProductStatus          `protobuf:"varint,10,opt,name=status,proto3,enum=api.product.v1.ProductStatus" json:"status,omitempty"`              // 状态
+	Status            InternalProductStatus  `protobuf:"varint,10,opt,name=status,proto3,enum=api.product.v1.InternalProductStatus" json:"status,omitempty"`      // 状态
 	SubscriptionCount int32                  `protobuf:"varint,16,opt,name=subscription_count,json=subscriptionCount,proto3" json:"subscription_count,omitempty"` // 订阅数量
 	PriceMonthly      *int64                 `protobuf:"varint,17,opt,name=price_monthly,json=priceMonthly,proto3,oneof" json:"price_monthly,omitempty"`          // 月付价格（商户端使用）
 	//  repeated PlanInfo plans = 18 [json_name = "plans"];                    // 套餐列表（仅当 includePlans=true 时返回）
@@ -1184,20 +1184,20 @@ type ProductInfo struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *ProductInfo) Reset() {
-	*x = ProductInfo{}
+func (x *InternalProductInfo) Reset() {
+	*x = InternalProductInfo{}
 	mi := &file_product_v1_product_internal_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *ProductInfo) String() string {
+func (x *InternalProductInfo) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ProductInfo) ProtoMessage() {}
+func (*InternalProductInfo) ProtoMessage() {}
 
-func (x *ProductInfo) ProtoReflect() protoreflect.Message {
+func (x *InternalProductInfo) ProtoReflect() protoreflect.Message {
 	mi := &file_product_v1_product_internal_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1209,110 +1209,110 @@ func (x *ProductInfo) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ProductInfo.ProtoReflect.Descriptor instead.
-func (*ProductInfo) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalProductInfo.ProtoReflect.Descriptor instead.
+func (*InternalProductInfo) Descriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *ProductInfo) GetId() uint32 {
+func (x *InternalProductInfo) GetId() uint32 {
 	if x != nil {
 		return x.Id
 	}
 	return 0
 }
 
-func (x *ProductInfo) GetProductCode() string {
+func (x *InternalProductInfo) GetProductCode() string {
 	if x != nil {
 		return x.ProductCode
 	}
 	return ""
 }
 
-func (x *ProductInfo) GetProductName() string {
+func (x *InternalProductInfo) GetProductName() string {
 	if x != nil {
 		return x.ProductName
 	}
 	return ""
 }
 
-func (x *ProductInfo) GetI18N() *structpb.Struct {
+func (x *InternalProductInfo) GetI18N() *structpb.Struct {
 	if x != nil {
 		return x.I18N
 	}
 	return nil
 }
 
-func (x *ProductInfo) GetImage() string {
+func (x *InternalProductInfo) GetImage() string {
 	if x != nil {
 		return x.Image
 	}
 	return ""
 }
 
-func (x *ProductInfo) GetDimensions() []string {
+func (x *InternalProductInfo) GetDimensions() []string {
 	if x != nil {
 		return x.Dimensions
 	}
 	return nil
 }
 
-func (x *ProductInfo) GetCategoryId() uint32 {
+func (x *InternalProductInfo) GetCategoryId() uint32 {
 	if x != nil && x.CategoryId != nil {
 		return *x.CategoryId
 	}
 	return 0
 }
 
-func (x *ProductInfo) GetCategoryName() string {
+func (x *InternalProductInfo) GetCategoryName() string {
 	if x != nil && x.CategoryName != nil {
 		return *x.CategoryName
 	}
 	return ""
 }
 
-func (x *ProductInfo) GetTags() []string {
+func (x *InternalProductInfo) GetTags() []string {
 	if x != nil {
 		return x.Tags
 	}
 	return nil
 }
 
-func (x *ProductInfo) GetSortOrder() int32 {
+func (x *InternalProductInfo) GetSortOrder() int32 {
 	if x != nil {
 		return x.SortOrder
 	}
 	return 0
 }
 
-func (x *ProductInfo) GetStatus() ProductStatus {
+func (x *InternalProductInfo) GetStatus() InternalProductStatus {
 	if x != nil {
 		return x.Status
 	}
-	return ProductStatus_PRODUCT_STATUS_UNSPECIFIED
+	return InternalProductStatus_PRODUCT_STATUS_UNSPECIFIED
 }
 
-func (x *ProductInfo) GetSubscriptionCount() int32 {
+func (x *InternalProductInfo) GetSubscriptionCount() int32 {
 	if x != nil {
 		return x.SubscriptionCount
 	}
 	return 0
 }
 
-func (x *ProductInfo) GetPriceMonthly() int64 {
+func (x *InternalProductInfo) GetPriceMonthly() int64 {
 	if x != nil && x.PriceMonthly != nil {
 		return *x.PriceMonthly
 	}
 	return 0
 }
 
-func (x *ProductInfo) GetCreateTime() *timestamppb.Timestamp {
+func (x *InternalProductInfo) GetCreateTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.CreateTime
 	}
 	return nil
 }
 
-func (x *ProductInfo) GetUpdateTime() *timestamppb.Timestamp {
+func (x *InternalProductInfo) GetUpdateTime() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdateTime
 	}
@@ -1320,7 +1320,7 @@ func (x *ProductInfo) GetUpdateTime() *timestamppb.Timestamp {
 }
 
 // 获取产品请求
-type GetProductRequest struct {
+type InternalGetProductRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProductCode   string                 `protobuf:"bytes,1,opt,name=product_code,json=productCode,proto3" json:"product_code,omitempty"`           // 产品编码
 	IncludePlans  *bool                  `protobuf:"varint,2,opt,name=include_plans,json=includePlans,proto3,oneof" json:"include_plans,omitempty"` // 是否包含套餐列表
@@ -1328,20 +1328,20 @@ type GetProductRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetProductRequest) Reset() {
-	*x = GetProductRequest{}
+func (x *InternalGetProductRequest) Reset() {
+	*x = InternalGetProductRequest{}
 	mi := &file_product_v1_product_internal_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetProductRequest) String() string {
+func (x *InternalGetProductRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetProductRequest) ProtoMessage() {}
+func (*InternalGetProductRequest) ProtoMessage() {}
 
-func (x *GetProductRequest) ProtoReflect() protoreflect.Message {
+func (x *InternalGetProductRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_product_v1_product_internal_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1353,19 +1353,19 @@ func (x *GetProductRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetProductRequest.ProtoReflect.Descriptor instead.
-func (*GetProductRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalGetProductRequest.ProtoReflect.Descriptor instead.
+func (*InternalGetProductRequest) Descriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *GetProductRequest) GetProductCode() string {
+func (x *InternalGetProductRequest) GetProductCode() string {
 	if x != nil {
 		return x.ProductCode
 	}
 	return ""
 }
 
-func (x *GetProductRequest) GetIncludePlans() bool {
+func (x *InternalGetProductRequest) GetIncludePlans() bool {
 	if x != nil && x.IncludePlans != nil {
 		return *x.IncludePlans
 	}
@@ -1373,27 +1373,27 @@ func (x *GetProductRequest) GetIncludePlans() bool {
 }
 
 // 获取产品响应
-type GetProductResponse struct {
+type InternalGetProductResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Product       *ProductInfo           `protobuf:"bytes,1,opt,name=product,proto3" json:"product,omitempty"` // 产品信息
+	Product       *InternalProductInfo   `protobuf:"bytes,1,opt,name=product,proto3" json:"product,omitempty"` // 产品信息
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetProductResponse) Reset() {
-	*x = GetProductResponse{}
+func (x *InternalGetProductResponse) Reset() {
+	*x = InternalGetProductResponse{}
 	mi := &file_product_v1_product_internal_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetProductResponse) String() string {
+func (x *InternalGetProductResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetProductResponse) ProtoMessage() {}
+func (*InternalGetProductResponse) ProtoMessage() {}
 
-func (x *GetProductResponse) ProtoReflect() protoreflect.Message {
+func (x *InternalGetProductResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_product_v1_product_internal_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1405,12 +1405,12 @@ func (x *GetProductResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetProductResponse.ProtoReflect.Descriptor instead.
-func (*GetProductResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalGetProductResponse.ProtoReflect.Descriptor instead.
+func (*InternalGetProductResponse) Descriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *GetProductResponse) GetProduct() *ProductInfo {
+func (x *InternalGetProductResponse) GetProduct() *InternalProductInfo {
 	if x != nil {
 		return x.Product
 	}
@@ -1418,7 +1418,7 @@ func (x *GetProductResponse) GetProduct() *ProductInfo {
 }
 
 // 商户获取产品请求
-type MerchantGetProductRequest struct {
+type InternalMerchantGetProductRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ProductCode   string                 `protobuf:"bytes,1,opt,name=product_code,json=productCode,proto3" json:"product_code,omitempty"`           // 产品编码
 	IncludePlans  *bool                  `protobuf:"varint,2,opt,name=include_plans,json=includePlans,proto3,oneof" json:"include_plans,omitempty"` // 是否包含套餐列表
@@ -1426,20 +1426,20 @@ type MerchantGetProductRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MerchantGetProductRequest) Reset() {
-	*x = MerchantGetProductRequest{}
+func (x *InternalMerchantGetProductRequest) Reset() {
+	*x = InternalMerchantGetProductRequest{}
 	mi := &file_product_v1_product_internal_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MerchantGetProductRequest) String() string {
+func (x *InternalMerchantGetProductRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MerchantGetProductRequest) ProtoMessage() {}
+func (*InternalMerchantGetProductRequest) ProtoMessage() {}
 
-func (x *MerchantGetProductRequest) ProtoReflect() protoreflect.Message {
+func (x *InternalMerchantGetProductRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_product_v1_product_internal_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1451,19 +1451,19 @@ func (x *MerchantGetProductRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MerchantGetProductRequest.ProtoReflect.Descriptor instead.
-func (*MerchantGetProductRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalMerchantGetProductRequest.ProtoReflect.Descriptor instead.
+func (*InternalMerchantGetProductRequest) Descriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *MerchantGetProductRequest) GetProductCode() string {
+func (x *InternalMerchantGetProductRequest) GetProductCode() string {
 	if x != nil {
 		return x.ProductCode
 	}
 	return ""
 }
 
-func (x *MerchantGetProductRequest) GetIncludePlans() bool {
+func (x *InternalMerchantGetProductRequest) GetIncludePlans() bool {
 	if x != nil && x.IncludePlans != nil {
 		return *x.IncludePlans
 	}
@@ -1471,27 +1471,27 @@ func (x *MerchantGetProductRequest) GetIncludePlans() bool {
 }
 
 //商户获取产品响应
-type MerchantGetProductResponse struct {
+type InternalMerchantGetProductResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Product       *ProductInfo           `protobuf:"bytes,1,opt,name=product,proto3" json:"product,omitempty"` // 产品信息
+	Product       *InternalProductInfo   `protobuf:"bytes,1,opt,name=product,proto3" json:"product,omitempty"` // 产品信息
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MerchantGetProductResponse) Reset() {
-	*x = MerchantGetProductResponse{}
+func (x *InternalMerchantGetProductResponse) Reset() {
+	*x = InternalMerchantGetProductResponse{}
 	mi := &file_product_v1_product_internal_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MerchantGetProductResponse) String() string {
+func (x *InternalMerchantGetProductResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MerchantGetProductResponse) ProtoMessage() {}
+func (*InternalMerchantGetProductResponse) ProtoMessage() {}
 
-func (x *MerchantGetProductResponse) ProtoReflect() protoreflect.Message {
+func (x *InternalMerchantGetProductResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_product_v1_product_internal_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1503,12 +1503,12 @@ func (x *MerchantGetProductResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MerchantGetProductResponse.ProtoReflect.Descriptor instead.
-func (*MerchantGetProductResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use InternalMerchantGetProductResponse.ProtoReflect.Descriptor instead.
+func (*InternalMerchantGetProductResponse) Descriptor() ([]byte, []int) {
 	return file_product_v1_product_internal_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *MerchantGetProductResponse) GetProduct() *ProductInfo {
+func (x *InternalMerchantGetProductResponse) GetProduct() *InternalProductInfo {
 	if x != nil {
 		return x.Product
 	}
@@ -1519,23 +1519,23 @@ var File_product_v1_product_internal_proto protoreflect.FileDescriptor
 
 const file_product_v1_product_internal_proto_rawDesc = "" +
 	"\n" +
-	"!product/v1/product_internal.proto\x12\x0eapi.product.v1\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xe7\x02\n" +
-	"\rPlanParameter\x12\x0e\n" +
+	"!product/v1/product_internal.proto\x12\x0eapi.product.v1\x1a\x1cgoogle/protobuf/struct.proto\x1a\x1fgoogle/protobuf/timestamp.proto\"\xf7\x02\n" +
+	"\x15InternalPlanParameter\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\x12\x17\n" +
 	"\arule_id\x18\x02 \x01(\rR\x06ruleId\x12\x19\n" +
 	"\brule_key\x18\x03 \x01(\tR\aruleKey\x12\x1d\n" +
 	"\n" +
-	"rule_value\x18\x04 \x01(\tR\truleValue\x128\n" +
+	"rule_value\x18\x04 \x01(\tR\truleValue\x12@\n" +
 	"\n" +
-	"value_type\x18\x05 \x01(\x0e2\x19.api.product.v1.ValueTypeR\tvalueType\x12!\n" +
+	"value_type\x18\x05 \x01(\x0e2!.api.product.v1.InternalValueTypeR\tvalueType\x12!\n" +
 	"\fis_stackable\x18\x06 \x01(\bR\visStackable\x124\n" +
 	"\trule_i18n\x18\a \x01(\v2\x17.google.protobuf.StructR\bruleI18n\x12\x17\n" +
 	"\x04unit\x18\b \x01(\tH\x00R\x04unit\x88\x01\x01\x12\x1b\n" +
 	"\trule_type\x18\t \x01(\tR\bruleType\x12!\n" +
 	"\fis_unlimited\x18\n" +
 	" \x01(\bR\visUnlimitedB\a\n" +
-	"\x05_unit\"\x8a\x05\n" +
-	"\x0fProductPlanInfo\x12!\n" +
+	"\x05_unit\"\xa2\x05\n" +
+	"\x17InternalProductPlanInfo\x12!\n" +
 	"\fproduct_code\x18\x02 \x01(\tR\vproductCode\x12\x1b\n" +
 	"\tplan_code\x18\x03 \x01(\tR\bplanCode\x12\x1b\n" +
 	"\tplan_name\x18\x11 \x01(\tR\bplanName\x12+\n" +
@@ -1547,45 +1547,45 @@ const file_product_v1_product_internal_proto_rawDesc = "" +
 	"\bcurrency\x18\b \x01(\tR\bcurrency\x12\x1d\n" +
 	"\n" +
 	"sort_order\x18\n" +
-	" \x01(\x05R\tsortOrder\x122\n" +
-	"\x06status\x18\v \x01(\x0e2\x1a.api.product.v1.PlanStatusR\x06status\x12(\n" +
+	" \x01(\x05R\tsortOrder\x12:\n" +
+	"\x06status\x18\v \x01(\x0e2\".api.product.v1.InternalPlanStatusR\x06status\x12(\n" +
 	"\x10is_trial_enabled\x18\f \x01(\bR\x0eisTrialEnabled\x12\x1d\n" +
 	"\n" +
 	"trial_days\x18\r \x01(\x05R\ttrialDays\x12;\n" +
 	"\vcreate_time\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"createTime\x12;\n" +
 	"\vupdate_time\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\n" +
-	"updateTime\x12=\n" +
+	"updateTime\x12E\n" +
 	"\n" +
-	"parameters\x18\x10 \x03(\v2\x1d.api.product.v1.PlanParameterR\n" +
+	"parameters\x18\x10 \x03(\v2%.api.product.v1.InternalPlanParameterR\n" +
 	"parametersB\x0e\n" +
-	"\f_badge_color\"x\n" +
-	"\x0eGetPlanRequest\x12\x1b\n" +
+	"\f_badge_color\"\x80\x01\n" +
+	"\x16InternalGetPlanRequest\x12\x1b\n" +
 	"\tplan_code\x18\x01 \x01(\tR\bplanCode\x122\n" +
 	"\x12include_parameters\x18\x02 \x01(\bH\x00R\x11includeParameters\x88\x01\x01B\x15\n" +
-	"\x13_include_parameters\"F\n" +
-	"\x0fGetPlanResponse\x123\n" +
-	"\x04plan\x18\x01 \x01(\v2\x1f.api.product.v1.ProductPlanInfoR\x04plan\"\x80\x01\n" +
-	"\x16MerchantGetPlanRequest\x12\x1b\n" +
+	"\x13_include_parameters\"V\n" +
+	"\x17InternalGetPlanResponse\x12;\n" +
+	"\x04plan\x18\x01 \x01(\v2'.api.product.v1.InternalProductPlanInfoR\x04plan\"\x88\x01\n" +
+	"\x1eInternalMerchantGetPlanRequest\x12\x1b\n" +
 	"\tplan_code\x18\x03 \x01(\tR\bplanCode\x122\n" +
 	"\x12include_parameters\x18\x02 \x01(\bH\x00R\x11includeParameters\x88\x01\x01B\x15\n" +
-	"\x13_include_parameters\"N\n" +
-	"\x17MerchantGetPlanResponse\x123\n" +
-	"\x04plan\x18\x01 \x01(\v2\x1f.api.product.v1.ProductPlanInfoR\x04plan\"\xb7\x05\n" +
-	"\x0fPricingRuleInfo\x12\x0e\n" +
+	"\x13_include_parameters\"^\n" +
+	"\x1fInternalMerchantGetPlanResponse\x12;\n" +
+	"\x04plan\x18\x01 \x01(\v2'.api.product.v1.InternalProductPlanInfoR\x04plan\"\xd7\x05\n" +
+	"\x17InternalPricingRuleInfo\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\x12\x19\n" +
 	"\brule_key\x18\x02 \x01(\tR\aruleKey\x12+\n" +
-	"\x04i18n\x18\x03 \x01(\v2\x17.google.protobuf.StructR\x04i18n\x125\n" +
-	"\trule_type\x18\x04 \x01(\x0e2\x18.api.product.v1.RuleTypeR\bruleType\x12\x17\n" +
+	"\x04i18n\x18\x03 \x01(\v2\x17.google.protobuf.StructR\x04i18n\x12=\n" +
+	"\trule_type\x18\x04 \x01(\x0e2 .api.product.v1.InternalRuleTypeR\bruleType\x12\x17\n" +
 	"\x04unit\x18\x05 \x01(\tH\x00R\x04unit\x88\x01\x01\x12 \n" +
 	"\vcheckpoints\x18\x06 \x03(\tR\vcheckpoints\x12\x1d\n" +
 	"\n" +
 	"is_visible\x18\a \x01(\bR\tisVisible\x12'\n" +
 	"\x0fis_accumulative\x18\b \x01(\bR\x0eisAccumulative\x122\n" +
-	"\x15is_reset_periodically\x18\t \x01(\bR\x13isResetPeriodically\x12>\n" +
+	"\x15is_reset_periodically\x18\t \x01(\bR\x13isResetPeriodically\x12F\n" +
 	"\freset_period\x18\n" +
-	" \x01(\x0e2\x1b.api.product.v1.ResetPeriodR\vresetPeriod\x122\n" +
-	"\x06status\x18\f \x01(\x0e2\x1a.api.product.v1.RuleStatusR\x06status\x12\x1d\n" +
+	" \x01(\x0e2#.api.product.v1.InternalResetPeriodR\vresetPeriod\x12:\n" +
+	"\x06status\x18\f \x01(\x0e2\".api.product.v1.InternalRuleStatusR\x06status\x12\x1d\n" +
 	"\n" +
 	"sort_order\x18\r \x01(\x05R\tsortOrder\x12\x1f\n" +
 	"\vusage_count\x18\x0e \x01(\x05R\n" +
@@ -1595,13 +1595,13 @@ const file_product_v1_product_internal_proto_rawDesc = "" +
 	"\vupdate_time\x18\x10 \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"updateTime\x12'\n" +
 	"\x0fallow_unlimited\x18\x11 \x01(\bR\x0eallowUnlimitedB\a\n" +
-	"\x05_unit\"\xd4\x02\n" +
-	"\x17ListPricingRulesRequest\x12\x17\n" +
+	"\x05_unit\"\xec\x02\n" +
+	"\x1fInternalListPricingRulesRequest\x12\x17\n" +
 	"\x04page\x18\x01 \x01(\x05H\x00R\x04page\x88\x01\x01\x12 \n" +
 	"\tpage_size\x18\x02 \x01(\x05H\x01R\bpageSize\x88\x01\x01\x12\x1b\n" +
-	"\x06search\x18\x03 \x01(\tH\x02R\x06search\x88\x01\x01\x12:\n" +
-	"\trule_type\x18\x04 \x01(\x0e2\x18.api.product.v1.RuleTypeH\x03R\bruleType\x88\x01\x01\x127\n" +
-	"\x06status\x18\x05 \x01(\x0e2\x1a.api.product.v1.RuleStatusH\x04R\x06status\x88\x01\x01\x12\"\n" +
+	"\x06search\x18\x03 \x01(\tH\x02R\x06search\x88\x01\x01\x12B\n" +
+	"\trule_type\x18\x04 \x01(\x0e2 .api.product.v1.InternalRuleTypeH\x03R\bruleType\x88\x01\x01\x12?\n" +
+	"\x06status\x18\x05 \x01(\x0e2\".api.product.v1.InternalRuleStatusH\x04R\x06status\x88\x01\x01\x12\"\n" +
 	"\n" +
 	"is_visible\x18\x06 \x01(\bH\x05R\tisVisible\x88\x01\x01B\a\n" +
 	"\x05_pageB\f\n" +
@@ -1611,15 +1611,15 @@ const file_product_v1_product_internal_proto_rawDesc = "" +
 	"\n" +
 	"_rule_typeB\t\n" +
 	"\a_statusB\r\n" +
-	"\v_is_visible\"\xcc\x01\n" +
-	"\x18ListPricingRulesResponse\x125\n" +
-	"\x05rules\x18\x01 \x03(\v2\x1f.api.product.v1.PricingRuleInfoR\x05rules\x12\x14\n" +
+	"\v_is_visible\"\xdc\x01\n" +
+	" InternalListPricingRulesResponse\x12=\n" +
+	"\x05rules\x18\x01 \x03(\v2'.api.product.v1.InternalPricingRuleInfoR\x05rules\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x12\n" +
 	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
 	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\x12\x18\n" +
 	"\amessage\x18\x05 \x01(\tR\amessage\x12\x18\n" +
-	"\asuccess\x18\x06 \x01(\bR\asuccess\"\x87\x05\n" +
-	"\vProductInfo\x12\x0e\n" +
+	"\asuccess\x18\x06 \x01(\bR\asuccess\"\x97\x05\n" +
+	"\x13InternalProductInfo\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\x12!\n" +
 	"\fproduct_code\x18\x02 \x01(\tR\vproductCode\x12!\n" +
 	"\fproduct_name\x18\v \x01(\tR\vproductName\x12+\n" +
@@ -1633,9 +1633,9 @@ const file_product_v1_product_internal_proto_rawDesc = "" +
 	"\rcategory_name\x18\a \x01(\tH\x01R\fcategoryName\x88\x01\x01\x12\x12\n" +
 	"\x04tags\x18\b \x03(\tR\x04tags\x12\x1d\n" +
 	"\n" +
-	"sort_order\x18\t \x01(\x05R\tsortOrder\x125\n" +
+	"sort_order\x18\t \x01(\x05R\tsortOrder\x12=\n" +
 	"\x06status\x18\n" +
-	" \x01(\x0e2\x1d.api.product.v1.ProductStatusR\x06status\x12-\n" +
+	" \x01(\x0e2%.api.product.v1.InternalProductStatusR\x06status\x12-\n" +
 	"\x12subscription_count\x18\x10 \x01(\x05R\x11subscriptionCount\x12(\n" +
 	"\rprice_monthly\x18\x11 \x01(\x03H\x02R\fpriceMonthly\x88\x01\x01\x12;\n" +
 	"\vcreate_time\x18\x0e \x01(\v2\x1a.google.protobuf.TimestampR\n" +
@@ -1644,44 +1644,42 @@ const file_product_v1_product_internal_proto_rawDesc = "" +
 	"updateTimeB\x0e\n" +
 	"\f_category_idB\x10\n" +
 	"\x0e_category_nameB\x10\n" +
-	"\x0e_price_monthly\"r\n" +
-	"\x11GetProductRequest\x12!\n" +
+	"\x0e_price_monthly\"z\n" +
+	"\x19InternalGetProductRequest\x12!\n" +
 	"\fproduct_code\x18\x01 \x01(\tR\vproductCode\x12(\n" +
 	"\rinclude_plans\x18\x02 \x01(\bH\x00R\fincludePlans\x88\x01\x01B\x10\n" +
-	"\x0e_include_plans\"K\n" +
-	"\x12GetProductResponse\x125\n" +
-	"\aproduct\x18\x01 \x01(\v2\x1b.api.product.v1.ProductInfoR\aproduct\"z\n" +
-	"\x19MerchantGetProductRequest\x12!\n" +
+	"\x0e_include_plans\"[\n" +
+	"\x1aInternalGetProductResponse\x12=\n" +
+	"\aproduct\x18\x01 \x01(\v2#.api.product.v1.InternalProductInfoR\aproduct\"\x82\x01\n" +
+	"!InternalMerchantGetProductRequest\x12!\n" +
 	"\fproduct_code\x18\x01 \x01(\tR\vproductCode\x12(\n" +
 	"\rinclude_plans\x18\x02 \x01(\bH\x00R\fincludePlans\x88\x01\x01B\x10\n" +
-	"\x0e_include_plans\"S\n" +
-	"\x1aMerchantGetProductResponse\x125\n" +
-	"\aproduct\x18\x01 \x01(\v2\x1b.api.product.v1.ProductInfoR\aproduct*\x90\x01\n" +
-	"\n" +
-	"PlanStatus\x12\x1b\n" +
+	"\x0e_include_plans\"c\n" +
+	"\"InternalMerchantGetProductResponse\x12=\n" +
+	"\aproduct\x18\x01 \x01(\v2#.api.product.v1.InternalProductInfoR\aproduct*\x98\x01\n" +
+	"\x12InternalPlanStatus\x12\x1b\n" +
 	"\x17PLAN_STATUS_UNSPECIFIED\x10\x00\x12\x15\n" +
 	"\x11PLAN_STATUS_DRAFT\x10\x01\x12\x16\n" +
 	"\x12PLAN_STATUS_ACTIVE\x10\x02\x12\x18\n" +
 	"\x14PLAN_STATUS_INACTIVE\x10\x03\x12\x1c\n" +
-	"\x18PLAN_STATUS_DISCONTINUED\x10\x04*\x85\x01\n" +
-	"\tValueType\x12\x1a\n" +
+	"\x18PLAN_STATUS_DISCONTINUED\x10\x04*\x8d\x01\n" +
+	"\x11InternalValueType\x12\x1a\n" +
 	"\x16VALUE_TYPE_UNSPECIFIED\x10\x00\x12\x15\n" +
 	"\x11VALUE_TYPE_STRING\x10\x01\x12\x15\n" +
 	"\x11VALUE_TYPE_NUMBER\x10\x02\x12\x16\n" +
 	"\x12VALUE_TYPE_BOOLEAN\x10\x03\x12\x16\n" +
-	"\x12VALUE_TYPE_DECIMAL\x10\x04*I\n" +
-	"\bRuleType\x12\x19\n" +
+	"\x12VALUE_TYPE_DECIMAL\x10\x04*Q\n" +
+	"\x10InternalRuleType\x12\x19\n" +
 	"\x15RULE_TYPE_UNSPECIFIED\x10\x00\x12\v\n" +
 	"\aNUMERIC\x10\x01\x12\t\n" +
 	"\x05USAGE\x10\x02\x12\n" +
 	"\n" +
-	"\x06SWITCH\x10\x03*M\n" +
-	"\n" +
-	"RuleStatus\x12\x1b\n" +
+	"\x06SWITCH\x10\x03*U\n" +
+	"\x12InternalRuleStatus\x12\x1b\n" +
 	"\x17RULE_STATUS_UNSPECIFIED\x10\x00\x12\x0f\n" +
 	"\vRULE_ACTIVE\x10\x01\x12\x11\n" +
-	"\rRULE_INACTIVE\x10\x02*e\n" +
-	"\vResetPeriod\x12\x1c\n" +
+	"\rRULE_INACTIVE\x10\x02*m\n" +
+	"\x13InternalResetPeriod\x12\x1c\n" +
 	"\x18RESET_PERIOD_UNSPECIFIED\x10\x00\x12\b\n" +
 	"\x04NONE\x10\x01\x12\t\n" +
 	"\x05DAILY\x10\x02\x12\n" +
@@ -1689,20 +1687,19 @@ const file_product_v1_product_internal_proto_rawDesc = "" +
 	"\x06WEEKLY\x10\x03\x12\v\n" +
 	"\aMONTHLY\x10\x04\x12\n" +
 	"\n" +
-	"\x06YEARLY\x10\x05*\xa2\x01\n" +
-	"\rProductStatus\x12\x1e\n" +
+	"\x06YEARLY\x10\x05*\xaa\x01\n" +
+	"\x15InternalProductStatus\x12\x1e\n" +
 	"\x1aPRODUCT_STATUS_UNSPECIFIED\x10\x00\x12\x18\n" +
 	"\x14PRODUCT_STATUS_DRAFT\x10\x01\x12\x19\n" +
 	"\x15PRODUCT_STATUS_ACTIVE\x10\x02\x12\x1b\n" +
 	"\x17PRODUCT_STATUS_INACTIVE\x10\x03\x12\x1f\n" +
-	"\x1bPRODUCT_STATUS_DISCONTINUED\x10\x042\xf1\x03\n" +
-	"\x16ProductInternalService\x12J\n" +
-	"\aGetPlan\x12\x1e.api.product.v1.GetPlanRequest\x1a\x1f.api.product.v1.GetPlanResponse\x12b\n" +
-	"\x0fMerchantGetPlan\x12&.api.product.v1.MerchantGetPlanRequest\x1a'.api.product.v1.MerchantGetPlanResponse\x12e\n" +
-	"\x10ListPricingRules\x12'.api.product.v1.ListPricingRulesRequest\x1a(.api.product.v1.ListPricingRulesResponse\x12S\n" +
-	"\n" +
-	"GetProduct\x12!.api.product.v1.GetProductRequest\x1a\".api.product.v1.GetProductResponse\x12k\n" +
-	"\x12MerchantGetProduct\x12).api.product.v1.MerchantGetProductRequest\x1a*.api.product.v1.MerchantGetProductResponseB\xc0\x01\n" +
+	"\x1bPRODUCT_STATUS_DISCONTINUED\x10\x042\xea\x04\n" +
+	"\x16ProductInternalService\x12b\n" +
+	"\x0fInternalGetPlan\x12&.api.product.v1.InternalGetPlanRequest\x1a'.api.product.v1.InternalGetPlanResponse\x12z\n" +
+	"\x17InternalMerchantGetPlan\x12..api.product.v1.InternalMerchantGetPlanRequest\x1a/.api.product.v1.InternalMerchantGetPlanResponse\x12}\n" +
+	"\x18InternalListPricingRules\x12/.api.product.v1.InternalListPricingRulesRequest\x1a0.api.product.v1.InternalListPricingRulesResponse\x12k\n" +
+	"\x12InternalGetProduct\x12).api.product.v1.InternalGetProductRequest\x1a*.api.product.v1.InternalGetProductResponse\x12\x83\x01\n" +
+	"\x1aInternalMerchantGetProduct\x121.api.product.v1.InternalMerchantGetProductRequest\x1a2.api.product.v1.InternalMerchantGetProductResponseB\xc0\x01\n" +
 	"\x12com.api.product.v1B\x14ProductInternalProtoP\x01Z:github.com/heyinLab/common/api/gen/go/product/v1;productv1\xa2\x02\x03APX\xaa\x02\x0eApi.Product.V1\xca\x02\x0eApi\\Product\\V1\xe2\x02\x1aApi\\Product\\V1\\GPBMetadata\xea\x02\x10Api::Product::V1b\x06proto3"
 
 var (
@@ -1720,64 +1717,64 @@ func file_product_v1_product_internal_proto_rawDescGZIP() []byte {
 var file_product_v1_product_internal_proto_enumTypes = make([]protoimpl.EnumInfo, 6)
 var file_product_v1_product_internal_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_product_v1_product_internal_proto_goTypes = []any{
-	(PlanStatus)(0),                    // 0: api.product.v1.PlanStatus
-	(ValueType)(0),                     // 1: api.product.v1.ValueType
-	(RuleType)(0),                      // 2: api.product.v1.RuleType
-	(RuleStatus)(0),                    // 3: api.product.v1.RuleStatus
-	(ResetPeriod)(0),                   // 4: api.product.v1.ResetPeriod
-	(ProductStatus)(0),                 // 5: api.product.v1.ProductStatus
-	(*PlanParameter)(nil),              // 6: api.product.v1.PlanParameter
-	(*ProductPlanInfo)(nil),            // 7: api.product.v1.ProductPlanInfo
-	(*GetPlanRequest)(nil),             // 8: api.product.v1.GetPlanRequest
-	(*GetPlanResponse)(nil),            // 9: api.product.v1.GetPlanResponse
-	(*MerchantGetPlanRequest)(nil),     // 10: api.product.v1.MerchantGetPlanRequest
-	(*MerchantGetPlanResponse)(nil),    // 11: api.product.v1.MerchantGetPlanResponse
-	(*PricingRuleInfo)(nil),            // 12: api.product.v1.PricingRuleInfo
-	(*ListPricingRulesRequest)(nil),    // 13: api.product.v1.ListPricingRulesRequest
-	(*ListPricingRulesResponse)(nil),   // 14: api.product.v1.ListPricingRulesResponse
-	(*ProductInfo)(nil),                // 15: api.product.v1.ProductInfo
-	(*GetProductRequest)(nil),          // 16: api.product.v1.GetProductRequest
-	(*GetProductResponse)(nil),         // 17: api.product.v1.GetProductResponse
-	(*MerchantGetProductRequest)(nil),  // 18: api.product.v1.MerchantGetProductRequest
-	(*MerchantGetProductResponse)(nil), // 19: api.product.v1.MerchantGetProductResponse
-	(*structpb.Struct)(nil),            // 20: google.protobuf.Struct
-	(*timestamppb.Timestamp)(nil),      // 21: google.protobuf.Timestamp
+	(InternalPlanStatus)(0),                    // 0: api.product.v1.InternalPlanStatus
+	(InternalValueType)(0),                     // 1: api.product.v1.InternalValueType
+	(InternalRuleType)(0),                      // 2: api.product.v1.InternalRuleType
+	(InternalRuleStatus)(0),                    // 3: api.product.v1.InternalRuleStatus
+	(InternalResetPeriod)(0),                   // 4: api.product.v1.InternalResetPeriod
+	(InternalProductStatus)(0),                 // 5: api.product.v1.InternalProductStatus
+	(*InternalPlanParameter)(nil),              // 6: api.product.v1.InternalPlanParameter
+	(*InternalProductPlanInfo)(nil),            // 7: api.product.v1.InternalProductPlanInfo
+	(*InternalGetPlanRequest)(nil),             // 8: api.product.v1.InternalGetPlanRequest
+	(*InternalGetPlanResponse)(nil),            // 9: api.product.v1.InternalGetPlanResponse
+	(*InternalMerchantGetPlanRequest)(nil),     // 10: api.product.v1.InternalMerchantGetPlanRequest
+	(*InternalMerchantGetPlanResponse)(nil),    // 11: api.product.v1.InternalMerchantGetPlanResponse
+	(*InternalPricingRuleInfo)(nil),            // 12: api.product.v1.InternalPricingRuleInfo
+	(*InternalListPricingRulesRequest)(nil),    // 13: api.product.v1.InternalListPricingRulesRequest
+	(*InternalListPricingRulesResponse)(nil),   // 14: api.product.v1.InternalListPricingRulesResponse
+	(*InternalProductInfo)(nil),                // 15: api.product.v1.InternalProductInfo
+	(*InternalGetProductRequest)(nil),          // 16: api.product.v1.InternalGetProductRequest
+	(*InternalGetProductResponse)(nil),         // 17: api.product.v1.InternalGetProductResponse
+	(*InternalMerchantGetProductRequest)(nil),  // 18: api.product.v1.InternalMerchantGetProductRequest
+	(*InternalMerchantGetProductResponse)(nil), // 19: api.product.v1.InternalMerchantGetProductResponse
+	(*structpb.Struct)(nil),                    // 20: google.protobuf.Struct
+	(*timestamppb.Timestamp)(nil),              // 21: google.protobuf.Timestamp
 }
 var file_product_v1_product_internal_proto_depIdxs = []int32{
-	1,  // 0: api.product.v1.PlanParameter.value_type:type_name -> api.product.v1.ValueType
-	20, // 1: api.product.v1.PlanParameter.rule_i18n:type_name -> google.protobuf.Struct
-	20, // 2: api.product.v1.ProductPlanInfo.i18n:type_name -> google.protobuf.Struct
-	0,  // 3: api.product.v1.ProductPlanInfo.status:type_name -> api.product.v1.PlanStatus
-	21, // 4: api.product.v1.ProductPlanInfo.create_time:type_name -> google.protobuf.Timestamp
-	21, // 5: api.product.v1.ProductPlanInfo.update_time:type_name -> google.protobuf.Timestamp
-	6,  // 6: api.product.v1.ProductPlanInfo.parameters:type_name -> api.product.v1.PlanParameter
-	7,  // 7: api.product.v1.GetPlanResponse.plan:type_name -> api.product.v1.ProductPlanInfo
-	7,  // 8: api.product.v1.MerchantGetPlanResponse.plan:type_name -> api.product.v1.ProductPlanInfo
-	20, // 9: api.product.v1.PricingRuleInfo.i18n:type_name -> google.protobuf.Struct
-	2,  // 10: api.product.v1.PricingRuleInfo.rule_type:type_name -> api.product.v1.RuleType
-	4,  // 11: api.product.v1.PricingRuleInfo.reset_period:type_name -> api.product.v1.ResetPeriod
-	3,  // 12: api.product.v1.PricingRuleInfo.status:type_name -> api.product.v1.RuleStatus
-	21, // 13: api.product.v1.PricingRuleInfo.create_time:type_name -> google.protobuf.Timestamp
-	21, // 14: api.product.v1.PricingRuleInfo.update_time:type_name -> google.protobuf.Timestamp
-	2,  // 15: api.product.v1.ListPricingRulesRequest.rule_type:type_name -> api.product.v1.RuleType
-	3,  // 16: api.product.v1.ListPricingRulesRequest.status:type_name -> api.product.v1.RuleStatus
-	12, // 17: api.product.v1.ListPricingRulesResponse.rules:type_name -> api.product.v1.PricingRuleInfo
-	20, // 18: api.product.v1.ProductInfo.i18n:type_name -> google.protobuf.Struct
-	5,  // 19: api.product.v1.ProductInfo.status:type_name -> api.product.v1.ProductStatus
-	21, // 20: api.product.v1.ProductInfo.create_time:type_name -> google.protobuf.Timestamp
-	21, // 21: api.product.v1.ProductInfo.update_time:type_name -> google.protobuf.Timestamp
-	15, // 22: api.product.v1.GetProductResponse.product:type_name -> api.product.v1.ProductInfo
-	15, // 23: api.product.v1.MerchantGetProductResponse.product:type_name -> api.product.v1.ProductInfo
-	8,  // 24: api.product.v1.ProductInternalService.GetPlan:input_type -> api.product.v1.GetPlanRequest
-	10, // 25: api.product.v1.ProductInternalService.MerchantGetPlan:input_type -> api.product.v1.MerchantGetPlanRequest
-	13, // 26: api.product.v1.ProductInternalService.ListPricingRules:input_type -> api.product.v1.ListPricingRulesRequest
-	16, // 27: api.product.v1.ProductInternalService.GetProduct:input_type -> api.product.v1.GetProductRequest
-	18, // 28: api.product.v1.ProductInternalService.MerchantGetProduct:input_type -> api.product.v1.MerchantGetProductRequest
-	9,  // 29: api.product.v1.ProductInternalService.GetPlan:output_type -> api.product.v1.GetPlanResponse
-	11, // 30: api.product.v1.ProductInternalService.MerchantGetPlan:output_type -> api.product.v1.MerchantGetPlanResponse
-	14, // 31: api.product.v1.ProductInternalService.ListPricingRules:output_type -> api.product.v1.ListPricingRulesResponse
-	17, // 32: api.product.v1.ProductInternalService.GetProduct:output_type -> api.product.v1.GetProductResponse
-	19, // 33: api.product.v1.ProductInternalService.MerchantGetProduct:output_type -> api.product.v1.MerchantGetProductResponse
+	1,  // 0: api.product.v1.InternalPlanParameter.value_type:type_name -> api.product.v1.InternalValueType
+	20, // 1: api.product.v1.InternalPlanParameter.rule_i18n:type_name -> google.protobuf.Struct
+	20, // 2: api.product.v1.InternalProductPlanInfo.i18n:type_name -> google.protobuf.Struct
+	0,  // 3: api.product.v1.InternalProductPlanInfo.status:type_name -> api.product.v1.InternalPlanStatus
+	21, // 4: api.product.v1.InternalProductPlanInfo.create_time:type_name -> google.protobuf.Timestamp
+	21, // 5: api.product.v1.InternalProductPlanInfo.update_time:type_name -> google.protobuf.Timestamp
+	6,  // 6: api.product.v1.InternalProductPlanInfo.parameters:type_name -> api.product.v1.InternalPlanParameter
+	7,  // 7: api.product.v1.InternalGetPlanResponse.plan:type_name -> api.product.v1.InternalProductPlanInfo
+	7,  // 8: api.product.v1.InternalMerchantGetPlanResponse.plan:type_name -> api.product.v1.InternalProductPlanInfo
+	20, // 9: api.product.v1.InternalPricingRuleInfo.i18n:type_name -> google.protobuf.Struct
+	2,  // 10: api.product.v1.InternalPricingRuleInfo.rule_type:type_name -> api.product.v1.InternalRuleType
+	4,  // 11: api.product.v1.InternalPricingRuleInfo.reset_period:type_name -> api.product.v1.InternalResetPeriod
+	3,  // 12: api.product.v1.InternalPricingRuleInfo.status:type_name -> api.product.v1.InternalRuleStatus
+	21, // 13: api.product.v1.InternalPricingRuleInfo.create_time:type_name -> google.protobuf.Timestamp
+	21, // 14: api.product.v1.InternalPricingRuleInfo.update_time:type_name -> google.protobuf.Timestamp
+	2,  // 15: api.product.v1.InternalListPricingRulesRequest.rule_type:type_name -> api.product.v1.InternalRuleType
+	3,  // 16: api.product.v1.InternalListPricingRulesRequest.status:type_name -> api.product.v1.InternalRuleStatus
+	12, // 17: api.product.v1.InternalListPricingRulesResponse.rules:type_name -> api.product.v1.InternalPricingRuleInfo
+	20, // 18: api.product.v1.InternalProductInfo.i18n:type_name -> google.protobuf.Struct
+	5,  // 19: api.product.v1.InternalProductInfo.status:type_name -> api.product.v1.InternalProductStatus
+	21, // 20: api.product.v1.InternalProductInfo.create_time:type_name -> google.protobuf.Timestamp
+	21, // 21: api.product.v1.InternalProductInfo.update_time:type_name -> google.protobuf.Timestamp
+	15, // 22: api.product.v1.InternalGetProductResponse.product:type_name -> api.product.v1.InternalProductInfo
+	15, // 23: api.product.v1.InternalMerchantGetProductResponse.product:type_name -> api.product.v1.InternalProductInfo
+	8,  // 24: api.product.v1.ProductInternalService.InternalGetPlan:input_type -> api.product.v1.InternalGetPlanRequest
+	10, // 25: api.product.v1.ProductInternalService.InternalMerchantGetPlan:input_type -> api.product.v1.InternalMerchantGetPlanRequest
+	13, // 26: api.product.v1.ProductInternalService.InternalListPricingRules:input_type -> api.product.v1.InternalListPricingRulesRequest
+	16, // 27: api.product.v1.ProductInternalService.InternalGetProduct:input_type -> api.product.v1.InternalGetProductRequest
+	18, // 28: api.product.v1.ProductInternalService.InternalMerchantGetProduct:input_type -> api.product.v1.InternalMerchantGetProductRequest
+	9,  // 29: api.product.v1.ProductInternalService.InternalGetPlan:output_type -> api.product.v1.InternalGetPlanResponse
+	11, // 30: api.product.v1.ProductInternalService.InternalMerchantGetPlan:output_type -> api.product.v1.InternalMerchantGetPlanResponse
+	14, // 31: api.product.v1.ProductInternalService.InternalListPricingRules:output_type -> api.product.v1.InternalListPricingRulesResponse
+	17, // 32: api.product.v1.ProductInternalService.InternalGetProduct:output_type -> api.product.v1.InternalGetProductResponse
+	19, // 33: api.product.v1.ProductInternalService.InternalMerchantGetProduct:output_type -> api.product.v1.InternalMerchantGetProductResponse
 	29, // [29:34] is the sub-list for method output_type
 	24, // [24:29] is the sub-list for method input_type
 	24, // [24:24] is the sub-list for extension type_name

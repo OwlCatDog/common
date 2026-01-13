@@ -35,22 +35,22 @@ var (
 	_ = sort.Sort
 )
 
-// Validate checks the field values on SubscriptionInfo with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// first error encountered is returned, or nil if there are no violations.
-func (m *SubscriptionInfo) Validate() error {
+// Validate checks the field values on InternalSubscriptionInfo with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *InternalSubscriptionInfo) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on SubscriptionInfo with the rules
-// defined in the proto definition for this message. If any rules are
+// ValidateAll checks the field values on InternalSubscriptionInfo with the
+// rules defined in the proto definition for this message. If any rules are
 // violated, the result is a list of violation errors wrapped in
-// SubscriptionInfoMultiError, or nil if none found.
-func (m *SubscriptionInfo) ValidateAll() error {
+// InternalSubscriptionInfoMultiError, or nil if none found.
+func (m *InternalSubscriptionInfo) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *SubscriptionInfo) validate(all bool) error {
+func (m *InternalSubscriptionInfo) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -71,7 +71,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 		switch v := interface{}(m.GetProductI18N()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, SubscriptionInfoValidationError{
+				errors = append(errors, InternalSubscriptionInfoValidationError{
 					field:  "ProductI18N",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -79,7 +79,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, SubscriptionInfoValidationError{
+				errors = append(errors, InternalSubscriptionInfoValidationError{
 					field:  "ProductI18N",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -88,7 +88,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetProductI18N()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return SubscriptionInfoValidationError{
+			return InternalSubscriptionInfoValidationError{
 				field:  "ProductI18N",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -102,7 +102,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 		switch v := interface{}(m.GetPlanI18N()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, SubscriptionInfoValidationError{
+				errors = append(errors, InternalSubscriptionInfoValidationError{
 					field:  "PlanI18N",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -110,7 +110,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, SubscriptionInfoValidationError{
+				errors = append(errors, InternalSubscriptionInfoValidationError{
 					field:  "PlanI18N",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -119,7 +119,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetPlanI18N()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return SubscriptionInfoValidationError{
+			return InternalSubscriptionInfoValidationError{
 				field:  "PlanI18N",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -135,7 +135,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 		switch v := interface{}(m.GetStartDate()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, SubscriptionInfoValidationError{
+				errors = append(errors, InternalSubscriptionInfoValidationError{
 					field:  "StartDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -143,7 +143,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, SubscriptionInfoValidationError{
+				errors = append(errors, InternalSubscriptionInfoValidationError{
 					field:  "StartDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -152,7 +152,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetStartDate()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return SubscriptionInfoValidationError{
+			return InternalSubscriptionInfoValidationError{
 				field:  "StartDate",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -164,7 +164,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 		switch v := interface{}(m.GetEndDate()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, SubscriptionInfoValidationError{
+				errors = append(errors, InternalSubscriptionInfoValidationError{
 					field:  "EndDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -172,7 +172,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, SubscriptionInfoValidationError{
+				errors = append(errors, InternalSubscriptionInfoValidationError{
 					field:  "EndDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -181,7 +181,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetEndDate()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return SubscriptionInfoValidationError{
+			return InternalSubscriptionInfoValidationError{
 				field:  "EndDate",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -197,7 +197,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 		switch v := interface{}(m.GetTrialEndDate()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, SubscriptionInfoValidationError{
+				errors = append(errors, InternalSubscriptionInfoValidationError{
 					field:  "TrialEndDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -205,7 +205,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, SubscriptionInfoValidationError{
+				errors = append(errors, InternalSubscriptionInfoValidationError{
 					field:  "TrialEndDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -214,7 +214,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetTrialEndDate()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return SubscriptionInfoValidationError{
+			return InternalSubscriptionInfoValidationError{
 				field:  "TrialEndDate",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -226,7 +226,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 		switch v := interface{}(m.GetQuotaSnapshot()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, SubscriptionInfoValidationError{
+				errors = append(errors, InternalSubscriptionInfoValidationError{
 					field:  "QuotaSnapshot",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -234,7 +234,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, SubscriptionInfoValidationError{
+				errors = append(errors, InternalSubscriptionInfoValidationError{
 					field:  "QuotaSnapshot",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -243,7 +243,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetQuotaSnapshot()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return SubscriptionInfoValidationError{
+			return InternalSubscriptionInfoValidationError{
 				field:  "QuotaSnapshot",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -258,7 +258,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 			switch v := interface{}(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, SubscriptionInfoValidationError{
+					errors = append(errors, InternalSubscriptionInfoValidationError{
 						field:  fmt.Sprintf("QuotaUsages[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -266,7 +266,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, SubscriptionInfoValidationError{
+					errors = append(errors, InternalSubscriptionInfoValidationError{
 						field:  fmt.Sprintf("QuotaUsages[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -275,7 +275,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return SubscriptionInfoValidationError{
+				return InternalSubscriptionInfoValidationError{
 					field:  fmt.Sprintf("QuotaUsages[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -289,7 +289,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 		switch v := interface{}(m.GetCreateTime()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, SubscriptionInfoValidationError{
+				errors = append(errors, InternalSubscriptionInfoValidationError{
 					field:  "CreateTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -297,7 +297,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, SubscriptionInfoValidationError{
+				errors = append(errors, InternalSubscriptionInfoValidationError{
 					field:  "CreateTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -306,7 +306,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetCreateTime()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return SubscriptionInfoValidationError{
+			return InternalSubscriptionInfoValidationError{
 				field:  "CreateTime",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -318,7 +318,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 		switch v := interface{}(m.GetUpdateTime()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, SubscriptionInfoValidationError{
+				errors = append(errors, InternalSubscriptionInfoValidationError{
 					field:  "UpdateTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -326,7 +326,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, SubscriptionInfoValidationError{
+				errors = append(errors, InternalSubscriptionInfoValidationError{
 					field:  "UpdateTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -335,7 +335,7 @@ func (m *SubscriptionInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetUpdateTime()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return SubscriptionInfoValidationError{
+			return InternalSubscriptionInfoValidationError{
 				field:  "UpdateTime",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -352,19 +352,19 @@ func (m *SubscriptionInfo) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return SubscriptionInfoMultiError(errors)
+		return InternalSubscriptionInfoMultiError(errors)
 	}
 
 	return nil
 }
 
-// SubscriptionInfoMultiError is an error wrapping multiple validation errors
-// returned by SubscriptionInfo.ValidateAll() if the designated constraints
-// aren't met.
-type SubscriptionInfoMultiError []error
+// InternalSubscriptionInfoMultiError is an error wrapping multiple validation
+// errors returned by InternalSubscriptionInfo.ValidateAll() if the designated
+// constraints aren't met.
+type InternalSubscriptionInfoMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m SubscriptionInfoMultiError) Error() string {
+func (m InternalSubscriptionInfoMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -373,11 +373,11 @@ func (m SubscriptionInfoMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m SubscriptionInfoMultiError) AllErrors() []error { return m }
+func (m InternalSubscriptionInfoMultiError) AllErrors() []error { return m }
 
-// SubscriptionInfoValidationError is the validation error returned by
-// SubscriptionInfo.Validate if the designated constraints aren't met.
-type SubscriptionInfoValidationError struct {
+// InternalSubscriptionInfoValidationError is the validation error returned by
+// InternalSubscriptionInfo.Validate if the designated constraints aren't met.
+type InternalSubscriptionInfoValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -385,22 +385,24 @@ type SubscriptionInfoValidationError struct {
 }
 
 // Field function returns field value.
-func (e SubscriptionInfoValidationError) Field() string { return e.field }
+func (e InternalSubscriptionInfoValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e SubscriptionInfoValidationError) Reason() string { return e.reason }
+func (e InternalSubscriptionInfoValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e SubscriptionInfoValidationError) Cause() error { return e.cause }
+func (e InternalSubscriptionInfoValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e SubscriptionInfoValidationError) Key() bool { return e.key }
+func (e InternalSubscriptionInfoValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e SubscriptionInfoValidationError) ErrorName() string { return "SubscriptionInfoValidationError" }
+func (e InternalSubscriptionInfoValidationError) ErrorName() string {
+	return "InternalSubscriptionInfoValidationError"
+}
 
 // Error satisfies the builtin error interface
-func (e SubscriptionInfoValidationError) Error() string {
+func (e InternalSubscriptionInfoValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -412,14 +414,14 @@ func (e SubscriptionInfoValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sSubscriptionInfo.%s: %s%s",
+		"invalid %sInternalSubscriptionInfo.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = SubscriptionInfoValidationError{}
+var _ error = InternalSubscriptionInfoValidationError{}
 
 var _ interface {
 	Field() string
@@ -427,24 +429,24 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = SubscriptionInfoValidationError{}
+} = InternalSubscriptionInfoValidationError{}
 
-// Validate checks the field values on QuotaUsageInfo with the rules defined in
-// the proto definition for this message. If any rules are violated, the first
-// error encountered is returned, or nil if there are no violations.
-func (m *QuotaUsageInfo) Validate() error {
+// Validate checks the field values on InternalQuotaUsageInfo with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *InternalQuotaUsageInfo) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on QuotaUsageInfo with the rules defined
-// in the proto definition for this message. If any rules are violated, the
-// result is a list of violation errors wrapped in QuotaUsageInfoMultiError,
-// or nil if none found.
-func (m *QuotaUsageInfo) ValidateAll() error {
+// ValidateAll checks the field values on InternalQuotaUsageInfo with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// InternalQuotaUsageInfoMultiError, or nil if none found.
+func (m *InternalQuotaUsageInfo) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *QuotaUsageInfo) validate(all bool) error {
+func (m *InternalQuotaUsageInfo) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -459,7 +461,7 @@ func (m *QuotaUsageInfo) validate(all bool) error {
 		switch v := interface{}(m.GetDimensionI18N()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, QuotaUsageInfoValidationError{
+				errors = append(errors, InternalQuotaUsageInfoValidationError{
 					field:  "DimensionI18N",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -467,7 +469,7 @@ func (m *QuotaUsageInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, QuotaUsageInfoValidationError{
+				errors = append(errors, InternalQuotaUsageInfoValidationError{
 					field:  "DimensionI18N",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -476,7 +478,7 @@ func (m *QuotaUsageInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetDimensionI18N()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return QuotaUsageInfoValidationError{
+			return InternalQuotaUsageInfoValidationError{
 				field:  "DimensionI18N",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -501,19 +503,19 @@ func (m *QuotaUsageInfo) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return QuotaUsageInfoMultiError(errors)
+		return InternalQuotaUsageInfoMultiError(errors)
 	}
 
 	return nil
 }
 
-// QuotaUsageInfoMultiError is an error wrapping multiple validation errors
-// returned by QuotaUsageInfo.ValidateAll() if the designated constraints
-// aren't met.
-type QuotaUsageInfoMultiError []error
+// InternalQuotaUsageInfoMultiError is an error wrapping multiple validation
+// errors returned by InternalQuotaUsageInfo.ValidateAll() if the designated
+// constraints aren't met.
+type InternalQuotaUsageInfoMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m QuotaUsageInfoMultiError) Error() string {
+func (m InternalQuotaUsageInfoMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -522,11 +524,11 @@ func (m QuotaUsageInfoMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m QuotaUsageInfoMultiError) AllErrors() []error { return m }
+func (m InternalQuotaUsageInfoMultiError) AllErrors() []error { return m }
 
-// QuotaUsageInfoValidationError is the validation error returned by
-// QuotaUsageInfo.Validate if the designated constraints aren't met.
-type QuotaUsageInfoValidationError struct {
+// InternalQuotaUsageInfoValidationError is the validation error returned by
+// InternalQuotaUsageInfo.Validate if the designated constraints aren't met.
+type InternalQuotaUsageInfoValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -534,22 +536,24 @@ type QuotaUsageInfoValidationError struct {
 }
 
 // Field function returns field value.
-func (e QuotaUsageInfoValidationError) Field() string { return e.field }
+func (e InternalQuotaUsageInfoValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e QuotaUsageInfoValidationError) Reason() string { return e.reason }
+func (e InternalQuotaUsageInfoValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e QuotaUsageInfoValidationError) Cause() error { return e.cause }
+func (e InternalQuotaUsageInfoValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e QuotaUsageInfoValidationError) Key() bool { return e.key }
+func (e InternalQuotaUsageInfoValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e QuotaUsageInfoValidationError) ErrorName() string { return "QuotaUsageInfoValidationError" }
+func (e InternalQuotaUsageInfoValidationError) ErrorName() string {
+	return "InternalQuotaUsageInfoValidationError"
+}
 
 // Error satisfies the builtin error interface
-func (e QuotaUsageInfoValidationError) Error() string {
+func (e InternalQuotaUsageInfoValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -561,14 +565,14 @@ func (e QuotaUsageInfoValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sQuotaUsageInfo.%s: %s%s",
+		"invalid %sInternalQuotaUsageInfo.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = QuotaUsageInfoValidationError{}
+var _ error = InternalQuotaUsageInfoValidationError{}
 
 var _ interface {
 	Field() string
@@ -576,24 +580,24 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = QuotaUsageInfoValidationError{}
+} = InternalQuotaUsageInfoValidationError{}
 
-// Validate checks the field values on SubscriptionOrderInfo with the rules
-// defined in the proto definition for this message. If any rules are
+// Validate checks the field values on InternalSubscriptionOrderInfo with the
+// rules defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
-func (m *SubscriptionOrderInfo) Validate() error {
+func (m *InternalSubscriptionOrderInfo) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on SubscriptionOrderInfo with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// SubscriptionOrderInfoMultiError, or nil if none found.
-func (m *SubscriptionOrderInfo) ValidateAll() error {
+// ValidateAll checks the field values on InternalSubscriptionOrderInfo with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// InternalSubscriptionOrderInfoMultiError, or nil if none found.
+func (m *InternalSubscriptionOrderInfo) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *SubscriptionOrderInfo) validate(all bool) error {
+func (m *InternalSubscriptionOrderInfo) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -622,7 +626,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 		switch v := interface{}(m.GetInvoiceInfo()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, SubscriptionOrderInfoValidationError{
+				errors = append(errors, InternalSubscriptionOrderInfoValidationError{
 					field:  "InvoiceInfo",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -630,7 +634,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, SubscriptionOrderInfoValidationError{
+				errors = append(errors, InternalSubscriptionOrderInfoValidationError{
 					field:  "InvoiceInfo",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -639,7 +643,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetInvoiceInfo()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return SubscriptionOrderInfoValidationError{
+			return InternalSubscriptionOrderInfoValidationError{
 				field:  "InvoiceInfo",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -669,7 +673,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 			switch v := interface{}(m.GetPaidAt()).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, SubscriptionOrderInfoValidationError{
+					errors = append(errors, InternalSubscriptionOrderInfoValidationError{
 						field:  "PaidAt",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -677,7 +681,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, SubscriptionOrderInfoValidationError{
+					errors = append(errors, InternalSubscriptionOrderInfoValidationError{
 						field:  "PaidAt",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -686,7 +690,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(m.GetPaidAt()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return SubscriptionOrderInfoValidationError{
+				return InternalSubscriptionOrderInfoValidationError{
 					field:  "PaidAt",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -702,7 +706,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 			switch v := interface{}(m.GetCancelledAt()).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, SubscriptionOrderInfoValidationError{
+					errors = append(errors, InternalSubscriptionOrderInfoValidationError{
 						field:  "CancelledAt",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -710,7 +714,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, SubscriptionOrderInfoValidationError{
+					errors = append(errors, InternalSubscriptionOrderInfoValidationError{
 						field:  "CancelledAt",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -719,7 +723,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(m.GetCancelledAt()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return SubscriptionOrderInfoValidationError{
+				return InternalSubscriptionOrderInfoValidationError{
 					field:  "CancelledAt",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -735,7 +739,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 			switch v := interface{}(m.GetRefundedAt()).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, SubscriptionOrderInfoValidationError{
+					errors = append(errors, InternalSubscriptionOrderInfoValidationError{
 						field:  "RefundedAt",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -743,7 +747,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, SubscriptionOrderInfoValidationError{
+					errors = append(errors, InternalSubscriptionOrderInfoValidationError{
 						field:  "RefundedAt",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -752,7 +756,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(m.GetRefundedAt()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return SubscriptionOrderInfoValidationError{
+				return InternalSubscriptionOrderInfoValidationError{
 					field:  "RefundedAt",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -768,7 +772,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 			switch v := interface{}(m.GetServiceStartDate()).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, SubscriptionOrderInfoValidationError{
+					errors = append(errors, InternalSubscriptionOrderInfoValidationError{
 						field:  "ServiceStartDate",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -776,7 +780,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, SubscriptionOrderInfoValidationError{
+					errors = append(errors, InternalSubscriptionOrderInfoValidationError{
 						field:  "ServiceStartDate",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -785,7 +789,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(m.GetServiceStartDate()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return SubscriptionOrderInfoValidationError{
+				return InternalSubscriptionOrderInfoValidationError{
 					field:  "ServiceStartDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -801,7 +805,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 			switch v := interface{}(m.GetServiceEndDate()).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, SubscriptionOrderInfoValidationError{
+					errors = append(errors, InternalSubscriptionOrderInfoValidationError{
 						field:  "ServiceEndDate",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -809,7 +813,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, SubscriptionOrderInfoValidationError{
+					errors = append(errors, InternalSubscriptionOrderInfoValidationError{
 						field:  "ServiceEndDate",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -818,7 +822,7 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(m.GetServiceEndDate()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return SubscriptionOrderInfoValidationError{
+				return InternalSubscriptionOrderInfoValidationError{
 					field:  "ServiceEndDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -841,19 +845,19 @@ func (m *SubscriptionOrderInfo) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return SubscriptionOrderInfoMultiError(errors)
+		return InternalSubscriptionOrderInfoMultiError(errors)
 	}
 
 	return nil
 }
 
-// SubscriptionOrderInfoMultiError is an error wrapping multiple validation
-// errors returned by SubscriptionOrderInfo.ValidateAll() if the designated
-// constraints aren't met.
-type SubscriptionOrderInfoMultiError []error
+// InternalSubscriptionOrderInfoMultiError is an error wrapping multiple
+// validation errors returned by InternalSubscriptionOrderInfo.ValidateAll()
+// if the designated constraints aren't met.
+type InternalSubscriptionOrderInfoMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m SubscriptionOrderInfoMultiError) Error() string {
+func (m InternalSubscriptionOrderInfoMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -862,11 +866,12 @@ func (m SubscriptionOrderInfoMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m SubscriptionOrderInfoMultiError) AllErrors() []error { return m }
+func (m InternalSubscriptionOrderInfoMultiError) AllErrors() []error { return m }
 
-// SubscriptionOrderInfoValidationError is the validation error returned by
-// SubscriptionOrderInfo.Validate if the designated constraints aren't met.
-type SubscriptionOrderInfoValidationError struct {
+// InternalSubscriptionOrderInfoValidationError is the validation error
+// returned by InternalSubscriptionOrderInfo.Validate if the designated
+// constraints aren't met.
+type InternalSubscriptionOrderInfoValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -874,24 +879,24 @@ type SubscriptionOrderInfoValidationError struct {
 }
 
 // Field function returns field value.
-func (e SubscriptionOrderInfoValidationError) Field() string { return e.field }
+func (e InternalSubscriptionOrderInfoValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e SubscriptionOrderInfoValidationError) Reason() string { return e.reason }
+func (e InternalSubscriptionOrderInfoValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e SubscriptionOrderInfoValidationError) Cause() error { return e.cause }
+func (e InternalSubscriptionOrderInfoValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e SubscriptionOrderInfoValidationError) Key() bool { return e.key }
+func (e InternalSubscriptionOrderInfoValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e SubscriptionOrderInfoValidationError) ErrorName() string {
-	return "SubscriptionOrderInfoValidationError"
+func (e InternalSubscriptionOrderInfoValidationError) ErrorName() string {
+	return "InternalSubscriptionOrderInfoValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e SubscriptionOrderInfoValidationError) Error() string {
+func (e InternalSubscriptionOrderInfoValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -903,14 +908,14 @@ func (e SubscriptionOrderInfoValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sSubscriptionOrderInfo.%s: %s%s",
+		"invalid %sInternalSubscriptionOrderInfo.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = SubscriptionOrderInfoValidationError{}
+var _ error = InternalSubscriptionOrderInfoValidationError{}
 
 var _ interface {
 	Field() string
@@ -918,24 +923,25 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = SubscriptionOrderInfoValidationError{}
+} = InternalSubscriptionOrderInfoValidationError{}
 
-// Validate checks the field values on ListSubscriptionsRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *ListSubscriptionsRequest) Validate() error {
+// Validate checks the field values on InternalListSubscriptionsRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *InternalListSubscriptionsRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on ListSubscriptionsRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// ListSubscriptionsRequestMultiError, or nil if none found.
-func (m *ListSubscriptionsRequest) ValidateAll() error {
+// ValidateAll checks the field values on InternalListSubscriptionsRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// InternalListSubscriptionsRequestMultiError, or nil if none found.
+func (m *InternalListSubscriptionsRequest) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *ListSubscriptionsRequest) validate(all bool) error {
+func (m *InternalListSubscriptionsRequest) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -979,19 +985,20 @@ func (m *ListSubscriptionsRequest) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return ListSubscriptionsRequestMultiError(errors)
+		return InternalListSubscriptionsRequestMultiError(errors)
 	}
 
 	return nil
 }
 
-// ListSubscriptionsRequestMultiError is an error wrapping multiple validation
-// errors returned by ListSubscriptionsRequest.ValidateAll() if the designated
+// InternalListSubscriptionsRequestMultiError is an error wrapping multiple
+// validation errors returned by
+// InternalListSubscriptionsRequest.ValidateAll() if the designated
 // constraints aren't met.
-type ListSubscriptionsRequestMultiError []error
+type InternalListSubscriptionsRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m ListSubscriptionsRequestMultiError) Error() string {
+func (m InternalListSubscriptionsRequestMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1000,11 +1007,12 @@ func (m ListSubscriptionsRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m ListSubscriptionsRequestMultiError) AllErrors() []error { return m }
+func (m InternalListSubscriptionsRequestMultiError) AllErrors() []error { return m }
 
-// ListSubscriptionsRequestValidationError is the validation error returned by
-// ListSubscriptionsRequest.Validate if the designated constraints aren't met.
-type ListSubscriptionsRequestValidationError struct {
+// InternalListSubscriptionsRequestValidationError is the validation error
+// returned by InternalListSubscriptionsRequest.Validate if the designated
+// constraints aren't met.
+type InternalListSubscriptionsRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1012,24 +1020,24 @@ type ListSubscriptionsRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e ListSubscriptionsRequestValidationError) Field() string { return e.field }
+func (e InternalListSubscriptionsRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ListSubscriptionsRequestValidationError) Reason() string { return e.reason }
+func (e InternalListSubscriptionsRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ListSubscriptionsRequestValidationError) Cause() error { return e.cause }
+func (e InternalListSubscriptionsRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ListSubscriptionsRequestValidationError) Key() bool { return e.key }
+func (e InternalListSubscriptionsRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ListSubscriptionsRequestValidationError) ErrorName() string {
-	return "ListSubscriptionsRequestValidationError"
+func (e InternalListSubscriptionsRequestValidationError) ErrorName() string {
+	return "InternalListSubscriptionsRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ListSubscriptionsRequestValidationError) Error() string {
+func (e InternalListSubscriptionsRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1041,14 +1049,14 @@ func (e ListSubscriptionsRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sListSubscriptionsRequest.%s: %s%s",
+		"invalid %sInternalListSubscriptionsRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ListSubscriptionsRequestValidationError{}
+var _ error = InternalListSubscriptionsRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -1056,24 +1064,25 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ListSubscriptionsRequestValidationError{}
+} = InternalListSubscriptionsRequestValidationError{}
 
-// Validate checks the field values on ListSubscriptionsResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *ListSubscriptionsResponse) Validate() error {
+// Validate checks the field values on InternalListSubscriptionsResponse with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *InternalListSubscriptionsResponse) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on ListSubscriptionsResponse with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// ListSubscriptionsResponseMultiError, or nil if none found.
-func (m *ListSubscriptionsResponse) ValidateAll() error {
+// ValidateAll checks the field values on InternalListSubscriptionsResponse
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// InternalListSubscriptionsResponseMultiError, or nil if none found.
+func (m *InternalListSubscriptionsResponse) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *ListSubscriptionsResponse) validate(all bool) error {
+func (m *InternalListSubscriptionsResponse) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -1087,7 +1096,7 @@ func (m *ListSubscriptionsResponse) validate(all bool) error {
 			switch v := interface{}(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, ListSubscriptionsResponseValidationError{
+					errors = append(errors, InternalListSubscriptionsResponseValidationError{
 						field:  fmt.Sprintf("Subscriptions[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1095,7 +1104,7 @@ func (m *ListSubscriptionsResponse) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, ListSubscriptionsResponseValidationError{
+					errors = append(errors, InternalListSubscriptionsResponseValidationError{
 						field:  fmt.Sprintf("Subscriptions[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1104,7 +1113,7 @@ func (m *ListSubscriptionsResponse) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return ListSubscriptionsResponseValidationError{
+				return InternalListSubscriptionsResponseValidationError{
 					field:  fmt.Sprintf("Subscriptions[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1121,19 +1130,20 @@ func (m *ListSubscriptionsResponse) validate(all bool) error {
 	// no validation rules for PageSize
 
 	if len(errors) > 0 {
-		return ListSubscriptionsResponseMultiError(errors)
+		return InternalListSubscriptionsResponseMultiError(errors)
 	}
 
 	return nil
 }
 
-// ListSubscriptionsResponseMultiError is an error wrapping multiple validation
-// errors returned by ListSubscriptionsResponse.ValidateAll() if the
-// designated constraints aren't met.
-type ListSubscriptionsResponseMultiError []error
+// InternalListSubscriptionsResponseMultiError is an error wrapping multiple
+// validation errors returned by
+// InternalListSubscriptionsResponse.ValidateAll() if the designated
+// constraints aren't met.
+type InternalListSubscriptionsResponseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m ListSubscriptionsResponseMultiError) Error() string {
+func (m InternalListSubscriptionsResponseMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1142,11 +1152,12 @@ func (m ListSubscriptionsResponseMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m ListSubscriptionsResponseMultiError) AllErrors() []error { return m }
+func (m InternalListSubscriptionsResponseMultiError) AllErrors() []error { return m }
 
-// ListSubscriptionsResponseValidationError is the validation error returned by
-// ListSubscriptionsResponse.Validate if the designated constraints aren't met.
-type ListSubscriptionsResponseValidationError struct {
+// InternalListSubscriptionsResponseValidationError is the validation error
+// returned by InternalListSubscriptionsResponse.Validate if the designated
+// constraints aren't met.
+type InternalListSubscriptionsResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1154,24 +1165,24 @@ type ListSubscriptionsResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e ListSubscriptionsResponseValidationError) Field() string { return e.field }
+func (e InternalListSubscriptionsResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ListSubscriptionsResponseValidationError) Reason() string { return e.reason }
+func (e InternalListSubscriptionsResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ListSubscriptionsResponseValidationError) Cause() error { return e.cause }
+func (e InternalListSubscriptionsResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ListSubscriptionsResponseValidationError) Key() bool { return e.key }
+func (e InternalListSubscriptionsResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ListSubscriptionsResponseValidationError) ErrorName() string {
-	return "ListSubscriptionsResponseValidationError"
+func (e InternalListSubscriptionsResponseValidationError) ErrorName() string {
+	return "InternalListSubscriptionsResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ListSubscriptionsResponseValidationError) Error() string {
+func (e InternalListSubscriptionsResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1183,14 +1194,14 @@ func (e ListSubscriptionsResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sListSubscriptionsResponse.%s: %s%s",
+		"invalid %sInternalListSubscriptionsResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ListSubscriptionsResponseValidationError{}
+var _ error = InternalListSubscriptionsResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -1198,24 +1209,25 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ListSubscriptionsResponseValidationError{}
+} = InternalListSubscriptionsResponseValidationError{}
 
-// Validate checks the field values on CreateSubscriptionRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *CreateSubscriptionRequest) Validate() error {
+// Validate checks the field values on InternalCreateSubscriptionRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *InternalCreateSubscriptionRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on CreateSubscriptionRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// CreateSubscriptionRequestMultiError, or nil if none found.
-func (m *CreateSubscriptionRequest) ValidateAll() error {
+// ValidateAll checks the field values on InternalCreateSubscriptionRequest
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// InternalCreateSubscriptionRequestMultiError, or nil if none found.
+func (m *InternalCreateSubscriptionRequest) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *CreateSubscriptionRequest) validate(all bool) error {
+func (m *InternalCreateSubscriptionRequest) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -1232,7 +1244,7 @@ func (m *CreateSubscriptionRequest) validate(all bool) error {
 		switch v := interface{}(m.GetStartDate()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, CreateSubscriptionRequestValidationError{
+				errors = append(errors, InternalCreateSubscriptionRequestValidationError{
 					field:  "StartDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1240,7 +1252,7 @@ func (m *CreateSubscriptionRequest) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, CreateSubscriptionRequestValidationError{
+				errors = append(errors, InternalCreateSubscriptionRequestValidationError{
 					field:  "StartDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1249,7 +1261,7 @@ func (m *CreateSubscriptionRequest) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetStartDate()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return CreateSubscriptionRequestValidationError{
+			return InternalCreateSubscriptionRequestValidationError{
 				field:  "StartDate",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -1263,7 +1275,7 @@ func (m *CreateSubscriptionRequest) validate(all bool) error {
 		switch v := interface{}(m.GetOrder()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, CreateSubscriptionRequestValidationError{
+				errors = append(errors, InternalCreateSubscriptionRequestValidationError{
 					field:  "Order",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1271,7 +1283,7 @@ func (m *CreateSubscriptionRequest) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, CreateSubscriptionRequestValidationError{
+				errors = append(errors, InternalCreateSubscriptionRequestValidationError{
 					field:  "Order",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1280,7 +1292,7 @@ func (m *CreateSubscriptionRequest) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetOrder()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return CreateSubscriptionRequestValidationError{
+			return InternalCreateSubscriptionRequestValidationError{
 				field:  "Order",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -1294,7 +1306,7 @@ func (m *CreateSubscriptionRequest) validate(all bool) error {
 			switch v := interface{}(m.GetEndDate()).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, CreateSubscriptionRequestValidationError{
+					errors = append(errors, InternalCreateSubscriptionRequestValidationError{
 						field:  "EndDate",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1302,7 +1314,7 @@ func (m *CreateSubscriptionRequest) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, CreateSubscriptionRequestValidationError{
+					errors = append(errors, InternalCreateSubscriptionRequestValidationError{
 						field:  "EndDate",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1311,7 +1323,7 @@ func (m *CreateSubscriptionRequest) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(m.GetEndDate()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return CreateSubscriptionRequestValidationError{
+				return InternalCreateSubscriptionRequestValidationError{
 					field:  "EndDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1322,19 +1334,20 @@ func (m *CreateSubscriptionRequest) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return CreateSubscriptionRequestMultiError(errors)
+		return InternalCreateSubscriptionRequestMultiError(errors)
 	}
 
 	return nil
 }
 
-// CreateSubscriptionRequestMultiError is an error wrapping multiple validation
-// errors returned by CreateSubscriptionRequest.ValidateAll() if the
-// designated constraints aren't met.
-type CreateSubscriptionRequestMultiError []error
+// InternalCreateSubscriptionRequestMultiError is an error wrapping multiple
+// validation errors returned by
+// InternalCreateSubscriptionRequest.ValidateAll() if the designated
+// constraints aren't met.
+type InternalCreateSubscriptionRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m CreateSubscriptionRequestMultiError) Error() string {
+func (m InternalCreateSubscriptionRequestMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1343,11 +1356,12 @@ func (m CreateSubscriptionRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m CreateSubscriptionRequestMultiError) AllErrors() []error { return m }
+func (m InternalCreateSubscriptionRequestMultiError) AllErrors() []error { return m }
 
-// CreateSubscriptionRequestValidationError is the validation error returned by
-// CreateSubscriptionRequest.Validate if the designated constraints aren't met.
-type CreateSubscriptionRequestValidationError struct {
+// InternalCreateSubscriptionRequestValidationError is the validation error
+// returned by InternalCreateSubscriptionRequest.Validate if the designated
+// constraints aren't met.
+type InternalCreateSubscriptionRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1355,24 +1369,24 @@ type CreateSubscriptionRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e CreateSubscriptionRequestValidationError) Field() string { return e.field }
+func (e InternalCreateSubscriptionRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e CreateSubscriptionRequestValidationError) Reason() string { return e.reason }
+func (e InternalCreateSubscriptionRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e CreateSubscriptionRequestValidationError) Cause() error { return e.cause }
+func (e InternalCreateSubscriptionRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e CreateSubscriptionRequestValidationError) Key() bool { return e.key }
+func (e InternalCreateSubscriptionRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e CreateSubscriptionRequestValidationError) ErrorName() string {
-	return "CreateSubscriptionRequestValidationError"
+func (e InternalCreateSubscriptionRequestValidationError) ErrorName() string {
+	return "InternalCreateSubscriptionRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e CreateSubscriptionRequestValidationError) Error() string {
+func (e InternalCreateSubscriptionRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1384,14 +1398,14 @@ func (e CreateSubscriptionRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sCreateSubscriptionRequest.%s: %s%s",
+		"invalid %sInternalCreateSubscriptionRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = CreateSubscriptionRequestValidationError{}
+var _ error = InternalCreateSubscriptionRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -1399,24 +1413,25 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = CreateSubscriptionRequestValidationError{}
+} = InternalCreateSubscriptionRequestValidationError{}
 
-// Validate checks the field values on CreateSubscriptionResponse with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *CreateSubscriptionResponse) Validate() error {
+// Validate checks the field values on InternalCreateSubscriptionResponse with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *InternalCreateSubscriptionResponse) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on CreateSubscriptionResponse with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// CreateSubscriptionResponseMultiError, or nil if none found.
-func (m *CreateSubscriptionResponse) ValidateAll() error {
+// ValidateAll checks the field values on InternalCreateSubscriptionResponse
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// InternalCreateSubscriptionResponseMultiError, or nil if none found.
+func (m *InternalCreateSubscriptionResponse) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *CreateSubscriptionResponse) validate(all bool) error {
+func (m *InternalCreateSubscriptionResponse) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -1427,7 +1442,7 @@ func (m *CreateSubscriptionResponse) validate(all bool) error {
 		switch v := interface{}(m.GetSubscription()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, CreateSubscriptionResponseValidationError{
+				errors = append(errors, InternalCreateSubscriptionResponseValidationError{
 					field:  "Subscription",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1435,7 +1450,7 @@ func (m *CreateSubscriptionResponse) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, CreateSubscriptionResponseValidationError{
+				errors = append(errors, InternalCreateSubscriptionResponseValidationError{
 					field:  "Subscription",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1444,7 +1459,7 @@ func (m *CreateSubscriptionResponse) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetSubscription()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return CreateSubscriptionResponseValidationError{
+			return InternalCreateSubscriptionResponseValidationError{
 				field:  "Subscription",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -1453,19 +1468,20 @@ func (m *CreateSubscriptionResponse) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return CreateSubscriptionResponseMultiError(errors)
+		return InternalCreateSubscriptionResponseMultiError(errors)
 	}
 
 	return nil
 }
 
-// CreateSubscriptionResponseMultiError is an error wrapping multiple
-// validation errors returned by CreateSubscriptionResponse.ValidateAll() if
-// the designated constraints aren't met.
-type CreateSubscriptionResponseMultiError []error
+// InternalCreateSubscriptionResponseMultiError is an error wrapping multiple
+// validation errors returned by
+// InternalCreateSubscriptionResponse.ValidateAll() if the designated
+// constraints aren't met.
+type InternalCreateSubscriptionResponseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m CreateSubscriptionResponseMultiError) Error() string {
+func (m InternalCreateSubscriptionResponseMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1474,11 +1490,12 @@ func (m CreateSubscriptionResponseMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m CreateSubscriptionResponseMultiError) AllErrors() []error { return m }
+func (m InternalCreateSubscriptionResponseMultiError) AllErrors() []error { return m }
 
-// CreateSubscriptionResponseValidationError is the validation error returned
-// by CreateSubscriptionResponse.Validate if the designated constraints aren't met.
-type CreateSubscriptionResponseValidationError struct {
+// InternalCreateSubscriptionResponseValidationError is the validation error
+// returned by InternalCreateSubscriptionResponse.Validate if the designated
+// constraints aren't met.
+type InternalCreateSubscriptionResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1486,24 +1503,24 @@ type CreateSubscriptionResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e CreateSubscriptionResponseValidationError) Field() string { return e.field }
+func (e InternalCreateSubscriptionResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e CreateSubscriptionResponseValidationError) Reason() string { return e.reason }
+func (e InternalCreateSubscriptionResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e CreateSubscriptionResponseValidationError) Cause() error { return e.cause }
+func (e InternalCreateSubscriptionResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e CreateSubscriptionResponseValidationError) Key() bool { return e.key }
+func (e InternalCreateSubscriptionResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e CreateSubscriptionResponseValidationError) ErrorName() string {
-	return "CreateSubscriptionResponseValidationError"
+func (e InternalCreateSubscriptionResponseValidationError) ErrorName() string {
+	return "InternalCreateSubscriptionResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e CreateSubscriptionResponseValidationError) Error() string {
+func (e InternalCreateSubscriptionResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1515,14 +1532,14 @@ func (e CreateSubscriptionResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sCreateSubscriptionResponse.%s: %s%s",
+		"invalid %sInternalCreateSubscriptionResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = CreateSubscriptionResponseValidationError{}
+var _ error = InternalCreateSubscriptionResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -1530,24 +1547,25 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = CreateSubscriptionResponseValidationError{}
+} = InternalCreateSubscriptionResponseValidationError{}
 
-// Validate checks the field values on ReNewSubscriptionRequest with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *ReNewSubscriptionRequest) Validate() error {
+// Validate checks the field values on InternalReNewSubscriptionRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *InternalReNewSubscriptionRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on ReNewSubscriptionRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// ReNewSubscriptionRequestMultiError, or nil if none found.
-func (m *ReNewSubscriptionRequest) ValidateAll() error {
+// ValidateAll checks the field values on InternalReNewSubscriptionRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// InternalReNewSubscriptionRequestMultiError, or nil if none found.
+func (m *InternalReNewSubscriptionRequest) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *ReNewSubscriptionRequest) validate(all bool) error {
+func (m *InternalReNewSubscriptionRequest) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -1564,7 +1582,7 @@ func (m *ReNewSubscriptionRequest) validate(all bool) error {
 		switch v := interface{}(m.GetReNewTime()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ReNewSubscriptionRequestValidationError{
+				errors = append(errors, InternalReNewSubscriptionRequestValidationError{
 					field:  "ReNewTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1572,7 +1590,7 @@ func (m *ReNewSubscriptionRequest) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, ReNewSubscriptionRequestValidationError{
+				errors = append(errors, InternalReNewSubscriptionRequestValidationError{
 					field:  "ReNewTime",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1581,7 +1599,7 @@ func (m *ReNewSubscriptionRequest) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetReNewTime()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ReNewSubscriptionRequestValidationError{
+			return InternalReNewSubscriptionRequestValidationError{
 				field:  "ReNewTime",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -1593,7 +1611,7 @@ func (m *ReNewSubscriptionRequest) validate(all bool) error {
 		switch v := interface{}(m.GetOrder()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ReNewSubscriptionRequestValidationError{
+				errors = append(errors, InternalReNewSubscriptionRequestValidationError{
 					field:  "Order",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1601,7 +1619,7 @@ func (m *ReNewSubscriptionRequest) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, ReNewSubscriptionRequestValidationError{
+				errors = append(errors, InternalReNewSubscriptionRequestValidationError{
 					field:  "Order",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1610,7 +1628,7 @@ func (m *ReNewSubscriptionRequest) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetOrder()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ReNewSubscriptionRequestValidationError{
+			return InternalReNewSubscriptionRequestValidationError{
 				field:  "Order",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -1619,19 +1637,20 @@ func (m *ReNewSubscriptionRequest) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return ReNewSubscriptionRequestMultiError(errors)
+		return InternalReNewSubscriptionRequestMultiError(errors)
 	}
 
 	return nil
 }
 
-// ReNewSubscriptionRequestMultiError is an error wrapping multiple validation
-// errors returned by ReNewSubscriptionRequest.ValidateAll() if the designated
+// InternalReNewSubscriptionRequestMultiError is an error wrapping multiple
+// validation errors returned by
+// InternalReNewSubscriptionRequest.ValidateAll() if the designated
 // constraints aren't met.
-type ReNewSubscriptionRequestMultiError []error
+type InternalReNewSubscriptionRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m ReNewSubscriptionRequestMultiError) Error() string {
+func (m InternalReNewSubscriptionRequestMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1640,11 +1659,12 @@ func (m ReNewSubscriptionRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m ReNewSubscriptionRequestMultiError) AllErrors() []error { return m }
+func (m InternalReNewSubscriptionRequestMultiError) AllErrors() []error { return m }
 
-// ReNewSubscriptionRequestValidationError is the validation error returned by
-// ReNewSubscriptionRequest.Validate if the designated constraints aren't met.
-type ReNewSubscriptionRequestValidationError struct {
+// InternalReNewSubscriptionRequestValidationError is the validation error
+// returned by InternalReNewSubscriptionRequest.Validate if the designated
+// constraints aren't met.
+type InternalReNewSubscriptionRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1652,24 +1672,24 @@ type ReNewSubscriptionRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e ReNewSubscriptionRequestValidationError) Field() string { return e.field }
+func (e InternalReNewSubscriptionRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ReNewSubscriptionRequestValidationError) Reason() string { return e.reason }
+func (e InternalReNewSubscriptionRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ReNewSubscriptionRequestValidationError) Cause() error { return e.cause }
+func (e InternalReNewSubscriptionRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ReNewSubscriptionRequestValidationError) Key() bool { return e.key }
+func (e InternalReNewSubscriptionRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ReNewSubscriptionRequestValidationError) ErrorName() string {
-	return "ReNewSubscriptionRequestValidationError"
+func (e InternalReNewSubscriptionRequestValidationError) ErrorName() string {
+	return "InternalReNewSubscriptionRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ReNewSubscriptionRequestValidationError) Error() string {
+func (e InternalReNewSubscriptionRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1681,14 +1701,14 @@ func (e ReNewSubscriptionRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sReNewSubscriptionRequest.%s: %s%s",
+		"invalid %sInternalReNewSubscriptionRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ReNewSubscriptionRequestValidationError{}
+var _ error = InternalReNewSubscriptionRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -1696,24 +1716,25 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ReNewSubscriptionRequestValidationError{}
+} = InternalReNewSubscriptionRequestValidationError{}
 
-// Validate checks the field values on ReNewSubscriptionResponse with the rules
-// defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *ReNewSubscriptionResponse) Validate() error {
+// Validate checks the field values on InternalReNewSubscriptionResponse with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *InternalReNewSubscriptionResponse) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on ReNewSubscriptionResponse with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// ReNewSubscriptionResponseMultiError, or nil if none found.
-func (m *ReNewSubscriptionResponse) ValidateAll() error {
+// ValidateAll checks the field values on InternalReNewSubscriptionResponse
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// InternalReNewSubscriptionResponseMultiError, or nil if none found.
+func (m *InternalReNewSubscriptionResponse) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *ReNewSubscriptionResponse) validate(all bool) error {
+func (m *InternalReNewSubscriptionResponse) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -1724,7 +1745,7 @@ func (m *ReNewSubscriptionResponse) validate(all bool) error {
 		switch v := interface{}(m.GetSubscription()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ReNewSubscriptionResponseValidationError{
+				errors = append(errors, InternalReNewSubscriptionResponseValidationError{
 					field:  "Subscription",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1732,7 +1753,7 @@ func (m *ReNewSubscriptionResponse) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, ReNewSubscriptionResponseValidationError{
+				errors = append(errors, InternalReNewSubscriptionResponseValidationError{
 					field:  "Subscription",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1741,7 +1762,7 @@ func (m *ReNewSubscriptionResponse) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetSubscription()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ReNewSubscriptionResponseValidationError{
+			return InternalReNewSubscriptionResponseValidationError{
 				field:  "Subscription",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -1750,19 +1771,20 @@ func (m *ReNewSubscriptionResponse) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return ReNewSubscriptionResponseMultiError(errors)
+		return InternalReNewSubscriptionResponseMultiError(errors)
 	}
 
 	return nil
 }
 
-// ReNewSubscriptionResponseMultiError is an error wrapping multiple validation
-// errors returned by ReNewSubscriptionResponse.ValidateAll() if the
-// designated constraints aren't met.
-type ReNewSubscriptionResponseMultiError []error
+// InternalReNewSubscriptionResponseMultiError is an error wrapping multiple
+// validation errors returned by
+// InternalReNewSubscriptionResponse.ValidateAll() if the designated
+// constraints aren't met.
+type InternalReNewSubscriptionResponseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m ReNewSubscriptionResponseMultiError) Error() string {
+func (m InternalReNewSubscriptionResponseMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1771,11 +1793,12 @@ func (m ReNewSubscriptionResponseMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m ReNewSubscriptionResponseMultiError) AllErrors() []error { return m }
+func (m InternalReNewSubscriptionResponseMultiError) AllErrors() []error { return m }
 
-// ReNewSubscriptionResponseValidationError is the validation error returned by
-// ReNewSubscriptionResponse.Validate if the designated constraints aren't met.
-type ReNewSubscriptionResponseValidationError struct {
+// InternalReNewSubscriptionResponseValidationError is the validation error
+// returned by InternalReNewSubscriptionResponse.Validate if the designated
+// constraints aren't met.
+type InternalReNewSubscriptionResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1783,24 +1806,24 @@ type ReNewSubscriptionResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e ReNewSubscriptionResponseValidationError) Field() string { return e.field }
+func (e InternalReNewSubscriptionResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ReNewSubscriptionResponseValidationError) Reason() string { return e.reason }
+func (e InternalReNewSubscriptionResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ReNewSubscriptionResponseValidationError) Cause() error { return e.cause }
+func (e InternalReNewSubscriptionResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ReNewSubscriptionResponseValidationError) Key() bool { return e.key }
+func (e InternalReNewSubscriptionResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ReNewSubscriptionResponseValidationError) ErrorName() string {
-	return "ReNewSubscriptionResponseValidationError"
+func (e InternalReNewSubscriptionResponseValidationError) ErrorName() string {
+	return "InternalReNewSubscriptionResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ReNewSubscriptionResponseValidationError) Error() string {
+func (e InternalReNewSubscriptionResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -1812,14 +1835,14 @@ func (e ReNewSubscriptionResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sReNewSubscriptionResponse.%s: %s%s",
+		"invalid %sInternalReNewSubscriptionResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ReNewSubscriptionResponseValidationError{}
+var _ error = InternalReNewSubscriptionResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -1827,24 +1850,25 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ReNewSubscriptionResponseValidationError{}
+} = InternalReNewSubscriptionResponseValidationError{}
 
-// Validate checks the field values on UpgradeSubscriptionRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *UpgradeSubscriptionRequest) Validate() error {
+// Validate checks the field values on InternalUpgradeSubscriptionRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *InternalUpgradeSubscriptionRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on UpgradeSubscriptionRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// UpgradeSubscriptionRequestMultiError, or nil if none found.
-func (m *UpgradeSubscriptionRequest) ValidateAll() error {
+// ValidateAll checks the field values on InternalUpgradeSubscriptionRequest
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// InternalUpgradeSubscriptionRequestMultiError, or nil if none found.
+func (m *InternalUpgradeSubscriptionRequest) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *UpgradeSubscriptionRequest) validate(all bool) error {
+func (m *InternalUpgradeSubscriptionRequest) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -1861,7 +1885,7 @@ func (m *UpgradeSubscriptionRequest) validate(all bool) error {
 		switch v := interface{}(m.GetStartDate()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, UpgradeSubscriptionRequestValidationError{
+				errors = append(errors, InternalUpgradeSubscriptionRequestValidationError{
 					field:  "StartDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1869,7 +1893,7 @@ func (m *UpgradeSubscriptionRequest) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, UpgradeSubscriptionRequestValidationError{
+				errors = append(errors, InternalUpgradeSubscriptionRequestValidationError{
 					field:  "StartDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1878,7 +1902,7 @@ func (m *UpgradeSubscriptionRequest) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetStartDate()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return UpgradeSubscriptionRequestValidationError{
+			return InternalUpgradeSubscriptionRequestValidationError{
 				field:  "StartDate",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -1890,7 +1914,7 @@ func (m *UpgradeSubscriptionRequest) validate(all bool) error {
 		switch v := interface{}(m.GetOrder()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, UpgradeSubscriptionRequestValidationError{
+				errors = append(errors, InternalUpgradeSubscriptionRequestValidationError{
 					field:  "Order",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1898,7 +1922,7 @@ func (m *UpgradeSubscriptionRequest) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, UpgradeSubscriptionRequestValidationError{
+				errors = append(errors, InternalUpgradeSubscriptionRequestValidationError{
 					field:  "Order",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1907,7 +1931,7 @@ func (m *UpgradeSubscriptionRequest) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetOrder()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return UpgradeSubscriptionRequestValidationError{
+			return InternalUpgradeSubscriptionRequestValidationError{
 				field:  "Order",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -1921,7 +1945,7 @@ func (m *UpgradeSubscriptionRequest) validate(all bool) error {
 			switch v := interface{}(m.GetEndDate()).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, UpgradeSubscriptionRequestValidationError{
+					errors = append(errors, InternalUpgradeSubscriptionRequestValidationError{
 						field:  "EndDate",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1929,7 +1953,7 @@ func (m *UpgradeSubscriptionRequest) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, UpgradeSubscriptionRequestValidationError{
+					errors = append(errors, InternalUpgradeSubscriptionRequestValidationError{
 						field:  "EndDate",
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -1938,7 +1962,7 @@ func (m *UpgradeSubscriptionRequest) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(m.GetEndDate()).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return UpgradeSubscriptionRequestValidationError{
+				return InternalUpgradeSubscriptionRequestValidationError{
 					field:  "EndDate",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -1949,19 +1973,20 @@ func (m *UpgradeSubscriptionRequest) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return UpgradeSubscriptionRequestMultiError(errors)
+		return InternalUpgradeSubscriptionRequestMultiError(errors)
 	}
 
 	return nil
 }
 
-// UpgradeSubscriptionRequestMultiError is an error wrapping multiple
-// validation errors returned by UpgradeSubscriptionRequest.ValidateAll() if
-// the designated constraints aren't met.
-type UpgradeSubscriptionRequestMultiError []error
+// InternalUpgradeSubscriptionRequestMultiError is an error wrapping multiple
+// validation errors returned by
+// InternalUpgradeSubscriptionRequest.ValidateAll() if the designated
+// constraints aren't met.
+type InternalUpgradeSubscriptionRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m UpgradeSubscriptionRequestMultiError) Error() string {
+func (m InternalUpgradeSubscriptionRequestMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -1970,11 +1995,12 @@ func (m UpgradeSubscriptionRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m UpgradeSubscriptionRequestMultiError) AllErrors() []error { return m }
+func (m InternalUpgradeSubscriptionRequestMultiError) AllErrors() []error { return m }
 
-// UpgradeSubscriptionRequestValidationError is the validation error returned
-// by UpgradeSubscriptionRequest.Validate if the designated constraints aren't met.
-type UpgradeSubscriptionRequestValidationError struct {
+// InternalUpgradeSubscriptionRequestValidationError is the validation error
+// returned by InternalUpgradeSubscriptionRequest.Validate if the designated
+// constraints aren't met.
+type InternalUpgradeSubscriptionRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -1982,24 +2008,24 @@ type UpgradeSubscriptionRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e UpgradeSubscriptionRequestValidationError) Field() string { return e.field }
+func (e InternalUpgradeSubscriptionRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e UpgradeSubscriptionRequestValidationError) Reason() string { return e.reason }
+func (e InternalUpgradeSubscriptionRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e UpgradeSubscriptionRequestValidationError) Cause() error { return e.cause }
+func (e InternalUpgradeSubscriptionRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e UpgradeSubscriptionRequestValidationError) Key() bool { return e.key }
+func (e InternalUpgradeSubscriptionRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e UpgradeSubscriptionRequestValidationError) ErrorName() string {
-	return "UpgradeSubscriptionRequestValidationError"
+func (e InternalUpgradeSubscriptionRequestValidationError) ErrorName() string {
+	return "InternalUpgradeSubscriptionRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e UpgradeSubscriptionRequestValidationError) Error() string {
+func (e InternalUpgradeSubscriptionRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -2011,14 +2037,14 @@ func (e UpgradeSubscriptionRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sUpgradeSubscriptionRequest.%s: %s%s",
+		"invalid %sInternalUpgradeSubscriptionRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = UpgradeSubscriptionRequestValidationError{}
+var _ error = InternalUpgradeSubscriptionRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -2026,24 +2052,25 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = UpgradeSubscriptionRequestValidationError{}
+} = InternalUpgradeSubscriptionRequestValidationError{}
 
-// Validate checks the field values on UpgradeSubscriptionResponse with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *UpgradeSubscriptionResponse) Validate() error {
+// Validate checks the field values on InternalUpgradeSubscriptionResponse with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *InternalUpgradeSubscriptionResponse) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on UpgradeSubscriptionResponse with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the result is a list of violation errors wrapped in
-// UpgradeSubscriptionResponseMultiError, or nil if none found.
-func (m *UpgradeSubscriptionResponse) ValidateAll() error {
+// ValidateAll checks the field values on InternalUpgradeSubscriptionResponse
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// InternalUpgradeSubscriptionResponseMultiError, or nil if none found.
+func (m *InternalUpgradeSubscriptionResponse) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *UpgradeSubscriptionResponse) validate(all bool) error {
+func (m *InternalUpgradeSubscriptionResponse) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -2054,7 +2081,7 @@ func (m *UpgradeSubscriptionResponse) validate(all bool) error {
 		switch v := interface{}(m.GetSubscription()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, UpgradeSubscriptionResponseValidationError{
+				errors = append(errors, InternalUpgradeSubscriptionResponseValidationError{
 					field:  "Subscription",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -2062,7 +2089,7 @@ func (m *UpgradeSubscriptionResponse) validate(all bool) error {
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, UpgradeSubscriptionResponseValidationError{
+				errors = append(errors, InternalUpgradeSubscriptionResponseValidationError{
 					field:  "Subscription",
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -2071,7 +2098,7 @@ func (m *UpgradeSubscriptionResponse) validate(all bool) error {
 		}
 	} else if v, ok := interface{}(m.GetSubscription()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return UpgradeSubscriptionResponseValidationError{
+			return InternalUpgradeSubscriptionResponseValidationError{
 				field:  "Subscription",
 				reason: "embedded message failed validation",
 				cause:  err,
@@ -2080,19 +2107,20 @@ func (m *UpgradeSubscriptionResponse) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return UpgradeSubscriptionResponseMultiError(errors)
+		return InternalUpgradeSubscriptionResponseMultiError(errors)
 	}
 
 	return nil
 }
 
-// UpgradeSubscriptionResponseMultiError is an error wrapping multiple
-// validation errors returned by UpgradeSubscriptionResponse.ValidateAll() if
-// the designated constraints aren't met.
-type UpgradeSubscriptionResponseMultiError []error
+// InternalUpgradeSubscriptionResponseMultiError is an error wrapping multiple
+// validation errors returned by
+// InternalUpgradeSubscriptionResponse.ValidateAll() if the designated
+// constraints aren't met.
+type InternalUpgradeSubscriptionResponseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m UpgradeSubscriptionResponseMultiError) Error() string {
+func (m InternalUpgradeSubscriptionResponseMultiError) Error() string {
 	msgs := make([]string, 0, len(m))
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -2101,12 +2129,12 @@ func (m UpgradeSubscriptionResponseMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m UpgradeSubscriptionResponseMultiError) AllErrors() []error { return m }
+func (m InternalUpgradeSubscriptionResponseMultiError) AllErrors() []error { return m }
 
-// UpgradeSubscriptionResponseValidationError is the validation error returned
-// by UpgradeSubscriptionResponse.Validate if the designated constraints
-// aren't met.
-type UpgradeSubscriptionResponseValidationError struct {
+// InternalUpgradeSubscriptionResponseValidationError is the validation error
+// returned by InternalUpgradeSubscriptionResponse.Validate if the designated
+// constraints aren't met.
+type InternalUpgradeSubscriptionResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -2114,24 +2142,24 @@ type UpgradeSubscriptionResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e UpgradeSubscriptionResponseValidationError) Field() string { return e.field }
+func (e InternalUpgradeSubscriptionResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e UpgradeSubscriptionResponseValidationError) Reason() string { return e.reason }
+func (e InternalUpgradeSubscriptionResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e UpgradeSubscriptionResponseValidationError) Cause() error { return e.cause }
+func (e InternalUpgradeSubscriptionResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e UpgradeSubscriptionResponseValidationError) Key() bool { return e.key }
+func (e InternalUpgradeSubscriptionResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e UpgradeSubscriptionResponseValidationError) ErrorName() string {
-	return "UpgradeSubscriptionResponseValidationError"
+func (e InternalUpgradeSubscriptionResponseValidationError) ErrorName() string {
+	return "InternalUpgradeSubscriptionResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e UpgradeSubscriptionResponseValidationError) Error() string {
+func (e InternalUpgradeSubscriptionResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -2143,14 +2171,14 @@ func (e UpgradeSubscriptionResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sUpgradeSubscriptionResponse.%s: %s%s",
+		"invalid %sInternalUpgradeSubscriptionResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = UpgradeSubscriptionResponseValidationError{}
+var _ error = InternalUpgradeSubscriptionResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -2158,4 +2186,4 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = UpgradeSubscriptionResponseValidationError{}
+} = InternalUpgradeSubscriptionResponseValidationError{}
