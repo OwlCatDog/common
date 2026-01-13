@@ -4,10 +4,9 @@ import (
 	"context"
 	"fmt"
 	"github.com/go-kratos/kratos/v2/log"
-	"github.com/go-kratos/kratos/v2/middleware/recovery"
 	"github.com/go-kratos/kratos/v2/registry"
-	kratosGrpc "github.com/go-kratos/kratos/v2/transport/grpc"
 	v1 "github.com/heyinLab/common/api/gen/go/subscribe/v1"
+	middleware "github.com/heyinLab/common/pkg/middleware/grpc"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/durationpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
@@ -32,7 +31,7 @@ func NewClient(config *Config) (*Client, error) {
 		"module", "subscribe-client",
 	))
 
-	conn, err := createGRPCConn(config, nil, logger)
+	conn, err := middleware.CreateGRPCConn(config, nil, logger)
 	if err != nil {
 		return nil, fmt.Errorf("创建 gRPC 连接失败: %w", err)
 	}
@@ -62,7 +61,7 @@ func NewClientWithDiscovery(config *Config, discovery registry.Discovery) (*Clie
 		"module", "subscribe-client",
 	))
 
-	conn, err := createGRPCConn(config, discovery, logger)
+	conn, err := middleware.CreateGRPCConn(config, discovery, logger)
 	if err != nil {
 		return nil, fmt.Errorf("创建 gRPC 连接失败: %w", err)
 	}
@@ -86,34 +85,6 @@ func (c *Client) Close() error {
 
 func (c *Client) SubscribeClient() *SubscribeClient {
 	return c.subscribeClient
-}
-
-// createGRPCConn 创建 gRPC 连接
-func createGRPCConn(config *Config, discovery registry.Discovery, logger *log.Helper) (*grpc.ClientConn, error) {
-	opts := []kratosGrpc.ClientOption{
-		kratosGrpc.WithEndpoint(config.Endpoint),
-		kratosGrpc.WithTimeout(config.Timeout),
-		kratosGrpc.WithMiddleware(
-			recovery.Recovery(),
-		),
-	}
-
-	// 如果有服务发现，添加服务发现选项
-	if discovery != nil {
-		opts = append(opts, kratosGrpc.WithDiscovery(discovery))
-	}
-
-	conn, err := kratosGrpc.DialInsecure(
-		context.Background(),
-		opts...,
-	)
-	if err != nil {
-		return nil, err
-	}
-
-	logger.Infof("平台服务客户端连接成功: endpoint=%s, timeout=%v", config.Endpoint, config.Timeout)
-
-	return conn, nil
 }
 
 type SubscribeClient struct {
