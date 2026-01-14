@@ -4,6 +4,7 @@ import (
 	"context"
 	"reflect"
 	"regexp"
+	"strings"
 	"sync"
 )
 
@@ -20,10 +21,11 @@ type typeInfo struct {
 
 // fieldInfo 字段信息
 type fieldInfo struct {
-	srcIndex  int    // 源字段索引
-	dstIndex  int    // 目标字段索引
-	name      string // 字段名
-	fieldType fieldType
+	srcIndex    int    // 源字段索引（用于普通字段映射）
+	dstIndex    int    // 目标字段索引
+	name        string // 字段名
+	fieldType   fieldType
+	idSrcIndex  int // ID来源字段索引（用于URL/URLs类型，从对应的ID字段获取值）
 	// 嵌套类型信息（slice/struct/map）
 	elemInfo *typeInfo
 	srcElem  reflect.Type
@@ -36,8 +38,8 @@ type fieldType int
 
 const (
 	fieldTypeBasic    fieldType = iota // 基本类型，直接复制
-	fieldTypeFileID                   // FileID 类型
-	fieldTypeFileIDs                  // FileIDs 类型
+	fieldTypeURL                       // URL 类型（双字段模式）
+	fieldTypeURLs                      // URLs 类型（双字段模式）
 	fieldTypeRichText                  // RichText 类型
 	fieldTypeSlice                     // 切片类型，需要递归
 	fieldTypeStruct                    // 结构体类型，需要递归
@@ -55,14 +57,14 @@ type typePair struct {
 
 // ==================== AutoFill 入口 ====================
 
-// AutoFill 自动映射并填充图片URL
+// AutoFill 自动映射并填充文件URL
 //
-// 将源切片自动映射到目标切片，并填充所有图片URL
+// 将源切片自动映射到目标切片，并填充所有文件URL
 //
-// 支持的图片字段类型:
-//   - FileID: 单图，file_id → url
-//   - FileIDs: 多图，[]file_id → []url
-//   - RichText: 富文本，<img src="file_id"> → <img src="url">
+// 支持的字段类型:
+//   - URL: 单文件URL（双字段模式），CoverURL 从 Cover 获取ID
+//   - URLs: 多文件URL（双字段模式），GalleryURL 从 Gallery 获取IDs
+//   - RichText: 富文本，data-helf="file_id" → src="url"
 //
 // 参数:
 //   - ctx: 上下文
@@ -73,7 +75,7 @@ type typePair struct {
 // 示例:
 //
 //	var responses []*ProductResponse
-//	image.AutoFill(ctx, filler, products, &responses)
+//	media.AutoFill(ctx, filler, products, &responses)
 func AutoFill[S, D any](ctx context.Context, filler *Filler, src []S, dst *[]D) error {
 	if len(src) == 0 || dst == nil {
 		return nil
@@ -87,14 +89,23 @@ func AutoFill[S, D any](ctx context.Context, filler *Filler, src []S, dst *[]D) 
 	dstType := reflect.TypeOf(result).Elem()
 	info := getTypeInfo(srcType, dstType)
 
-	// 3. 收集所有图片ID
+	// 3. 收集所有文件ID
 	collector := &idCollector{ids: make(map[string]struct{})}
 
 	// 4. 映射并收集ID
+	// 如果目标是指针类型，需要先创建实例
+	dstIsPtr := dstType.Kind() == reflect.Ptr
 	for i := range src {
 		srcVal := reflect.ValueOf(&src[i]).Elem()
-		dstVal := reflect.ValueOf(&result[i]).Elem()
-		mapAndCollect(srcVal, dstVal, info, collector)
+		if dstIsPtr {
+			// 创建新实例并设置到result
+			newElem := reflect.New(dstType.Elem())
+			reflect.ValueOf(&result[i]).Elem().Set(newElem)
+			mapAndCollect(srcVal, newElem.Elem(), info, collector)
+		} else {
+			dstVal := reflect.ValueOf(&result[i]).Elem()
+			mapAndCollect(srcVal, dstVal, info, collector)
+		}
 	}
 
 	// 5. 批量获取URL
@@ -131,7 +142,7 @@ func AutoFill[S, D any](ctx context.Context, filler *Filler, src []S, dst *[]D) 
 // 示例:
 //
 //	var response ProductResponse
-//	image.AutoFillOne(ctx, filler, product, &response)
+//	media.AutoFillOne(ctx, filler, product, &response)
 func AutoFillOne[S, D any](ctx context.Context, filler *Filler, src *S, dst *D) error {
 	if src == nil || dst == nil {
 		return nil
@@ -215,6 +226,41 @@ func buildTypeInfo(srcType, dstType reflect.Type) *typeInfo {
 			continue
 		}
 
+		dstFieldType := dstField.Type
+
+		// 检查是否为 URL 类型（双字段模式）
+		if dstFieldType == reflect.TypeOf(URL("")) {
+			// CoverURL -> Cover
+			idFieldName := strings.TrimSuffix(dstField.Name, "URL")
+			if idSrcIdx, ok := srcFields[idFieldName]; ok {
+				fields = append(fields, fieldInfo{
+					srcIndex:   -1, // 不直接从同名字段复制
+					dstIndex:   i,
+					name:       dstField.Name,
+					fieldType:  fieldTypeURL,
+					idSrcIndex: idSrcIdx,
+				})
+			}
+			continue
+		}
+
+		// 检查是否为 URLs 类型（双字段模式）
+		if dstFieldType == reflect.TypeOf(URLs{}) {
+			// GalleryURL -> Gallery
+			idFieldName := strings.TrimSuffix(dstField.Name, "URL")
+			if idSrcIdx, ok := srcFields[idFieldName]; ok {
+				fields = append(fields, fieldInfo{
+					srcIndex:   -1,
+					dstIndex:   i,
+					name:       dstField.Name,
+					fieldType:  fieldTypeURLs,
+					idSrcIndex: idSrcIdx,
+				})
+			}
+			continue
+		}
+
+		// 其他类型需要同名字段
 		srcIdx, ok := srcFields[dstField.Name]
 		if !ok {
 			continue
@@ -228,19 +274,19 @@ func buildTypeInfo(srcType, dstType reflect.Type) *typeInfo {
 		}
 
 		// 判断字段类型
-		dstFieldType := dstField.Type
 		switch {
-		case dstFieldType == reflect.TypeOf(FileID("")):
-			fi.fieldType = fieldTypeFileID
-		case dstFieldType == reflect.TypeOf(FileIDs{}):
-			fi.fieldType = fieldTypeFileIDs
 		case dstFieldType == reflect.TypeOf(RichText("")):
 			fi.fieldType = fieldTypeRichText
 		case dstFieldType.Kind() == reflect.Slice:
-			fi.fieldType = fieldTypeSlice
 			fi.srcElem = srcField.Type.Elem()
 			fi.dstElem = dstFieldType.Elem()
-			fi.elemInfo = getTypeInfo(fi.srcElem, fi.dstElem)
+			// 基础类型切片（如 []string）直接复制
+			if isBasicType(fi.dstElem) {
+				fi.fieldType = fieldTypeBasic
+			} else {
+				fi.fieldType = fieldTypeSlice
+				fi.elemInfo = getTypeInfo(fi.srcElem, fi.dstElem)
+			}
 		case dstFieldType.Kind() == reflect.Map:
 			fi.fieldType = fieldTypeMap
 			fi.keyType = dstFieldType.Key()
@@ -289,26 +335,29 @@ func mapAndCollect(srcVal, dstVal reflect.Value, info *typeInfo, collector *idCo
 	}
 
 	for _, fi := range info.fields {
-		srcField := srcVal.Field(fi.srcIndex)
 		dstField := dstVal.Field(fi.dstIndex)
 
 		switch fi.fieldType {
 		case fieldTypeBasic:
+			srcField := srcVal.Field(fi.srcIndex)
 			if srcField.Type().AssignableTo(dstField.Type()) {
 				dstField.Set(srcField)
 			} else if srcField.Type().ConvertibleTo(dstField.Type()) {
 				dstField.Set(srcField.Convert(dstField.Type()))
 			}
 
-		case fieldTypeFileID:
-			// 复制值并收集ID
-			id := getStringValue(srcField)
+		case fieldTypeURL:
+			// 从对应的ID字段获取值
+			idField := srcVal.Field(fi.idSrcIndex)
+			id := getStringValue(idField)
+			// 先存储ID，后面fillURLs会替换成URL
 			dstField.SetString(id)
 			collector.add(id)
 
-		case fieldTypeFileIDs:
-			// 复制值并收集ID
-			ids := getStringSliceValue(srcField)
+		case fieldTypeURLs:
+			// 从对应的IDs字段获取值
+			idsField := srcVal.Field(fi.idSrcIndex)
+			ids := getStringSliceValue(idsField)
 			if len(ids) > 0 {
 				slice := reflect.MakeSlice(dstField.Type(), len(ids), len(ids))
 				for i, id := range ids {
@@ -319,6 +368,7 @@ func mapAndCollect(srcVal, dstVal reflect.Value, info *typeInfo, collector *idCo
 			}
 
 		case fieldTypeRichText:
+			srcField := srcVal.Field(fi.srcIndex)
 			// 复制值并提取ID
 			text := getStringValue(srcField)
 			dstField.SetString(text)
@@ -330,12 +380,15 @@ func mapAndCollect(srcVal, dstVal reflect.Value, info *typeInfo, collector *idCo
 			}
 
 		case fieldTypeSlice:
+			srcField := srcVal.Field(fi.srcIndex)
 			mapSliceAndCollect(srcField, dstField, fi, collector)
 
 		case fieldTypeMap:
+			srcField := srcVal.Field(fi.srcIndex)
 			mapMapAndCollect(srcField, dstField, fi, collector)
 
 		case fieldTypeStruct:
+			srcField := srcVal.Field(fi.srcIndex)
 			mapStructAndCollect(srcField, dstField, fi, collector)
 		}
 	}
@@ -424,13 +477,13 @@ func fillURLs(dstVal reflect.Value, info *typeInfo, resources map[string]*Resour
 		dstField := dstVal.Field(fi.dstIndex)
 
 		switch fi.fieldType {
-		case fieldTypeFileID:
+		case fieldTypeURL:
 			id := dstField.String()
 			if res, ok := resources[id]; ok && res.Success {
 				dstField.SetString(res.URL)
 			}
 
-		case fieldTypeFileIDs:
+		case fieldTypeURLs:
 			if dstField.Len() > 0 {
 				for i := 0; i < dstField.Len(); i++ {
 					id := dstField.Index(i).String()

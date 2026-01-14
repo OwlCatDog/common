@@ -1,26 +1,30 @@
 package media
 
-// FileID 单图类型
+// URL 单文件URL类型（双字段模式）
 //
-// 用于标记单个图片ID字段，AutoFill 会自动将其转换为URL
+// 用于标记URL字段，AutoFill 会自动从对应的ID字段获取文件ID并填充URL
+// 命名约定：XxxURL 字段会从 Xxx 字段获取文件ID
 //
 // 示例:
 //
 //	type Response struct {
-//	    Cover image.FileID `json:"cover"` // file_id → url
+//	    Cover    string    `json:"cover"`     // ID 保持不变
+//	    CoverURL media.URL `json:"cover_url"` // 自动填充 URL
 //	}
-type FileID string
+type URL string
 
-// FileIDs 多图类型
+// URLs 多文件URL类型（双字段模式）
 //
-// 用于标记多个图片ID字段，AutoFill 会自动将其转换为URL列表
+// 用于标记URL列表字段，AutoFill 会自动从对应的IDs字段获取文件ID列表并填充URL列表
+// 命名约定：XxxURL 字段会从 Xxx 字段获取文件ID列表
 //
 // 示例:
 //
 //	type Response struct {
-//	    Gallery image.FileIDs `json:"gallery"` // []file_id → []url
+//	    Gallery    []string   `json:"gallery"`     // IDs 保持不变
+//	    GalleryURL media.URLs `json:"gallery_url"` // 自动填充 URLs
 //	}
-type FileIDs []string
+type URLs []string
 
 // RichText 富文本类型
 //
@@ -32,7 +36,7 @@ type FileIDs []string
 // 示例:
 //
 //	type Response struct {
-//	    Description image.RichText `json:"description"`
+//	    Description media.RichText `json:"description"`
 //	}
 //
 // 富文本内容示例:
