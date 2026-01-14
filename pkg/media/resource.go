@@ -1,4 +1,4 @@
-package image
+package media
 
 // ResourceInfo 资源信息
 type ResourceInfo struct {
