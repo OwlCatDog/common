@@ -1,5 +1,31 @@
 package media
 
+// FileID 单文件ID类型
+//
+// 用于标记文件ID字段，值保持不变（不会被替换成URL）
+// 配合 URL 类型使用，URL 通过 tag 指定从哪个 FileID 字段获取值
+//
+// 示例:
+//
+//	type Response struct {
+//	    Cover    media.FileID `json:"cover"`      // ID 保持不变
+//	    CoverURL media.URL    `media:"Cover"`     // URL 从 Cover 获取
+//	}
+type FileID string
+
+// FileIDs 多文件ID类型
+//
+// 用于标记文件ID列表字段，值保持不变（不会被替换成URL）
+// 配合 URLs 类型使用，URLs 通过 tag 指定从哪个 FileIDs 字段获取值
+//
+// 示例:
+//
+//	type Response struct {
+//	    Gallery    media.FileIDs `json:"gallery"`      // IDs 保持不变
+//	    GalleryURL media.URLs    `media:"Gallery"`     // URLs 从 Gallery 获取
+//	}
+type FileIDs []string
+
 // URL 单文件URL类型（双字段模式）
 //
 // 用于标记URL字段，AutoFill 会自动从对应的ID字段获取文件ID并填充URL

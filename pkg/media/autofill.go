@@ -230,8 +230,12 @@ func buildTypeInfo(srcType, dstType reflect.Type) *typeInfo {
 
 		// 检查是否为 URL 类型（双字段模式）
 		if dstFieldType == reflect.TypeOf(URL("")) {
-			// CoverURL -> Cover
-			idFieldName := strings.TrimSuffix(dstField.Name, "URL")
+			// 通过 tag 指定源字段名，如 `media:"Cover"`
+			idFieldName := dstField.Tag.Get("media")
+			if idFieldName == "" {
+				// 兼容：如果没有 tag，尝试去掉 URL 后缀
+				idFieldName = strings.TrimSuffix(dstField.Name, "URL")
+			}
 			if idSrcIdx, ok := srcFields[idFieldName]; ok {
 				fields = append(fields, fieldInfo{
 					srcIndex:   -1, // 不直接从同名字段复制
@@ -246,8 +250,12 @@ func buildTypeInfo(srcType, dstType reflect.Type) *typeInfo {
 
 		// 检查是否为 URLs 类型（双字段模式）
 		if dstFieldType == reflect.TypeOf(URLs{}) {
-			// GalleryURL -> Gallery
-			idFieldName := strings.TrimSuffix(dstField.Name, "URL")
+			// 通过 tag 指定源字段名，如 `media:"Gallery"`
+			idFieldName := dstField.Tag.Get("media")
+			if idFieldName == "" {
+				// 兼容：如果没有 tag，尝试去掉 URL 后缀
+				idFieldName = strings.TrimSuffix(dstField.Name, "URL")
+			}
 			if idSrcIdx, ok := srcFields[idFieldName]; ok {
 				fields = append(fields, fieldInfo{
 					srcIndex:   -1,
@@ -275,6 +283,12 @@ func buildTypeInfo(srcType, dstType reflect.Type) *typeInfo {
 
 		// 判断字段类型
 		switch {
+		case dstFieldType == reflect.TypeOf(FileID("")):
+			// FileID 类型直接复制（ID保持不变）
+			fi.fieldType = fieldTypeBasic
+		case dstFieldType == reflect.TypeOf(FileIDs{}):
+			// FileIDs 类型直接复制（IDs保持不变）
+			fi.fieldType = fieldTypeBasic
 		case dstFieldType == reflect.TypeOf(RichText("")):
 			fi.fieldType = fieldTypeRichText
 		case dstFieldType.Kind() == reflect.Slice:

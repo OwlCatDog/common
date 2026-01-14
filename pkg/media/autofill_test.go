@@ -40,11 +40,11 @@ type Product struct {
 
 type ProductLangDTO struct {
 	Name        string   `json:"name"`
-	Cover       string   `json:"cover"`       // ID 保持不变
-	CoverURL    URL      `json:"cover_url"`   // URL 自动填充
-	Gallery     []string `json:"gallery"`     // IDs 保持不变
-	GalleryURL  URLs     `json:"gallery_url"` // URLs 自动填充
-	Description RichText `json:"description"` // 富文本
+	Cover       FileID   `json:"cover"`                  // ID 保持不变
+	CoverURL    URL      `json:"cover_url" media:"Cover"` // URL 从 Cover 获取
+	Gallery     FileIDs  `json:"gallery"`                 // IDs 保持不变
+	GalleryURL  URLs     `json:"gallery_url" media:"Gallery"` // URLs 从 Gallery 获取
+	Description RichText `json:"description"`             // 富文本
 }
 
 type ProductDTO struct {
@@ -126,7 +126,7 @@ func TestAutoFill(t *testing.T) {
 	}
 
 	// 验证双字段模式 - ID保持不变
-	if zh.Cover != "cover_id" {
+	if string(zh.Cover) != "cover_id" {
 		t.Errorf("zh.Cover (ID): expected cover_id, got %s", zh.Cover)
 	}
 	// 验证双字段模式 - URL自动填充
@@ -138,7 +138,7 @@ func TestAutoFill(t *testing.T) {
 	if len(zh.Gallery) != 2 {
 		t.Errorf("zh.Gallery: expected 2 items, got %d", len(zh.Gallery))
 	}
-	if zh.Gallery[0] != "gallery_1" {
+	if string(zh.Gallery[0]) != "gallery_1" {
 		t.Errorf("zh.Gallery[0] (ID): expected gallery_1, got %s", zh.Gallery[0])
 	}
 
@@ -164,7 +164,7 @@ func TestAutoFill(t *testing.T) {
 	if en == nil {
 		t.Fatal("en language is nil")
 	}
-	if en.Cover != "cover_en" {
+	if string(en.Cover) != "cover_en" {
 		t.Errorf("en.Cover (ID): expected cover_en, got %s", en.Cover)
 	}
 	if string(en.CoverURL) != "https://cdn.example.com/cover_en.jpg" {
@@ -207,7 +207,7 @@ func TestAutoFillOne(t *testing.T) {
 	if dst.ID != 2 {
 		t.Errorf("ID: expected 2, got %d", dst.ID)
 	}
-	if dst.Languages["zh"].Cover != "single_cover" {
+	if string(dst.Languages["zh"].Cover) != "single_cover" {
 		t.Errorf("Cover (ID): expected single_cover, got %s", dst.Languages["zh"].Cover)
 	}
 	if string(dst.Languages["zh"].CoverURL) != "https://cdn.example.com/single.jpg" {
