@@ -579,7 +579,10 @@ func mapInterfaceToStruct(srcVal, dstVal reflect.Value, collector *idCollector) 
 		}
 
 		// 如果String 类型 直接尝试解析
-		if srcVal.Kind() == reflect.String {
+
+		// if srcVal.Kind() == reflect.String {
+		if dstVal.Type().Kind() != reflect.Interface &&
+			srcVal.Kind() == reflect.String {
 			text := srcVal.String()
 			dstVal.SetString(text)
 			// 使用辅助函数提取所有 data-href ID（支持两种属性顺序）
@@ -748,9 +751,9 @@ func fillMapURLs(dstField reflect.Value, fi fieldInfo, resources map[string]*Res
 	}
 
 	// 检查源是否为 interface{} 类型
-	srcElemKind := deref(fi.srcElem).Kind()
-	isInterfaceSrc := srcElemKind == reflect.Interface
-
+	src := deref(fi.srcElem)
+	isInterfaceSrc := src.Kind() == reflect.Interface
+	mapValueType := dstField.Type().Elem()
 	for _, key := range dstField.MapKeys() {
 		elem := dstField.MapIndex(key)
 		if elem.Kind() == reflect.Ptr && !elem.IsNil() {
@@ -769,6 +772,13 @@ func fillMapURLs(dstField reflect.Value, fi fieldInfo, resources map[string]*Res
 				fillURLs(newElem, fi.elemInfo, resources)
 			}
 			dstField.SetMapIndex(key, newElem)
+		} else if elem.Kind() == reflect.String {
+			text := elem.String()
+			newText := replaceDataHrefURLs(text, resources)
+			// map[string]string 替换
+			if mapValueType.Kind() == reflect.String {
+				dstField.SetMapIndex(key, reflect.ValueOf(newText).Convert(mapValueType))
+			}
 		}
 	}
 }
@@ -797,6 +807,11 @@ func fillInterfaceStructURLs(dstVal reflect.Value, resources map[string]*Resourc
 			// 使用辅助函数替换所有 data-href 对应的 src URL（支持两种属性顺序）
 			newText := replaceDataHrefURLs(text, resources)
 			fieldVal.SetString(newText)
+		case fieldType.Kind() == reflect.String:
+			text := fieldVal.String()
+			newText := replaceDataHrefURLs(text, resources)
+			fieldVal.SetString(newText)
+
 		}
 	}
 }
