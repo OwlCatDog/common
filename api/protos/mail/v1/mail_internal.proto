@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package common.mail.v1;
+option go_package = "github.com/heyinLab/common/api/gen/go/mail/v1;v1";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+
+enum TriggerEvent{
+    TenantActivationEmail = 0; // 租户激活邮件请求
+    InvitationEmail = 1; //  邀请邮件请求
+    PasswordResetEmail = 2; // 密码重置邮件请求
+}
+
+
+
+message InternalSendEmailRequest{
+  // 业务触发事件类型
+  TriggerEvent trigger_event = 1 [
+    json_name = "triggerEvent"
+  ];
+
+  // 收件人邮箱地址
+  string dest_addr = 2 [
+    json_name = "to"
+  ];
+
+  // 国家代码 (ISO 3166-1 alpha-2)
+  string country_code = 3 [
+    json_name = "countryCode"
+  ];
+
+  // 语言代码 (如：en-US, zh-CN)
+  string language = 4 [
+    json_name = "language"
+  ];
+
+  // 模板变量数据
+  map<string, string> variables = 5 [
+    json_name = "variables"
+  ];
+}
+
+// 发送邮件响应
+message InternalSendEmailResponse {
+  // 发送时间戳
+  google.protobuf.Timestamp timestamp = 7 [
+    json_name = "timestamp"
+  ];
+}
+
+// 邮件服务 - 供其他微服务调用的内部 RPC 接口
+service MailInternalService {
+  // 发送邮件 - 内部 RPC 接口，供 UserService 等业务服务调用
+  rpc InternalSendEmail (InternalSendEmailRequest) returns (InternalSendEmailResponse);
+}
