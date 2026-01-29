@@ -58,6 +58,39 @@ func GetOperator(ctx context.Context) Operator {
 	return Operator{Type: "unknown", ID: 0}
 }
 
+func CheckProductCode(productCode string) middleware.Middleware {
+	return func(handler middleware.Handler) middleware.Handler {
+		return func(ctx context.Context, req interface{}) (reply interface{}, err error) {
+			tr, ok := transport.FromServerContext(ctx)
+			if !ok {
+				return nil, errors.New(
+					int(businessErrors.ErrSystemError.HttpCode),
+					businessErrors.ErrSystemError.Type,
+					businessErrors.ErrSystemError.Message,
+				)
+			}
+
+			header := tr.RequestHeader()
+
+			authType := header.Get("X-Auth-Type")
+
+			if authType != "openapi" {
+				return handler(ctx, req)
+			}
+
+			headerProductCode := header.Get("X-Product-Code")
+			if productCode != headerProductCode {
+				return nil, errors.New(
+					int(businessErrors.ErrPermissionDenied.HttpCode),
+					businessErrors.ErrPermissionDenied.Type,
+					businessErrors.ErrPermissionDenied.Message,
+				)
+			}
+			return handler(ctx, req)
+		}
+	}
+}
+
 // Server 统一认证中间件，支持 JWT Token 和 OpenAPI 两种认证方式
 func Server() middleware.Middleware {
 	return func(handler middleware.Handler) middleware.Handler {
